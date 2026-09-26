@@ -28,6 +28,11 @@ dev = [
 testpaths = ["tests"]
 norecursedirs = ["golden"]
 
+[tool.ruff.lint.per-file-ignores]
+# Ruby 版と同名のモジュール（パッケージ構成決定）
+"src/tecsgen/plugin/**" = ["N999"]
+"src/tecsgen/messages/**" = ["N999"]
+
 [build-system]
 # tree-sitter 文法を C 拡張としてビルドするため setuptools を使う（拡張の定義は setup.py）
 requires = ["setuptools>=77"]
