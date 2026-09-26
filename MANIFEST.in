@@ -1,0 +1,2 @@
+recursive-include src/tecsgen/syntax *.c *.h *.pyi
+recursive-include src/tecsgen/syntax/grammars *.json README.md

@@ -6,5 +6,13 @@ dist/
 wheels/
 *.egg-info
 
+# C extensions built in place (tree-sitter grammars)
+*.pyd
+*.so
+
+# Tool caches
+.ruff_cache/
+.pytest_cache/
+
 # Virtual environments
 .venv

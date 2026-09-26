@@ -1,0 +1,3 @@
+import types
+
+def language() -> types.CapsuleType: ...

@@ -19,6 +19,8 @@ example = "tecsgen.example:main"
 dev = [
     "pytest>=9.1.1",
     "ruff",
+    # setup.py の型チェック用（ビルド自体は build-system の setuptools で行う）
+    "setuptools>=77",
     "ty>=0.0.82",
 ]
 
@@ -27,8 +29,12 @@ testpaths = ["tests"]
 norecursedirs = ["golden"]
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+# tree-sitter 文法を C 拡張としてビルドするため setuptools を使う（拡張の定義は setup.py）
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
 
-[tool.hatch.build.targets.wheel]
-packages = ["src/tecsgen"]
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"tecsgen.syntax" = ["*.pyi", "grammars/*/node-types.json", "grammars/README.md"]
