@@ -1,0 +1,4 @@
+bug_test2-err.cdl:14:2: warning: W1002 ctCT2: non-active celltype has no entry port & factory
+bug_test2-err.cdl:16:12: error: S1093 ::cell1 : undefined cell
+bug_test2-err.cdl:18:12: warning: W1007 ::cell2 : non-active cell has no entry join and no factory
+1 error  2 warnings

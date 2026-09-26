@@ -1,0 +1,13 @@
+	ALARM Alarm1 {
+		COUNTER = SysCounter;
+		ACTION = ALARMCALLBACK {
+			ALARMCALLBACKNAME = "SampleCallback";
+		};
+		AUTOSTART = TRUE {
+			ALARMTIME = 20;
+			CYCLETIME = 20;
+			APPMODE = APPMODE1;
+			APPMODE = APPMODE2;
+		};
+	};
+

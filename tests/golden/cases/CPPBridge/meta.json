@@ -1,0 +1,56 @@
+{
+  "id": "CPPBridge",
+  "source": "CPPBridge/Makefile [tecs]",
+  "cwd": "CPPBridge",
+  "args": [
+    "-L",
+    ".",
+    "-I",
+    "../cygwin",
+    "cpp.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 3,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "CPPBridge/gen/CsSig.cpp",
+    "CPPBridge/gen/CsSig.hpp",
+    "CPPBridge/gen/Makefile.depend",
+    "CPPBridge/gen/Makefile.tecsgen",
+    "CPPBridge/gen/Makefile.templ",
+    "CPPBridge/gen/global_tecsgen.h",
+    "CPPBridge/gen/nCPP_tsSig.c",
+    "CPPBridge/gen/nCPP_tsSig_factory.h",
+    "CPPBridge/gen/nCPP_tsSig_tecsgen.c",
+    "CPPBridge/gen/nCPP_tsSig_tecsgen.h",
+    "CPPBridge/gen/sSig_tecsgen.h",
+    "CPPBridge/gen/tCelltype_factory.h",
+    "CPPBridge/gen/tCelltype_tecsgen.c",
+    "CPPBridge/gen/tCelltype_tecsgen.h",
+    "CPPBridge/gen/tCelltype_templ.c",
+    "CPPBridge/gen/tecsgen.rbdmp",
+    "CPPBridge/gen/tecsgen.timestamp",
+    "CPPBridge/gen/tmp_CPP2TECSBridgePlugin_0.cdl",
+    "CPPBridge/gen/tmp_CPP2TECSBridgePlugin_post_code.cdl",
+    "CPPBridge/gen/tmp_C_src.c",
+    "CPPBridge/gen/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "CPPBridge/gen/tecsgen.rbdmp": {
+      "sha256": "42af181162faecad101936bf50645174e5b405a1827865612abfec129d3f678f",
+      "size": 22569
+    },
+    "CPPBridge/gen/tmp_tecs.h": {
+      "sha256": "29d2c44ee3aeaf69d3dcd14a0a13d72a4a1cc48f2903b63ba134f2abd3992d0e",
+      "size": 8592
+    }
+  }
+}

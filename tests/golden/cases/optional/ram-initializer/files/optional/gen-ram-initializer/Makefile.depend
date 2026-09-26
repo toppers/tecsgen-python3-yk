@@ -1,0 +1,85 @@
+# Celltype: tTask  #_MDEP_#
+$(_TECS_OBJ_DIR)tTask_tecsgen.o : tTask_tecsgen.c  $(GEN_DIR)/tSerialTaskBody_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+$(_TECS_OBJ_DIR)tTask_templ.o : tTask_templ.c  $(GEN_DIR)/tSerialTaskBody_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+$(_TECS_OBJ_DIR)tTask.o : tTask.c  $(GEN_DIR)/tSerialTaskBody_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+
+# Celltype: tAlloc  #_MDEP_#
+$(_TECS_OBJ_DIR)tAlloc_tecsgen.o : tAlloc_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/tAlloc_factory.h $(GEN_DIR)/tAlloc_tecsgen.h
+$(_TECS_OBJ_DIR)tAlloc_templ.o : tAlloc_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/tAlloc_factory.h $(GEN_DIR)/tAlloc_tecsgen.h
+$(_TECS_OBJ_DIR)tAlloc.o : tAlloc.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/tAlloc_factory.h $(GEN_DIR)/tAlloc_tecsgen.h
+
+# Celltype: tSerialTaskBody  #_MDEP_#
+$(_TECS_OBJ_DIR)tSerialTaskBody_tecsgen.o : tSerialTaskBody_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/tSerialTaskBody_factory.h $(GEN_DIR)/tSerialTaskBody_tecsgen.h
+$(_TECS_OBJ_DIR)tSerialTaskBody_templ.o : tSerialTaskBody_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/tSerialTaskBody_factory.h $(GEN_DIR)/tSerialTaskBody_tecsgen.h
+$(_TECS_OBJ_DIR)tSerialTaskBody.o : tSerialTaskBody.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/tSerialTaskBody_factory.h $(GEN_DIR)/tSerialTaskBody_tecsgen.h
+
+# Celltype: tSingleCellOptimizeCaller  #_MDEP_#
+$(_TECS_OBJ_DIR)tSingleCellOptimizeCaller_tecsgen.o : tSingleCellOptimizeCaller_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tSingleCellOptimizeCaller_factory.h $(GEN_DIR)/tSingleCellOptimizeCaller_tecsgen.h
+$(_TECS_OBJ_DIR)tSingleCellOptimizeCaller_templ.o : tSingleCellOptimizeCaller_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tSingleCellOptimizeCaller_factory.h $(GEN_DIR)/tSingleCellOptimizeCaller_tecsgen.h
+$(_TECS_OBJ_DIR)tSingleCellOptimizeCaller.o : tSingleCellOptimizeCaller.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tSingleCellOptimizeCaller_factory.h $(GEN_DIR)/tSingleCellOptimizeCaller_tecsgen.h
+
+# Celltype: tSingleCellOptimizeCallee  #_MDEP_#
+$(_TECS_OBJ_DIR)tSingleCellOptimizeCallee_tecsgen.o : tSingleCellOptimizeCallee_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tSingleCellOptimizeCallee_factory.h $(GEN_DIR)/tSingleCellOptimizeCallee_tecsgen.h
+$(_TECS_OBJ_DIR)tSingleCellOptimizeCallee_templ.o : tSingleCellOptimizeCallee_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tSingleCellOptimizeCallee_factory.h $(GEN_DIR)/tSingleCellOptimizeCallee_tecsgen.h
+$(_TECS_OBJ_DIR)tSingleCellOptimizeCallee.o : tSingleCellOptimizeCallee.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tSingleCellOptimizeCallee_factory.h $(GEN_DIR)/tSingleCellOptimizeCallee_tecsgen.h
+
+# Celltype: tVMTUselessOptimizeCaller  #_MDEP_#
+$(_TECS_OBJ_DIR)tVMTUselessOptimizeCaller_tecsgen.o : tVMTUselessOptimizeCaller_tecsgen.c  $(GEN_DIR)/tVMTUselessOptimizeCallee_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tVMTUselessOptimizeCaller_factory.h $(GEN_DIR)/tVMTUselessOptimizeCaller_tecsgen.h
+$(_TECS_OBJ_DIR)tVMTUselessOptimizeCaller_templ.o : tVMTUselessOptimizeCaller_templ.c  $(GEN_DIR)/tVMTUselessOptimizeCallee_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tVMTUselessOptimizeCaller_factory.h $(GEN_DIR)/tVMTUselessOptimizeCaller_tecsgen.h
+$(_TECS_OBJ_DIR)tVMTUselessOptimizeCaller.o : tVMTUselessOptimizeCaller.c  $(GEN_DIR)/tVMTUselessOptimizeCallee_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tVMTUselessOptimizeCaller_factory.h $(GEN_DIR)/tVMTUselessOptimizeCaller_tecsgen.h
+
+# Celltype: tVMTUselessOptimizeCallee  #_MDEP_#
+$(_TECS_OBJ_DIR)tVMTUselessOptimizeCallee_tecsgen.o : tVMTUselessOptimizeCallee_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tVMTUselessOptimizeCallee_factory.h $(GEN_DIR)/tVMTUselessOptimizeCallee_tecsgen.h
+$(_TECS_OBJ_DIR)tVMTUselessOptimizeCallee_templ.o : tVMTUselessOptimizeCallee_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tVMTUselessOptimizeCallee_factory.h $(GEN_DIR)/tVMTUselessOptimizeCallee_tecsgen.h
+$(_TECS_OBJ_DIR)tVMTUselessOptimizeCallee.o : tVMTUselessOptimizeCallee.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tVMTUselessOptimizeCallee_factory.h $(GEN_DIR)/tVMTUselessOptimizeCallee_tecsgen.h
+
+# Celltype: tSkeltonUselessOptimizeCaller  #_MDEP_#
+$(_TECS_OBJ_DIR)tSkeltonUselessOptimizeCaller_tecsgen.o : tSkeltonUselessOptimizeCaller_tecsgen.c  $(GEN_DIR)/tSkeltonUselessOptimizeCallee_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tSkeltonUselessOptimizeCaller_factory.h $(GEN_DIR)/tSkeltonUselessOptimizeCaller_tecsgen.h
+$(_TECS_OBJ_DIR)tSkeltonUselessOptimizeCaller_templ.o : tSkeltonUselessOptimizeCaller_templ.c  $(GEN_DIR)/tSkeltonUselessOptimizeCallee_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tSkeltonUselessOptimizeCaller_factory.h $(GEN_DIR)/tSkeltonUselessOptimizeCaller_tecsgen.h
+$(_TECS_OBJ_DIR)tSkeltonUselessOptimizeCaller.o : tSkeltonUselessOptimizeCaller.c  $(GEN_DIR)/tSkeltonUselessOptimizeCallee_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tSkeltonUselessOptimizeCaller_factory.h $(GEN_DIR)/tSkeltonUselessOptimizeCaller_tecsgen.h
+
+# Celltype: tSkeltonUselessOptimizeCallee  #_MDEP_#
+$(_TECS_OBJ_DIR)tSkeltonUselessOptimizeCallee_tecsgen.o : tSkeltonUselessOptimizeCallee_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tSkeltonUselessOptimizeCallee_factory.h $(GEN_DIR)/tSkeltonUselessOptimizeCallee_tecsgen.h
+$(_TECS_OBJ_DIR)tSkeltonUselessOptimizeCallee_templ.o : tSkeltonUselessOptimizeCallee_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tSkeltonUselessOptimizeCallee_factory.h $(GEN_DIR)/tSkeltonUselessOptimizeCallee_tecsgen.h
+$(_TECS_OBJ_DIR)tSkeltonUselessOptimizeCallee.o : tSkeltonUselessOptimizeCallee.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tSkeltonUselessOptimizeCallee_factory.h $(GEN_DIR)/tSkeltonUselessOptimizeCallee_tecsgen.h
+
+# Celltype: tMain  #_MDEP_#
+$(_TECS_OBJ_DIR)tMain_tecsgen.o : tMain_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tMain_factory.h $(GEN_DIR)/tMain_tecsgen.h
+$(_TECS_OBJ_DIR)tMain_templ.o : tMain_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tMain_factory.h $(GEN_DIR)/tMain_tecsgen.h
+$(_TECS_OBJ_DIR)tMain.o : tMain.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tMain_factory.h $(GEN_DIR)/tMain_tecsgen.h
+
+# Celltype: tCPArray  #_MDEP_#
+$(_TECS_OBJ_DIR)tCPArray_tecsgen.o : tCPArray_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tCPArray_factory.h $(GEN_DIR)/tCPArray_tecsgen.h
+$(_TECS_OBJ_DIR)tCPArray_templ.o : tCPArray_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tCPArray_factory.h $(GEN_DIR)/tCPArray_tecsgen.h
+$(_TECS_OBJ_DIR)tCPArray.o : tCPArray.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tCPArray_factory.h $(GEN_DIR)/tCPArray_tecsgen.h
+
+# Celltype: tNCPArray  #_MDEP_#
+$(_TECS_OBJ_DIR)tNCPArray_tecsgen.o : tNCPArray_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tNCPArray_factory.h $(GEN_DIR)/tNCPArray_tecsgen.h
+$(_TECS_OBJ_DIR)tNCPArray_templ.o : tNCPArray_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tNCPArray_factory.h $(GEN_DIR)/tNCPArray_tecsgen.h
+$(_TECS_OBJ_DIR)tNCPArray.o : tNCPArray.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tNCPArray_factory.h $(GEN_DIR)/tNCPArray_tecsgen.h
+
+# Celltype: tSendRecvClnt  #_MDEP_#
+$(_TECS_OBJ_DIR)tSendRecvClnt_tecsgen.o : tSendRecvClnt_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/sSigSendRecv_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tSendRecvClnt_factory.h $(GEN_DIR)/tSendRecvClnt_tecsgen.h
+$(_TECS_OBJ_DIR)tSendRecvClnt_templ.o : tSendRecvClnt_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/sSigSendRecv_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tSendRecvClnt_factory.h $(GEN_DIR)/tSendRecvClnt_tecsgen.h
+$(_TECS_OBJ_DIR)tSendRecvClnt.o : tSendRecvClnt.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/sSigSendRecv_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tSendRecvClnt_factory.h $(GEN_DIR)/tSendRecvClnt_tecsgen.h
+
+# Celltype: tSendRecvServ  #_MDEP_#
+$(_TECS_OBJ_DIR)tSendRecvServ_tecsgen.o : tSendRecvServ_tecsgen.c  $(GEN_DIR)/tAlloc_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/sSigSendRecv_tecsgen.h $(GEN_DIR)/tSendRecvServ_factory.h $(GEN_DIR)/tSendRecvServ_tecsgen.h
+$(_TECS_OBJ_DIR)tSendRecvServ_templ.o : tSendRecvServ_templ.c  $(GEN_DIR)/tAlloc_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/sSigSendRecv_tecsgen.h $(GEN_DIR)/tSendRecvServ_factory.h $(GEN_DIR)/tSendRecvServ_tecsgen.h
+$(_TECS_OBJ_DIR)tSendRecvServ.o : tSendRecvServ.c  $(GEN_DIR)/tAlloc_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/sSigSendRecv_tecsgen.h $(GEN_DIR)/tSendRecvServ_factory.h $(GEN_DIR)/tSendRecvServ_tecsgen.h
+
+# Celltype: tSendRecvClntOmit  #_MDEP_#
+$(_TECS_OBJ_DIR)tSendRecvClntOmit_tecsgen.o : tSendRecvClntOmit_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tSendRecvClntOmit_factory.h $(GEN_DIR)/tSendRecvClntOmit_tecsgen.h
+$(_TECS_OBJ_DIR)tSendRecvClntOmit_templ.o : tSendRecvClntOmit_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tSendRecvClntOmit_factory.h $(GEN_DIR)/tSendRecvClntOmit_tecsgen.h
+$(_TECS_OBJ_DIR)tSendRecvClntOmit.o : tSendRecvClntOmit.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tSendRecvClntOmit_factory.h $(GEN_DIR)/tSendRecvClntOmit_tecsgen.h
+
+# Celltype: tCCP5Caller  #_MDEP_#
+$(_TECS_OBJ_DIR)tCCP5Caller_tecsgen.o : tCCP5Caller_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tCCP5Caller_factory.h $(GEN_DIR)/tCCP5Caller_tecsgen.h
+$(_TECS_OBJ_DIR)tCCP5Caller_templ.o : tCCP5Caller_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tCCP5Caller_factory.h $(GEN_DIR)/tCCP5Caller_tecsgen.h
+$(_TECS_OBJ_DIR)tCCP5Caller.o : tCCP5Caller.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tCCP5Caller_factory.h $(GEN_DIR)/tCCP5Caller_tecsgen.h
+
+# Celltype: tCCP5Callee  #_MDEP_#
+$(_TECS_OBJ_DIR)tCCP5Callee_tecsgen.o : tCCP5Callee_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tCCP5Callee_factory.h $(GEN_DIR)/tCCP5Callee_tecsgen.h
+$(_TECS_OBJ_DIR)tCCP5Callee_templ.o : tCCP5Callee_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tCCP5Callee_factory.h $(GEN_DIR)/tCCP5Callee_tecsgen.h
+$(_TECS_OBJ_DIR)tCCP5Callee.o : tCCP5Callee.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tCCP5Callee_factory.h $(GEN_DIR)/tCCP5Callee_tecsgen.h
+

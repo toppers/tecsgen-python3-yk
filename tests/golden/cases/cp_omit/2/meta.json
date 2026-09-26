@@ -1,0 +1,86 @@
+{
+  "id": "cp_omit/2",
+  "source": "cp_omit/Makefile2 [tecs]",
+  "cwd": "cp_omit",
+  "args": [
+    "-R",
+    "-g",
+    "./gen2",
+    "-I",
+    "../cygwin3/",
+    "null_cp.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 4,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "cp_omit/gen2/Makefile.depend",
+    "cp_omit/gen2/Makefile.tecsgen",
+    "cp_omit/gen2/Makefile.templ",
+    "cp_omit/gen2/global_tecsgen.h",
+    "cp_omit/gen2/sDataqueue_tecsgen.h",
+    "cp_omit/gen2/sEventflag_tecsgen.h",
+    "cp_omit/gen2/sKernel_tecsgen.h",
+    "cp_omit/gen2/sSemaphore_tecsgen.h",
+    "cp_omit/gen2/sSendRecv_tecsgen.h",
+    "cp_omit/gen2/sSysLog_tecsgen.h",
+    "cp_omit/gen2/sTaskBody_tecsgen.h",
+    "cp_omit/gen2/sTaskExceptionBody_tecsgen.h",
+    "cp_omit/gen2/sTask_tecsgen.h",
+    "cp_omit/gen2/siDataqueue_tecsgen.h",
+    "cp_omit/gen2/siEventflag_tecsgen.h",
+    "cp_omit/gen2/siKernel_tecsgen.h",
+    "cp_omit/gen2/siSemaphore_tecsgen.h",
+    "cp_omit/gen2/tKernel_factory.h",
+    "cp_omit/gen2/tKernel_inline_templ.h",
+    "cp_omit/gen2/tKernel_tecsgen.c",
+    "cp_omit/gen2/tKernel_tecsgen.h",
+    "cp_omit/gen2/tSysLog_factory.h",
+    "cp_omit/gen2/tSysLog_tecsgen.c",
+    "cp_omit/gen2/tSysLog_tecsgen.h",
+    "cp_omit/gen2/tSysLog_templ.c",
+    "cp_omit/gen2/tTask_factory.h",
+    "cp_omit/gen2/tTask_inline_templ.h",
+    "cp_omit/gen2/tTask_tecsgen.c",
+    "cp_omit/gen2/tTask_tecsgen.h",
+    "cp_omit/gen2/tTestClient_factory.h",
+    "cp_omit/gen2/tTestClient_tecsgen.c",
+    "cp_omit/gen2/tTestClient_tecsgen.h",
+    "cp_omit/gen2/tTestClient_templ.c",
+    "cp_omit/gen2/tTestComponent2_factory.h",
+    "cp_omit/gen2/tTestComponent2_tecsgen.c",
+    "cp_omit/gen2/tTestComponent2_tecsgen.h",
+    "cp_omit/gen2/tTestComponent2_templ.c",
+    "cp_omit/gen2/tTestComponent_factory.h",
+    "cp_omit/gen2/tTestComponent_tecsgen.c",
+    "cp_omit/gen2/tTestComponent_tecsgen.h",
+    "cp_omit/gen2/tTestComponent_templ.c",
+    "cp_omit/gen2/tecsgen.rbdmp",
+    "cp_omit/gen2/tecsgen.timestamp",
+    "cp_omit/gen2/tmp_C_src.c",
+    "cp_omit/gen2/tmp_cygwin_tecs.h",
+    "cp_omit/gen2/tmp_t_syslog.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "cp_omit/gen2/tecsgen.rbdmp": {
+      "sha256": "488f04c6e03386aae95ab8b098cbcf0327bdeabafa51608719c9e168100f7d93",
+      "size": 74922
+    },
+    "cp_omit/gen2/tmp_cygwin_tecs.h": {
+      "sha256": "a621e21eb93b8ea2a1dd9a82056aeefb07123ea86443ffc7b611802ccda1ef6d",
+      "size": 15523
+    },
+    "cp_omit/gen2/tmp_t_syslog.h": {
+      "sha256": "d93ebe37d9a8f80e26b31b0b7c95d545c80c066d9e9bf5d570ec6197dec83078",
+      "size": 583
+    }
+  }
+}

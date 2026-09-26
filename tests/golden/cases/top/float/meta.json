@@ -1,0 +1,46 @@
+{
+  "id": "top/float",
+  "source": "Makefile [float]",
+  "cwd": ".",
+  "args": [
+    "-I",
+    "RUNTIME/runtime/include",
+    "-I",
+    "RUNTIME/runtime/test",
+    "float.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 2,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "gen/Makefile.depend",
+    "gen/Makefile.tecsgen",
+    "gen/Makefile.templ",
+    "gen/global_tecsgen.h",
+    "gen/sFloat_tecsgen.h",
+    "gen/tFloat2_factory.h",
+    "gen/tFloat2_tecsgen.c",
+    "gen/tFloat2_tecsgen.h",
+    "gen/tFloat2_templ.c",
+    "gen/tFloat_factory.h",
+    "gen/tFloat_tecsgen.c",
+    "gen/tFloat_tecsgen.h",
+    "gen/tFloat_templ.c",
+    "gen/tecsgen.rbdmp",
+    "gen/tecsgen.timestamp"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "gen/tecsgen.rbdmp": {
+      "sha256": "a16710fab1a27308f82b32f1e73e14d9974f9ca12cf116798262c04652263f86",
+      "size": 6078
+    }
+  }
+}

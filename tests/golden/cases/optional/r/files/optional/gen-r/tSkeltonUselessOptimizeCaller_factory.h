@@ -1,0 +1,3 @@
+#ifndef tSkeltonUselessOptimizeCaller_FACTORY_H
+#define tSkeltonUselessOptimizeCaller_FACTORY_H
+#endif /* tSkeltonUselessOptimizeCaller_FACTORY_H */

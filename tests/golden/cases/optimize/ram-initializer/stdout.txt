@@ -1,0 +1,44 @@
+optimize.cdl is found in .
+tecs.h is found in ../RUNTIME/tecs-runtime/include
+import_C header=../RUNTIME/tecs-runtime/include/tecs.h, define=
+CPP: gcc -E -DTECSGEN   -I . -I ../RUNTIME/tecs-runtime/target -I ../RUNTIME/tecs-runtime/include -I @WORK@/tecsgen/tecs -I @WORK@/tecsgen/tecs/mruby -I @WORK@/tecsgen/tecs/rpc -I @WORK@/tecsgen/tecs/TLSFMalloc -I @WORK@/tecsgen/tecs/DataPumpHolder -I @WORK@/tecsgen/tecs/posix -I @WORK@/tecsgen/tecs/TECSInfo ./gen-ram-initializer/tmp_C_src.c
+./gen-ram-initializer/tmp_tecs.h:1172:1: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+./gen-ram-initializer/tmp_tecs.h:1239:3: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+optimize.cdl:110:2: warning: W1002 tMain: non-active celltype has no entry port & factory
+TECSInfo.cdl is found in @WORK@/tecsgen/tecs/TECSInfo
+t_stddef.h is found in ../RUNTIME/tecs-runtime/include
+import_C header=../RUNTIME/tecs-runtime/include/t_stddef.h, define=
+CPP: gcc -E -DTECSGEN   -I . -I ../RUNTIME/tecs-runtime/target -I ../RUNTIME/tecs-runtime/include -I @WORK@/tecsgen/tecs -I @WORK@/tecsgen/tecs/mruby -I @WORK@/tecsgen/tecs/rpc -I @WORK@/tecsgen/tecs/TLSFMalloc -I @WORK@/tecsgen/tecs/DataPumpHolder -I @WORK@/tecsgen/tecs/posix -I @WORK@/tecsgen/tecs/TECSInfo ./gen-ram-initializer/tmp_C_src.c
+./gen-ram-initializer/tmp_t_stddef.h:289:22: error: S1142 t_syslog.h not found in search path
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:286:50: warning: W3003 rawDesc pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+load 'TECSInfoPlugin.rb'
+new celltype plugin: plugin_object = Class.new( tTECSInfo, "" )
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:308:6: info: TIF0001 forcely set --unoptimize-entry by TECSInfoPlugin (by importing TECSInfo.cdl)
+./gen-ram-initializer/tmp__TECSInfoSub.cdl is found in .
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:511:14: warning: W9999 "tVoidTypeInfo" cannot handle Descriptor "desc" information for port "eTypeInfo"
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:511:14: warning: W9999 "tVoidTypeInfo" cannot handle Descriptor "desc" information for port "eTypeInfo"
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:521:14: warning: W9999 "tBoolTypeInfo" cannot handle Descriptor "desc" information for port "eTypeInfo"
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:521:14: warning: W9999 "tBoolTypeInfo" cannot handle Descriptor "desc" information for port "eTypeInfo"
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:531:14: warning: W9999 "tIntTypeInfo" cannot handle Descriptor "desc" information for port "eTypeInfo"
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:531:14: warning: W9999 "tIntTypeInfo" cannot handle Descriptor "desc" information for port "eTypeInfo"
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:541:14: warning: W9999 "tFloatTypeInfo" cannot handle Descriptor "desc" information for port "eTypeInfo"
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:541:14: warning: W9999 "tFloatTypeInfo" cannot handle Descriptor "desc" information for port "eTypeInfo"
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:606:14: warning: W9999 "tDescriptorTypeInfo" cannot handle Descriptor "desc" information for port "eTypeInfo"
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:606:14: warning: W9999 "tDescriptorTypeInfo" cannot handle Descriptor "desc" information for port "eTypeInfo"
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:606:14: warning: W9999 tDescriptorTypeInfo cannot put information from ref_desc port cSignatureInfo
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:621:14: warning: W9999 "tFuncTypeInfo" cannot handle Descriptor "desc" information for port "eTypeInfo"
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:621:14: warning: W9999 "tFuncTypeInfo" cannot handle Descriptor "desc" information for port "eTypeInfo"
+gen_plugin_post_code: plClass.name}.gen_post_code( file )
+./gen-ram-initializer/tmp__TECSInfoSub.cdl:5:2: info: I9999 TECSInfoPlugin does not generate TECSInfo code because of early error
+./gen-ram-initializer/tmp_TECSInfoPlugin_post_code.cdl is found in .
+optimize.cdl:30:32: warning: W1007 ::SingleCellOptimizeCaller2 : non-active cell has no entry join and no factory
+optimize.cdl:57:32: warning: W1007 ::VMTUselessOptimizeCaller2 : non-active cell has no entry join and no factory
+optimize.cdl:89:36: warning: W1007 ::SkeltonUselessOptimizeCaller : non-active cell has no entry join and no factory
+optimize.cdl:93:36: warning: W1007 ::SkeltonUselessOptimizeCaller2 : non-active cell has no entry join and no factory
+optimize.cdl:97:39: warning: W1007 ::SkeltonUselessNotOptimizeCaller : non-active cell has no entry join and no factory
+optimize.cdl:111:12: warning: W1007 ::Main : non-active cell has no entry join and no factory
+./gen-ram-initializer/tmp__TECSInfoSub.cdl:4:34: error: S1093 ::rTECSInfo::TECSInfoSub : undefined cell
+=====================================
+=== Region.path_str: ::
+=====================================
+2 errors  21 warnings

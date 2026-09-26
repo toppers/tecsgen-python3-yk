@@ -1,0 +1,8 @@
+sSimple.cdl:34:61: warning: W3005 'msg' size_is always lower than max. max is ignored
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:286:50: warning: W3003 rawDesc pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:308:6: info: TIF0001 forcely set --unoptimize-entry by TECSInfoPlugin (by importing TECSInfo.cdl)
+TracePlugin.new( 'Join_in_through__0', '', 'SimpleServer', 'eEnt', tSimpleServer )
+OpaqueRPCPlugin.new( 'Join_to_through___0', 'PPAllocatorSize=1024,substituteAllocator=%Alloc.eAlloc=>CAlloc.eAlloc%, clientChannelCell= 'ClientChannel_$destination$', serverChannelCell= !ServerChannel_$destination$!,  clientErrorHandler = 'ClientRPCErrorHandler_$destination$.eHandler', serverErrorHandler = 'ServerRPCErrorHandler_$destination$.eHandler', ', 'Join_in_through__0', 'eThroughEntry', tSimpleServer )
+OpaqueRPCPlugin: ClientChannel_SimpleServer
+TracePlugin.new( 'TracePlugin__0', '', 'Join_to_through___0', 'eThroughEntry', tSimpleServer )
+2 warnings

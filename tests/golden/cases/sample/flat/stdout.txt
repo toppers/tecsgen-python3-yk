@@ -1,0 +1,15 @@
+jsp_flat.sig.CPP:146:13: error: G1016 syntax error near 'bool'
+sample1_flat.blt.CPP:67:18: error: S1027 'tTexHdrMain' celltype not found
+sample1_flat.blt.CPP:71:14: error: S1027 'tTexHdr' celltype not found
+sample1_flat.blt.CPP:75:16: error: S1027 'tTaskMain' celltype not found
+sample1_flat.blt.CPP:85:12: error: S1027 'tTask' celltype not found
+sample1_flat.blt.CPP:95:16: error: S1027 'tTaskMain' celltype not found
+sample1_flat.blt.CPP:103:12: error: S1027 'tTask' celltype not found
+sample1_flat.blt.CPP:115:12: error: S1027 'tTask' celltype not found
+sample1_flat.blt.CPP:127:12: error: S1027 'tTask' celltype not found
+sample1_flat.blt.CPP:139:18: error: S1027 'tCycHdrMain' celltype not found
+sample1_flat.blt.CPP:144:14: error: S1027 'tCycHdr' celltype not found
+sample1_flat.blt.CPP:148:18: error: S1027 'tExcHdrMain' celltype not found
+sample1_flat.blt.CPP:152:14: error: S1027 'tExcHdr' celltype not found
+sample1_flat.ct.CPP:18:19: error: G1016 syntax error near 'TEXPTN'
+14 errors

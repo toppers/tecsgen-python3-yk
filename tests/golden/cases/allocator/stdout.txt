@@ -1,0 +1,2 @@
+gen/tmp_tecs.h:1172:1: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+gen/tmp_tecs.h:1239:3: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.

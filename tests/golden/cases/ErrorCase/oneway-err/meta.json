@@ -1,0 +1,26 @@
+{
+  "id": "ErrorCase/oneway-err",
+  "source": "ErrorCase/Makefile [oneway-err]",
+  "cwd": "ErrorCase",
+  "args": [
+    "-L",
+    ".",
+    "oneway-err.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 3,
+  "warnings": 0,
+  "expect": [
+    3,
+    0
+  ],
+  "expect_matched": true,
+  "created": [],
+  "modified": [],
+  "deleted": [],
+  "excluded": {}
+}

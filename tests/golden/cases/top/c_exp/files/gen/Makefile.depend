@@ -1,0 +1,5 @@
+# Celltype: tC_exp  #_MDEP_#
+$(_TECS_OBJ_DIR)tC_exp_tecsgen.o : tC_exp_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tC_exp_factory.h $(GEN_DIR)/tC_exp_tecsgen.h
+$(_TECS_OBJ_DIR)tC_exp_templ.o : tC_exp_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tC_exp_factory.h $(GEN_DIR)/tC_exp_tecsgen.h
+$(_TECS_OBJ_DIR)tC_exp.o : tC_exp.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tC_exp_factory.h $(GEN_DIR)/tC_exp_tecsgen.h
+

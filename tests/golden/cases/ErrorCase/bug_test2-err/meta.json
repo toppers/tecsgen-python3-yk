@@ -1,0 +1,26 @@
+{
+  "id": "ErrorCase/bug_test2-err",
+  "source": "ErrorCase/Makefile [bug_test2-err]",
+  "cwd": "ErrorCase",
+  "args": [
+    "-L",
+    ".",
+    "bug_test2-err.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 1,
+  "warnings": 2,
+  "expect": [
+    1,
+    2
+  ],
+  "expect_matched": true,
+  "created": [],
+  "modified": [],
+  "deleted": [],
+  "excluded": {}
+}

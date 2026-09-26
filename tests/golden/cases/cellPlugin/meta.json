@@ -1,0 +1,63 @@
+{
+  "id": "cellPlugin",
+  "source": "cellPlugin/Makefile [tecs]",
+  "cwd": "cellPlugin",
+  "args": [
+    "-L",
+    ".",
+    "-I",
+    "../cygwin/",
+    "-I",
+    "../../tecsgen/tecs",
+    "cellPlugin.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "cellPlugin/gen/Makefile.depend",
+    "cellPlugin/gen/Makefile.tecsgen",
+    "cellPlugin/gen/Makefile.templ",
+    "cellPlugin/gen/global_tecsgen.h",
+    "cellPlugin/gen/sSig_tecsgen.h",
+    "cellPlugin/gen/tCelltype2_factory.h",
+    "cellPlugin/gen/tCelltype2_tecsgen.c",
+    "cellPlugin/gen/tCelltype2_tecsgen.h",
+    "cellPlugin/gen/tCelltype2_templ.c",
+    "cellPlugin/gen/tCelltype3_factory.h",
+    "cellPlugin/gen/tCelltype3_tecsgen.c",
+    "cellPlugin/gen/tCelltype3_tecsgen.h",
+    "cellPlugin/gen/tCelltype3_templ.c",
+    "cellPlugin/gen/tCelltype_factory.h",
+    "cellPlugin/gen/tCelltype_tecsgen.c",
+    "cellPlugin/gen/tCelltype_tecsgen.h",
+    "cellPlugin/gen/tCelltype_templ.c",
+    "cellPlugin/gen/tecsgen.rbdmp",
+    "cellPlugin/gen/tecsgen.timestamp",
+    "cellPlugin/gen/tmp_C_src.c",
+    "cellPlugin/gen/tmp_RepeatCellPlugin_0.cdl",
+    "cellPlugin/gen/tmp_RepeatCellPlugin_1.cdl",
+    "cellPlugin/gen/tmp_RepeatCellPlugin_post_code.cdl",
+    "cellPlugin/gen/tmp_RepeatJoinPlugin_0.cdl",
+    "cellPlugin/gen/tmp_RepeatJoinPlugin_post_code.cdl",
+    "cellPlugin/gen/tmp_cygwin_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "cellPlugin/gen/tecsgen.rbdmp": {
+      "sha256": "ff15640f93ca852c9521982dc3f97417367331c491c4eb9a2786ddc78dd94f30",
+      "size": 40109
+    },
+    "cellPlugin/gen/tmp_cygwin_tecs.h": {
+      "sha256": "fdf2405d7f392f6963c12b1e4a3f2b4bdef8d2f4db4f71691678feda41f20b8f",
+      "size": 14827
+    }
+  }
+}

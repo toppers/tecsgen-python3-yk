@@ -1,0 +1,25 @@
+# Celltype: tKernel  #_MDEP_#
+$(_TECS_OBJ_DIR)tKernel_tecsgen.o : tKernel_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSyscall2_tecsgen.h $(GEN_DIR)/sSyscall_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h
+$(_TECS_OBJ_DIR)tKernel_templ.o : tKernel_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSyscall2_tecsgen.h $(GEN_DIR)/sSyscall_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h
+$(_TECS_OBJ_DIR)tKernel.o : tKernel.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSyscall2_tecsgen.h $(GEN_DIR)/sSyscall_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h
+
+# Celltype: tRequire  #_MDEP_#
+$(_TECS_OBJ_DIR)tRequire_tecsgen.o : tRequire_tecsgen.c  $(GEN_DIR)/tKernel_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSyscall2_tecsgen.h $(GEN_DIR)/sSyscall_tecsgen.h $(GEN_DIR)/tRequire_factory.h $(GEN_DIR)/tRequire_tecsgen.h
+$(_TECS_OBJ_DIR)tRequire_templ.o : tRequire_templ.c  $(GEN_DIR)/tKernel_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSyscall2_tecsgen.h $(GEN_DIR)/sSyscall_tecsgen.h $(GEN_DIR)/tRequire_factory.h $(GEN_DIR)/tRequire_tecsgen.h
+$(_TECS_OBJ_DIR)tRequire.o : tRequire.c  $(GEN_DIR)/tKernel_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSyscall2_tecsgen.h $(GEN_DIR)/sSyscall_tecsgen.h $(GEN_DIR)/tRequire_factory.h $(GEN_DIR)/tRequire_tecsgen.h
+
+# Celltype: tRequire2  #_MDEP_#
+$(_TECS_OBJ_DIR)tRequire2_tecsgen.o : tRequire2_tecsgen.c  $(GEN_DIR)/tKernel_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSyscall2_tecsgen.h $(GEN_DIR)/sSyscall_tecsgen.h $(GEN_DIR)/tRequire2_factory.h $(GEN_DIR)/tRequire2_tecsgen.h
+$(_TECS_OBJ_DIR)tRequire2_templ.o : tRequire2_templ.c  $(GEN_DIR)/tKernel_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSyscall2_tecsgen.h $(GEN_DIR)/sSyscall_tecsgen.h $(GEN_DIR)/tRequire2_factory.h $(GEN_DIR)/tRequire2_tecsgen.h
+$(_TECS_OBJ_DIR)tRequire2.o : tRequire2.c  $(GEN_DIR)/tKernel_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSyscall2_tecsgen.h $(GEN_DIR)/sSyscall_tecsgen.h $(GEN_DIR)/tRequire2_factory.h $(GEN_DIR)/tRequire2_tecsgen.h
+
+# Celltype: tNamedRequire  #_MDEP_#
+$(_TECS_OBJ_DIR)tNamedRequire_tecsgen.o : tNamedRequire_tecsgen.c  $(GEN_DIR)/tKernel_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSyscall_tecsgen.h $(GEN_DIR)/tNamedRequire_factory.h $(GEN_DIR)/tNamedRequire_tecsgen.h
+$(_TECS_OBJ_DIR)tNamedRequire_templ.o : tNamedRequire_templ.c  $(GEN_DIR)/tKernel_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSyscall_tecsgen.h $(GEN_DIR)/tNamedRequire_factory.h $(GEN_DIR)/tNamedRequire_tecsgen.h
+$(_TECS_OBJ_DIR)tNamedRequire.o : tNamedRequire.c  $(GEN_DIR)/tKernel_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSyscall_tecsgen.h $(GEN_DIR)/tNamedRequire_factory.h $(GEN_DIR)/tNamedRequire_tecsgen.h
+
+# Celltype: tMain  #_MDEP_#
+$(_TECS_OBJ_DIR)tMain_tecsgen.o : tMain_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSyscall_tecsgen.h $(GEN_DIR)/tMain_factory.h $(GEN_DIR)/tMain_tecsgen.h
+$(_TECS_OBJ_DIR)tMain_templ.o : tMain_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSyscall_tecsgen.h $(GEN_DIR)/tMain_factory.h $(GEN_DIR)/tMain_tecsgen.h
+$(_TECS_OBJ_DIR)tMain.o : tMain.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSyscall_tecsgen.h $(GEN_DIR)/tMain_factory.h $(GEN_DIR)/tMain_tecsgen.h
+

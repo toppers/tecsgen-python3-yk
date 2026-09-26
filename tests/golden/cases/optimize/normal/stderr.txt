@@ -1,0 +1,2 @@
+tecsgen  version 1.9.1  
+ruby 3.2.3 (2024-01-18 patchlevel 157) [x86_64-linux-gnu]

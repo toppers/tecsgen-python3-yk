@@ -1,0 +1,26 @@
+{
+  "id": "ErrorCase/duplicate-err",
+  "source": "ErrorCase/Makefile [duplicate-err]",
+  "cwd": "ErrorCase",
+  "args": [
+    "-L",
+    ".",
+    "duplicate-err.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 13,
+  "warnings": 1,
+  "expect": [
+    13,
+    1
+  ],
+  "expect_matched": true,
+  "created": [],
+  "modified": [],
+  "deleted": [],
+  "excluded": {}
+}

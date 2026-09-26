@@ -1,0 +1,8 @@
+TracePlugin.new( 'Join_from_through___0', '', 'r1cell', 'eEnt', tCtR1 )
+Plugin2.new( 'Join_out_through__0', '', 'outer', 'eEnt', tCtOuter )
+Plugin2.new( 'Join_out_through__1', '', 'Join_from_through___0', 'eThroughEntry', tCtR1 )
+Plugin1.new( 'Plugin1__0', '', 'Join_out_through__1', 'eThroughEntry', tCtR1 )
+region-body.cdl:87:14: warning: W1007 ::rRegion2::rRegionInner::r2cellInner : non-active cell has no entry join and no factory
+gen/tPlugin1_sSig3.cdl:7:2: warning: W9999 ::rRegion1: not link root, -G ignored
+gen/tPlugin1_sSig3.cdl:7:2: warning: W9999 ::rRegion2: not link root, -G ignored
+3 warnings

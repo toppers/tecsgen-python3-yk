@@ -1,0 +1,25 @@
+# Celltype: tTask  #_MDEP_#
+$(_TECS_OBJ_DIR)tTask_tecsgen.o : tTask_tecsgen.c  $(GEN_DIR)/tAlloc_tecsgen.h  $(GEN_DIR)/tDev_tecsgen.h  $(GEN_DIR)/tDriver_tecsgen.h  $(GEN_DIR)/tSysLog_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+$(_TECS_OBJ_DIR)tTask_templ.o : tTask_templ.c  $(GEN_DIR)/tAlloc_tecsgen.h  $(GEN_DIR)/tDev_tecsgen.h  $(GEN_DIR)/tDriver_tecsgen.h  $(GEN_DIR)/tSysLog_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+$(_TECS_OBJ_DIR)tTask.o : tTask.c  $(GEN_DIR)/tAlloc_tecsgen.h  $(GEN_DIR)/tDev_tecsgen.h  $(GEN_DIR)/tDriver_tecsgen.h  $(GEN_DIR)/tSysLog_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+
+# Celltype: tSysLog  #_MDEP_#
+$(_TECS_OBJ_DIR)tSysLog_tecsgen.o : tSysLog_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/tSysLog_factory.h $(GEN_DIR)/tSysLog_tecsgen.h
+$(_TECS_OBJ_DIR)tSysLog_templ.o : tSysLog_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/tSysLog_factory.h $(GEN_DIR)/tSysLog_tecsgen.h
+$(_TECS_OBJ_DIR)tSysLog.o : tSysLog.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/tSysLog_factory.h $(GEN_DIR)/tSysLog_tecsgen.h
+
+# Celltype: tAlloc  #_MDEP_#
+$(_TECS_OBJ_DIR)tAlloc_tecsgen.o : tAlloc_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/tAlloc_factory.h $(GEN_DIR)/tAlloc_tecsgen.h
+$(_TECS_OBJ_DIR)tAlloc_templ.o : tAlloc_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/tAlloc_factory.h $(GEN_DIR)/tAlloc_tecsgen.h
+$(_TECS_OBJ_DIR)tAlloc.o : tAlloc.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/tAlloc_factory.h $(GEN_DIR)/tAlloc_tecsgen.h
+
+# Celltype: tDev  #_MDEP_#
+$(_TECS_OBJ_DIR)tDev_tecsgen.o : tDev_tecsgen.c  $(GEN_DIR)/tAlloc_tecsgen.h  $(GEN_DIR)/tDev_tecsgen.h  $(GEN_DIR)/tDriver_tecsgen.h  $(GEN_DIR)/tSysLog_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/sSigCB_tecsgen.h $(GEN_DIR)/sSigDev_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/tDev_factory.h $(GEN_DIR)/tDev_tecsgen.h
+$(_TECS_OBJ_DIR)tDev_templ.o : tDev_templ.c  $(GEN_DIR)/tAlloc_tecsgen.h  $(GEN_DIR)/tDev_tecsgen.h  $(GEN_DIR)/tDriver_tecsgen.h  $(GEN_DIR)/tSysLog_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/sSigCB_tecsgen.h $(GEN_DIR)/sSigDev_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/tDev_factory.h $(GEN_DIR)/tDev_tecsgen.h
+$(_TECS_OBJ_DIR)tDev.o : tDev.c  $(GEN_DIR)/tAlloc_tecsgen.h  $(GEN_DIR)/tDev_tecsgen.h  $(GEN_DIR)/tDriver_tecsgen.h  $(GEN_DIR)/tSysLog_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/sSigCB_tecsgen.h $(GEN_DIR)/sSigDev_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/tDev_factory.h $(GEN_DIR)/tDev_tecsgen.h
+
+# Celltype: tDriver  #_MDEP_#
+$(_TECS_OBJ_DIR)tDriver_tecsgen.o : tDriver_tecsgen.c  $(GEN_DIR)/tAlloc_tecsgen.h  $(GEN_DIR)/tDev_tecsgen.h  $(GEN_DIR)/tDriver_tecsgen.h  $(GEN_DIR)/tSysLog_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/sSigCB_tecsgen.h $(GEN_DIR)/sSigDev_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tDriver_factory.h $(GEN_DIR)/tDriver_tecsgen.h
+$(_TECS_OBJ_DIR)tDriver_templ.o : tDriver_templ.c  $(GEN_DIR)/tAlloc_tecsgen.h  $(GEN_DIR)/tDev_tecsgen.h  $(GEN_DIR)/tDriver_tecsgen.h  $(GEN_DIR)/tSysLog_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/sSigCB_tecsgen.h $(GEN_DIR)/sSigDev_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tDriver_factory.h $(GEN_DIR)/tDriver_tecsgen.h
+$(_TECS_OBJ_DIR)tDriver.o : tDriver.c  $(GEN_DIR)/tAlloc_tecsgen.h  $(GEN_DIR)/tDev_tecsgen.h  $(GEN_DIR)/tDriver_tecsgen.h  $(GEN_DIR)/tSysLog_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/sSigCB_tecsgen.h $(GEN_DIR)/sSigDev_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tDriver_factory.h $(GEN_DIR)/tDriver_tecsgen.h
+

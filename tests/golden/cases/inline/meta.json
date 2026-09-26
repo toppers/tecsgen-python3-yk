@@ -1,0 +1,62 @@
+{
+  "id": "inline",
+  "source": "inline/Makefile [tecs]",
+  "cwd": "inline",
+  "args": [
+    "inline.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "inline/gen/Makefile.depend",
+    "inline/gen/Makefile.tecsgen",
+    "inline/gen/Makefile.templ",
+    "inline/gen/global_tecsgen.h",
+    "inline/gen/nInline_tInline_factory.h",
+    "inline/gen/nInline_tInline_inline_templ.h",
+    "inline/gen/nInline_tInline_tecsgen.c",
+    "inline/gen/nInline_tInline_tecsgen.h",
+    "inline/gen/nInline_tInline_templ.c",
+    "inline/gen/nInline_tNonInline_factory.h",
+    "inline/gen/nInline_tNonInline_tecsgen.c",
+    "inline/gen/nInline_tNonInline_tecsgen.h",
+    "inline/gen/nInline_tNonInline_templ.c",
+    "inline/gen/nInline_tTest_factory.h",
+    "inline/gen/nInline_tTest_tecsgen.c",
+    "inline/gen/nInline_tTest_tecsgen.h",
+    "inline/gen/nInline_tTest_templ.c",
+    "inline/gen/sInline1_tecsgen.h",
+    "inline/gen/sInline2_tecsgen.h",
+    "inline/gen/sNonInline_tecsgen.h",
+    "inline/gen/sTest_tecsgen.h",
+    "inline/gen/tInline_factory.h",
+    "inline/gen/tInline_inline_templ.h",
+    "inline/gen/tInline_tecsgen.c",
+    "inline/gen/tInline_tecsgen.h",
+    "inline/gen/tNonInline_factory.h",
+    "inline/gen/tNonInline_tecsgen.c",
+    "inline/gen/tNonInline_tecsgen.h",
+    "inline/gen/tNonInline_templ.c",
+    "inline/gen/tTest_factory.h",
+    "inline/gen/tTest_tecsgen.c",
+    "inline/gen/tTest_tecsgen.h",
+    "inline/gen/tTest_templ.c",
+    "inline/gen/tecsgen.rbdmp",
+    "inline/gen/tecsgen.timestamp"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "inline/gen/tecsgen.rbdmp": {
+      "sha256": "a836d6f8f67ce38c8cd20a35bb05df0731a1dd861dc00a40a99fe49defec4e83",
+      "size": 10331
+    }
+  }
+}

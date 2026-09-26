@@ -1,0 +1,10 @@
+import( "gen/tTracePlugin_sSimple.cdl" );
+region rServer{
+  region rSPon{
+    cell tTracePlugin_sSimple Join_in_through__0 {
+      cCall = ::rServer::rSPon::SimpleServer.eEnt;
+      probeName_str = ": ";
+      from_str = "SimpleClient";
+    };
+  };
+};

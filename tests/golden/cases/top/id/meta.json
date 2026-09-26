@@ -1,0 +1,46 @@
+{
+  "id": "top/id",
+  "source": "Makefile [id]",
+  "cwd": ".",
+  "args": [
+    "-I",
+    "RUNTIME/runtime/include",
+    "-I",
+    "RUNTIME/runtime/test",
+    "-v",
+    "id.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 9,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "gen/Makefile.depend",
+    "gen/Makefile.tecsgen",
+    "gen/Makefile.templ",
+    "gen/global_tecsgen.h",
+    "gen/tCelltype_factory.h",
+    "gen/tCelltype_tecsgen.c",
+    "gen/tCelltype_tecsgen.h",
+    "gen/tCelltype_templ.c",
+    "gen/tCt_factory.h",
+    "gen/tCt_tecsgen.c",
+    "gen/tCt_tecsgen.h",
+    "gen/tCt_templ.c",
+    "gen/tecsgen.rbdmp",
+    "gen/tecsgen.timestamp"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "gen/tecsgen.rbdmp": {
+      "sha256": "0089d976acbc552de5e720839740be9f1ce455ab135de0ae7dd3d96c71f0dcff",
+      "size": 4285
+    }
+  }
+}

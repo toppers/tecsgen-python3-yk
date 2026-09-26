@@ -1,0 +1,26 @@
+{
+  "id": "ErrorCase/singleton-err",
+  "source": "ErrorCase/Makefile [singleton-err]",
+  "cwd": "ErrorCase",
+  "args": [
+    "-L",
+    ".",
+    "singleton-err.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 2,
+  "warnings": 3,
+  "expect": [
+    2,
+    3
+  ],
+  "expect_matched": true,
+  "created": [],
+  "modified": [],
+  "deleted": [],
+  "excluded": {}
+}

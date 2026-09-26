@@ -1,0 +1,12 @@
+composite_init_err.cdl:9:2: warning: W1002 tCt1: non-active celltype has no entry port & factory
+composite_init_err.cdl:18:2: warning: W1002 tCt2: non-active celltype has no entry port & factory
+composite_init_err.cdl:34:2: error: S1052 attribute 'a2' not initialized in cell 'Cell2'
+composite_init_err.cdl:36:17: error: S1052 attribute 'b1' not initialized in cell 'Composite'
+composite_init_err.cdl:36:17: error: S1052 attribute 'b3' not initialized in cell 'Composite'
+composite_init_err.cdl:36:17: warning: W1007 ::Composite : non-active cell has no entry join and no factory
+composite_init_err.cdl:41:17: warning: W1007 ::Composite2 : non-active cell has no entry join and no factory
+composite_init_err.cdl:36:17: warning: W1007 ::Composite_Cell1 : non-active cell has no entry join and no factory
+composite_init_err.cdl:36:17: warning: W1007 ::Composite_Cell2 : non-active cell has no entry join and no factory
+composite_init_err.cdl:41:17: warning: W1007 ::Composite2_Cell1 : non-active cell has no entry join and no factory
+composite_init_err.cdl:41:17: warning: W1007 ::Composite2_Cell2 : non-active cell has no entry join and no factory
+3 errors  8 warnings

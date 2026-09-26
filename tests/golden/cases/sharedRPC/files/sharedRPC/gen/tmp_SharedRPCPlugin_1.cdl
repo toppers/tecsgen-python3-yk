@@ -1,0 +1,14 @@
+import( "gen/tSharedRPCPlugin_tTDR_tDataqueueOWChannel_sSample.cdl" );
+import( "gen/tSharedRPCPlugin_tDataqueueOWChannel.cdl" );
+region rRegion{
+  cell tSharedRPCPlugin_tDataqueueOWChannel RPCSharedChannel;
+  [allocator(eThroughEntry.giftToYou.buf = Allocator.eAlloc,
+             eThroughEntry.returnGiftFromYou.buf = Allocator.eAlloc)]
+  cell tSharedRPCPlugin_tTDR_tDataqueueOWChannel_sSample SharedRPCPlugin__1 {
+    cCall = Sample2.eEnt;
+    cTDR         = RPCSharedChannel.eTDR;
+    cEventflag   = RPCSharedChannel.eEventflag;
+    cLockChannel =  RPCSharedChannel.eSemaphore[1];
+    cPPAllocator = PPAllocator_RPCSharedChannel.ePPAllocator;
+  };
+};

@@ -1,0 +1,8 @@
+gen/tmp_tecs.h:1168:1: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+gen/tmp_tecs.h:1235:3: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+init.cdl:5:11: warning: W2002 unsinged int16_t: obsolete. use uint16_t
+init.cdl:6:9: warning: W2001 signed int16_t: obsolete. use int16_t
+init.cdl:30:2: warning: W1002 tA: non-active celltype has no entry port & factory
+init.cdl:32:9: warning: W1007 ::a : non-active cell has no entry join and no factory
+init.cdl:38:9: warning: W1007 ::b : non-active cell has no entry join and no factory
+5 warnings

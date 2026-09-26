@@ -1,0 +1,26 @@
+{
+  "id": "ErrorCase/region-err",
+  "source": "ErrorCase/Makefile [region-err]",
+  "cwd": "ErrorCase",
+  "args": [
+    "-L",
+    ".",
+    "region-err.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 3,
+  "warnings": 4,
+  "expect": [
+    3,
+    4
+  ],
+  "expect_matched": true,
+  "created": [],
+  "modified": [],
+  "deleted": [],
+  "excluded": {}
+}

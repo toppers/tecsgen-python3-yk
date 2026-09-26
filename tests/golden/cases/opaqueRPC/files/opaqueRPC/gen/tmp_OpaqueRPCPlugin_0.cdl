@@ -1,0 +1,74 @@
+import( "gen/tOpaqueRPCPlugin_tNBOTDR_tSocketClient_sSimple.cdl" );
+import( "gen/tOpaqueRPCPlugin_tNBOTDR_tSocketServer_sSimple.cdl" );
+
+region rClient{
+
+    //  Semaphore for Multi-task use ("specify noClientSemaphore" option to delete this)
+    cell tSemaphore ServerChannel_SimpleServer_Semaphore{
+      initialCount = 1; attribute = C_EXP( "TA_NULL" ); 
+    };
+    //  Client Side Channel
+    cell tSocketClient ClientChannel_SimpleServer{
+      portNo=8931+0; serverAddr="127.0.0.1"; 
+    };
+
+    //  Marshaler
+  [allocator(  eThroughEntry.func21.a = CAlloc.eAlloc,
+  eThroughEntry.func22.sta = CAlloc.eAlloc,
+  eThroughEntry.func23.str = CAlloc.eAlloc,
+  eThroughEntry.func24.msg = CAlloc.eAlloc,
+  eThroughEntry.func25.msg = CAlloc.eAlloc,
+  eThroughEntry.func26.sta = CAlloc.eAlloc,
+  eThroughEntry.func27.array2 = CAlloc.eAlloc,
+  eThroughEntry.func31.a = CAlloc.eAlloc,
+  eThroughEntry.func32.sta = CAlloc.eAlloc,
+  eThroughEntry.func33.str = CAlloc.eAlloc,
+  eThroughEntry.func34.msg = CAlloc.eAlloc,
+  eThroughEntry.func35.msg = CAlloc.eAlloc,
+  eThroughEntry.func36.sta = CAlloc.eAlloc,
+  eThroughEntry.func37.sta = CAlloc.eAlloc,
+  eThroughEntry.func38.array2 = CAlloc.eAlloc,
+  eThroughEntry.func39.arraySt = CAlloc.eAlloc,
+  eThroughEntry.func63.sp = CAlloc.eAlloc,
+  eThroughEntry.func64.rp = CAlloc.eAlloc,
+  eThroughEntry.func70.sta = CAlloc.eAlloc,
+  eThroughEntry.func71.str = CAlloc.eAlloc,
+  eThroughEntry.func72.sta = CAlloc.eAlloc,
+  eThroughEntry.func73.str = CAlloc.eAlloc)]
+    cell tOpaqueRPCPlugin_tNBOTDR_tSocketClient_sSimple Join_to_through___0 {
+      cChannel = ClientChannel_SimpleServer.eC0;
+      cErrorHandler = ClientRPCErrorHandler_SimpleServer.eHandler;
+      cLockChannel = ServerChannel_SimpleServer_Semaphore.eSemaphore;
+    };
+
+};
+
+
+region rServer{
+
+    //  Server Side Channel
+    cell tSocketServer ServerChannel_SimpleServer{
+      portNo=8931+0;
+    };
+
+    //  Unmarshaler
+    cell tOpaqueRPCPlugin_tNBOTDR_tSocketServer_sSimple ServerChannel_SimpleServer_Unmarshaler {
+      cChannel = ServerChannel_SimpleServer.eC1;
+      cCall = ::rServer::rSPon::Join_in_through__0.eThroughEntry;
+      cErrorHandler = ServerRPCErrorHandler_SimpleServer.eHandler;
+    };
+
+    //  Unmarshaler Task Main
+    cell tRPCDedicatedTaskMainWithOpener ServerChannel_SimpleServer_TaskMain {
+      cMain         = ServerChannel_SimpleServer_Unmarshaler.eService;
+      cOpener       = ServerChannel_SimpleServer.eOpener;
+    };
+
+    //  Unmarshaler Task
+    cell tTask ServerChannel_SimpleServer_Task {
+      cTaskBody         = ServerChannel_SimpleServer_TaskMain.eMain;
+      priority      = 9;
+      stackSize     = 4096;
+      attribute     = C_EXP( "TA_ACT" );  /* mikan : marshaler task starts at beginning */
+    };
+};

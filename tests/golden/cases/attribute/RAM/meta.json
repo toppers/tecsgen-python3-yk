@@ -1,0 +1,91 @@
+{
+  "id": "attribute/RAM",
+  "source": "attribute/Makefile.RAM [tecs]",
+  "cwd": "attribute",
+  "args": [
+    "-g",
+    "./gen.RAM",
+    "-I",
+    "../RUNTIME/tecs-runtime/include/",
+    "-I",
+    "../RUNTIME/tecs-runtime/workaround/",
+    "-I",
+    "../RUNTIME/tecs-runtime/target/",
+    "-I",
+    "src",
+    "attribute.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 2,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "attribute/gen.RAM/Makefile.depend",
+    "attribute/gen.RAM/Makefile.tecsgen",
+    "attribute/gen.RAM/Makefile.templ",
+    "attribute/gen.RAM/global_tecsgen.h",
+    "attribute/gen.RAM/sMain_tecsgen.h",
+    "attribute/gen.RAM/tAttribute2_factory.h",
+    "attribute/gen.RAM/tAttribute2_tecsgen.c",
+    "attribute/gen.RAM/tAttribute2_tecsgen.h",
+    "attribute/gen.RAM/tAttribute2_templ.c",
+    "attribute/gen.RAM/tAttribute3_factory.h",
+    "attribute/gen.RAM/tAttribute3_tecsgen.c",
+    "attribute/gen.RAM/tAttribute3_tecsgen.h",
+    "attribute/gen.RAM/tAttribute3_templ.c",
+    "attribute/gen.RAM/tAttribute4_factory.h",
+    "attribute/gen.RAM/tAttribute4_tecsgen.c",
+    "attribute/gen.RAM/tAttribute4_tecsgen.h",
+    "attribute/gen.RAM/tAttribute4_templ.c",
+    "attribute/gen.RAM/tAttribute5_factory.h",
+    "attribute/gen.RAM/tAttribute5_tecsgen.c",
+    "attribute/gen.RAM/tAttribute5_tecsgen.h",
+    "attribute/gen.RAM/tAttribute5_templ.c",
+    "attribute/gen.RAM/tAttributeSt_factory.h",
+    "attribute/gen.RAM/tAttributeSt_tecsgen.c",
+    "attribute/gen.RAM/tAttributeSt_tecsgen.h",
+    "attribute/gen.RAM/tAttributeSt_templ.c",
+    "attribute/gen.RAM/tAttribute_factory.h",
+    "attribute/gen.RAM/tAttribute_tecsgen.c",
+    "attribute/gen.RAM/tAttribute_tecsgen.h",
+    "attribute/gen.RAM/tAttribute_templ.c",
+    "attribute/gen.RAM/tCEXP_factory.h",
+    "attribute/gen.RAM/tCEXP_tecsgen.c",
+    "attribute/gen.RAM/tCEXP_tecsgen.h",
+    "attribute/gen.RAM/tCEXP_templ.c",
+    "attribute/gen.RAM/tCelltype_factory.h",
+    "attribute/gen.RAM/tCelltype_tecsgen.c",
+    "attribute/gen.RAM/tCelltype_tecsgen.h",
+    "attribute/gen.RAM/tCelltype_templ.c",
+    "attribute/gen.RAM/tMain_factory.h",
+    "attribute/gen.RAM/tMain_tecsgen.c",
+    "attribute/gen.RAM/tMain_tecsgen.h",
+    "attribute/gen.RAM/tMain_templ.c",
+    "attribute/gen.RAM/tecsgen.rbdmp",
+    "attribute/gen.RAM/tecsgen.timestamp",
+    "attribute/gen.RAM/tmp_C_src.c",
+    "attribute/gen.RAM/tmp_attr.h",
+    "attribute/gen.RAM/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "attribute/gen.RAM/tecsgen.rbdmp": {
+      "sha256": "138643702be419ed8dbc722d34a4b41e2b32aff95dbc37ffaf32b190f9a6928c",
+      "size": 65287
+    },
+    "attribute/gen.RAM/tmp_attr.h": {
+      "sha256": "b635b69326cac3e8e2d3eb1b569e355ee4949e7edfde1fbf4c2365d7ef4b1207",
+      "size": 321
+    },
+    "attribute/gen.RAM/tmp_tecs.h": {
+      "sha256": "b5f79500e4edfd6b8deedd8a0cf9653b9c09abf904ec9b55cfa8a415a5d0bcec",
+      "size": 50591
+    }
+  }
+}

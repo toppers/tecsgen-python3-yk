@@ -1,0 +1,8 @@
+error: S1142 cygwin_tecs.h not found in search path
+attribute-err-3.cdl:32:30: error: T9999 a: non-size_is pointer cannot have array initializer
+attribute-err-3.cdl:36:30: error: T9999 c: non-size_is pointer cannot have array initializer
+attribute-err-3.cdl:38:4: error: S1159 a: non-size_is pointer cannot be initialized with array initializer
+attribute-err-3.cdl:38:4: error: S1159 c: non-size_is pointer cannot be initialized with array initializer
+attribute-err-3.cdl:45:17: error: T9999 a: non-size_is pointer cannot have array initializer
+attribute-err-3.cdl:44:24: error: S1169 a: non-size_is pointer cannot be initialized with array initializer
+7 errors

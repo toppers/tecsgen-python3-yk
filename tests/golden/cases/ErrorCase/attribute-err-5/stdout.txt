@@ -1,0 +1,6 @@
+attribute-err-5.cdl:7:2: warning: W1002 tCelltype: non-active celltype has no entry port & factory
+attribute-err-5.cdl:13:15: error: T9999 a: non-size_is pointer cannot have array initializer
+attribute-err-5.cdl:12:16: error: S1169 a: non-size_is pointer cannot be initialized with array initializer
+attribute-err-5.cdl:9:16: warning: W1007 ::Cell1 : non-active cell has no entry join and no factory
+attribute-err-5.cdl:12:16: warning: W1007 ::Cell2 : non-active cell has no entry join and no factory
+2 errors  3 warnings

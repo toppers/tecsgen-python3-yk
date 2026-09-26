@@ -1,0 +1,10 @@
+# Celltype: tCallArray  #_MDEP_#
+$(_TECS_OBJ_DIR)tCallArray_tecsgen.o : tCallArray_tecsgen.c  $(GEN_DIR)/tCallArray_tecsgen.h  $(GEN_DIR)/tEntryArray_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sArrayBack_tecsgen.h $(GEN_DIR)/sArray_tecsgen.h $(GEN_DIR)/tCallArray_factory.h $(GEN_DIR)/tCallArray_tecsgen.h
+$(_TECS_OBJ_DIR)tCallArray_templ.o : tCallArray_templ.c  $(GEN_DIR)/tCallArray_tecsgen.h  $(GEN_DIR)/tEntryArray_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sArrayBack_tecsgen.h $(GEN_DIR)/sArray_tecsgen.h $(GEN_DIR)/tCallArray_factory.h $(GEN_DIR)/tCallArray_tecsgen.h
+$(_TECS_OBJ_DIR)tCallArray.o : tCallArray.c  $(GEN_DIR)/tCallArray_tecsgen.h  $(GEN_DIR)/tEntryArray_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sArrayBack_tecsgen.h $(GEN_DIR)/sArray_tecsgen.h $(GEN_DIR)/tCallArray_factory.h $(GEN_DIR)/tCallArray_tecsgen.h
+
+# Celltype: tEntryArray  #_MDEP_#
+$(_TECS_OBJ_DIR)tEntryArray_tecsgen.o : tEntryArray_tecsgen.c  $(GEN_DIR)/tCallArray_tecsgen.h  $(GEN_DIR)/tEntryArray_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sArrayBack_tecsgen.h $(GEN_DIR)/sArray_tecsgen.h $(GEN_DIR)/tEntryArray_factory.h $(GEN_DIR)/tEntryArray_tecsgen.h
+$(_TECS_OBJ_DIR)tEntryArray_templ.o : tEntryArray_templ.c  $(GEN_DIR)/tCallArray_tecsgen.h  $(GEN_DIR)/tEntryArray_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sArrayBack_tecsgen.h $(GEN_DIR)/sArray_tecsgen.h $(GEN_DIR)/tEntryArray_factory.h $(GEN_DIR)/tEntryArray_tecsgen.h
+$(_TECS_OBJ_DIR)tEntryArray.o : tEntryArray.c  $(GEN_DIR)/tCallArray_tecsgen.h  $(GEN_DIR)/tEntryArray_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sArrayBack_tecsgen.h $(GEN_DIR)/sArray_tecsgen.h $(GEN_DIR)/tEntryArray_factory.h $(GEN_DIR)/tEntryArray_tecsgen.h
+

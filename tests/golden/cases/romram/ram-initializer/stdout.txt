@@ -1,0 +1,25 @@
+./gen-ram-initializer/tmp_tecs.h:1172:1: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+./gen-ram-initializer/tmp_tecs.h:1239:3: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+romram.cdl:37:2: warning: W1002 tCt2: non-active celltype has no entry port & factory
+romram.cdl:149:2: warning: W1002 tSCt_no_CB_no_INIB: non-active celltype has no entry port & factory
+romram.cdl:160:2: warning: W1002 tSCt_a_CB_no_INIB: non-active celltype has no entry port & factory
+romram.cdl:173:2: warning: W1002 tSCt_no_CB_a_INIB: non-active celltype has no entry port & factory
+romram.cdl:186:2: warning: W1002 tSCt_a_CB_a_INIB: non-active celltype has no entry port & factory
+romram.cdl:195:2: warning: W1002 tCt_no_CB_no_INIB: non-active celltype has no entry port & factory
+romram.cdl:204:2: warning: W1002 tCt_a_CB_no_INIB: non-active celltype has no entry port & factory
+romram.cdl:215:2: warning: W1002 tCt_no_CB_a_INIB: non-active celltype has no entry port & factory
+romram.cdl:227:2: warning: W1002 tCt_a_CB_a_INIB: non-active celltype has no entry port & factory
+romram.cdl:235:2: warning: W1002 tCt_no_CB_no_INIB_init: non-active celltype has no entry port & factory
+romram.cdl:246:2: warning: W1002 tMain: non-active celltype has no entry port & factory
+romram.cdl:39:11: warning: W1007 ::ct2 : non-active cell has no entry join and no factory
+romram.cdl:150:25: warning: W1007 ::SCt_no_CB_no_INIB : non-active cell has no entry join and no factory
+romram.cdl:161:24: warning: W1007 ::SCt_a_CB_no_INIB : non-active cell has no entry join and no factory
+romram.cdl:174:24: warning: W1007 ::SCt_no_CB_a_INIB : non-active cell has no entry join and no factory
+romram.cdl:187:23: warning: W1007 ::SCt_a_CB_a_INIB : non-active cell has no entry join and no factory
+romram.cdl:196:24: warning: W1007 ::Ct_no_CB_no_INIB : non-active cell has no entry join and no factory
+romram.cdl:205:23: warning: W1007 ::Ct_a_CB_no_INIB : non-active cell has no entry join and no factory
+romram.cdl:216:23: warning: W1007 ::Ct_no_CB_a_INIB : non-active cell has no entry join and no factory
+romram.cdl:228:22: warning: W1007 ::Ct_a_CB_a_INIB : non-active cell has no entry join and no factory
+romram.cdl:236:29: warning: W1007 ::Ct_no_CB_no_INIB_init : non-active cell has no entry join and no factory
+romram.cdl:248:12: warning: W1007 ::MainCell : non-active cell has no entry join and no factory
+22 warnings

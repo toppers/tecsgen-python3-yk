@@ -1,0 +1,10 @@
+composite_alloc2.cdl:6:43: warning: W3003 p pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+composite_alloc2.cdl:78:2: error: S1041 'cCall_func_a': not joined. cannot create internal join for relay allocator
+composite_alloc2.cdl:78:2: error: S1041 'cCall_func2_buf': not joined. cannot create internal join for relay allocator
+composite_alloc2.cdl:78:2: error: S1043 call port 'eEnt_func_a' not initialized in cell 'Cell1'. this call port is created by tecsgen. check allocator specifier
+composite_alloc2.cdl:78:2: error: S1043 call port 'eEnt_func2_buf' not initialized in cell 'Cell1'. this call port is created by tecsgen. check allocator specifier
+composite_alloc2.cdl:78:2: error: S1043 call port 'cCall_func_a' not initialized in cell 'Cell2'. this call port is created by tecsgen. check allocator specifier
+composite_alloc2.cdl:78:2: error: S1043 call port 'cCall_func2_buf' not initialized in cell 'Cell2'. this call port is created by tecsgen. check allocator specifier
+composite_alloc2.cdl:80:27: error: S1041 'cCall_func_a': not joined. cannot create internal join for relay allocator
+composite_alloc2.cdl:80:27: error: S1041 'cCall_func2_buf': not joined. cannot create internal join for relay allocator
+8 errors  1 warning

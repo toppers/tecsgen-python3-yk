@@ -1,0 +1,81 @@
+{
+  "id": "allocatorCB",
+  "source": "allocatorCB/Makefile [tecs]",
+  "cwd": "allocatorCB",
+  "args": [
+    "-I",
+    "../cygwin3",
+    "-I",
+    "../../tecs",
+    "allocator.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "allocatorCB/gen/Makefile.depend",
+    "allocatorCB/gen/Makefile.tecsgen",
+    "allocatorCB/gen/Makefile.templ",
+    "allocatorCB/gen/global_tecsgen.h",
+    "allocatorCB/gen/sAlloc_tecsgen.h",
+    "allocatorCB/gen/sDataqueue_tecsgen.h",
+    "allocatorCB/gen/sEventflag_tecsgen.h",
+    "allocatorCB/gen/sKernel_tecsgen.h",
+    "allocatorCB/gen/sSemaphore_tecsgen.h",
+    "allocatorCB/gen/sSigCB_tecsgen.h",
+    "allocatorCB/gen/sSigDev_tecsgen.h",
+    "allocatorCB/gen/sSysLog_tecsgen.h",
+    "allocatorCB/gen/sTaskBody_tecsgen.h",
+    "allocatorCB/gen/sTaskExceptionBody_tecsgen.h",
+    "allocatorCB/gen/sTask_tecsgen.h",
+    "allocatorCB/gen/siDataqueue_tecsgen.h",
+    "allocatorCB/gen/siEventflag_tecsgen.h",
+    "allocatorCB/gen/siKernel_tecsgen.h",
+    "allocatorCB/gen/siSemaphore_tecsgen.h",
+    "allocatorCB/gen/tAlloc_factory.h",
+    "allocatorCB/gen/tAlloc_tecsgen.c",
+    "allocatorCB/gen/tAlloc_tecsgen.h",
+    "allocatorCB/gen/tAlloc_templ.c",
+    "allocatorCB/gen/tDev_factory.h",
+    "allocatorCB/gen/tDev_tecsgen.c",
+    "allocatorCB/gen/tDev_tecsgen.h",
+    "allocatorCB/gen/tDev_templ.c",
+    "allocatorCB/gen/tDriver_factory.h",
+    "allocatorCB/gen/tDriver_tecsgen.c",
+    "allocatorCB/gen/tDriver_tecsgen.h",
+    "allocatorCB/gen/tDriver_templ.c",
+    "allocatorCB/gen/tSysLog_factory.h",
+    "allocatorCB/gen/tSysLog_tecsgen.c",
+    "allocatorCB/gen/tSysLog_tecsgen.h",
+    "allocatorCB/gen/tTask_factory.h",
+    "allocatorCB/gen/tTask_tecsgen.c",
+    "allocatorCB/gen/tTask_tecsgen.h",
+    "allocatorCB/gen/tecsgen.rbdmp",
+    "allocatorCB/gen/tecsgen.timestamp",
+    "allocatorCB/gen/tmp_C_src.c",
+    "allocatorCB/gen/tmp_cygwin_tecs.h",
+    "allocatorCB/gen/tmp_t_syslog.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "allocatorCB/gen/tecsgen.rbdmp": {
+      "sha256": "0896e735fee8b630b2a69fcf5b3e2e983cad0c17ef7d0f533f4c789fe87d5e5b",
+      "size": 78517
+    },
+    "allocatorCB/gen/tmp_cygwin_tecs.h": {
+      "sha256": "4e3b975cdc2f9adc9500c8f3ffdf8a0c267ffada81e2337742aad65d3fb277fb",
+      "size": 15511
+    },
+    "allocatorCB/gen/tmp_t_syslog.h": {
+      "sha256": "81998c66d8d19d5833d03994dc44230c77eaae39387d8a3aae1fc80bffa90daf",
+      "size": 571
+    }
+  }
+}

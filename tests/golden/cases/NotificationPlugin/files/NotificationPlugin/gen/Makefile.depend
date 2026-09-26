@@ -1,0 +1,40 @@
+# Celltype: tTestNotifier  #_MDEP_#
+$(_TECS_OBJ_DIR)tTestNotifier_tecsgen.o : tTestNotifier_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tTestNotifier_factory.h $(GEN_DIR)/tTestNotifier_tecsgen.h
+$(_TECS_OBJ_DIR)tTestNotifier_templ.o : tTestNotifier_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tTestNotifier_factory.h $(GEN_DIR)/tTestNotifier_tecsgen.h
+$(_TECS_OBJ_DIR)tTestNotifier.o : tTestNotifier.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tTestNotifier_factory.h $(GEN_DIR)/tTestNotifier_tecsgen.h
+
+# Celltype: tTask  #_MDEP_#
+$(_TECS_OBJ_DIR)tTask_tecsgen.o : tTask_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h
+$(_TECS_OBJ_DIR)tTask_templ.o : tTask_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h
+$(_TECS_OBJ_DIR)tTask.o : tTask.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h
+
+# Celltype: tSemaphore  #_MDEP_#
+$(_TECS_OBJ_DIR)tSemaphore_tecsgen.o : tSemaphore_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tSemaphore_factory.h $(GEN_DIR)/tSemaphore_tecsgen.h
+$(_TECS_OBJ_DIR)tSemaphore_templ.o : tSemaphore_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tSemaphore_factory.h $(GEN_DIR)/tSemaphore_tecsgen.h
+$(_TECS_OBJ_DIR)tSemaphore.o : tSemaphore.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tSemaphore_factory.h $(GEN_DIR)/tSemaphore_tecsgen.h
+
+# Celltype: tEventflag  #_MDEP_#
+$(_TECS_OBJ_DIR)tEventflag_tecsgen.o : tEventflag_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tEventflag_factory.h $(GEN_DIR)/tEventflag_tecsgen.h
+$(_TECS_OBJ_DIR)tEventflag_templ.o : tEventflag_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tEventflag_factory.h $(GEN_DIR)/tEventflag_tecsgen.h
+$(_TECS_OBJ_DIR)tEventflag.o : tEventflag.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tEventflag_factory.h $(GEN_DIR)/tEventflag_tecsgen.h
+
+# Celltype: tDataqueue  #_MDEP_#
+$(_TECS_OBJ_DIR)tDataqueue_tecsgen.o : tDataqueue_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tDataqueue_factory.h $(GEN_DIR)/tDataqueue_tecsgen.h
+$(_TECS_OBJ_DIR)tDataqueue_templ.o : tDataqueue_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tDataqueue_factory.h $(GEN_DIR)/tDataqueue_tecsgen.h
+$(_TECS_OBJ_DIR)tDataqueue.o : tDataqueue.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tDataqueue_factory.h $(GEN_DIR)/tDataqueue_tecsgen.h
+
+# Celltype: tUserCelltypeA  #_MDEP_#
+$(_TECS_OBJ_DIR)tUserCelltypeA_tecsgen.o : tUserCelltypeA_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/siHandlerBody_tecsgen.h $(GEN_DIR)/tUserCelltypeA_factory.h $(GEN_DIR)/tUserCelltypeA_tecsgen.h
+$(_TECS_OBJ_DIR)tUserCelltypeA_templ.o : tUserCelltypeA_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/siHandlerBody_tecsgen.h $(GEN_DIR)/tUserCelltypeA_factory.h $(GEN_DIR)/tUserCelltypeA_tecsgen.h
+$(_TECS_OBJ_DIR)tUserCelltypeA.o : tUserCelltypeA.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/siHandlerBody_tecsgen.h $(GEN_DIR)/tUserCelltypeA_factory.h $(GEN_DIR)/tUserCelltypeA_tecsgen.h
+
+# Celltype: tUserCelltypeB  #_MDEP_#
+$(_TECS_OBJ_DIR)tUserCelltypeB_tecsgen.o : tUserCelltypeB_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/siHandlerBody_tecsgen.h $(GEN_DIR)/tUserCelltypeB_factory.h $(GEN_DIR)/tUserCelltypeB_tecsgen.h
+$(_TECS_OBJ_DIR)tUserCelltypeB_templ.o : tUserCelltypeB_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/siHandlerBody_tecsgen.h $(GEN_DIR)/tUserCelltypeB_factory.h $(GEN_DIR)/tUserCelltypeB_tecsgen.h
+$(_TECS_OBJ_DIR)tUserCelltypeB.o : tUserCelltypeB.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/siHandlerBody_tecsgen.h $(GEN_DIR)/tUserCelltypeB_factory.h $(GEN_DIR)/tUserCelltypeB_tecsgen.h
+
+# Celltype: tTimeEventHandler  #_MDEP_#
+$(_TECS_OBJ_DIR)tTimeEventHandler_tecsgen.o : tTimeEventHandler_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tTimeEventHandler_factory.h $(GEN_DIR)/tTimeEventHandler_tecsgen.h
+$(_TECS_OBJ_DIR)tTimeEventHandler_templ.o : tTimeEventHandler_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tTimeEventHandler_factory.h $(GEN_DIR)/tTimeEventHandler_tecsgen.h
+$(_TECS_OBJ_DIR)tTimeEventHandler.o : tTimeEventHandler.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tTimeEventHandler_factory.h $(GEN_DIR)/tTimeEventHandler_tecsgen.h
+

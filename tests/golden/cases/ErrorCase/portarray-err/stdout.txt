@@ -1,0 +1,20 @@
+portarray-err.cdl:31:38: error: S1109 'no_entryarray' not found
+portarray-err.cdl:43:38: error: S1115 callback[2]: subscript out of range (< 2)
+portarray-err.cdl:49:38: error: S1115 callback[3]: subscript out of range (< 2)
+portarray-err.cdl:58:28: error: S1101 'eA' cannot initialize entry port
+portarray-err.cdl:21:18: error: S1044 callback: array initializer too many or few, 2 for 3
+portarray-err.cdl:21:18: error: S1045 callback[2]: not initialized
+portarray-err.cdl:23:17: error: S1044 carray: array initializer too many or few, 1 for 2
+portarray-err.cdl:23:17: error: S1045 carray[1]: not initialized
+portarray-err.cdl:23:17: error: S1046 carray2[0]: not initialized
+portarray-err.cdl:23:17: error: S1046 carray2[1]: not initialized
+portarray-err.cdl:29:17: error: S1042 call port 'carray2' not initialized in cell 'callarray2'
+portarray-err.cdl:40:18: error: S1045 callback[1]: not initialized
+portarray-err.cdl:46:18: error: S1044 callback: array initializer too many or few, 4 for 3
+portarray-err.cdl:46:18: error: S1045 callback[1]: not initialized
+portarray-err.cdl:46:18: error: S1045 callback[2]: not initialized
+portarray-err.cdl:29:17: warning: W1007 ::callarray2 : non-active cell has no entry join and no factory
+portarray-err.cdl:40:18: warning: W1007 ::entryarray2 : non-active cell has no entry join and no factory
+portarray-err.cdl:46:18: warning: W1007 ::entryarray3 : non-active cell has no entry join and no factory
+portarray-err.cdl:57:11: warning: W1007 ::ent : non-active cell has no entry join and no factory
+15 errors  4 warnings

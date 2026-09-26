@@ -1,0 +1,10 @@
+import( "gen/tTracePlugin_sTask.cdl" );
+region rClient{
+  region rCPon{
+    cell tTracePlugin_sTask Join_out_through__1 {
+      cCall = ::rClient::Task1.eTask;
+      probeName_str = ": ";
+      from_str = "SimpleClient";
+    };
+  };
+};

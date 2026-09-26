@@ -1,0 +1,5 @@
+# Celltype: tCelltype  #_MDEP_#
+$(_TECS_OBJ_DIR)tCelltype_tecsgen.o : tCelltype_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tCelltype_factory.h $(GEN_DIR)/tCelltype_tecsgen.h
+$(_TECS_OBJ_DIR)tCelltype_templ.o : tCelltype_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tCelltype_factory.h $(GEN_DIR)/tCelltype_tecsgen.h
+$(_TECS_OBJ_DIR)tCelltype.o : tCelltype.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tCelltype_factory.h $(GEN_DIR)/tCelltype_tecsgen.h
+

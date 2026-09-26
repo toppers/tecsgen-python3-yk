@@ -1,0 +1,30 @@
+# Celltype: tTask  #_MDEP_#
+$(_TECS_OBJ_DIR)tTask_tecsgen.o : tTask_tecsgen.c  $(GEN_DIR)/tSerialTaskBody_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+$(_TECS_OBJ_DIR)tTask_templ.o : tTask_templ.c  $(GEN_DIR)/tSerialTaskBody_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+$(_TECS_OBJ_DIR)tTask.o : tTask.c  $(GEN_DIR)/tSerialTaskBody_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+
+# Celltype: tSerialTaskBody  #_MDEP_#
+$(_TECS_OBJ_DIR)tSerialTaskBody_tecsgen.o : tSerialTaskBody_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/tSerialTaskBody_factory.h $(GEN_DIR)/tSerialTaskBody_tecsgen.h
+$(_TECS_OBJ_DIR)tSerialTaskBody_templ.o : tSerialTaskBody_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/tSerialTaskBody_factory.h $(GEN_DIR)/tSerialTaskBody_tecsgen.h
+$(_TECS_OBJ_DIR)tSerialTaskBody.o : tSerialTaskBody.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/tSerialTaskBody_factory.h $(GEN_DIR)/tSerialTaskBody_tecsgen.h
+
+# Celltype: tMain  #_MDEP_#
+$(_TECS_OBJ_DIR)tMain_tecsgen.o : tMain_tecsgen.c  $(GEN_DIR)/tTalkerSelector_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHello_tecsgen.h $(GEN_DIR)/sTalkerSelector_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tMain_factory.h $(GEN_DIR)/tMain_tecsgen.h
+$(_TECS_OBJ_DIR)tMain_templ.o : tMain_templ.c  $(GEN_DIR)/tTalkerSelector_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHello_tecsgen.h $(GEN_DIR)/sTalkerSelector_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tMain_factory.h $(GEN_DIR)/tMain_tecsgen.h
+$(_TECS_OBJ_DIR)tMain.o : tMain.c  $(GEN_DIR)/tTalkerSelector_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHello_tecsgen.h $(GEN_DIR)/sTalkerSelector_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tMain_factory.h $(GEN_DIR)/tMain_tecsgen.h
+
+# Celltype: tTalkerSelector  #_MDEP_#
+$(_TECS_OBJ_DIR)tTalkerSelector_tecsgen.o : tTalkerSelector_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHello_tecsgen.h $(GEN_DIR)/sTalkerSelector_tecsgen.h $(GEN_DIR)/tTalkerSelector_factory.h $(GEN_DIR)/tTalkerSelector_tecsgen.h
+$(_TECS_OBJ_DIR)tTalkerSelector_templ.o : tTalkerSelector_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHello_tecsgen.h $(GEN_DIR)/sTalkerSelector_tecsgen.h $(GEN_DIR)/tTalkerSelector_factory.h $(GEN_DIR)/tTalkerSelector_tecsgen.h
+$(_TECS_OBJ_DIR)tTalkerSelector.o : tTalkerSelector.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHello_tecsgen.h $(GEN_DIR)/sTalkerSelector_tecsgen.h $(GEN_DIR)/tTalkerSelector_factory.h $(GEN_DIR)/tTalkerSelector_tecsgen.h
+
+# Celltype: tTalker  #_MDEP_#
+$(_TECS_OBJ_DIR)tTalker_tecsgen.o : tTalker_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHello_tecsgen.h $(GEN_DIR)/tTalker_factory.h $(GEN_DIR)/tTalker_tecsgen.h
+$(_TECS_OBJ_DIR)tTalker_templ.o : tTalker_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHello_tecsgen.h $(GEN_DIR)/tTalker_factory.h $(GEN_DIR)/tTalker_tecsgen.h
+$(_TECS_OBJ_DIR)tTalker.o : tTalker.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHello_tecsgen.h $(GEN_DIR)/tTalker_factory.h $(GEN_DIR)/tTalker_tecsgen.h
+
+# Celltype: tMainForComp  #_MDEP_#
+$(_TECS_OBJ_DIR)tMainForComp_tecsgen.o : tMainForComp_tecsgen.c  $(GEN_DIR)/tTalkerSelector_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHello_tecsgen.h $(GEN_DIR)/sTalkerSelector_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tMainForComp_factory.h $(GEN_DIR)/tMainForComp_tecsgen.h
+$(_TECS_OBJ_DIR)tMainForComp_templ.o : tMainForComp_templ.c  $(GEN_DIR)/tTalkerSelector_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHello_tecsgen.h $(GEN_DIR)/sTalkerSelector_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tMainForComp_factory.h $(GEN_DIR)/tMainForComp_tecsgen.h
+$(_TECS_OBJ_DIR)tMainForComp.o : tMainForComp.c  $(GEN_DIR)/tTalkerSelector_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHello_tecsgen.h $(GEN_DIR)/sTalkerSelector_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tMainForComp_factory.h $(GEN_DIR)/tMainForComp_tecsgen.h
+

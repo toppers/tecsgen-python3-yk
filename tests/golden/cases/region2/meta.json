@@ -1,0 +1,67 @@
+{
+  "id": "region2",
+  "source": "region2/Makefile [tecsgen.timestamp]",
+  "cwd": "region2",
+  "args": [
+    "-I",
+    "../RUNTIME/tecs-runtime/include",
+    "-I",
+    "../RUNTIME/tecs-runtime/target",
+    "region.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 4,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "region2/gen/Makefile.depend",
+    "region2/gen/Makefile.tecsgen",
+    "region2/gen/Makefile.templ",
+    "region2/gen/global_tecsgen.h",
+    "region2/gen/sMain_tecsgen.h",
+    "region2/gen/sSig1_tecsgen.h",
+    "region2/gen/sSig2_tecsgen.h",
+    "region2/gen/sSig3_tecsgen.h",
+    "region2/gen/tCtOuter_factory.h",
+    "region2/gen/tCtOuter_tecsgen.c",
+    "region2/gen/tCtOuter_tecsgen.h",
+    "region2/gen/tCtOuter_templ.c",
+    "region2/gen/tCtR1_factory.h",
+    "region2/gen/tCtR1_tecsgen.c",
+    "region2/gen/tCtR1_tecsgen.h",
+    "region2/gen/tCtR1_templ.c",
+    "region2/gen/tCtR2_factory.h",
+    "region2/gen/tCtR2_tecsgen.c",
+    "region2/gen/tCtR2_tecsgen.h",
+    "region2/gen/tCtR2_templ.c",
+    "region2/gen/tMain_factory.h",
+    "region2/gen/tMain_tecsgen.c",
+    "region2/gen/tMain_tecsgen.h",
+    "region2/gen/tMain_templ.c",
+    "region2/gen/tSingle_factory.h",
+    "region2/gen/tSingle_tecsgen.c",
+    "region2/gen/tSingle_tecsgen.h",
+    "region2/gen/tSingle_templ.c",
+    "region2/gen/tecsgen.rbdmp",
+    "region2/gen/tecsgen.timestamp",
+    "region2/gen/tmp_C_src.c",
+    "region2/gen/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "region2/gen/tecsgen.rbdmp": {
+      "sha256": "6c2e50fd7c9dd6e22c6f96a4b0b5f818e843d2b5f3af21ed2f209e01897dacec",
+      "size": 54891
+    },
+    "region2/gen/tmp_tecs.h": {
+      "sha256": "b81868a53d73edd43338665d5480f5535c4d85fffda8bd366d2666c6f31d3eb4",
+      "size": 50567
+    }
+  }
+}

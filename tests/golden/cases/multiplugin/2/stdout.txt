@@ -1,0 +1,17 @@
+multiplugin2.cdl:27:2: warning: W1002 tSimpleClient: non-active celltype has no entry port & factory
+multiplugin2.cdl:28:57: error: P2002 MrubyBridgeCelltypePlugin: not kind of CelltypePlugin
+multiplugin2.cdl:38:44: error: P1004 include_port_func: unknown plugin argument's identifier
+  ignoreUnsigned, exclude_port, exclude_port_func, auto_exclude are acceptable for RPCPlugin.
+multiplugin2.cdl:38:44: error: P1004 include_port_func: unknown plugin argument's identifier
+  ignoreUnsigned, exclude_port, exclude_port_func, auto_exclude are acceptable for RPCPlugin.
+  MrubyBridgeCellPlugin: [cell.port] SimpleServer.eEntB => [mruby instance] TECS::TsSimpleB.new( 'SimpleServereEntBBridge' ) 
+  MrubyBridgePlugin: [pointer]  char_t* => [class] TECS::CharPointer
+  MrubyBridgePlugin: [signature] ::sSimpleB => [celltype] nMruby::tsSimpleB => [class] TECS::TsSimpleB
+  MrubyBridgePlugin: join your VM's cInitialize to VM_TECSInitializer.eInitialize
+  MrubyBridgeCellPlugin: [cell.port] SimpleServer2.eEntA => [mruby instance] TECS::TsSimpleA.new( 'SimpleServer2eEntABridge' ) 
+  MrubyBridgeCellPlugin: [cell.port] SimpleServer2.eEntB => [mruby instance] TECS::TsSimpleB.new( 'SimpleServer2eEntBBridge' ) 
+  MrubyBridgePlugin: [signature] ::sSimpleA => [celltype] nMruby::tsSimpleA => [class] TECS::TsSimpleA
+gen2/SimpleServereEntBBridgeInitializer.cdl:3:33: warning: W1007 ::VM_TECSInitializer : non-active cell has no entry join and no factory
+multiplugin2.cdl:41:20: warning: W1007 ::SimpleClient : non-active cell has no entry join and no factory
+multiplugin2.cdl:52:20: warning: W1007 ::SimpleClient2 : non-active cell has no entry join and no factory
+3 errors  4 warnings

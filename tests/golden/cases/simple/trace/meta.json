@@ -1,0 +1,43 @@
+{
+  "id": "simple/trace",
+  "source": "simple/Makefile.trace [tecs]（TARGETS には無い）",
+  "cwd": "simple",
+  "args": [
+    "-I",
+    "../../tecs/",
+    "-I",
+    "../cygwin",
+    "simple-trace.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 1,
+  "warnings": 5,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "simple/gen/tmp_C_src.c",
+    "simple/gen/tmp_cygwin_tecs.h",
+    "simple/gen/tmp_t_syslog.h",
+    "simple/gen/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "simple/gen/tmp_cygwin_tecs.h": {
+      "sha256": "013946d0e301df439d5ed2d9b1c01d986e88315a1cf3936b764c332ee5731245",
+      "size": 14873
+    },
+    "simple/gen/tmp_t_syslog.h": {
+      "sha256": "4581cbce8cbbff4b6d434a4b17e075b7299946598b120a45775f2ca9dddab05f",
+      "size": 568
+    },
+    "simple/gen/tmp_tecs.h": {
+      "sha256": "29d2c44ee3aeaf69d3dcd14a0a13d72a4a1cc48f2903b63ba134f2abd3992d0e",
+      "size": 8592
+    }
+  }
+}

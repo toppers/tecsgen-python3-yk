@@ -1,0 +1,24 @@
+
+import( "gen/tOpaqueMarshaler_sSample.cdl" );
+import( "gen/tSharedOpaqueRPCPluginChannel_tTDR.cdl" );
+region rClient{
+  cell tSharedOpaqueRPCPluginChannel_tTDR_Client MyChannel;
+/* OpaqueRPC Marshaler Cell */
+  cell tOpaqueMarshaler_sSample Join_to_through___0 {
+    cTDR         = MyChannel.eTDR;
+    cLockChannel = MyChannel.eSemaphore[0];
+  };
+};
+region rServer{
+/* Server Channel Cell prototype */
+  cell tSharedOpaqueRPCPluginChannel_tTDR_Server MyChannel_Server;
+
+  cell tPPAllocator PPAllocator_MyChannel{
+    heapSize = 1024;
+  };
+  cell tOpaqueUnmarshaler_sSample Join_to_through___0_Server {
+    cTDR         = MyChannel_Server.eTDR;
+    cServerCall  = ::rServer::SampleServer.eEnt;
+    cPPAllocator = PPAllocator_MyChannel.ePPAllocator;
+  };
+};

@@ -1,0 +1,59 @@
+{
+  "id": "SWIGBridge",
+  "source": "SWIGBridge/Makefile [tecs]（TARGETS には無い）",
+  "cwd": "SWIGBridge",
+  "args": [
+    "-L",
+    ".",
+    "-I",
+    "../cygwin",
+    "-I",
+    "../../tecs",
+    "generate.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 2,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "SWIGBridge/gen/CsTest.cxx",
+    "SWIGBridge/gen/CsTest.hxx",
+    "SWIGBridge/gen/Makefile.depend",
+    "SWIGBridge/gen/Makefile.tecsgen",
+    "SWIGBridge/gen/Makefile.templ",
+    "SWIGBridge/gen/SWIGBridge.i",
+    "SWIGBridge/gen/global_tecsgen.h",
+    "SWIGBridge/gen/sTest_tecsgen.h",
+    "SWIGBridge/gen/tSWIGsTestBridge.c",
+    "SWIGBridge/gen/tSWIGsTestBridge_factory.h",
+    "SWIGBridge/gen/tSWIGsTestBridge_tecsgen.c",
+    "SWIGBridge/gen/tSWIGsTestBridge_tecsgen.h",
+    "SWIGBridge/gen/tTECSTest_factory.h",
+    "SWIGBridge/gen/tTECSTest_tecsgen.c",
+    "SWIGBridge/gen/tTECSTest_tecsgen.h",
+    "SWIGBridge/gen/tTECSTest_templ.c",
+    "SWIGBridge/gen/tecsgen.rbdmp",
+    "SWIGBridge/gen/tecsgen.timestamp",
+    "SWIGBridge/gen/tmp_C_src.c",
+    "SWIGBridge/gen/tmp_SWIGBridgePlugin_0.cdl",
+    "SWIGBridge/gen/tmp_SWIGBridgePlugin_post_code.cdl",
+    "SWIGBridge/gen/tmp_cygwin_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "SWIGBridge/gen/tecsgen.rbdmp": {
+      "sha256": "ac2ac4d8088051ee983fd9382f292ef84cd5251106a76436c7f1e701bc4894e4",
+      "size": 31547
+    },
+    "SWIGBridge/gen/tmp_cygwin_tecs.h": {
+      "sha256": "013946d0e301df439d5ed2d9b1c01d986e88315a1cf3936b764c332ee5731245",
+      "size": 14873
+    }
+  }
+}

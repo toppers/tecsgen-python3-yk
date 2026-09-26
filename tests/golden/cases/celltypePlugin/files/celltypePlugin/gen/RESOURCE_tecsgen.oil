@@ -1,0 +1,6 @@
+	RESOURCE Resource1 {
+		RESOURCEPROPERTY = LINKED {
+			LINKEDRESOURCE = Resource2;
+		};
+	};
+

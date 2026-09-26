@@ -1,0 +1,84 @@
+{
+  "id": "require2",
+  "source": "require2/Makefile [tecs]",
+  "cwd": "require2",
+  "args": [
+    "-I",
+    "../cygwin3",
+    "-U",
+    "require2.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "require2/gen/Makefile.depend",
+    "require2/gen/Makefile.tecsgen",
+    "require2/gen/Makefile.templ",
+    "require2/gen/global_tecsgen.h",
+    "require2/gen/sDataqueue_tecsgen.h",
+    "require2/gen/sEventflag_tecsgen.h",
+    "require2/gen/sKernel_tecsgen.h",
+    "require2/gen/sSemaphore_tecsgen.h",
+    "require2/gen/sSig_tecsgen.h",
+    "require2/gen/sSysLog_tecsgen.h",
+    "require2/gen/sTaskBody_tecsgen.h",
+    "require2/gen/sTaskExceptionBody_tecsgen.h",
+    "require2/gen/sTask_tecsgen.h",
+    "require2/gen/siDataqueue_tecsgen.h",
+    "require2/gen/siEventflag_tecsgen.h",
+    "require2/gen/siKernel_tecsgen.h",
+    "require2/gen/siSemaphore_tecsgen.h",
+    "require2/gen/tCelltype_factory.h",
+    "require2/gen/tCelltype_tecsgen.c",
+    "require2/gen/tCelltype_tecsgen.h",
+    "require2/gen/tCelltype_templ.c",
+    "require2/gen/tKernel_factory.h",
+    "require2/gen/tKernel_tecsgen.c",
+    "require2/gen/tKernel_tecsgen.h",
+    "require2/gen/tRequired_factory.h",
+    "require2/gen/tRequired_tecsgen.c",
+    "require2/gen/tRequired_tecsgen.h",
+    "require2/gen/tRequired_templ.c",
+    "require2/gen/tSysLog_factory.h",
+    "require2/gen/tSysLog_tecsgen.c",
+    "require2/gen/tSysLog_tecsgen.h",
+    "require2/gen/tTask_factory.h",
+    "require2/gen/tTask_tecsgen.c",
+    "require2/gen/tTask_tecsgen.h",
+    "require2/gen/tTracePlugin_sSig.c",
+    "require2/gen/tTracePlugin_sSig.cdl",
+    "require2/gen/tTracePlugin_sSig_factory.h",
+    "require2/gen/tTracePlugin_sSig_tecsgen.c",
+    "require2/gen/tTracePlugin_sSig_tecsgen.h",
+    "require2/gen/tecsgen.rbdmp",
+    "require2/gen/tecsgen.timestamp",
+    "require2/gen/tmp_C_src.c",
+    "require2/gen/tmp_TracePlugin_0.cdl",
+    "require2/gen/tmp_TracePlugin_post_code.cdl",
+    "require2/gen/tmp_cygwin_tecs.h",
+    "require2/gen/tmp_t_syslog.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "require2/gen/tecsgen.rbdmp": {
+      "sha256": "9ecf154890345d58b9ec3577cc63d3ed2ee560c235b61280c24df958add05f15",
+      "size": 73345
+    },
+    "require2/gen/tmp_cygwin_tecs.h": {
+      "sha256": "4e3b975cdc2f9adc9500c8f3ffdf8a0c267ffada81e2337742aad65d3fb277fb",
+      "size": 15511
+    },
+    "require2/gen/tmp_t_syslog.h": {
+      "sha256": "81998c66d8d19d5833d03994dc44230c77eaae39387d8a3aae1fc80bffa90daf",
+      "size": 571
+    }
+  }
+}

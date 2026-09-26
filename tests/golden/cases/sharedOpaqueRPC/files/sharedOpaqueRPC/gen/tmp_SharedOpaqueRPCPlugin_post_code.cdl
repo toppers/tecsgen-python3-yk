@@ -1,0 +1,16 @@
+/* 'SharedOpaqueRPCPlugin' post code */
+/* 'MyChannel' shared channel */
+region rClient{
+  cell tSharedOpaqueRPCPluginChannel_tTDR_Client MyChannel {
+      cClientChannel = ClientChannel.eC0;
+  };
+};
+region rServer{
+  cell tSharedOpaqueRPCPluginChannel_tTDR_Server MyChannel_Server {
+      cServerChannel = ServerChannel.eC1;
+      cOpener        = ServerChannel.eOpener;
+      cUnmarshalAndCallFunction[] = Join_to_through___0_Server.eService;
+      cUnmarshalAndCallFunction[] = Join_to_through___1_Server.eService;
+      priority = 9;
+  };
+};

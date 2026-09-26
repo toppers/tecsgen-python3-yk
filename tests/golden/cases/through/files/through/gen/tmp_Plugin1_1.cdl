@@ -1,0 +1,3 @@
+cell tPlugin1_sSignature Plugin1__1 {
+  cCall = Plugin2__1.eThroughEntry;
+};

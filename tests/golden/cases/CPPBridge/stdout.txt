@@ -1,0 +1,5 @@
+  CPP2TECSBridgePlugin: [signature] ::sSig => [celltype] nCPP::tsSig => [class] CsSig
+gen/tmp_CPP2TECSBridgePlugin_0.cdl:6:4: warning: W1002 tsSig: non-active celltype has no entry port & factory
+cpp.cdl:18:18: warning: W1007 ::CPP2TECSsSigBridge : non-active cell has no entry join and no factory
+cpp.cdl:22:18: warning: W1007 ::CPP2TECSsSigBridge2 : non-active cell has no entry join and no factory
+3 warnings

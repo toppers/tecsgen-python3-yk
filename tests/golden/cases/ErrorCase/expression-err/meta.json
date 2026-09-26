@@ -1,0 +1,26 @@
+{
+  "id": "ErrorCase/expression-err",
+  "source": "ErrorCase/Makefile [expression-err]",
+  "cwd": "ErrorCase",
+  "args": [
+    "-L",
+    ".",
+    "expression-err.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 13,
+  "warnings": 5,
+  "expect": [
+    13,
+    5
+  ],
+  "expect_matched": true,
+  "created": [],
+  "modified": [],
+  "deleted": [],
+  "excluded": {}
+}

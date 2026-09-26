@@ -1,0 +1,3 @@
+  C2TECSBridgePlugin: [celltype] C2TECS::tsTest. Create cell then join the call port 'cCall' to the target cell
+generate.cdl:68:29: warning: W1007 ::STest : non-active cell has no entry join and no factory
+1 warning

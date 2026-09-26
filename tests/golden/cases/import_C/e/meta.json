@@ -1,0 +1,46 @@
+{
+  "id": "import_C/e",
+  "source": "import_C/Makefile [e]",
+  "cwd": "import_C",
+  "args": [
+    "-I",
+    "include",
+    "-Iconfig_win",
+    "-I.",
+    "dupl-incl.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "import_C/gen/Makefile.tecsgen",
+    "import_C/gen/Makefile.templ",
+    "import_C/gen/tecsgen.rbdmp",
+    "import_C/gen/tecsgen.timestamp",
+    "import_C/gen/tmp_C_src.c",
+    "import_C/gen/tmp_dupl-a.h",
+    "import_C/gen/tmp_dupl-b.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "import_C/gen/tecsgen.rbdmp": {
+      "sha256": "6dedffb1c2ab720010c5c8793537c1d1040bd90db5c5d7148c82ac75b7f4311a",
+      "size": 4277
+    },
+    "import_C/gen/tmp_dupl-a.h": {
+      "sha256": "34a27fac8739772d123a416dd55a418059dbf2bf78b549d1efe55b3b2f84cdf1",
+      "size": 1311
+    },
+    "import_C/gen/tmp_dupl-b.h": {
+      "sha256": "6d72870d553cf51e829180243171fc2207c7f0eccd6d4f80b6fc77dfd2d1bb1d",
+      "size": 879
+    }
+  }
+}

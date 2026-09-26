@@ -1,0 +1,4 @@
+import( "gen/tPlugin1_sSignature.cdl" );
+cell tPlugin1_sSignature Plugin1__0 {
+  cCall = Plugin2__0.eThroughEntry;
+};

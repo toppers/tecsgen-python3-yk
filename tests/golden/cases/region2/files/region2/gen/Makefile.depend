@@ -1,0 +1,25 @@
+# Celltype: tCtR1  #_MDEP_#
+$(_TECS_OBJ_DIR)tCtR1_tecsgen.o : tCtR1_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig3_tecsgen.h $(GEN_DIR)/tCtR1_factory.h $(GEN_DIR)/tCtR1_tecsgen.h
+$(_TECS_OBJ_DIR)tCtR1_templ.o : tCtR1_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig3_tecsgen.h $(GEN_DIR)/tCtR1_factory.h $(GEN_DIR)/tCtR1_tecsgen.h
+$(_TECS_OBJ_DIR)tCtR1.o : tCtR1.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig3_tecsgen.h $(GEN_DIR)/tCtR1_factory.h $(GEN_DIR)/tCtR1_tecsgen.h
+
+# Celltype: tCtR2  #_MDEP_#
+$(_TECS_OBJ_DIR)tCtR2_tecsgen.o : tCtR2_tecsgen.c  $(GEN_DIR)/tCtOuter_tecsgen.h  $(GEN_DIR)/tCtR1_tecsgen.h  $(GEN_DIR)/tCtR2_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig1_tecsgen.h $(GEN_DIR)/sSig2_tecsgen.h $(GEN_DIR)/sSig3_tecsgen.h $(GEN_DIR)/tCtR2_factory.h $(GEN_DIR)/tCtR2_tecsgen.h
+$(_TECS_OBJ_DIR)tCtR2_templ.o : tCtR2_templ.c  $(GEN_DIR)/tCtOuter_tecsgen.h  $(GEN_DIR)/tCtR1_tecsgen.h  $(GEN_DIR)/tCtR2_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig1_tecsgen.h $(GEN_DIR)/sSig2_tecsgen.h $(GEN_DIR)/sSig3_tecsgen.h $(GEN_DIR)/tCtR2_factory.h $(GEN_DIR)/tCtR2_tecsgen.h
+$(_TECS_OBJ_DIR)tCtR2.o : tCtR2.c  $(GEN_DIR)/tCtOuter_tecsgen.h  $(GEN_DIR)/tCtR1_tecsgen.h  $(GEN_DIR)/tCtR2_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig1_tecsgen.h $(GEN_DIR)/sSig2_tecsgen.h $(GEN_DIR)/sSig3_tecsgen.h $(GEN_DIR)/tCtR2_factory.h $(GEN_DIR)/tCtR2_tecsgen.h
+
+# Celltype: tCtOuter  #_MDEP_#
+$(_TECS_OBJ_DIR)tCtOuter_tecsgen.o : tCtOuter_tecsgen.c  $(GEN_DIR)/tCtOuter_tecsgen.h  $(GEN_DIR)/tCtR1_tecsgen.h  $(GEN_DIR)/tCtR2_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/sSig1_tecsgen.h $(GEN_DIR)/sSig2_tecsgen.h $(GEN_DIR)/tCtOuter_factory.h $(GEN_DIR)/tCtOuter_tecsgen.h
+$(_TECS_OBJ_DIR)tCtOuter_templ.o : tCtOuter_templ.c  $(GEN_DIR)/tCtOuter_tecsgen.h  $(GEN_DIR)/tCtR1_tecsgen.h  $(GEN_DIR)/tCtR2_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/sSig1_tecsgen.h $(GEN_DIR)/sSig2_tecsgen.h $(GEN_DIR)/tCtOuter_factory.h $(GEN_DIR)/tCtOuter_tecsgen.h
+$(_TECS_OBJ_DIR)tCtOuter.o : tCtOuter.c  $(GEN_DIR)/tCtOuter_tecsgen.h  $(GEN_DIR)/tCtR1_tecsgen.h  $(GEN_DIR)/tCtR2_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/sSig1_tecsgen.h $(GEN_DIR)/sSig2_tecsgen.h $(GEN_DIR)/tCtOuter_factory.h $(GEN_DIR)/tCtOuter_tecsgen.h
+
+# Celltype: tSingle  #_MDEP_#
+$(_TECS_OBJ_DIR)tSingle_tecsgen.o : tSingle_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tSingle_factory.h $(GEN_DIR)/tSingle_tecsgen.h
+$(_TECS_OBJ_DIR)tSingle_templ.o : tSingle_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tSingle_factory.h $(GEN_DIR)/tSingle_tecsgen.h
+$(_TECS_OBJ_DIR)tSingle.o : tSingle.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tSingle_factory.h $(GEN_DIR)/tSingle_tecsgen.h
+
+# Celltype: tMain  #_MDEP_#
+$(_TECS_OBJ_DIR)tMain_tecsgen.o : tMain_tecsgen.c  $(GEN_DIR)/tCtOuter_tecsgen.h  $(GEN_DIR)/tCtR1_tecsgen.h  $(GEN_DIR)/tCtR2_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/tMain_factory.h $(GEN_DIR)/tMain_tecsgen.h
+$(_TECS_OBJ_DIR)tMain_templ.o : tMain_templ.c  $(GEN_DIR)/tCtOuter_tecsgen.h  $(GEN_DIR)/tCtR1_tecsgen.h  $(GEN_DIR)/tCtR2_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/tMain_factory.h $(GEN_DIR)/tMain_tecsgen.h
+$(_TECS_OBJ_DIR)tMain.o : tMain.c  $(GEN_DIR)/tCtOuter_tecsgen.h  $(GEN_DIR)/tCtR1_tecsgen.h  $(GEN_DIR)/tCtR2_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/tMain_factory.h $(GEN_DIR)/tMain_tecsgen.h
+

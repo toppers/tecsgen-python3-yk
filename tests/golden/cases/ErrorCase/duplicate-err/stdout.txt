@@ -1,0 +1,24 @@
+duplicate-err.cdl:2:25: error: S2001 'CONST' duplicate symbol in namespace '::'
+previous: duplicate-err.cdl: line 1 'CONST' defined here
+duplicate-err.cdl:10:27: error: S2001 'func' duplicate function
+previous: duplicate-err.cdl: line 9 'func' defined here
+duplicate-err.cdl:13:11: error: S2001 'sSig' duplicate symbol in namespace '::'
+previous: duplicate-err.cdl: line 8 'sSig' defined here
+duplicate-err.cdl:14:45: error: S2001 'in' duplicate parameter
+previous: duplicate-err.cdl: line 14 'in' defined here
+duplicate-err.cdl:19:16: error: S2001 'a' duplicate symbol in celltype tCelltype
+previous: duplicate-err.cdl: line 18 'a' defined here
+duplicate-err.cdl:24:17: error: S2001 'b' duplicate symbol in celltype tCelltype
+previous: duplicate-err.cdl: line 21 'b' defined here
+duplicate-err.cdl:27:10: error: S2001 'tCelltype' duplicate symbol in namespace '::'
+previous: duplicate-err.cdl: line 17 'tCelltype' defined here
+duplicate-err.cdl:31:17: error: S2001 'a' duplicate symbol in celltype tCelltype
+previous: duplicate-err.cdl: line 28 'a' defined here
+duplicate-err.cdl:34:17: error: S2001 'b' duplicate symbol in celltype tCelltype
+previous: duplicate-err.cdl: line 29 'b' defined here
+duplicate-err.cdl:41:10: error: S1127 'b' duplicate
+duplicate-err.cdl:43:21: error: S1032 Cell: duplicate cell
+duplicate-err.cdl:39:16: error: S1042 call port 'a' not initialized in cell 'Cell'
+duplicate-err.cdl:39:16: error: S1052 attribute 'b' not initialized in cell 'Cell'
+duplicate-err.cdl:39:16: warning: W1007 ::Cell : non-active cell has no entry join and no factory
+13 errors  1 warning

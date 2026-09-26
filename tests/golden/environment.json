@@ -1,0 +1,13 @@
+{
+  "ruby": "ruby 3.2.3 (2024-01-18 revision 52bb2ac0a6) [x86_64-linux-gnu]",
+  "gcc": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "tecsgen": "tecsgen  version 1.9.1",
+  "platform": "Linux 6.18.33.2-microsoft-standard-WSL2 x86_64",
+  "source": "toppers tecsgen branches/ykominami_r3033 r3304 (svn export -r BASE --native-eol LF)",
+  "manifest_sha256": "aa03269f5b9f2dc2c04bfb0fccba56cdfe3e7afb34d4d4217b1a8ff3277cba4f",
+  "excluded_patterns": [
+    "*.rbdmp",
+    "tmp_*.h"
+  ],
+  "cases": 155
+}

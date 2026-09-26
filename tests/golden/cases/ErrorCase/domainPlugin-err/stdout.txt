@@ -1,0 +1,4 @@
+domainPlugin-err.cdl:28:46: error: S9999 cSimple: going out from regin 'rSimple' not permitted by domain 'MyDomain'
+domainPlugin-err.cdl:28:46: error: S9999 cSimple: going from regin 'rSimple' not permitted by domain'MyDomain'
+domainPlugin-err.cdl:28:46: error: S9999 cSimple: going in from regin 'rSample' to 'rSample' not permitted by domain 'MyDomain'
+3 errors

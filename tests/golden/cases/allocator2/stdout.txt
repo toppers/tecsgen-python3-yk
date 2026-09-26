@@ -1,0 +1,8 @@
+gen/tmp_tecs.h:1172:1: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+gen/tmp_tecs.h:1239:3: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+allocator.cdl:11:44: warning: W3003 p pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+allocator.cdl:104:2: warning: W1002 tTestClient: non-active celltype has no entry port & factory
+allocator.cdl:116:2: warning: W1002 tTestOptional: non-active celltype has no entry port & factory
+allocator.cdl:106:18: warning: W1007 ::Client : non-active cell has no entry join and no factory
+allocator.cdl:118:20: warning: W1007 ::TestOptional : non-active cell has no entry join and no factory
+5 warnings

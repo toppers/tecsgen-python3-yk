@@ -1,0 +1,10 @@
+import( "gen/tTracePlugin_sSocketClientOpener.cdl" );
+region rClient{
+  region rCPon{
+    cell tTracePlugin_sSocketClientOpener Join_out_through__2 {
+      cCall = ::rClient::ClientChannel.eOpener;
+      probeName_str = ": ";
+      from_str = "SimpleClient";
+    };
+  };
+};

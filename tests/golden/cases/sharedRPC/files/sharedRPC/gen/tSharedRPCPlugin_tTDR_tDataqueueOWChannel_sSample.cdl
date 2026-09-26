@@ -1,0 +1,29 @@
+import( "gen/tMarshaler_sSample.cdl" );
+
+composite tSharedRPCPlugin_tTDR_tDataqueueOWChannel_sSample {
+  /* Interface */
+  call  ::sSample cCall;
+  entry ::sSample eThroughEntry;
+  call  sTDR       cTDR;
+  call  sEventflag cEventflag;
+  entry sUnmarshalerMain  eUnmarshalAndCallFunction;
+  call sPPAllocator cPPAllocator;
+
+  [optional]
+    call sSemaphore cLockChannel;
+
+  /* Implementation */
+  cell tMarshaler_sSample sSample_marshaler{
+    cTDR         => composite.cTDR;
+    cEventflag   => composite.cEventflag;
+    cLockChannel => composite.cLockChannel;
+  };
+  cell tUnmarshaler_sSample sSample_unmarshaler{
+    cTDR         => composite.cTDR;
+    cEventflag   => composite.cEventflag;
+    cServerCall  => composite.cCall;
+  cPPAllocator => composite.cPPAllocator;
+  };
+  composite.eThroughEntry => sSample_marshaler.eClientEntry;
+  composite.eUnmarshalAndCallFunction => sSample_unmarshaler.eUnmarshalAndCallFunction;
+};

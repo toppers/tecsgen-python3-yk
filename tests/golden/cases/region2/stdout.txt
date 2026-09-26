@@ -1,0 +1,7 @@
+gen/tmp_tecs.h:1172:1: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+gen/tmp_tecs.h:1239:3: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+region.cdl:48:2: warning: W1002 tSingle: non-active celltype has no entry port & factory
+region.cdl:96:14: warning: W1007 ::rRegion2::rRegionInner::r2cellInner : non-active cell has no entry join and no factory
+region.cdl:63:13: warning: W1007 ::rRegion1::r1cell : non-active cell has no entry join and no factory
+region.cdl:75:15: warning: W1007 ::rRegion1::Single1 : non-active cell has no entry join and no factory
+4 warnings

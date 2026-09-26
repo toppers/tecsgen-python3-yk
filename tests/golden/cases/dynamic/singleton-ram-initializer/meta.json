@@ -1,0 +1,79 @@
+{
+  "id": "dynamic/singleton-ram-initializer",
+  "source": "dynamic/Makefile-singleton-ram-initializer [tecs]",
+  "cwd": "dynamic",
+  "args": [
+    "-R",
+    "-g",
+    "./gen-single-ram-initializer",
+    "-I",
+    "../cygwin3",
+    "dynamic-singleton.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "dynamic/gen-single-ram-initializer/Makefile.depend",
+    "dynamic/gen-single-ram-initializer/Makefile.tecsgen",
+    "dynamic/gen-single-ram-initializer/Makefile.templ",
+    "dynamic/gen-single-ram-initializer/global_tecsgen.h",
+    "dynamic/gen-single-ram-initializer/sDataqueue_tecsgen.h",
+    "dynamic/gen-single-ram-initializer/sEventflag_tecsgen.h",
+    "dynamic/gen-single-ram-initializer/sHello_tecsgen.h",
+    "dynamic/gen-single-ram-initializer/sKernel_tecsgen.h",
+    "dynamic/gen-single-ram-initializer/sSemaphore_tecsgen.h",
+    "dynamic/gen-single-ram-initializer/sTalkerSelector_tecsgen.h",
+    "dynamic/gen-single-ram-initializer/sTaskBody_tecsgen.h",
+    "dynamic/gen-single-ram-initializer/sTaskExceptionBody_tecsgen.h",
+    "dynamic/gen-single-ram-initializer/sTask_tecsgen.h",
+    "dynamic/gen-single-ram-initializer/siDataqueue_tecsgen.h",
+    "dynamic/gen-single-ram-initializer/siEventflag_tecsgen.h",
+    "dynamic/gen-single-ram-initializer/siKernel_tecsgen.h",
+    "dynamic/gen-single-ram-initializer/siSemaphore_tecsgen.h",
+    "dynamic/gen-single-ram-initializer/tMainSingletonForComp_factory.h",
+    "dynamic/gen-single-ram-initializer/tMainSingletonForComp_tecsgen.c",
+    "dynamic/gen-single-ram-initializer/tMainSingletonForComp_tecsgen.h",
+    "dynamic/gen-single-ram-initializer/tMainSingletonForComp_templ.c",
+    "dynamic/gen-single-ram-initializer/tMainSingleton_factory.h",
+    "dynamic/gen-single-ram-initializer/tMainSingleton_tecsgen.c",
+    "dynamic/gen-single-ram-initializer/tMainSingleton_tecsgen.h",
+    "dynamic/gen-single-ram-initializer/tMainSingleton_templ.c",
+    "dynamic/gen-single-ram-initializer/tSerialTaskBody_factory.h",
+    "dynamic/gen-single-ram-initializer/tSerialTaskBody_tecsgen.c",
+    "dynamic/gen-single-ram-initializer/tSerialTaskBody_tecsgen.h",
+    "dynamic/gen-single-ram-initializer/tTalkerSelector_factory.h",
+    "dynamic/gen-single-ram-initializer/tTalkerSelector_tecsgen.c",
+    "dynamic/gen-single-ram-initializer/tTalkerSelector_tecsgen.h",
+    "dynamic/gen-single-ram-initializer/tTalkerSelector_templ.c",
+    "dynamic/gen-single-ram-initializer/tTalker_factory.h",
+    "dynamic/gen-single-ram-initializer/tTalker_tecsgen.c",
+    "dynamic/gen-single-ram-initializer/tTalker_tecsgen.h",
+    "dynamic/gen-single-ram-initializer/tTalker_templ.c",
+    "dynamic/gen-single-ram-initializer/tTask_factory.h",
+    "dynamic/gen-single-ram-initializer/tTask_tecsgen.c",
+    "dynamic/gen-single-ram-initializer/tTask_tecsgen.h",
+    "dynamic/gen-single-ram-initializer/tecsgen.rbdmp",
+    "dynamic/gen-single-ram-initializer/tecsgen.timestamp",
+    "dynamic/gen-single-ram-initializer/tmp_C_src.c",
+    "dynamic/gen-single-ram-initializer/tmp_cygwin_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "dynamic/gen-single-ram-initializer/tecsgen.rbdmp": {
+      "sha256": "4260ade81e79e51bca778e2a398b1bfbeb5b4604018ff625885d55c4fa8b6362",
+      "size": 83555
+    },
+    "dynamic/gen-single-ram-initializer/tmp_cygwin_tecs.h": {
+      "sha256": "444f0552f3705eb37c40878ec93997c20c9690eb185228b94e300c4260bc077c",
+      "size": 15611
+    }
+  }
+}

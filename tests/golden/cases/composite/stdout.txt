@@ -1,0 +1,5 @@
+composite.cdl:6:14: warning: W1007 ::SysLog : non-active cell has no entry join and no factory
+composite.cdl:7:14: warning: W1007 ::Kernel : non-active cell has no entry join and no factory
+composite.cdl:96:17: warning: W1007 ::compcell2 : non-active cell has no entry join and no factory
+composite.cdl:96:17: warning: W1007 ::compcell2_cell2 : non-active cell has no entry join and no factory
+4 warnings

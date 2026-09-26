@@ -1,0 +1,36 @@
+{
+  "id": "ErrorCase/cell-err",
+  "source": "ErrorCase/Makefile [cell-err]",
+  "cwd": "ErrorCase",
+  "args": [
+    "-L",
+    ".",
+    "-I",
+    "../cygwin",
+    "cell-err.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 7,
+  "warnings": 1,
+  "expect": [
+    7,
+    1
+  ],
+  "expect_matched": true,
+  "created": [
+    "ErrorCase/gen/tmp_C_src.c",
+    "ErrorCase/gen/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "ErrorCase/gen/tmp_tecs.h": {
+      "sha256": "29d2c44ee3aeaf69d3dcd14a0a13d72a4a1cc48f2903b63ba134f2abd3992d0e",
+      "size": 8592
+    }
+  }
+}

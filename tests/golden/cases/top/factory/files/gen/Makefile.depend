@@ -1,0 +1,10 @@
+# Celltype: tNoFactoryFunc  #_MDEP_#
+$(_TECS_OBJ_DIR)tNoFactoryFunc_tecsgen.o : tNoFactoryFunc_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tNoFactoryFunc_factory.h $(GEN_DIR)/tNoFactoryFunc_tecsgen.h
+$(_TECS_OBJ_DIR)tNoFactoryFunc_templ.o : tNoFactoryFunc_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tNoFactoryFunc_factory.h $(GEN_DIR)/tNoFactoryFunc_tecsgen.h
+$(_TECS_OBJ_DIR)tNoFactoryFunc.o : tNoFactoryFunc.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tNoFactoryFunc_factory.h $(GEN_DIR)/tNoFactoryFunc_tecsgen.h
+
+# Celltype: tLedout  #_MDEP_#
+$(_TECS_OBJ_DIR)nNS_tLedout_tecsgen.o : nNS_tLedout_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nNS_tLedout_factory.h $(GEN_DIR)/nNS_tLedout_tecsgen.h
+$(_TECS_OBJ_DIR)nNS_tLedout_templ.o : nNS_tLedout_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nNS_tLedout_factory.h $(GEN_DIR)/nNS_tLedout_tecsgen.h
+$(_TECS_OBJ_DIR)nNS_tLedout.o : nNS_tLedout.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nNS_tLedout_factory.h $(GEN_DIR)/nNS_tLedout_tecsgen.h
+

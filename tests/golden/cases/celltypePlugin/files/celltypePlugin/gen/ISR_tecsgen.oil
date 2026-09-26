@@ -1,0 +1,20 @@
+	ISR ISR1 {
+		CATEGORY = 1;
+		PRIORITY = 4;
+		ENTRY = 16;
+		RESOURCE = Resource1;
+		RESOURCE = Resource2;
+		MESSAGE = message1;
+		MESSAGE = message2;
+	};
+
+	ISR ISR2 {
+		CATEGORY = 2;
+		PRIORITY = 4;
+		ENTRY = 16;
+		RESOURCE = Resource1;
+		RESOURCE = Resource2;
+		MESSAGE = message1;
+		MESSAGE = message2;
+	};
+

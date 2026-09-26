@@ -1,0 +1,42 @@
+{
+  "id": "optimize/normal",
+  "source": "optimize/Makefile-normal [tecs]（optimize.1 は TARGETS でコメントアウトされている）",
+  "cwd": "optimize",
+  "args": [
+    "-v",
+    "-I",
+    "../RUNTIME/tecs-runtime/target",
+    "-I",
+    "../RUNTIME/tecs-runtime/include",
+    "optimize.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 2,
+  "warnings": 21,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "optimize/gen/tmp_C_src.c",
+    "optimize/gen/tmp_TECSInfoPlugin_0.cdl",
+    "optimize/gen/tmp_TECSInfoPlugin_post_code.cdl",
+    "optimize/gen/tmp__TECSInfoSub.cdl",
+    "optimize/gen/tmp_t_stddef.h",
+    "optimize/gen/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "optimize/gen/tmp_t_stddef.h": {
+      "sha256": "8204d5c0053c34927ef9aae4807880c860f1bc6afa1f58e83e6518debfd23677",
+      "size": 8036
+    },
+    "optimize/gen/tmp_tecs.h": {
+      "sha256": "b81868a53d73edd43338665d5480f5535c4d85fffda8bd366d2666c6f31d3eb4",
+      "size": 50567
+    }
+  }
+}

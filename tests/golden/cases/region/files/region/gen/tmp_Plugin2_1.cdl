@@ -1,0 +1,8 @@
+import( "gen/tPlugin2_sSig3.cdl" );
+region rRegion2{
+  region rRegionInner{
+    cell tPlugin2_sSig3 Join_out_through__1 {
+      cCall = ::rRegion1::Join_from_through___0.eThroughEntry;
+    };
+  };
+};

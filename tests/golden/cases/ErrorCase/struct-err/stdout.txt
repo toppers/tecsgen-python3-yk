@@ -1,0 +1,6 @@
+struct-err.cdl:12:2: warning: W1002 tCt: non-active celltype has no entry port & factory
+struct-err.cdl:15:11: error: T1038 a: initializer type mismatch. 'struct A' & 'int32_t'
+struct-err.cdl:15:11: error: E1001 AAA: not found
+struct-err.cdl:15:11: error: T1024 a: unsuitable initializer for struct
+struct-err.cdl:14:10: warning: W1007 ::Cell : non-active cell has no entry join and no factory
+3 errors  2 warnings

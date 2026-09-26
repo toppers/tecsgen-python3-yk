@@ -1,0 +1,45 @@
+# Celltype: tAttribute  #_MDEP_#
+$(_TECS_OBJ_DIR)tAttribute_tecsgen.o : tAttribute_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/tAttribute_factory.h $(GEN_DIR)/tAttribute_tecsgen.h
+$(_TECS_OBJ_DIR)tAttribute_templ.o : tAttribute_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/tAttribute_factory.h $(GEN_DIR)/tAttribute_tecsgen.h
+$(_TECS_OBJ_DIR)tAttribute.o : tAttribute.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/tAttribute_factory.h $(GEN_DIR)/tAttribute_tecsgen.h
+
+# Celltype: tAttributeSt  #_MDEP_#
+$(_TECS_OBJ_DIR)tAttributeSt_tecsgen.o : tAttributeSt_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/tAttributeSt_factory.h $(GEN_DIR)/tAttributeSt_tecsgen.h
+$(_TECS_OBJ_DIR)tAttributeSt_templ.o : tAttributeSt_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/tAttributeSt_factory.h $(GEN_DIR)/tAttributeSt_tecsgen.h
+$(_TECS_OBJ_DIR)tAttributeSt.o : tAttributeSt.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/tAttributeSt_factory.h $(GEN_DIR)/tAttributeSt_tecsgen.h
+
+# Celltype: tMain  #_MDEP_#
+$(_TECS_OBJ_DIR)tMain_tecsgen.o : tMain_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/tMain_factory.h $(GEN_DIR)/tMain_tecsgen.h
+$(_TECS_OBJ_DIR)tMain_templ.o : tMain_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/tMain_factory.h $(GEN_DIR)/tMain_tecsgen.h
+$(_TECS_OBJ_DIR)tMain.o : tMain.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/tMain_factory.h $(GEN_DIR)/tMain_tecsgen.h
+
+# Celltype: tCEXP  #_MDEP_#
+$(_TECS_OBJ_DIR)tCEXP_tecsgen.o : tCEXP_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tCEXP_factory.h $(GEN_DIR)/tCEXP_tecsgen.h
+$(_TECS_OBJ_DIR)tCEXP_templ.o : tCEXP_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tCEXP_factory.h $(GEN_DIR)/tCEXP_tecsgen.h
+$(_TECS_OBJ_DIR)tCEXP.o : tCEXP.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tCEXP_factory.h $(GEN_DIR)/tCEXP_tecsgen.h
+
+# Celltype: tCelltype  #_MDEP_#
+$(_TECS_OBJ_DIR)tCelltype_tecsgen.o : tCelltype_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tCelltype_factory.h $(GEN_DIR)/tCelltype_tecsgen.h
+$(_TECS_OBJ_DIR)tCelltype_templ.o : tCelltype_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tCelltype_factory.h $(GEN_DIR)/tCelltype_tecsgen.h
+$(_TECS_OBJ_DIR)tCelltype.o : tCelltype.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tCelltype_factory.h $(GEN_DIR)/tCelltype_tecsgen.h
+
+# Celltype: tAttribute2  #_MDEP_#
+$(_TECS_OBJ_DIR)tAttribute2_tecsgen.o : tAttribute2_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/tAttribute2_factory.h $(GEN_DIR)/tAttribute2_tecsgen.h
+$(_TECS_OBJ_DIR)tAttribute2_templ.o : tAttribute2_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/tAttribute2_factory.h $(GEN_DIR)/tAttribute2_tecsgen.h
+$(_TECS_OBJ_DIR)tAttribute2.o : tAttribute2.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/tAttribute2_factory.h $(GEN_DIR)/tAttribute2_tecsgen.h
+
+# Celltype: tAttribute3  #_MDEP_#
+$(_TECS_OBJ_DIR)tAttribute3_tecsgen.o : tAttribute3_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tAttribute3_factory.h $(GEN_DIR)/tAttribute3_tecsgen.h
+$(_TECS_OBJ_DIR)tAttribute3_templ.o : tAttribute3_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tAttribute3_factory.h $(GEN_DIR)/tAttribute3_tecsgen.h
+$(_TECS_OBJ_DIR)tAttribute3.o : tAttribute3.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tAttribute3_factory.h $(GEN_DIR)/tAttribute3_tecsgen.h
+
+# Celltype: tAttribute4  #_MDEP_#
+$(_TECS_OBJ_DIR)tAttribute4_tecsgen.o : tAttribute4_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tAttribute4_factory.h $(GEN_DIR)/tAttribute4_tecsgen.h
+$(_TECS_OBJ_DIR)tAttribute4_templ.o : tAttribute4_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tAttribute4_factory.h $(GEN_DIR)/tAttribute4_tecsgen.h
+$(_TECS_OBJ_DIR)tAttribute4.o : tAttribute4.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tAttribute4_factory.h $(GEN_DIR)/tAttribute4_tecsgen.h
+
+# Celltype: tAttribute5  #_MDEP_#
+$(_TECS_OBJ_DIR)tAttribute5_tecsgen.o : tAttribute5_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tAttribute5_factory.h $(GEN_DIR)/tAttribute5_tecsgen.h
+$(_TECS_OBJ_DIR)tAttribute5_templ.o : tAttribute5_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tAttribute5_factory.h $(GEN_DIR)/tAttribute5_tecsgen.h
+$(_TECS_OBJ_DIR)tAttribute5.o : tAttribute5.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tAttribute5_factory.h $(GEN_DIR)/tAttribute5_tecsgen.h
+

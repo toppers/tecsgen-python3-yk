@@ -1,0 +1,5 @@
+# Celltype: tA  #_MDEP_#
+$(_TECS_OBJ_DIR)tA_tecsgen.o : tA_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tA_factory.h $(GEN_DIR)/tA_tecsgen.h
+$(_TECS_OBJ_DIR)tA_templ.o : tA_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tA_factory.h $(GEN_DIR)/tA_tecsgen.h
+$(_TECS_OBJ_DIR)tA.o : tA.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tA_factory.h $(GEN_DIR)/tA_tecsgen.h
+

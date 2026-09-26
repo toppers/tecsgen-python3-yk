@@ -1,0 +1,15 @@
+celltype tTracePlugin_sSample {
+  [ allocator(
+	giftToYou.buf<=cCall.giftToYou.buf,
+	returnGiftFromYou.buf<=cCall.returnGiftFromYou.buf,
+	onewayFunc.buf<=cCall.onewayFunc.buf
+  )]
+  entry ::sSample eThroughEntry;
+  call  ::sSample cCall;
+  attr{
+    char_t   *probeName_str      = "";
+    char_t   *from_str           = "";
+  };
+  require  tSysLog.eSysLog;
+  require  tKernel.eKernel;
+};

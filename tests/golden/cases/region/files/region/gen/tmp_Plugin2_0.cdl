@@ -1,0 +1,8 @@
+import( "gen/tPlugin2_sSig2.cdl" );
+region rRegion2{
+  region rRegionInner{
+    cell tPlugin2_sSig2 Join_out_through__0 {
+      cCall = ::outer.eEnt;
+    };
+  };
+};

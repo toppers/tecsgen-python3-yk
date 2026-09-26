@@ -1,0 +1,25 @@
+[DataPumpHolderPlugin] for DATA tPersonalData
+      signatures in      gen/tPersonalData_signature.cdl
+                for  GET sPersonalDataGetSignature
+                for  SET sPersonalDataSetSignature
+      celltypes  in      gen/tPersonalData_celltype.cdl
+                for PUMP tPersonalDataDataPump
+              for HOLDER tPersonalDataDataHolder
+          for PUMPHOLDER tPersonalDataDataPumpHolder
+gen/tPersonalData_celltype.cdl:95:115: error: P2001 TransparentRPCSignaturePlugin.rb : fail to load plugin
+gen/tPersonalData_celltype.cdl:116:79: error: S1027 'tRPCPluginDPH_tTDR_tDataqueueOWChannel_sPersonalDataSetSignatureAsync' celltype not found
+gen/tPersonalData_celltype.cdl:151:79: error: S1027 'tRPCPluginDPH_tTDR_tDataqueueOWChannel_sPersonalDataSetSignatureAsync' celltype not found
+gen/tPersonalData_celltype.cdl:164:2: error: S1054 tPersonalDataDataHolderBuffered : specified active but has no active in this celltype
+gen/tPersonalData_celltype.cdl:164:2: error: S1056 taskPriority : cannot export, nothing designated
+gen/tPersonalData_celltype.cdl:164:2: error: S1056 stackSize : cannot export, nothing designated
+gen/tPersonalData_celltype.cdl:164:2: error: S1056 attribute : cannot export, nothing designated
+gen/tPersonalData_celltype.cdl:182:79: error: S1027 'tRPCPluginDPH_tTDR_tDataqueueOWChannel_sPersonalDataSetSignatureAsync' celltype not found
+gen/tPersonalData_celltype.cdl:222:79: error: S1027 'tRPCPluginDPH_tTDR_tDataqueueOWChannel_sPersonalDataSetSignatureAsync' celltype not found
+gen/tPersonalData_celltype.cdl:239:2: error: S1054 tPersonalDataDataHolderBufferedSync : specified active but has no active in this celltype
+gen/tPersonalData_celltype.cdl:239:2: error: S1056 taskPriority : cannot export, nothing designated
+gen/tPersonalData_celltype.cdl:239:2: error: S1056 stackSize : cannot export, nothing designated
+gen/tPersonalData_celltype.cdl:239:2: error: S1056 attribute : cannot export, nothing designated
+gen/tPersonalData_celltype.cdl:262:79: error: S1027 'tRPCPluginDPH_tTDR_tDataqueueOWChannel_sPersonalDataSetSignatureAsync' celltype not found
+DataPumpHolderTest.cdl:282:116: error: P2003 TransparentRPCSignaturePlugin: load failed
+DataPumpHolderTest.cdl:283:90: error: P2003 TransparentRPCSignaturePlugin: load failed
+16 errors

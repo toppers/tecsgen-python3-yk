@@ -1,0 +1,20 @@
+# Celltype: tTask  #_MDEP_#
+$(_TECS_OBJ_DIR)tTask_tecsgen.o : tTask_tecsgen.c  $(GEN_DIR)/tTECSTest_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+$(_TECS_OBJ_DIR)tTask_templ.o : tTask_templ.c  $(GEN_DIR)/tTECSTest_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+$(_TECS_OBJ_DIR)tTask.o : tTask.c  $(GEN_DIR)/tTECSTest_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+
+# Celltype: tTECSTest  #_MDEP_#
+$(_TECS_OBJ_DIR)tTECSTest_tecsgen.o : tTECSTest_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h $(GEN_DIR)/tTECSTest_factory.h $(GEN_DIR)/tTECSTest_tecsgen.h
+$(_TECS_OBJ_DIR)tTECSTest_templ.o : tTECSTest_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h $(GEN_DIR)/tTECSTest_factory.h $(GEN_DIR)/tTECSTest_tecsgen.h
+$(_TECS_OBJ_DIR)tTECSTest.o : tTECSTest.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h $(GEN_DIR)/tTECSTest_factory.h $(GEN_DIR)/tTECSTest_tecsgen.h
+
+# Celltype: tSignaturePlugin_sTest  #_MDEP_#
+$(_TECS_OBJ_DIR)tSignaturePlugin_sTest_tecsgen.o : tSignaturePlugin_sTest_tecsgen.c  $(GEN_DIR)/tTECSTest_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h $(GEN_DIR)/tSignaturePlugin_sTest_factory.h $(GEN_DIR)/tSignaturePlugin_sTest_tecsgen.h tSignaturePlugin_sTest_inline.h
+$(_TECS_OBJ_DIR)tSignaturePlugin_sTest_templ.o : tSignaturePlugin_sTest_templ.c  $(GEN_DIR)/tTECSTest_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h $(GEN_DIR)/tSignaturePlugin_sTest_factory.h $(GEN_DIR)/tSignaturePlugin_sTest_tecsgen.h tSignaturePlugin_sTest_inline.h
+$(_TECS_OBJ_DIR)tSignaturePlugin_sTest.o : tSignaturePlugin_sTest.c  $(GEN_DIR)/tTECSTest_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h $(GEN_DIR)/tSignaturePlugin_sTest_factory.h $(GEN_DIR)/tSignaturePlugin_sTest_tecsgen.h tSignaturePlugin_sTest_inline.h
+
+# Celltype: tsTest  #_MDEP_#
+$(_TECS_OBJ_DIR)nC2TECS_tsTest_tecsgen.o : nC2TECS_tsTest_tecsgen.c  $(GEN_DIR)/tTECSTest_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nC2TECS_tsTest_factory.h $(GEN_DIR)/nC2TECS_tsTest_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h
+$(_TECS_OBJ_DIR)nC2TECS_tsTest_templ.o : nC2TECS_tsTest_templ.c  $(GEN_DIR)/tTECSTest_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nC2TECS_tsTest_factory.h $(GEN_DIR)/nC2TECS_tsTest_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h
+$(_TECS_OBJ_DIR)nC2TECS_tsTest.o : nC2TECS_tsTest.c  $(GEN_DIR)/tTECSTest_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nC2TECS_tsTest_factory.h $(GEN_DIR)/nC2TECS_tsTest_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h
+

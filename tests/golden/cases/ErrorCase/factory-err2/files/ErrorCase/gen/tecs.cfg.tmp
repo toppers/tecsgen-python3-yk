@@ -1,0 +1,4 @@
+ATR_INI(TA_HLG, 0, tSyslog_initialize);
+ATR_INI(TA_HLG, 0, tSyslog_initialize);
+a = 0;, 99;, abc; 
+a = 0;, 99;, abc;

@@ -1,0 +1,26 @@
+{
+  "id": "ErrorCase/struct-err",
+  "source": "ErrorCase/Makefile [struct-err]",
+  "cwd": "ErrorCase",
+  "args": [
+    "-L",
+    ".",
+    "struct-err.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 3,
+  "warnings": 2,
+  "expect": [
+    3,
+    2
+  ],
+  "expect_matched": true,
+  "created": [],
+  "modified": [],
+  "deleted": [],
+  "excluded": {}
+}

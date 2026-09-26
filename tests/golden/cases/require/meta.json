@@ -1,0 +1,65 @@
+{
+  "id": "require",
+  "source": "require/Makefile [tecs]",
+  "cwd": "require",
+  "args": [
+    "-I",
+    "../RUNTIME/tecs-runtime/target",
+    "-I",
+    "../RUNTIME/tecs-runtime/include",
+    "require.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 1,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "require/gen/Makefile.depend",
+    "require/gen/Makefile.tecsgen",
+    "require/gen/Makefile.templ",
+    "require/gen/global_tecsgen.h",
+    "require/gen/sSyscall2_tecsgen.h",
+    "require/gen/sSyscall_tecsgen.h",
+    "require/gen/tKernel_factory.h",
+    "require/gen/tKernel_tecsgen.c",
+    "require/gen/tKernel_tecsgen.h",
+    "require/gen/tKernel_templ.c",
+    "require/gen/tMain_factory.h",
+    "require/gen/tMain_tecsgen.c",
+    "require/gen/tMain_tecsgen.h",
+    "require/gen/tMain_templ.c",
+    "require/gen/tNamedRequire_factory.h",
+    "require/gen/tNamedRequire_tecsgen.c",
+    "require/gen/tNamedRequire_tecsgen.h",
+    "require/gen/tNamedRequire_templ.c",
+    "require/gen/tRequire2_factory.h",
+    "require/gen/tRequire2_tecsgen.c",
+    "require/gen/tRequire2_tecsgen.h",
+    "require/gen/tRequire2_templ.c",
+    "require/gen/tRequire_factory.h",
+    "require/gen/tRequire_tecsgen.c",
+    "require/gen/tRequire_tecsgen.h",
+    "require/gen/tRequire_templ.c",
+    "require/gen/tecsgen.rbdmp",
+    "require/gen/tecsgen.timestamp",
+    "require/gen/tmp_C_src.c",
+    "require/gen/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "require/gen/tecsgen.rbdmp": {
+      "sha256": "ec9b06fa24b5bc8a64c5c1e756cdb66e9ff2b5e6090ec3fd7b7f537dee990f8f",
+      "size": 51333
+    },
+    "require/gen/tmp_tecs.h": {
+      "sha256": "b81868a53d73edd43338665d5480f5535c4d85fffda8bd366d2666c6f31d3eb4",
+      "size": 50567
+    }
+  }
+}

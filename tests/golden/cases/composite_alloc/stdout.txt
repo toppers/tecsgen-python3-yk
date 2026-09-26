@@ -1,0 +1,5 @@
+composite_alloc.cdl:23:45: warning: W3003 p pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+composite_alloc.cdl:152:15: warning: W1007 ::CompRec : non-active cell has no entry join and no factory
+composite_alloc.cdl:152:15: warning: W1007 ::CompRec_Comp : non-active cell has no entry join and no factory
+composite_alloc.cdl:152:15: warning: W1007 ::CompRec_Comp_InComp : non-active cell has no entry join and no factory
+4 warnings

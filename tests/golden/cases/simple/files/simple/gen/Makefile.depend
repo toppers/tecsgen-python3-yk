@@ -1,0 +1,10 @@
+# Celltype: tSimpleServer  #_MDEP_#
+$(_TECS_OBJ_DIR)tSimpleServer_tecsgen.o : tSimpleServer_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSimple_tecsgen.h $(GEN_DIR)/tSimpleServer_factory.h $(GEN_DIR)/tSimpleServer_tecsgen.h
+$(_TECS_OBJ_DIR)tSimpleServer_templ.o : tSimpleServer_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSimple_tecsgen.h $(GEN_DIR)/tSimpleServer_factory.h $(GEN_DIR)/tSimpleServer_tecsgen.h
+$(_TECS_OBJ_DIR)tSimpleServer.o : tSimpleServer.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSimple_tecsgen.h $(GEN_DIR)/tSimpleServer_factory.h $(GEN_DIR)/tSimpleServer_tecsgen.h
+
+# Celltype: tSimpleClient  #_MDEP_#
+$(_TECS_OBJ_DIR)tSimpleClient_tecsgen.o : tSimpleClient_tecsgen.c  $(GEN_DIR)/tSimpleServer_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSimple_tecsgen.h $(GEN_DIR)/tSimpleClient_factory.h $(GEN_DIR)/tSimpleClient_tecsgen.h
+$(_TECS_OBJ_DIR)tSimpleClient_templ.o : tSimpleClient_templ.c  $(GEN_DIR)/tSimpleServer_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSimple_tecsgen.h $(GEN_DIR)/tSimpleClient_factory.h $(GEN_DIR)/tSimpleClient_tecsgen.h
+$(_TECS_OBJ_DIR)tSimpleClient.o : tSimpleClient.c  $(GEN_DIR)/tSimpleServer_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSimple_tecsgen.h $(GEN_DIR)/tSimpleClient_factory.h $(GEN_DIR)/tSimpleClient_tecsgen.h
+

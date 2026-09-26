@@ -1,0 +1,2 @@
+/* MrubyBridgeCelltypePluginModule: celltype=tSimpleServer */
+generate( MrubyBridgeCellPlugin, ::SimpleServer, "ignoreUnsigned=false, auto_exclude=true" );

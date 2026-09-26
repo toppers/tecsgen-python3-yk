@@ -1,0 +1,25 @@
+# Celltype: tSysLog  #_MDEP_#
+$(_TECS_OBJ_DIR)tSysLog_tecsgen.o : tSysLog_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/tSysLog_factory.h $(GEN_DIR)/tSysLog_tecsgen.h
+$(_TECS_OBJ_DIR)tSysLog_templ.o : tSysLog_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/tSysLog_factory.h $(GEN_DIR)/tSysLog_tecsgen.h
+$(_TECS_OBJ_DIR)tSysLog.o : tSysLog.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/tSysLog_factory.h $(GEN_DIR)/tSysLog_tecsgen.h
+
+# Celltype: tKernel  #_MDEP_#
+$(_TECS_OBJ_DIR)tKernel_tecsgen.o : tKernel_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sKernel_tecsgen.h $(GEN_DIR)/siKernel_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h tKernel_inline.h
+$(_TECS_OBJ_DIR)tKernel_templ.o : tKernel_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sKernel_tecsgen.h $(GEN_DIR)/siKernel_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h tKernel_inline.h
+$(_TECS_OBJ_DIR)tKernel.o : tKernel.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sKernel_tecsgen.h $(GEN_DIR)/siKernel_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h tKernel_inline.h
+
+# Celltype: tTECSMain  #_MDEP_#
+$(_TECS_OBJ_DIR)tTECSMain_tecsgen.o : tTECSMain_tecsgen.c  $(GEN_DIR)/tKernel_tecsgen.h  $(GEN_DIR)/tOutput_tecsgen.h  $(GEN_DIR)/tSysLog_tecsgen.h  $(GEN_DIR)/tTracePlugin_sPrint_tecsgen.h  tKernel_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sPrint_tecsgen.h $(GEN_DIR)/tTECSMain_factory.h $(GEN_DIR)/tTECSMain_tecsgen.h
+$(_TECS_OBJ_DIR)tTECSMain_templ.o : tTECSMain_templ.c  $(GEN_DIR)/tKernel_tecsgen.h  $(GEN_DIR)/tOutput_tecsgen.h  $(GEN_DIR)/tSysLog_tecsgen.h  $(GEN_DIR)/tTracePlugin_sPrint_tecsgen.h  tKernel_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sPrint_tecsgen.h $(GEN_DIR)/tTECSMain_factory.h $(GEN_DIR)/tTECSMain_tecsgen.h
+$(_TECS_OBJ_DIR)tTECSMain.o : tTECSMain.c  $(GEN_DIR)/tKernel_tecsgen.h  $(GEN_DIR)/tOutput_tecsgen.h  $(GEN_DIR)/tSysLog_tecsgen.h  $(GEN_DIR)/tTracePlugin_sPrint_tecsgen.h  tKernel_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sPrint_tecsgen.h $(GEN_DIR)/tTECSMain_factory.h $(GEN_DIR)/tTECSMain_tecsgen.h
+
+# Celltype: tOutput  #_MDEP_#
+$(_TECS_OBJ_DIR)tOutput_tecsgen.o : tOutput_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sPrint_tecsgen.h $(GEN_DIR)/tOutput_factory.h $(GEN_DIR)/tOutput_tecsgen.h
+$(_TECS_OBJ_DIR)tOutput_templ.o : tOutput_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sPrint_tecsgen.h $(GEN_DIR)/tOutput_factory.h $(GEN_DIR)/tOutput_tecsgen.h
+$(_TECS_OBJ_DIR)tOutput.o : tOutput.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sPrint_tecsgen.h $(GEN_DIR)/tOutput_factory.h $(GEN_DIR)/tOutput_tecsgen.h
+
+# Celltype: tTracePlugin_sPrint  #_MDEP_#
+$(_TECS_OBJ_DIR)tTracePlugin_sPrint_tecsgen.o : tTracePlugin_sPrint_tecsgen.c  $(GEN_DIR)/tKernel_tecsgen.h  $(GEN_DIR)/tOutput_tecsgen.h  $(GEN_DIR)/tSysLog_tecsgen.h  tKernel_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sKernel_tecsgen.h $(GEN_DIR)/sPrint_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/tTracePlugin_sPrint_factory.h $(GEN_DIR)/tTracePlugin_sPrint_tecsgen.h
+$(_TECS_OBJ_DIR)tTracePlugin_sPrint_templ.o : tTracePlugin_sPrint_templ.c  $(GEN_DIR)/tKernel_tecsgen.h  $(GEN_DIR)/tOutput_tecsgen.h  $(GEN_DIR)/tSysLog_tecsgen.h  tKernel_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sKernel_tecsgen.h $(GEN_DIR)/sPrint_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/tTracePlugin_sPrint_factory.h $(GEN_DIR)/tTracePlugin_sPrint_tecsgen.h
+$(_TECS_OBJ_DIR)tTracePlugin_sPrint.o : tTracePlugin_sPrint.c  $(GEN_DIR)/tKernel_tecsgen.h  $(GEN_DIR)/tOutput_tecsgen.h  $(GEN_DIR)/tSysLog_tecsgen.h  tKernel_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sKernel_tecsgen.h $(GEN_DIR)/sPrint_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/tTracePlugin_sPrint_factory.h $(GEN_DIR)/tTracePlugin_sPrint_tecsgen.h
+

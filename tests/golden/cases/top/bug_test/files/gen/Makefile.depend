@@ -1,0 +1,10 @@
+# Celltype: tBugTest  #_MDEP_#
+$(_TECS_OBJ_DIR)tBugTest_tecsgen.o : tBugTest_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tBugTest_factory.h $(GEN_DIR)/tBugTest_tecsgen.h
+$(_TECS_OBJ_DIR)tBugTest_templ.o : tBugTest_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tBugTest_factory.h $(GEN_DIR)/tBugTest_tecsgen.h
+$(_TECS_OBJ_DIR)tBugTest.o : tBugTest.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tBugTest_factory.h $(GEN_DIR)/tBugTest_tecsgen.h
+
+# Celltype: tSingle  #_MDEP_#
+$(_TECS_OBJ_DIR)tSingle_tecsgen.o : tSingle_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tSingle_factory.h $(GEN_DIR)/tSingle_tecsgen.h
+$(_TECS_OBJ_DIR)tSingle_templ.o : tSingle_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tSingle_factory.h $(GEN_DIR)/tSingle_tecsgen.h
+$(_TECS_OBJ_DIR)tSingle.o : tSingle.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tSingle_factory.h $(GEN_DIR)/tSingle_tecsgen.h
+

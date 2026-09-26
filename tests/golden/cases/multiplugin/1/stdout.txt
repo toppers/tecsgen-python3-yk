@@ -1,0 +1,18 @@
+multiplugin.cdl:11:71: warning: W3004 func3 pointer type has returned. specify deviate or stop return pointer
+multiplugin.cdl:12:40: warning: W3002 str: this string might cause buffer over run
+multiplugin.cdl:23:2: warning: W1002 tSimpleClient: non-active celltype has no entry port & factory
+  MrubyBridgeCellPlugin: [cell.port] SimpleServer.eEnt => [mruby instance] TECS::TsSimple.new( 'SimpleServereEntBridge' ) 
+  MrubyBridgePlugin: [pointer]  char_t* => [class] TECS::CharPointer
+  MrubyBridgePlugin: [signature] ::sSimple => [celltype] nMruby::tsSimple => [class] TECS::TsSimple
+  MrubyBridgePlugin: join your VM's cInitialize to VM_TECSInitializer.eInitialize
+  MrubyBridgeCellPlugin: [cell.port] SimpleServer2.eEnt => [mruby instance] TECS::TsSimple.new( 'SimpleServer2eEntBridge' ) 
+gen/tmp_MrubyBridgeCelltypePluginModule_tSimpleServer_1.cdl:2:93: info: MrubyBridgeCellPlugin: generate duplicate for cell 'SimpleServer'
+gen/tmp_MrubyBridgeCelltypePluginModule_tSimpleServer_2.cdl:2:94: info: MrubyBridgeCellPlugin: generate duplicate for cell 'SimpleServer2'
+  MrubyBridgeCellPlugin: [cell.port] CompSimpleServer2.eEnt => [mruby instance] TECS::TsSimple.new( 'CompSimpleServer2eEntBridge' ) 
+multiplugin.cdl:17:10: info: I9999 MrubyBridgeCelltypePlugin: inner cell CompSimpleServer2_SimpleServer is excluded
+gen/SimpleServereEntBridgeInitializer.cdl:3:33: warning: W1007 ::VM_TECSInitializer : non-active cell has no entry join and no factory
+multiplugin.cdl:42:20: warning: W1007 ::SimpleClient : non-active cell has no entry join and no factory
+multiplugin.cdl:53:20: warning: W1007 ::SimpleClient2 : non-active cell has no entry join and no factory
+multiplugin.cdl:83:24: warning: W1007 ::CompSimpleClient2 : non-active cell has no entry join and no factory
+multiplugin.cdl:83:24: warning: W1007 ::CompSimpleClient2_SimpleClient : non-active cell has no entry join and no factory
+8 warnings

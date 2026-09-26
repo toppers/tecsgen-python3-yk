@@ -1,0 +1,3 @@
+/* apply CppIfGenCelltypePlugin to celltype 'tArithmeticOperationSingletonEA' (celltype of cell 'IAOSingletonEA') */
+generate( CppIfGenCelltypePlugin, ::tArithmeticOperationSingletonEA, "" ); 
+

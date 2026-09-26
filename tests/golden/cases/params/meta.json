@@ -1,0 +1,60 @@
+{
+  "id": "params",
+  "source": "params/Makefile [tecs]",
+  "cwd": "params",
+  "args": [
+    "-I",
+    "../RUNTIME/tecs-runtime/target",
+    "-I",
+    "../RUNTIME/tecs-runtime/include",
+    "params.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 4,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "params/gen/Makefile.depend",
+    "params/gen/Makefile.tecsgen",
+    "params/gen/Makefile.templ",
+    "params/gen/global_tecsgen.h",
+    "params/gen/sAllocator_tecsgen.h",
+    "params/gen/sParamsIN_tecsgen.h",
+    "params/gen/sParamsOUT_tecsgen.h",
+    "params/gen/sParamsRECEIVE_tecsgen.h",
+    "params/gen/sParamsSEND_tecsgen.h",
+    "params/gen/tAllocator_factory.h",
+    "params/gen/tAllocator_tecsgen.c",
+    "params/gen/tAllocator_tecsgen.h",
+    "params/gen/tAllocator_templ.c",
+    "params/gen/tCellCheckParam_factory.h",
+    "params/gen/tCellCheckParam_tecsgen.c",
+    "params/gen/tCellCheckParam_tecsgen.h",
+    "params/gen/tCellCheckParam_templ.c",
+    "params/gen/tMain_factory.h",
+    "params/gen/tMain_tecsgen.c",
+    "params/gen/tMain_tecsgen.h",
+    "params/gen/tMain_templ.c",
+    "params/gen/tecsgen.rbdmp",
+    "params/gen/tecsgen.timestamp",
+    "params/gen/tmp_C_src.c",
+    "params/gen/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "params/gen/tecsgen.rbdmp": {
+      "sha256": "4b70ebafa6cba0fa09ebe5a8d157c468c427ac298634665df92f37b0ca664dd9",
+      "size": 73439
+    },
+    "params/gen/tmp_tecs.h": {
+      "sha256": "b81868a53d73edd43338665d5480f5535c4d85fffda8bd366d2666c6f31d3eb4",
+      "size": 50567
+    }
+  }
+}

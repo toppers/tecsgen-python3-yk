@@ -1,0 +1,25 @@
+# Celltype: tKernel  #_MDEP_#
+$(_TECS_OBJ_DIR)tKernel_tecsgen.o : tKernel_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sKernel_tecsgen.h $(GEN_DIR)/siKernel_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h tKernel_inline.h
+$(_TECS_OBJ_DIR)tKernel_templ.o : tKernel_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sKernel_tecsgen.h $(GEN_DIR)/siKernel_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h tKernel_inline.h
+$(_TECS_OBJ_DIR)tKernel.o : tKernel.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sKernel_tecsgen.h $(GEN_DIR)/siKernel_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h tKernel_inline.h
+
+# Celltype: tSysLog  #_MDEP_#
+$(_TECS_OBJ_DIR)tSysLog_tecsgen.o : tSysLog_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/tSysLog_factory.h $(GEN_DIR)/tSysLog_tecsgen.h
+$(_TECS_OBJ_DIR)tSysLog_templ.o : tSysLog_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/tSysLog_factory.h $(GEN_DIR)/tSysLog_tecsgen.h
+$(_TECS_OBJ_DIR)tSysLog.o : tSysLog.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/tSysLog_factory.h $(GEN_DIR)/tSysLog_tecsgen.h
+
+# Celltype: tCTBool_T  #_MDEP_#
+$(_TECS_OBJ_DIR)tCTBool_T_tecsgen.o : tCTBool_T_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSigBool_T_tecsgen.h $(GEN_DIR)/tCTBool_T_factory.h $(GEN_DIR)/tCTBool_T_tecsgen.h
+$(_TECS_OBJ_DIR)tCTBool_T_templ.o : tCTBool_T_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSigBool_T_tecsgen.h $(GEN_DIR)/tCTBool_T_factory.h $(GEN_DIR)/tCTBool_T_tecsgen.h
+$(_TECS_OBJ_DIR)tCTBool_T.o : tCTBool_T.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSigBool_T_tecsgen.h $(GEN_DIR)/tCTBool_T_factory.h $(GEN_DIR)/tCTBool_T_tecsgen.h
+
+# Celltype: tCTBool_TClient  #_MDEP_#
+$(_TECS_OBJ_DIR)tCTBool_TClient_tecsgen.o : tCTBool_TClient_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSigBool_T_tecsgen.h $(GEN_DIR)/tCTBool_TClient_factory.h $(GEN_DIR)/tCTBool_TClient_tecsgen.h
+$(_TECS_OBJ_DIR)tCTBool_TClient_templ.o : tCTBool_TClient_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSigBool_T_tecsgen.h $(GEN_DIR)/tCTBool_TClient_factory.h $(GEN_DIR)/tCTBool_TClient_tecsgen.h
+$(_TECS_OBJ_DIR)tCTBool_TClient.o : tCTBool_TClient.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSigBool_T_tecsgen.h $(GEN_DIR)/tCTBool_TClient_factory.h $(GEN_DIR)/tCTBool_TClient_tecsgen.h
+
+# Celltype: tTracePlugin_sSigBool_T  #_MDEP_#
+$(_TECS_OBJ_DIR)tTracePlugin_sSigBool_T_tecsgen.o : tTracePlugin_sSigBool_T_tecsgen.c  $(GEN_DIR)/tCTBool_T_tecsgen.h  $(GEN_DIR)/tKernel_tecsgen.h  $(GEN_DIR)/tSysLog_tecsgen.h  tKernel_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sKernel_tecsgen.h $(GEN_DIR)/sSigBool_T_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/tTracePlugin_sSigBool_T_factory.h $(GEN_DIR)/tTracePlugin_sSigBool_T_tecsgen.h
+$(_TECS_OBJ_DIR)tTracePlugin_sSigBool_T_templ.o : tTracePlugin_sSigBool_T_templ.c  $(GEN_DIR)/tCTBool_T_tecsgen.h  $(GEN_DIR)/tKernel_tecsgen.h  $(GEN_DIR)/tSysLog_tecsgen.h  tKernel_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sKernel_tecsgen.h $(GEN_DIR)/sSigBool_T_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/tTracePlugin_sSigBool_T_factory.h $(GEN_DIR)/tTracePlugin_sSigBool_T_tecsgen.h
+$(_TECS_OBJ_DIR)tTracePlugin_sSigBool_T.o : tTracePlugin_sSigBool_T.c  $(GEN_DIR)/tCTBool_T_tecsgen.h  $(GEN_DIR)/tKernel_tecsgen.h  $(GEN_DIR)/tSysLog_tecsgen.h  tKernel_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sKernel_tecsgen.h $(GEN_DIR)/sSigBool_T_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/tTracePlugin_sSigBool_T_factory.h $(GEN_DIR)/tTracePlugin_sSigBool_T_tecsgen.h
+

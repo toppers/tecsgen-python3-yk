@@ -1,0 +1,5 @@
+./gen.ROM/tmp_tecs.h:1172:1: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+./gen.ROM/tmp_tecs.h:1239:3: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+attribute.cdl:244:2: warning: W1002 tAttribute5: non-active celltype has no entry port & factory
+attribute.cdl:246:18: warning: W1007 ::Attr5 : non-active cell has no entry join and no factory
+2 warnings

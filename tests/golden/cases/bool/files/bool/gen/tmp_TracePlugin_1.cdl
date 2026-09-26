@@ -1,0 +1,5 @@
+cell tTracePlugin_sSigBool_T TracePlugin__1 {
+  cCall = ::Boo2.eBooo;
+  probeName_str = ": ";
+  from_str = "boo_client";
+};

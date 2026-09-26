@@ -1,0 +1,35 @@
+# Celltype: tKernel  #_MDEP_#
+$(_TECS_OBJ_DIR)tKernel_tecsgen.o : tKernel_tecsgen.c  $(GEN_DIR)/nAlloc_tAlloc_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nAlloc_sAlloc_tecsgen.h $(GEN_DIR)/sSyscall_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h
+$(_TECS_OBJ_DIR)tKernel_templ.o : tKernel_templ.c  $(GEN_DIR)/nAlloc_tAlloc_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nAlloc_sAlloc_tecsgen.h $(GEN_DIR)/sSyscall_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h
+$(_TECS_OBJ_DIR)tKernel.o : tKernel.c  $(GEN_DIR)/nAlloc_tAlloc_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nAlloc_sAlloc_tecsgen.h $(GEN_DIR)/sSyscall_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h
+
+# Celltype: tAppl  #_MDEP_#
+$(_TECS_OBJ_DIR)tAppl_tecsgen.o : tAppl_tecsgen.c  $(GEN_DIR)/nAlloc_tAlloc_tecsgen.h  $(GEN_DIR)/tKernel_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nAlloc_sAlloc_tecsgen.h $(GEN_DIR)/sSyscall_tecsgen.h $(GEN_DIR)/tAppl_factory.h $(GEN_DIR)/tAppl_tecsgen.h
+$(_TECS_OBJ_DIR)tAppl_templ.o : tAppl_templ.c  $(GEN_DIR)/nAlloc_tAlloc_tecsgen.h  $(GEN_DIR)/tKernel_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nAlloc_sAlloc_tecsgen.h $(GEN_DIR)/sSyscall_tecsgen.h $(GEN_DIR)/tAppl_factory.h $(GEN_DIR)/tAppl_tecsgen.h
+$(_TECS_OBJ_DIR)tAppl.o : tAppl.c  $(GEN_DIR)/nAlloc_tAlloc_tecsgen.h  $(GEN_DIR)/tKernel_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nAlloc_sAlloc_tecsgen.h $(GEN_DIR)/sSyscall_tecsgen.h $(GEN_DIR)/tAppl_factory.h $(GEN_DIR)/tAppl_tecsgen.h
+
+# Celltype: tOSEKAppl  #_MDEP_#
+$(_TECS_OBJ_DIR)tOSEKAppl_tecsgen.o : tOSEKAppl_tecsgen.c  $(GEN_DIR)/OSEK_tKernel_tecsgen.h $(GEN_DIR)/OSEK_sSyscall_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tOSEKAppl_factory.h $(GEN_DIR)/tOSEKAppl_tecsgen.h
+$(_TECS_OBJ_DIR)tOSEKAppl_templ.o : tOSEKAppl_templ.c  $(GEN_DIR)/OSEK_tKernel_tecsgen.h $(GEN_DIR)/OSEK_sSyscall_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tOSEKAppl_factory.h $(GEN_DIR)/tOSEKAppl_tecsgen.h
+$(_TECS_OBJ_DIR)tOSEKAppl.o : tOSEKAppl.c  $(GEN_DIR)/OSEK_tKernel_tecsgen.h $(GEN_DIR)/OSEK_sSyscall_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tOSEKAppl_factory.h $(GEN_DIR)/tOSEKAppl_tecsgen.h
+
+# Celltype: tAlloc  #_MDEP_#
+$(_TECS_OBJ_DIR)nAlloc_tAlloc_tecsgen.o : nAlloc_tAlloc_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nAlloc_sAlloc_tecsgen.h $(GEN_DIR)/nAlloc_tAlloc_factory.h $(GEN_DIR)/nAlloc_tAlloc_tecsgen.h
+$(_TECS_OBJ_DIR)nAlloc_tAlloc_templ.o : nAlloc_tAlloc_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nAlloc_sAlloc_tecsgen.h $(GEN_DIR)/nAlloc_tAlloc_factory.h $(GEN_DIR)/nAlloc_tAlloc_tecsgen.h
+$(_TECS_OBJ_DIR)nAlloc_tAlloc.o : nAlloc_tAlloc.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nAlloc_sAlloc_tecsgen.h $(GEN_DIR)/nAlloc_tAlloc_factory.h $(GEN_DIR)/nAlloc_tAlloc_tecsgen.h
+
+# Celltype: tKernel  #_MDEP_#
+$(_TECS_OBJ_DIR)TOPPERS_tKernel_tecsgen.o : TOPPERS_tKernel_tecsgen.c  $(GEN_DIR)/nAlloc_tAlloc_tecsgen.h $(GEN_DIR)/TOPPERS_sSyscall_tecsgen.h $(GEN_DIR)/TOPPERS_tKernel_factory.h $(GEN_DIR)/TOPPERS_tKernel_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nAlloc_sAlloc_tecsgen.h
+$(_TECS_OBJ_DIR)TOPPERS_tKernel_templ.o : TOPPERS_tKernel_templ.c  $(GEN_DIR)/nAlloc_tAlloc_tecsgen.h $(GEN_DIR)/TOPPERS_sSyscall_tecsgen.h $(GEN_DIR)/TOPPERS_tKernel_factory.h $(GEN_DIR)/TOPPERS_tKernel_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nAlloc_sAlloc_tecsgen.h
+$(_TECS_OBJ_DIR)TOPPERS_tKernel.o : TOPPERS_tKernel.c  $(GEN_DIR)/nAlloc_tAlloc_tecsgen.h $(GEN_DIR)/TOPPERS_sSyscall_tecsgen.h $(GEN_DIR)/TOPPERS_tKernel_factory.h $(GEN_DIR)/TOPPERS_tKernel_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nAlloc_sAlloc_tecsgen.h
+
+# Celltype: tAppl  #_MDEP_#
+$(_TECS_OBJ_DIR)TOPPERS_tAppl_tecsgen.o : TOPPERS_tAppl_tecsgen.c  $(GEN_DIR)/TOPPERS_tKernel_tecsgen.h  $(GEN_DIR)/nAlloc_tAlloc_tecsgen.h $(GEN_DIR)/TOPPERS_sSyscall_tecsgen.h $(GEN_DIR)/TOPPERS_tAppl_factory.h $(GEN_DIR)/TOPPERS_tAppl_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nAlloc_sAlloc_tecsgen.h
+$(_TECS_OBJ_DIR)TOPPERS_tAppl_templ.o : TOPPERS_tAppl_templ.c  $(GEN_DIR)/TOPPERS_tKernel_tecsgen.h  $(GEN_DIR)/nAlloc_tAlloc_tecsgen.h $(GEN_DIR)/TOPPERS_sSyscall_tecsgen.h $(GEN_DIR)/TOPPERS_tAppl_factory.h $(GEN_DIR)/TOPPERS_tAppl_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nAlloc_sAlloc_tecsgen.h
+$(_TECS_OBJ_DIR)TOPPERS_tAppl.o : TOPPERS_tAppl.c  $(GEN_DIR)/TOPPERS_tKernel_tecsgen.h  $(GEN_DIR)/nAlloc_tAlloc_tecsgen.h $(GEN_DIR)/TOPPERS_sSyscall_tecsgen.h $(GEN_DIR)/TOPPERS_tAppl_factory.h $(GEN_DIR)/TOPPERS_tAppl_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nAlloc_sAlloc_tecsgen.h
+
+# Celltype: tKernel  #_MDEP_#
+$(_TECS_OBJ_DIR)OSEK_tKernel_tecsgen.o : OSEK_tKernel_tecsgen.c $(GEN_DIR)/OSEK_sSyscall_tecsgen.h $(GEN_DIR)/OSEK_tKernel_factory.h $(GEN_DIR)/OSEK_tKernel_tecsgen.h $(GEN_DIR)/global_tecsgen.h
+$(_TECS_OBJ_DIR)OSEK_tKernel_templ.o : OSEK_tKernel_templ.c $(GEN_DIR)/OSEK_sSyscall_tecsgen.h $(GEN_DIR)/OSEK_tKernel_factory.h $(GEN_DIR)/OSEK_tKernel_tecsgen.h $(GEN_DIR)/global_tecsgen.h
+$(_TECS_OBJ_DIR)OSEK_tKernel.o : OSEK_tKernel.c $(GEN_DIR)/OSEK_sSyscall_tecsgen.h $(GEN_DIR)/OSEK_tKernel_factory.h $(GEN_DIR)/OSEK_tKernel_tecsgen.h $(GEN_DIR)/global_tecsgen.h
+

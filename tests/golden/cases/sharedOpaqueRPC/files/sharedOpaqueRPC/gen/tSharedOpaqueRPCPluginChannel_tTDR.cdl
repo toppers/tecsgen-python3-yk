@@ -1,0 +1,50 @@
+
+/* Shared Channel Celltype for Client */
+composite tSharedOpaqueRPCPluginChannel_tTDR_Client {
+  entry  sTDR       eTDR;
+  entry  sSemaphore eSemaphore[];
+  call   sChannel   cClientChannel;
+
+  cell tTDR TDR {
+    cChannel => composite.cClientChannel;
+  };
+  cell tSemaphore Semaphore {
+    initialCount = 1;
+    attribute = C_EXP("TA_NULL");
+  };
+  cell tRPCSharedChannelMan SharedChannelMan{
+    cSemaphore             = Semaphore.eSemaphore;
+    cClientSideTDR         = TDR.eTDR;
+  };
+  composite.eSemaphore     => SharedChannelMan.eSemaphore;
+  composite.eTDR           => TDR.eTDR;
+};
+
+/* Shared Channel Celltype for Server */
+[active]
+composite tSharedOpaqueRPCPluginChannel_tTDR_Server {
+  entry  sTDR       eTDR;
+  call   sChannel   cServerChannel;
+  call   sUnmarshalerMain  cUnmarshalAndCallFunction[];
+  call   sServerChannelOpener cOpener;
+  attr {
+    PRI    priority;
+  };
+
+  cell tTDR TDR {
+    cChannel => composite.cServerChannel;
+  };
+  cell tRPCSharedTaskMainWithOpener RPCSharedTaskMain {
+    cUnmarshalAndCallFunction => composite.cUnmarshalAndCallFunction;
+    cServerSideTDR = TDR.eTDR;
+    cOpener => composite.cOpener;
+  };
+  cell tTask Task {
+    cTaskBody = RPCSharedTaskMain.eMain;
+    attribute = C_EXP("TA_ACT");
+    stackSize = 4096;
+    priority = composite.priority;
+  };
+  composite.eTDR           => TDR.eTDR;
+};
+

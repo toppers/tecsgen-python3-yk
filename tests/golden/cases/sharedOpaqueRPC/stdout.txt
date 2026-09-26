@@ -1,0 +1,8 @@
+SharedOpaqueRPCPlugin.new( 'Join_to_through___0', 'taskCelltype=tTask,PPAllocatorSize=1024,sharedChannelName= \"MyChannel\", substituteAllocator=\"Alloc.eAlloc=>CAlloc.eAlloc\", clientChannelCell= \"ClientChannel\", serverChannelCell= \"ServerChannel\" ', 'SampleServer', 'eEnt', tSampleServer )
+TracePlugin.new( 'Join_in_through__0', '', 'SimpleServer', 'eEnt', tSimpleServer )
+SharedOpaqueRPCPlugin.new( 'Join_to_through___1', 'taskCelltype=tTask,PPAllocatorSize=1024,sharedChannelName= \"MyChannel\", substituteAllocator=\"Alloc.eAlloc=>CAlloc.eAlloc\", clientChannelCell= \"ClientChannel\", serverChannelCell= \"ServerChannel\" ', 'Join_in_through__0', 'eThroughEntry', tSimpleServer )
+TracePlugin.new( 'Join_out_through__0', '', 'Join_to_through___1', 'eClientEntry', tSimpleServer )
+TracePlugin.new( 'Join_out_through__1', '', 'Task1', 'eTask', tTask )
+TracePlugin.new( 'Join_out_through__2', '', 'ClientChannel', 'eOpener', tSocketClient )
+TracePlugin.new( 'Join_out_through__3', '', 'CAlloc', 'eAlloc', tAlloc )
+TracePlugin.new( 'Join_out_through__4', '', 'ClientSysLog', 'eSysLog', tSysLog )

@@ -1,0 +1,47 @@
+{
+  "id": "pointer",
+  "source": "pointer/Makefile [tecs]",
+  "cwd": "pointer",
+  "args": [
+    "-I",
+    "../RUNTIME/tecs-runtime/include/",
+    "-I",
+    "../RUNTIME/tecs-runtime/target/",
+    "pointer.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 2,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "pointer/gen/Makefile.depend",
+    "pointer/gen/Makefile.tecsgen",
+    "pointer/gen/Makefile.templ",
+    "pointer/gen/global_tecsgen.h",
+    "pointer/gen/tPtrCt_factory.h",
+    "pointer/gen/tPtrCt_tecsgen.c",
+    "pointer/gen/tPtrCt_tecsgen.h",
+    "pointer/gen/tPtrCt_templ.c",
+    "pointer/gen/tecsgen.rbdmp",
+    "pointer/gen/tecsgen.timestamp",
+    "pointer/gen/tmp_C_src.c",
+    "pointer/gen/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "pointer/gen/tecsgen.rbdmp": {
+      "sha256": "de4f86ff1582e57d71c5e8e0d3462f0f33ac2ec39f18e2e5cddd2a5d104535fd",
+      "size": 47174
+    },
+    "pointer/gen/tmp_tecs.h": {
+      "sha256": "b81868a53d73edd43338665d5480f5535c4d85fffda8bd366d2666c6f31d3eb4",
+      "size": 50567
+    }
+  }
+}

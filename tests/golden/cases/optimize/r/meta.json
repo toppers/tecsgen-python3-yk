@@ -1,0 +1,45 @@
+{
+  "id": "optimize/r",
+  "source": "optimize/Makefile-r [tecs]",
+  "cwd": "optimize",
+  "args": [
+    "-g",
+    "./gen-r",
+    "-r",
+    "-v",
+    "-I",
+    "../RUNTIME/tecs-runtime/target",
+    "-I",
+    "../RUNTIME/tecs-runtime/include",
+    "optimize.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 2,
+  "warnings": 21,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "optimize/gen-r/tmp_C_src.c",
+    "optimize/gen-r/tmp_TECSInfoPlugin_0.cdl",
+    "optimize/gen-r/tmp_TECSInfoPlugin_post_code.cdl",
+    "optimize/gen-r/tmp__TECSInfoSub.cdl",
+    "optimize/gen-r/tmp_t_stddef.h",
+    "optimize/gen-r/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "optimize/gen-r/tmp_t_stddef.h": {
+      "sha256": "324d4efa07a2f8db9b5e375191bfa16ebb881ad7553ec2941dff3a332446627d",
+      "size": 8052
+    },
+    "optimize/gen-r/tmp_tecs.h": {
+      "sha256": "80a1bdbac3b1abbfc3070be9148beef1f19d4a4b0bf1fbc01f98983a45e8d51d",
+      "size": 50583
+    }
+  }
+}

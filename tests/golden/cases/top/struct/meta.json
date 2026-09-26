@@ -1,0 +1,45 @@
+{
+  "id": "top/struct",
+  "source": "Makefile [struct.1]",
+  "cwd": ".",
+  "args": [
+    "-I",
+    "RUNTIME/runtime/include",
+    "-I",
+    "RUNTIME/runtime/test",
+    "struct.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 9,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "gen/Makefile.depend",
+    "gen/Makefile.tecsgen",
+    "gen/Makefile.templ",
+    "gen/global_tecsgen.h",
+    "gen/tCellStruct_factory.h",
+    "gen/tCellStruct_tecsgen.c",
+    "gen/tCellStruct_tecsgen.h",
+    "gen/tCellStruct_templ.c",
+    "gen/tTypedefStruct_factory.h",
+    "gen/tTypedefStruct_tecsgen.c",
+    "gen/tTypedefStruct_tecsgen.h",
+    "gen/tTypedefStruct_templ.c",
+    "gen/tecsgen.rbdmp",
+    "gen/tecsgen.timestamp"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "gen/tecsgen.rbdmp": {
+      "sha256": "395e6367623d48452e9e3a3fbc1708865e6c7f202446739ce0cfa269e4213039",
+      "size": 10087
+    }
+  }
+}

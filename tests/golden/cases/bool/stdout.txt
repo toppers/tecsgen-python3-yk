@@ -1,0 +1,7 @@
+bool.cdl:13:64: warning: W3004 func2 pointer type has returned. specify deviate or stop return pointer
+bool.cdl:28:2: warning: W1002 tCTBool_TClient: non-active celltype has no entry port & factory
+TracePlugin.new( 'TracePlugin__0', '', 'Boo', 'eBooo', tCTBool_T )
+TracePlugin.new( 'TracePlugin__1', '', 'Boo2', 'eBooo', tCTBool_T )
+bool.cdl:40:16: warning: W1007 ::Boo3 : non-active cell has no entry join and no factory
+bool.cdl:46:22: warning: W1007 ::boo_client : non-active cell has no entry join and no factory
+4 warnings

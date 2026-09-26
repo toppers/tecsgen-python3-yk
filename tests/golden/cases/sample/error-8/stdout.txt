@@ -1,0 +1,2 @@
+error-8.idl:7:2: error: G1016 syntax error near '}'
+1 error

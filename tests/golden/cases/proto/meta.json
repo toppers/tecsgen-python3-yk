@@ -1,0 +1,75 @@
+{
+  "id": "proto",
+  "source": "proto/Makefile [tecs]",
+  "cwd": "proto",
+  "args": [
+    "-I",
+    "../cygwin3",
+    "proto.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "proto/gen/Makefile.depend",
+    "proto/gen/Makefile.tecsgen",
+    "proto/gen/Makefile.templ",
+    "proto/gen/global_tecsgen.h",
+    "proto/gen/sAlloc_tecsgen.h",
+    "proto/gen/sDataqueue_tecsgen.h",
+    "proto/gen/sEventflag_tecsgen.h",
+    "proto/gen/sKernel_tecsgen.h",
+    "proto/gen/sSemaphore_tecsgen.h",
+    "proto/gen/sSig_tecsgen.h",
+    "proto/gen/sTaskBody_tecsgen.h",
+    "proto/gen/sTaskExceptionBody_tecsgen.h",
+    "proto/gen/sTask_tecsgen.h",
+    "proto/gen/siDataqueue_tecsgen.h",
+    "proto/gen/siEventflag_tecsgen.h",
+    "proto/gen/siKernel_tecsgen.h",
+    "proto/gen/siSemaphore_tecsgen.h",
+    "proto/gen/tAlloc_factory.h",
+    "proto/gen/tAlloc_tecsgen.c",
+    "proto/gen/tAlloc_tecsgen.h",
+    "proto/gen/tAlloc_templ.c",
+    "proto/gen/tCelltype2_factory.h",
+    "proto/gen/tCelltype2_tecsgen.c",
+    "proto/gen/tCelltype2_tecsgen.h",
+    "proto/gen/tCelltype2_templ.c",
+    "proto/gen/tCelltype_factory.h",
+    "proto/gen/tCelltype_tecsgen.c",
+    "proto/gen/tCelltype_tecsgen.h",
+    "proto/gen/tCelltype_templ.c",
+    "proto/gen/tTask_factory.h",
+    "proto/gen/tTask_inline_templ.h",
+    "proto/gen/tTask_tecsgen.c",
+    "proto/gen/tTask_tecsgen.h",
+    "proto/gen/tecsgen.rbdmp",
+    "proto/gen/tecsgen.timestamp",
+    "proto/gen/tmp_C_src.c",
+    "proto/gen/tmp_cygwin_tecs.h",
+    "proto/gen/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "proto/gen/tecsgen.rbdmp": {
+      "sha256": "410ad41f81398ad9094395aaaf7066dc987ed15b089f3d9ed80b9b8855e89901",
+      "size": 83628
+    },
+    "proto/gen/tmp_cygwin_tecs.h": {
+      "sha256": "4e3b975cdc2f9adc9500c8f3ffdf8a0c267ffada81e2337742aad65d3fb277fb",
+      "size": 15511
+    },
+    "proto/gen/tmp_tecs.h": {
+      "sha256": "a4dee51c059a1bd61afd8c08411167c0619a9871b4701a31eea010ccc350d724",
+      "size": 9216
+    }
+  }
+}

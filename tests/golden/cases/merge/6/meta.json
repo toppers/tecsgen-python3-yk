@@ -1,0 +1,57 @@
+{
+  "id": "merge/6",
+  "source": "merge/Makefile [gen-6]",
+  "cwd": "merge",
+  "args": [
+    "-k",
+    "utf8",
+    "-I",
+    "../cygwin",
+    "-I",
+    "../../tecs",
+    "-g",
+    "gen-6",
+    "merge-6.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "merge/gen-6/Makefile.depend",
+    "merge/gen-6/Makefile.tecsgen",
+    "merge/gen-6/Makefile.templ",
+    "merge/gen-6/global_tecsgen.h",
+    "merge/gen-6/sSig2_tecsgen.h",
+    "merge/gen-6/sSig_tecsgen.h",
+    "merge/gen-6/tCelltype2_factory.h",
+    "merge/gen-6/tCelltype2_tecsgen.c",
+    "merge/gen-6/tCelltype2_tecsgen.h",
+    "merge/gen-6/tCelltype2_templ.c",
+    "merge/gen-6/tCelltype_factory.h",
+    "merge/gen-6/tCelltype_tecsgen.c",
+    "merge/gen-6/tCelltype_tecsgen.h",
+    "merge/gen-6/tCelltype_templ.c",
+    "merge/gen-6/tecsgen.rbdmp",
+    "merge/gen-6/tecsgen.timestamp",
+    "merge/gen-6/tmp_C_src.c",
+    "merge/gen-6/tmp_cygwin_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "merge/gen-6/tecsgen.rbdmp": {
+      "sha256": "ef83d16cef353a316df623e4ccf2ae0b49b2e6cb02c782ee4a4917735d027718",
+      "size": 31589
+    },
+    "merge/gen-6/tmp_cygwin_tecs.h": {
+      "sha256": "1767dc6e36447d65904c7436f420bfee473f098d633b8824b0e7778c46da201e",
+      "size": 14881
+    }
+  }
+}

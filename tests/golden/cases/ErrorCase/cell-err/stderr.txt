@@ -1,0 +1,2 @@
+tecsgen  version 1.9.1  
+tecsgen: Fail to load NOPlugin.rb. Check $RUBYLIB environment variable or -L option

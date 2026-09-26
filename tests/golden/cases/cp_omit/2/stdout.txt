@@ -1,0 +1,5 @@
+null_cp.cdl:85:37: warning: S9999 sSendRecv is empty. cannot apply signature plugin. ignored
+null_cp.cdl:66:19: warning: W9999 'through' is specified for empty signature, ignored
+null_cp.cdl:3:14: warning: W1007 ::SysLog : non-active cell has no entry join and no factory
+null_cp.cdl:4:14: warning: W1007 ::Kernel : non-active cell has no entry join and no factory
+4 warnings

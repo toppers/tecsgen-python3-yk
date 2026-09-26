@@ -1,0 +1,91 @@
+{
+  "id": "recursive_composite3",
+  "source": "recursive_composite3/Makefile [tecs]",
+  "cwd": "recursive_composite3",
+  "args": [
+    "-I",
+    "../cygwin3/",
+    "--gen=gen_rec_comp",
+    "recursive_composite.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "recursive_composite3/gen_rec_comp/Makefile.depend",
+    "recursive_composite3/gen_rec_comp/Makefile.tecsgen",
+    "recursive_composite3/gen_rec_comp/Makefile.templ",
+    "recursive_composite3/gen_rec_comp/global_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/sDataqueue_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/sEventflag_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/sKernel_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/sSemaphore_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/sSig1_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/sSig2_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/sSig3_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/sSig4_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/sSig5_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/sSigB_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/sTaskBody_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/sTaskExceptionBody_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/sTask_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/siDataqueue_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/siEventflag_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/siKernel_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/siSemaphore_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/tCell1_factory.h",
+    "recursive_composite3/gen_rec_comp/tCell1_tecsgen.c",
+    "recursive_composite3/gen_rec_comp/tCell1_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/tCell1_templ.c",
+    "recursive_composite3/gen_rec_comp/tCell2_factory.h",
+    "recursive_composite3/gen_rec_comp/tCell2_tecsgen.c",
+    "recursive_composite3/gen_rec_comp/tCell2_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/tCell2_templ.c",
+    "recursive_composite3/gen_rec_comp/tCell3_factory.h",
+    "recursive_composite3/gen_rec_comp/tCell3_tecsgen.c",
+    "recursive_composite3/gen_rec_comp/tCell3_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/tCell3_templ.c",
+    "recursive_composite3/gen_rec_comp/tCell4_factory.h",
+    "recursive_composite3/gen_rec_comp/tCell4_tecsgen.c",
+    "recursive_composite3/gen_rec_comp/tCell4_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/tCell4_templ.c",
+    "recursive_composite3/gen_rec_comp/tCell_clnt_factory.h",
+    "recursive_composite3/gen_rec_comp/tCell_clnt_tecsgen.c",
+    "recursive_composite3/gen_rec_comp/tCell_clnt_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/tCell_clnt_templ.c",
+    "recursive_composite3/gen_rec_comp/tCell_serv_factory.h",
+    "recursive_composite3/gen_rec_comp/tCell_serv_tecsgen.c",
+    "recursive_composite3/gen_rec_comp/tCell_serv_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/tCell_serv_templ.c",
+    "recursive_composite3/gen_rec_comp/tTask_factory.h",
+    "recursive_composite3/gen_rec_comp/tTask_tecsgen.c",
+    "recursive_composite3/gen_rec_comp/tTask_tecsgen.h",
+    "recursive_composite3/gen_rec_comp/tecsgen.rbdmp",
+    "recursive_composite3/gen_rec_comp/tecsgen.timestamp",
+    "recursive_composite3/gen_rec_comp/tmp_C_src.c",
+    "recursive_composite3/gen_rec_comp/tmp_cygwin_tecs.h",
+    "recursive_composite3/gen_rec_comp/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "recursive_composite3/gen_rec_comp/tecsgen.rbdmp": {
+      "sha256": "c8cef59cff278945d200249ed117846797fde704a8fc7015e9ee35ae1bb3bb50",
+      "size": 108125
+    },
+    "recursive_composite3/gen_rec_comp/tmp_cygwin_tecs.h": {
+      "sha256": "e56f1dcd701f4c592eb23a0cb220d91e3828a3a4f193c603169fa2d5d071014e",
+      "size": 15547
+    },
+    "recursive_composite3/gen_rec_comp/tmp_tecs.h": {
+      "sha256": "d79333c2cac93ec7f9f9b5359c1ed4b4767f67a4ea3edd5855311ded591c22b9",
+      "size": 9252
+    }
+  }
+}

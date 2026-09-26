@@ -1,0 +1,3 @@
+gen/tmp_SWIGBridgePlugin_0.cdl:5:2: warning: W1002 tSWIGsTestBridge: non-active celltype has no entry port & factory
+generate.cdl:26:23: warning: W1007 ::RubyTest : non-active cell has no entry join and no factory
+2 warnings

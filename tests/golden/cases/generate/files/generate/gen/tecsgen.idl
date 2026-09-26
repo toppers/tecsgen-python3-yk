@@ -1,0 +1,5 @@
+interface TECSsTest {
+	void test( in int_t input );
+	int32_t test2( in int_t input );
+out int32_t* ret );
+};

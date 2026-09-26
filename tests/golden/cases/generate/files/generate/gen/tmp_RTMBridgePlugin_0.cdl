@@ -1,0 +1,4 @@
+/// RTM ⇒ TECS ブリッジセルタイプ ///
+celltype tRTMsTestBridge {
+    call sTest cTECS;
+};

@@ -1,0 +1,31 @@
+{
+  "id": "composite_namespace",
+  "source": "composite_namespace/Makefile [tecs]",
+  "cwd": "composite_namespace",
+  "args": [
+    "-I",
+    "/usr/include",
+    "composite_namespace.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 3,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "composite_namespace/gen/tmp_C_src.c",
+    "composite_namespace/gen/tmp_stdint.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "composite_namespace/gen/tmp_stdint.h": {
+      "sha256": "999e6e83350eb71439286f80b0dc76c89485b5709cc6e0d08a234aedf7352ae6",
+      "size": 7104
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "id": "cifplugin",
+  "source": "cifplugin/Makefile [tecs]",
+  "cwd": "cifplugin",
+  "args": [
+    "-I",
+    "../../tecsgen/tecs",
+    "-I",
+    "../cygwin",
+    "cifplugin.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "cifplugin/gen/Makefile.depend",
+    "cifplugin/gen/Makefile.tecsgen",
+    "cifplugin/gen/Makefile.templ",
+    "cifplugin/gen/global_tecsgen.h",
+    "cifplugin/gen/sArithmeticOperation32_tecsgen.h",
+    "cifplugin/gen/sArithmeticOperation64_tecsgen.h",
+    "cifplugin/gen/tArithmeticOperationSingleton_cif.h",
+    "cifplugin/gen/tArithmeticOperationSingleton_factory.h",
+    "cifplugin/gen/tArithmeticOperationSingleton_tecsgen.c",
+    "cifplugin/gen/tArithmeticOperationSingleton_tecsgen.h",
+    "cifplugin/gen/tArithmeticOperationSingleton_templ.c",
+    "cifplugin/gen/tArithmeticOperation_cif.h",
+    "cifplugin/gen/tArithmeticOperation_factory.h",
+    "cifplugin/gen/tArithmeticOperation_tecsgen.c",
+    "cifplugin/gen/tArithmeticOperation_tecsgen.h",
+    "cifplugin/gen/tArithmeticOperation_templ.c",
+    "cifplugin/gen/tecsgen.rbdmp",
+    "cifplugin/gen/tecsgen.timestamp",
+    "cifplugin/gen/tmp_CIfGenCellPlugin_0.cdl",
+    "cifplugin/gen/tmp_CIfGenCellPlugin_post_code.cdl",
+    "cifplugin/gen/tmp_CIfGenCelltypePlugin_0.cdl",
+    "cifplugin/gen/tmp_CIfGenCelltypePlugin_1.cdl",
+    "cifplugin/gen/tmp_CIfGenCelltypePlugin_2.cdl",
+    "cifplugin/gen/tmp_CIfGenCelltypePlugin_post_code.cdl",
+    "cifplugin/gen/tmp_C_src.c",
+    "cifplugin/gen/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "cifplugin/gen/tecsgen.rbdmp": {
+      "sha256": "7fb85e03fa4e2b88302a9e059843fb2bdf5b45e740d0f69a2ed2cfeca63309d9",
+      "size": 26803
+    },
+    "cifplugin/gen/tmp_tecs.h": {
+      "sha256": "993b279c0ea203ac6bdf429dd304c6f73fdf56d12ba7b0b12b4658b5108d5f6a",
+      "size": 8523
+    }
+  }
+}

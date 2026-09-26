@@ -1,0 +1,49 @@
+{
+  "id": "class",
+  "source": "class/Makefile [tecs]",
+  "cwd": "class",
+  "args": [
+    "-L",
+    ".",
+    "-I",
+    "../cygwin3",
+    "class.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 4,
+  "warnings": 3,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "class/gen/tTracePlugin_sSimple.cdl",
+    "class/gen/tmp_C_src.c",
+    "class/gen/tmp_MyClassPlugin_post_code.cdl",
+    "class/gen/tmp_RPCPlugin_0.cdl",
+    "class/gen/tmp_RPCPlugin_post_code.cdl",
+    "class/gen/tmp_TracePlugin_0.cdl",
+    "class/gen/tmp_TracePlugin_post_code.cdl",
+    "class/gen/tmp_cygwin_tecs.h",
+    "class/gen/tmp_t_syslog.h",
+    "class/gen/tmp_tecs_rpc.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "class/gen/tmp_cygwin_tecs.h": {
+      "sha256": "4e3b975cdc2f9adc9500c8f3ffdf8a0c267ffada81e2337742aad65d3fb277fb",
+      "size": 15511
+    },
+    "class/gen/tmp_t_syslog.h": {
+      "sha256": "81998c66d8d19d5833d03994dc44230c77eaae39387d8a3aae1fc80bffa90daf",
+      "size": 571
+    },
+    "class/gen/tmp_tecs_rpc.h": {
+      "sha256": "b35e41925578dd26575b5048027d2dc47de592232b976b9c19693ac6f1f585fd",
+      "size": 9426
+    }
+  }
+}

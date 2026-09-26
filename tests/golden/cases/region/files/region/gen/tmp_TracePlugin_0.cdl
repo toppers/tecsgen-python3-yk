@@ -1,0 +1,8 @@
+import( "gen/tTracePlugin_sSig3.cdl" );
+region rRegion1{
+  cell tTracePlugin_sSig3 Join_from_through___0 {
+    cCall = ::rRegion1::r1cell.eEnt;
+    probeName_str = ": ";
+    from_str = "r2cell";
+  };
+};

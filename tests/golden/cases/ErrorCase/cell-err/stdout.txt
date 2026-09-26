@@ -1,0 +1,12 @@
+cell-err.cdl:64:23: error: S9999 'Cell3': generate and prototype specified simultaneously
+cell-err.cdl:64:23: error: S9999 'Cell3': prototype specified after definition
+cell-err.cdl:65:2: error: P2001 NOPlugin.rb : fail to load plugin
+cell-err.cdl:65:2: error: S1166 NOPlugin: fail to new
+*** Begin Ruby exception message ***
+undefined method `new' for nil:NilClass
+*** End Ruby exception message ***
+cell-err.cdl:71:12: error: S1127 'attr3' duplicate
+cell-err.cdl:43:17: error: S9999 'CellX': not cell for reverse join
+cell-err.cdl:34:16: error: S1042 call port 'cCall' not initialized in cell 'Cell'
+cell-err.cdl:43:17: warning: W1007 ::Cell2 : non-active cell has no entry join and no factory
+7 errors  1 warning

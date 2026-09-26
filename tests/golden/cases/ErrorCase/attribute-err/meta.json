@@ -1,0 +1,27 @@
+{
+  "id": "ErrorCase/attribute-err",
+  "source": "ErrorCase/Makefile [attribute-err]（test_err.sh を使わない。Makefile のコメントでは Ruby 例外で終わり 23 errors）",
+  "cwd": "ErrorCase",
+  "args": [
+    "-I",
+    "RUNTIME/runtime/include",
+    "-I",
+    "RUNTIME/runtime/test",
+    "-I",
+    "../cgywin",
+    "attribute-err.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [],
+  "modified": [],
+  "deleted": [],
+  "excluded": {}
+}

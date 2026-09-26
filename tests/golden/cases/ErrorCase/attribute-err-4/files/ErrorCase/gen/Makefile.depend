@@ -1,0 +1,5 @@
+# Celltype: tIfetherv4  #_MDEP_#
+$(_TECS_OBJ_DIR)tIfetherv4_tecsgen.o : tIfetherv4_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sIfetherv4_tecsgen.h $(GEN_DIR)/tIfetherv4_factory.h $(GEN_DIR)/tIfetherv4_tecsgen.h tIfetherv4_inline.h
+$(_TECS_OBJ_DIR)tIfetherv4_templ.o : tIfetherv4_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sIfetherv4_tecsgen.h $(GEN_DIR)/tIfetherv4_factory.h $(GEN_DIR)/tIfetherv4_tecsgen.h tIfetherv4_inline.h
+$(_TECS_OBJ_DIR)tIfetherv4.o : tIfetherv4.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sIfetherv4_tecsgen.h $(GEN_DIR)/tIfetherv4_factory.h $(GEN_DIR)/tIfetherv4_tecsgen.h tIfetherv4_inline.h
+

@@ -1,0 +1,26 @@
+init-err.cdl:3:11: warning: W2002 unsinged int16_t: obsolete. use uint16_t
+init-err.cdl:4:9: warning: W2001 signed int16_t: obsolete. use int16_t
+init-err.cdl:13:55: error: T1013 a.a: too large (max=127)
+init-err.cdl:13:55: error: T1015 a.b: negative value for unsigned
+init-err.cdl:13:55: error: T1016 a.e: too large (max=255)
+init-err.cdl:13:55: error: T1013 a.f: too large (max=127)
+init-err.cdl:14:56: error: T1015 b.b: negative value for unsigned
+init-err.cdl:14:56: error: T1015 b.e: negative value for unsigned
+init-err.cdl:14:56: error: T1014 b.f: too large negative value (min=--128)
+init-err.cdl:18:33: error: T1013 c.a: too large (max=127)
+init-err.cdl:18:33: error: T1015 c.b: negative value for unsigned
+init-err.cdl:19:33: error: T1015 d.b: negative value for unsigned
+init-err.cdl:21:2: warning: W1002 tA: non-active celltype has no entry port & factory
+init-err.cdl:24:33: error: T1015 a.b: negative value for unsigned
+init-err.cdl:25:35: error: T1013 b.a: too large (max=127)
+init-err.cdl:25:35: error: T1015 b.b: negative value for unsigned
+init-err.cdl:25:35: error: T1013 b.c[1]: too large (max=32767)
+init-err.cdl:29:10: error: T1013 e: too large (max=127)
+init-err.cdl:33:9: error: T1038 a: initializer type mismatch. 'struct A' & 'unknown'
+init-err.cdl:33:9: error: T1024 a: unsuitable initializer for struct
+init-err.cdl:34:14: error: T1017 e: unsuitable initializer for scalar type
+init-err.cdl:23:9: error: S1052 attribute 'e' not initialized in cell 'a'
+init-err.cdl:23:9: warning: W1007 ::a : non-active cell has no entry join and no factory
+init-err.cdl:28:9: warning: W1007 ::b : non-active cell has no entry join and no factory
+init-err.cdl:32:9: warning: W1007 ::c : non-active cell has no entry join and no factory
+19 errors  6 warnings

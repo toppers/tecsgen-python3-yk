@@ -1,0 +1,51 @@
+{
+  "id": "multiplugin/2",
+  "source": "multiplugin/Makefile2 [tecs]（TARGETS には無い）",
+  "cwd": "multiplugin",
+  "args": [
+    "-I",
+    "../cygwin/",
+    "-g",
+    "gen2",
+    "multiplugin2.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 3,
+  "warnings": 4,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "multiplugin/gen2/SimpleServereEntBBridgeInitializer.cdl",
+    "multiplugin/gen2/tmp_C_src.c",
+    "multiplugin/gen2/tmp_MrubyBridgeCellPlugin_0.cdl",
+    "multiplugin/gen2/tmp_MrubyBridgeCellPlugin_1.cdl",
+    "multiplugin/gen2/tmp_MrubyBridgeCellPlugin_post_code.cdl",
+    "multiplugin/gen2/tmp_MrubyBridgeCelltypePlugin_post_code.cdl",
+    "multiplugin/gen2/tmp_MrubyBridgeSignaturePlugin_0.cdl",
+    "multiplugin/gen2/tmp_MrubyBridgeSignaturePlugin_1.cdl",
+    "multiplugin/gen2/tmp_MrubyBridgeSignaturePlugin_post_code.cdl",
+    "multiplugin/gen2/tmp_cygwin_tecs.h",
+    "multiplugin/gen2/tmp_tecs.h",
+    "multiplugin/gen2/tmp_tecs_mruby.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "multiplugin/gen2/tmp_cygwin_tecs.h": {
+      "sha256": "20a1f639f0b7b2448b58972cc27b53b48d8f10a3d8f7e5b4d51b6aceed3a51b0",
+      "size": 14877
+    },
+    "multiplugin/gen2/tmp_tecs.h": {
+      "sha256": "cfc30ee196894b4f1360ae042d7f095fdc2cc64a62f2bfe87db49396b04b2204",
+      "size": 8596
+    },
+    "multiplugin/gen2/tmp_tecs_mruby.h": {
+      "sha256": "d41b75e85f906a60dd3147c458703bf371ec96da97e096d578360fab578aadc4",
+      "size": 1024
+    }
+  }
+}

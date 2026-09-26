@@ -1,0 +1,3 @@
+/* apply CppIfGenCelltypePlugin to celltype 'tArithmeticOperation' (celltype of cell 'IAO') */
+generate( CppIfGenCelltypePlugin, ::tArithmeticOperation, "" ); 
+

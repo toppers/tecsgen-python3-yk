@@ -1,0 +1,25 @@
+gen/tmp_tecs.h:1168:1: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+gen/tmp_tecs.h:1235:3: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+const.cdl:23:40: warning: W2005 -993: negative value for unsigned: convert to 4294966303
+const.cdl:36:28: warning: W2005 -993: negative value for unsigned: convert to 4294966303
+const.cdl:39:37: warning: W2005 -992: negative value for unsigned: convert to 32
+const.cdl:40:36: warning: W2004 -992: too small to cast to char_t, clipped(32)
+const.cdl:42:2: warning: W1002 tIO: non-active celltype has no entry port & factory
+const.cdl:46:13: warning: W2003 99999999999999: too large to cast to int32_t, clipped(276447231)
+const.cdl:44:10: warning: W1007 ::IO : non-active cell has no entry join and no factory
+const.cdl:58:13: warning: W1007 ::Const : non-active cell has no entry join and no factory
+const.cdl:61:13: warning: W1007 ::Const2 : non-active cell has no entry join and no factory
+const.cdl:58:13: warning: W1007 ::Const_IO : non-active cell has no entry join and no factory
+const.cdl:61:13: warning: W1007 ::Const2_IO : non-active cell has no entry join and no factory
+const.cdl:23:26: warning: W2005 -993: negative value for unsigned: convert to 4294966303
+const.cdl:46:13: warning: W2003 99999999999999: too large to cast to int32_t, clipped(276447231)
+const.cdl:23:26: warning: W2005 -993: negative value for unsigned: convert to 4294966303
+const.cdl:39:23: warning: W2005 -992: negative value for unsigned: convert to 32
+const.cdl:40:23: warning: W2004 -992: too small to cast to char_t, clipped(32)
+const.cdl:23:26: warning: W2005 -993: negative value for unsigned: convert to 4294966303
+const.cdl:39:23: warning: W2005 -992: negative value for unsigned: convert to 32
+const.cdl:40:23: warning: W2004 -992: too small to cast to char_t, clipped(32)
+const.cdl:23:26: warning: W2005 -993: negative value for unsigned: convert to 4294966303
+const.cdl:39:23: warning: W2005 -992: negative value for unsigned: convert to 32
+const.cdl:40:23: warning: W2004 -992: too small to cast to char_t, clipped(32)
+22 warnings

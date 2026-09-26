@@ -1,0 +1,84 @@
+{
+  "id": "hello",
+  "source": "hello/Makefile [tecs]",
+  "cwd": "hello",
+  "args": [
+    "-I",
+    "../cygwin",
+    "-I",
+    "../../tecs",
+    "hello.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 2,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "hello/gen/Makefile.depend",
+    "hello/gen/Makefile.tecsgen",
+    "hello/gen/Makefile.templ",
+    "hello/gen/global_tecsgen.h",
+    "hello/gen/sDataqueue_tecsgen.h",
+    "hello/gen/sEventflag_tecsgen.h",
+    "hello/gen/sKernel_tecsgen.h",
+    "hello/gen/sPrint_tecsgen.h",
+    "hello/gen/sSemaphore_tecsgen.h",
+    "hello/gen/sSysLog_tecsgen.h",
+    "hello/gen/sTaskBody_tecsgen.h",
+    "hello/gen/sTaskExceptionBody_tecsgen.h",
+    "hello/gen/sTask_tecsgen.h",
+    "hello/gen/siDataqueue_tecsgen.h",
+    "hello/gen/siEventflag_tecsgen.h",
+    "hello/gen/siKernel_tecsgen.h",
+    "hello/gen/siSemaphore_tecsgen.h",
+    "hello/gen/tKernel_factory.h",
+    "hello/gen/tKernel_inline_templ.h",
+    "hello/gen/tKernel_tecsgen.c",
+    "hello/gen/tKernel_tecsgen.h",
+    "hello/gen/tOutput_factory.h",
+    "hello/gen/tOutput_tecsgen.c",
+    "hello/gen/tOutput_tecsgen.h",
+    "hello/gen/tOutput_templ.c",
+    "hello/gen/tSysLog_factory.h",
+    "hello/gen/tSysLog_tecsgen.c",
+    "hello/gen/tSysLog_tecsgen.h",
+    "hello/gen/tSysLog_templ.c",
+    "hello/gen/tTECSMain_factory.h",
+    "hello/gen/tTECSMain_tecsgen.c",
+    "hello/gen/tTECSMain_tecsgen.h",
+    "hello/gen/tTECSMain_templ.c",
+    "hello/gen/tTracePlugin_sPrint.c",
+    "hello/gen/tTracePlugin_sPrint.cdl",
+    "hello/gen/tTracePlugin_sPrint_factory.h",
+    "hello/gen/tTracePlugin_sPrint_tecsgen.c",
+    "hello/gen/tTracePlugin_sPrint_tecsgen.h",
+    "hello/gen/tecsgen.rbdmp",
+    "hello/gen/tecsgen.timestamp",
+    "hello/gen/tmp_C_src.c",
+    "hello/gen/tmp_TracePlugin_0.cdl",
+    "hello/gen/tmp_TracePlugin_post_code.cdl",
+    "hello/gen/tmp_cygwin_tecs.h",
+    "hello/gen/tmp_t_syslog.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "hello/gen/tecsgen.rbdmp": {
+      "sha256": "d2633553d3f668b5698c889b10424cbbbf32885fb101711b834794852a998960",
+      "size": 70439
+    },
+    "hello/gen/tmp_cygwin_tecs.h": {
+      "sha256": "013946d0e301df439d5ed2d9b1c01d986e88315a1cf3936b764c332ee5731245",
+      "size": 14873
+    },
+    "hello/gen/tmp_t_syslog.h": {
+      "sha256": "4581cbce8cbbff4b6d434a4b17e075b7299946598b120a45775f2ca9dddab05f",
+      "size": 568
+    }
+  }
+}

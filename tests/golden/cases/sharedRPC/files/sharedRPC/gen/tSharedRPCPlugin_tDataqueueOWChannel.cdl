@@ -1,0 +1,37 @@
+[active]
+composite tSharedRPCPlugin_tDataqueueOWChannel {
+  /* Interface */
+  entry  sSemaphore eSemaphore[];
+  call   sUnmarshalerMain  cUnmarshalAndCallFunction[];
+
+  entry  sDataqueue eDataqueue;
+  entry  sTDR       eTDR;
+  entry  sEventflag eEventflag;
+
+  attr {
+    PRI    priority;
+  };
+
+  /* Implementation */
+  cell tDataqueueOWChannel Channel{
+  };
+  cell tSemaphore Semaphore {initialCount = 1; attribute = C_EXP("TA_NULL");};
+  cell tRPCSharedTaskMain RPCSharedTaskMain {
+    cUnmarshalAndCallFunction => composite.cUnmarshalAndCallFunction;
+    cServerSideTDR            = Channel.eTDR;
+  };
+  cell tRPCSharedChannelMan RPCChannelMan {
+    cSemaphore                = Semaphore.eSemaphore;
+    cClientSideTDR            = Channel.eTDR;
+  };
+  cell tTask RPCSharedTask {
+    cTaskBody = RPCSharedTaskMain.eMain;
+    attribute = C_EXP("TA_ACT");
+    stackSize = 4096;
+    priority = composite.priority;
+  };
+  composite.eTDR           => Channel.eTDR;
+  composite.eEventflag     => Channel.eEventflag;
+  composite.eSemaphore     => RPCChannelMan.eSemaphore;
+  composite.eDataqueue     => Channel.eDataqueue;
+};

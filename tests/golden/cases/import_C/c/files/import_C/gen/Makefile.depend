@@ -1,0 +1,50 @@
+# Celltype: tTask  #_MDEP_#
+$(_TECS_OBJ_DIR)tTask_tecsgen.o : tTask_tecsgen.c  $(GEN_DIR)/tMyMain_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/siTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h
+$(_TECS_OBJ_DIR)tTask_templ.o : tTask_templ.c  $(GEN_DIR)/tMyMain_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/siTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h
+$(_TECS_OBJ_DIR)tTask.o : tTask.c  $(GEN_DIR)/tMyMain_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/siTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h
+
+# Celltype: tTaskEx  #_MDEP_#
+$(_TECS_OBJ_DIR)tTaskEx_tecsgen.o : tTaskEx_tecsgen.c  $(GEN_DIR)/tMyMainEx_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/sTex_tecsgen.h $(GEN_DIR)/siTask_tecsgen.h $(GEN_DIR)/tTaskEx_factory.h $(GEN_DIR)/tTaskEx_tecsgen.h
+$(_TECS_OBJ_DIR)tTaskEx_templ.o : tTaskEx_templ.c  $(GEN_DIR)/tMyMainEx_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/sTex_tecsgen.h $(GEN_DIR)/siTask_tecsgen.h $(GEN_DIR)/tTaskEx_factory.h $(GEN_DIR)/tTaskEx_tecsgen.h
+$(_TECS_OBJ_DIR)tTaskEx.o : tTaskEx.c  $(GEN_DIR)/tMyMainEx_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/sTex_tecsgen.h $(GEN_DIR)/siTask_tecsgen.h $(GEN_DIR)/tTaskEx_factory.h $(GEN_DIR)/tTaskEx_tecsgen.h
+
+# Celltype: tSem  #_MDEP_#
+$(_TECS_OBJ_DIR)tSem_tecsgen.o : tSem_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSem_tecsgen.h $(GEN_DIR)/tSem_factory.h $(GEN_DIR)/tSem_tecsgen.h
+$(_TECS_OBJ_DIR)tSem_templ.o : tSem_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSem_tecsgen.h $(GEN_DIR)/tSem_factory.h $(GEN_DIR)/tSem_tecsgen.h
+$(_TECS_OBJ_DIR)tSem.o : tSem.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSem_tecsgen.h $(GEN_DIR)/tSem_factory.h $(GEN_DIR)/tSem_tecsgen.h
+
+# Celltype: tFlg  #_MDEP_#
+$(_TECS_OBJ_DIR)tFlg_tecsgen.o : tFlg_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sFlg_tecsgen.h $(GEN_DIR)/siFlg_tecsgen.h $(GEN_DIR)/tFlg_factory.h $(GEN_DIR)/tFlg_tecsgen.h
+$(_TECS_OBJ_DIR)tFlg_templ.o : tFlg_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sFlg_tecsgen.h $(GEN_DIR)/siFlg_tecsgen.h $(GEN_DIR)/tFlg_factory.h $(GEN_DIR)/tFlg_tecsgen.h
+$(_TECS_OBJ_DIR)tFlg.o : tFlg.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sFlg_tecsgen.h $(GEN_DIR)/siFlg_tecsgen.h $(GEN_DIR)/tFlg_factory.h $(GEN_DIR)/tFlg_tecsgen.h
+
+# Celltype: tDtq  #_MDEP_#
+$(_TECS_OBJ_DIR)tDtq_tecsgen.o : tDtq_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sDtq_tecsgen.h $(GEN_DIR)/siDtq_tecsgen.h $(GEN_DIR)/tDtq_factory.h $(GEN_DIR)/tDtq_tecsgen.h
+$(_TECS_OBJ_DIR)tDtq_templ.o : tDtq_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sDtq_tecsgen.h $(GEN_DIR)/siDtq_tecsgen.h $(GEN_DIR)/tDtq_factory.h $(GEN_DIR)/tDtq_tecsgen.h
+$(_TECS_OBJ_DIR)tDtq.o : tDtq.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sDtq_tecsgen.h $(GEN_DIR)/siDtq_tecsgen.h $(GEN_DIR)/tDtq_factory.h $(GEN_DIR)/tDtq_tecsgen.h
+
+# Celltype: tMbx  #_MDEP_#
+$(_TECS_OBJ_DIR)tMbx_tecsgen.o : tMbx_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMbx_tecsgen.h $(GEN_DIR)/tMbx_factory.h $(GEN_DIR)/tMbx_tecsgen.h
+$(_TECS_OBJ_DIR)tMbx_templ.o : tMbx_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMbx_tecsgen.h $(GEN_DIR)/tMbx_factory.h $(GEN_DIR)/tMbx_tecsgen.h
+$(_TECS_OBJ_DIR)tMbx.o : tMbx.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMbx_tecsgen.h $(GEN_DIR)/tMbx_factory.h $(GEN_DIR)/tMbx_tecsgen.h
+
+# Celltype: tCyc  #_MDEP_#
+$(_TECS_OBJ_DIR)tCyc_tecsgen.o : tCyc_tecsgen.c  $(GEN_DIR)/tMyMain_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCyc_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/tCyc_factory.h $(GEN_DIR)/tCyc_tecsgen.h
+$(_TECS_OBJ_DIR)tCyc_templ.o : tCyc_templ.c  $(GEN_DIR)/tMyMain_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCyc_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/tCyc_factory.h $(GEN_DIR)/tCyc_tecsgen.h
+$(_TECS_OBJ_DIR)tCyc.o : tCyc.c  $(GEN_DIR)/tMyMain_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCyc_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/tCyc_factory.h $(GEN_DIR)/tCyc_tecsgen.h
+
+# Celltype: tKernel  #_MDEP_#
+$(_TECS_OBJ_DIR)tKernel_tecsgen.o : tKernel_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSystem_tecsgen.h $(GEN_DIR)/sTim_tecsgen.h $(GEN_DIR)/sVsns_tecsgen.h $(GEN_DIR)/sVxsns_tecsgen.h $(GEN_DIR)/siSystem_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h
+$(_TECS_OBJ_DIR)tKernel_templ.o : tKernel_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSystem_tecsgen.h $(GEN_DIR)/sTim_tecsgen.h $(GEN_DIR)/sVsns_tecsgen.h $(GEN_DIR)/sVxsns_tecsgen.h $(GEN_DIR)/siSystem_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h
+$(_TECS_OBJ_DIR)tKernel.o : tKernel.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSystem_tecsgen.h $(GEN_DIR)/sTim_tecsgen.h $(GEN_DIR)/sVsns_tecsgen.h $(GEN_DIR)/sVxsns_tecsgen.h $(GEN_DIR)/siSystem_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h
+
+# Celltype: tMyMain  #_MDEP_#
+$(_TECS_OBJ_DIR)tMyMain_tecsgen.o : tMyMain_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/tMyMain_factory.h $(GEN_DIR)/tMyMain_tecsgen.h
+$(_TECS_OBJ_DIR)tMyMain_templ.o : tMyMain_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/tMyMain_factory.h $(GEN_DIR)/tMyMain_tecsgen.h
+$(_TECS_OBJ_DIR)tMyMain.o : tMyMain.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/tMyMain_factory.h $(GEN_DIR)/tMyMain_tecsgen.h
+
+# Celltype: tMyMainEx  #_MDEP_#
+$(_TECS_OBJ_DIR)tMyMainEx_tecsgen.o : tMyMainEx_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/sTex_tecsgen.h $(GEN_DIR)/tMyMainEx_factory.h $(GEN_DIR)/tMyMainEx_tecsgen.h
+$(_TECS_OBJ_DIR)tMyMainEx_templ.o : tMyMainEx_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/sTex_tecsgen.h $(GEN_DIR)/tMyMainEx_factory.h $(GEN_DIR)/tMyMainEx_tecsgen.h
+$(_TECS_OBJ_DIR)tMyMainEx.o : tMyMainEx.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMain_tecsgen.h $(GEN_DIR)/sTex_tecsgen.h $(GEN_DIR)/tMyMainEx_factory.h $(GEN_DIR)/tMyMainEx_tecsgen.h
+

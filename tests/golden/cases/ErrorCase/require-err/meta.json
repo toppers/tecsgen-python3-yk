@@ -1,0 +1,26 @@
+{
+  "id": "ErrorCase/require-err",
+  "source": "ErrorCase/Makefile [require-err]",
+  "cwd": "ErrorCase",
+  "args": [
+    "-L",
+    ".",
+    "require-err.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 3,
+  "warnings": 5,
+  "expect": [
+    3,
+    5
+  ],
+  "expect_matched": true,
+  "created": [],
+  "modified": [],
+  "deleted": [],
+  "excluded": {}
+}

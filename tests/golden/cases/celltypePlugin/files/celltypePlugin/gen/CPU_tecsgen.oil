@@ -1,0 +1,10 @@
+	#include "TASK_tecsgen.oil"
+
+	#include "CPU_tecsgen.oil"
+
+	#include "RESOURCE_tecsgen.oil"
+
+	#include "ALARM_tecsgen.oil"
+
+	#include "ISR_tecsgen.oil"
+

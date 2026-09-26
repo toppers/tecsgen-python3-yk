@@ -1,0 +1,26 @@
+{
+  "id": "ErrorCase/only_proto",
+  "source": "ErrorCase/Makefile [only_proto]",
+  "cwd": "ErrorCase",
+  "args": [
+    "-L",
+    ".",
+    "only_proto.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 1,
+  "warnings": 2,
+  "expect": [
+    1,
+    2
+  ],
+  "expect_matched": true,
+  "created": [],
+  "modified": [],
+  "deleted": [],
+  "excluded": {}
+}

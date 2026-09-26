@@ -1,0 +1,4 @@
+import_C.cdl:43:2: warning: W1002 tCt: non-active celltype has no entry port & factory
+import_C.cdl:67:2: warning: W1002 Celltype: non-active celltype has no entry port & factory
+import_C.cdl:45:10: warning: W1007 ::c : non-active cell has no entry join and no factory
+3 warnings

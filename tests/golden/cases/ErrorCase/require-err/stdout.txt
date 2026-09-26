@@ -1,0 +1,10 @@
+require-err.cdl:22:21: error: S1022 Kernel.eSc2 : 'func' conflict function name in Kernel.eSc
+require-err.cdl:23:2: warning: W1002 tRequire: non-active celltype has no entry port & factory
+require-err.cdl:32:21: error: S1021 eSc : require cannot have same signature with 'eSc'
+require-err.cdl:32:21: error: S2001 '_require_call_port_tKernel_eSc' duplicate symbol in celltype tRequire2
+previous: require-err.cdl: line 31 '_require_call_port_tKernel_eSc' defined here
+require-err.cdl:33:2: warning: W1002 tRequire2: non-active celltype has no entry port & factory
+require-err.cdl:35:16: warning: W1003 _require_call_port_tKernel_eSc : require call port overridden in Require2
+require-err.cdl:25:15: warning: W1007 ::Require : non-active cell has no entry join and no factory
+require-err.cdl:35:16: warning: W1007 ::Require2 : non-active cell has no entry join and no factory
+3 errors  5 warnings

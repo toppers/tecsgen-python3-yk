@@ -1,0 +1,61 @@
+{
+  "id": "allocator",
+  "source": "allocator/Makefile [tecsgen.timestamp]",
+  "cwd": "allocator",
+  "args": [
+    "-r",
+    "-I../RUNTIME/tecs-runtime/target",
+    "-I../RUNTIME/tecs-runtime/include",
+    "-Igen",
+    "-Isrc",
+    "allocator.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "allocator/gen/Makefile.depend",
+    "allocator/gen/Makefile.tecsgen",
+    "allocator/gen/Makefile.templ",
+    "allocator/gen/global_tecsgen.h",
+    "allocator/gen/sAllocFixedSize_tecsgen.h",
+    "allocator/gen/sAllocTMO_tecsgen.h",
+    "allocator/gen/sAlloc_tecsgen.h",
+    "allocator/gen/sSendRecvFixed_tecsgen.h",
+    "allocator/gen/sSendRecv_tecsgen.h",
+    "allocator/gen/tAlloc_factory.h",
+    "allocator/gen/tAlloc_tecsgen.c",
+    "allocator/gen/tAlloc_tecsgen.h",
+    "allocator/gen/tAlloc_templ.c",
+    "allocator/gen/tTestClient_factory.h",
+    "allocator/gen/tTestClient_tecsgen.c",
+    "allocator/gen/tTestClient_tecsgen.h",
+    "allocator/gen/tTestClient_templ.c",
+    "allocator/gen/tTestComponent_factory.h",
+    "allocator/gen/tTestComponent_tecsgen.c",
+    "allocator/gen/tTestComponent_tecsgen.h",
+    "allocator/gen/tTestComponent_templ.c",
+    "allocator/gen/tecsgen.rbdmp",
+    "allocator/gen/tecsgen.timestamp",
+    "allocator/gen/tmp_C_src.c",
+    "allocator/gen/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "allocator/gen/tecsgen.rbdmp": {
+      "sha256": "b45ca1c177de7f07bfc5c07f3a3370c2bf9bd2cb51d63e7caea98de5fd878c7e",
+      "size": 59167
+    },
+    "allocator/gen/tmp_tecs.h": {
+      "sha256": "b81868a53d73edd43338665d5480f5535c4d85fffda8bd366d2666c6f31d3eb4",
+      "size": 50567
+    }
+  }
+}

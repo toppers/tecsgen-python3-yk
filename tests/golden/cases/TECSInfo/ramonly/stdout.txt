@@ -1,0 +1,4 @@
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:286:50: warning: W3003 rawDesc pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:308:6: info: TIF0001 forcely set --unoptimize-entry by TECSInfoPlugin (by importing TECSInfo.cdl)
+HelloWorld.cdl:34:18: warning: W1007 ::HelloWorld : non-active cell has no entry join and no factory
+2 warnings

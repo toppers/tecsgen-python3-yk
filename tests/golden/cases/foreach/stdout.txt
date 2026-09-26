@@ -1,0 +1,5 @@
+foreach.cdl:26:2: warning: W1002 tCt1: non-active celltype has no entry port & factory
+foreach.cdl:38:11: warning: W1007 ::c1 : non-active cell has no entry join and no factory
+foreach.cdl:45:11: warning: W1007 ::c2 : non-active cell has no entry join and no factory
+foreach.cdl:52:11: warning: W1007 ::c3 : non-active cell has no entry join and no factory
+4 warnings

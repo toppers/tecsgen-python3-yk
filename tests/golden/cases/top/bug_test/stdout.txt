@@ -1,0 +1,5 @@
+bug_test.cdl:64:2: warning: W1002 tBugTest: non-active celltype has no entry port & factory
+bug_test.cdl:78:2: warning: W1002 tSingle: non-active celltype has no entry port & factory
+bug_test.cdl:66:15: warning: W1007 ::boolTest : non-active cell has no entry join and no factory
+bug_test.cdl:80:14: warning: W1007 ::single : non-active cell has no entry join and no factory
+4 warnings

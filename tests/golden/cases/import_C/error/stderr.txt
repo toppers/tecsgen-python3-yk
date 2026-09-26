@@ -1,0 +1,5 @@
+tecsgen  version 1.9.1  
+In file included from gen/tmp_C_src.c:39:
+./myheader.h:13:2: error: #error "import_C error  myheader.h line 4"
+   13 | #error "import_C error  myheader.h line 4"
+      |  ^~~~~

@@ -1,0 +1,3 @@
+#ifndef tTracePlugin_sSocketClientOpener_FACTORY_H
+#define tTracePlugin_sSocketClientOpener_FACTORY_H
+#endif /* tTracePlugin_sSocketClientOpener_FACTORY_H */

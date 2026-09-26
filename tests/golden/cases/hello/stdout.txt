@@ -1,0 +1,4 @@
+hello.cdl:23:2: warning: W1002 tTECSMain: non-active celltype has no entry port & factory
+TracePlugin.new( 'TracePlugin__0', '', 'Output', 'ePrint', tOutput )
+hello.cdl:33:16: warning: W1007 ::Main : non-active cell has no entry join and no factory
+2 warnings

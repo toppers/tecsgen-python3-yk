@@ -1,0 +1,5 @@
+# Celltype: tKernel  #_MDEP_#
+$(_TECS_OBJ_DIR)tKernel_tecsgen.o : tKernel_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSystem_tecsgen.h $(GEN_DIR)/sTim_tecsgen.h $(GEN_DIR)/sVsns_tecsgen.h $(GEN_DIR)/sVxsns_tecsgen.h $(GEN_DIR)/siSystem_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h
+$(_TECS_OBJ_DIR)tKernel_templ.o : tKernel_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSystem_tecsgen.h $(GEN_DIR)/sTim_tecsgen.h $(GEN_DIR)/sVsns_tecsgen.h $(GEN_DIR)/sVxsns_tecsgen.h $(GEN_DIR)/siSystem_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h
+$(_TECS_OBJ_DIR)tKernel.o : tKernel.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSystem_tecsgen.h $(GEN_DIR)/sTim_tecsgen.h $(GEN_DIR)/sVsns_tecsgen.h $(GEN_DIR)/sVxsns_tecsgen.h $(GEN_DIR)/siSystem_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h
+

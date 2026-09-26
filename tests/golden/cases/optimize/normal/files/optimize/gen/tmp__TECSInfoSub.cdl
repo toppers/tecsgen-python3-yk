@@ -1,0 +1,5 @@
+/* prototype declaration of TECSInfoSub */
+[in_through()]
+region rTECSInfo {
+    cell nTECSInfo::tTECSInfoSub TECSInfoSub;
+}; /* rTECSInfo} */

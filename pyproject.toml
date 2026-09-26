@@ -22,6 +22,10 @@ dev = [
     "ty>=0.0.82",
 ]
 
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+norecursedirs = ["golden"]
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"

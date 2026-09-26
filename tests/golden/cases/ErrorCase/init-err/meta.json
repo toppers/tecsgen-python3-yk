@@ -1,0 +1,26 @@
+{
+  "id": "ErrorCase/init-err",
+  "source": "ErrorCase/Makefile [init-err]",
+  "cwd": "ErrorCase",
+  "args": [
+    "-L",
+    ".",
+    "init-err.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 19,
+  "warnings": 6,
+  "expect": [
+    19,
+    6
+  ],
+  "expect_matched": true,
+  "created": [],
+  "modified": [],
+  "deleted": [],
+  "excluded": {}
+}

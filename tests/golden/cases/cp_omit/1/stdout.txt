@@ -1,0 +1,4 @@
+cp_omit.cdl:107:19: warning: W9999 'through' is specified for omitted port, ignored
+cp_omit.cdl:3:14: warning: W1007 ::SysLog : non-active cell has no entry join and no factory
+cp_omit.cdl:4:14: warning: W1007 ::Kernel : non-active cell has no entry join and no factory
+3 warnings

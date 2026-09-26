@@ -1,0 +1,56 @@
+{
+  "id": "rpc",
+  "source": "rpc/Makefile [tecs]",
+  "cwd": "rpc",
+  "args": [
+    "-I",
+    "../cygwin3",
+    "rpc_test.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 8,
+  "warnings": 10,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "rpc/gen/tTracePlugin_sSample.cdl",
+    "rpc/gen/tTracePlugin_sSimple.cdl",
+    "rpc/gen/tmp_C_src.c",
+    "rpc/gen/tmp_RPCPlugin_0.cdl",
+    "rpc/gen/tmp_RPCPlugin_1.cdl",
+    "rpc/gen/tmp_RPCPlugin_post_code.cdl",
+    "rpc/gen/tmp_TECSInfoPlugin_0.cdl",
+    "rpc/gen/tmp_TECSInfoPlugin_post_code.cdl",
+    "rpc/gen/tmp_TracePlugin_0.cdl",
+    "rpc/gen/tmp_TracePlugin_1.cdl",
+    "rpc/gen/tmp_TracePlugin_post_code.cdl",
+    "rpc/gen/tmp_cygwin_tecs.h",
+    "rpc/gen/tmp_t_stddef.h",
+    "rpc/gen/tmp_t_syslog.h",
+    "rpc/gen/tmp_tecs_rpc.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "rpc/gen/tmp_cygwin_tecs.h": {
+      "sha256": "4e3b975cdc2f9adc9500c8f3ffdf8a0c267ffada81e2337742aad65d3fb277fb",
+      "size": 15511
+    },
+    "rpc/gen/tmp_t_stddef.h": {
+      "sha256": "502e16c4fefb9961d2ac9de82c336870e0363de9bd1c8a213f3b28aa4be03669",
+      "size": 8746
+    },
+    "rpc/gen/tmp_t_syslog.h": {
+      "sha256": "81998c66d8d19d5833d03994dc44230c77eaae39387d8a3aae1fc80bffa90daf",
+      "size": 571
+    },
+    "rpc/gen/tmp_tecs_rpc.h": {
+      "sha256": "b35e41925578dd26575b5048027d2dc47de592232b976b9c19693ac6f1f585fd",
+      "size": 9426
+    }
+  }
+}

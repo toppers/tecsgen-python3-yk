@@ -1,0 +1,52 @@
+{
+  "id": "simple",
+  "source": "simple/Makefile [tecsgen.timestamp]",
+  "cwd": "simple",
+  "args": [
+    "-I",
+    "../RUNTIME/tecs-runtime/include/",
+    "-I",
+    "../RUNTIME/tecs-runtime/target/",
+    "simple.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 3,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "simple/gen/Makefile.depend",
+    "simple/gen/Makefile.tecsgen",
+    "simple/gen/Makefile.templ",
+    "simple/gen/global_tecsgen.h",
+    "simple/gen/sSimple_tecsgen.h",
+    "simple/gen/tSimpleClient_factory.h",
+    "simple/gen/tSimpleClient_tecsgen.c",
+    "simple/gen/tSimpleClient_tecsgen.h",
+    "simple/gen/tSimpleClient_templ.c",
+    "simple/gen/tSimpleServer_factory.h",
+    "simple/gen/tSimpleServer_tecsgen.c",
+    "simple/gen/tSimpleServer_tecsgen.h",
+    "simple/gen/tSimpleServer_templ.c",
+    "simple/gen/tecsgen.rbdmp",
+    "simple/gen/tecsgen.timestamp",
+    "simple/gen/tmp_C_src.c",
+    "simple/gen/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "simple/gen/tecsgen.rbdmp": {
+      "sha256": "8e683b12657e1e3494a71486b4aed3a50596a4bd994575bd909e4b4bab6feaf1",
+      "size": 46378
+    },
+    "simple/gen/tmp_tecs.h": {
+      "sha256": "b81868a53d73edd43338665d5480f5535c4d85fffda8bd366d2666c6f31d3eb4",
+      "size": 50567
+    }
+  }
+}

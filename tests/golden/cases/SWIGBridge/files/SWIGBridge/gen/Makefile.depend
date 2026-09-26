@@ -1,0 +1,10 @@
+# Celltype: tTECSTest  #_MDEP_#
+$(_TECS_OBJ_DIR)tTECSTest_tecsgen.o : tTECSTest_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h $(GEN_DIR)/tTECSTest_factory.h $(GEN_DIR)/tTECSTest_tecsgen.h
+$(_TECS_OBJ_DIR)tTECSTest_templ.o : tTECSTest_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h $(GEN_DIR)/tTECSTest_factory.h $(GEN_DIR)/tTECSTest_tecsgen.h
+$(_TECS_OBJ_DIR)tTECSTest.o : tTECSTest.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h $(GEN_DIR)/tTECSTest_factory.h $(GEN_DIR)/tTECSTest_tecsgen.h
+
+# Celltype: tSWIGsTestBridge  #_MDEP_#
+$(_TECS_OBJ_DIR)tSWIGsTestBridge_tecsgen.o : tSWIGsTestBridge_tecsgen.c  $(GEN_DIR)/tTECSTest_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h $(GEN_DIR)/tSWIGsTestBridge_factory.h $(GEN_DIR)/tSWIGsTestBridge_tecsgen.h
+$(_TECS_OBJ_DIR)tSWIGsTestBridge_templ.o : tSWIGsTestBridge_templ.c  $(GEN_DIR)/tTECSTest_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h $(GEN_DIR)/tSWIGsTestBridge_factory.h $(GEN_DIR)/tSWIGsTestBridge_tecsgen.h
+$(_TECS_OBJ_DIR)tSWIGsTestBridge.o : tSWIGsTestBridge.c  $(GEN_DIR)/tTECSTest_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h $(GEN_DIR)/tSWIGsTestBridge_factory.h $(GEN_DIR)/tSWIGsTestBridge_tecsgen.h
+

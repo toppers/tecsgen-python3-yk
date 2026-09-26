@@ -1,0 +1,30 @@
+# Celltype: tTask  #_MDEP_#
+$(_TECS_OBJ_DIR)tTask_tecsgen.o : tTask_tecsgen.c  $(GEN_DIR)/tTestClient_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+$(_TECS_OBJ_DIR)tTask_templ.o : tTask_templ.c  $(GEN_DIR)/tTestClient_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+$(_TECS_OBJ_DIR)tTask.o : tTask.c  $(GEN_DIR)/tTestClient_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+
+# Celltype: tKernel  #_MDEP_#
+$(_TECS_OBJ_DIR)tKernel_tecsgen.o : tKernel_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sKernel_tecsgen.h $(GEN_DIR)/siKernel_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h tKernel_inline.h
+$(_TECS_OBJ_DIR)tKernel_templ.o : tKernel_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sKernel_tecsgen.h $(GEN_DIR)/siKernel_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h tKernel_inline.h
+$(_TECS_OBJ_DIR)tKernel.o : tKernel.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sKernel_tecsgen.h $(GEN_DIR)/siKernel_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h tKernel_inline.h
+
+# Celltype: tSysLog  #_MDEP_#
+$(_TECS_OBJ_DIR)tSysLog_tecsgen.o : tSysLog_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/tSysLog_factory.h $(GEN_DIR)/tSysLog_tecsgen.h
+$(_TECS_OBJ_DIR)tSysLog_templ.o : tSysLog_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/tSysLog_factory.h $(GEN_DIR)/tSysLog_tecsgen.h
+$(_TECS_OBJ_DIR)tSysLog.o : tSysLog.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSysLog_tecsgen.h $(GEN_DIR)/tSysLog_factory.h $(GEN_DIR)/tSysLog_tecsgen.h
+
+# Celltype: tTestComponent  #_MDEP_#
+$(_TECS_OBJ_DIR)tTestComponent_tecsgen.o : tTestComponent_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tTestComponent_factory.h $(GEN_DIR)/tTestComponent_tecsgen.h
+$(_TECS_OBJ_DIR)tTestComponent_templ.o : tTestComponent_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tTestComponent_factory.h $(GEN_DIR)/tTestComponent_tecsgen.h
+$(_TECS_OBJ_DIR)tTestComponent.o : tTestComponent.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tTestComponent_factory.h $(GEN_DIR)/tTestComponent_tecsgen.h
+
+# Celltype: tTestComponent2  #_MDEP_#
+$(_TECS_OBJ_DIR)tTestComponent2_tecsgen.o : tTestComponent2_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tTestComponent2_factory.h $(GEN_DIR)/tTestComponent2_tecsgen.h
+$(_TECS_OBJ_DIR)tTestComponent2_templ.o : tTestComponent2_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tTestComponent2_factory.h $(GEN_DIR)/tTestComponent2_tecsgen.h
+$(_TECS_OBJ_DIR)tTestComponent2.o : tTestComponent2.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tTestComponent2_factory.h $(GEN_DIR)/tTestComponent2_tecsgen.h
+
+# Celltype: tTestClient  #_MDEP_#
+$(_TECS_OBJ_DIR)tTestClient_tecsgen.o : tTestClient_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tTestClient_factory.h $(GEN_DIR)/tTestClient_tecsgen.h
+$(_TECS_OBJ_DIR)tTestClient_templ.o : tTestClient_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tTestClient_factory.h $(GEN_DIR)/tTestClient_tecsgen.h
+$(_TECS_OBJ_DIR)tTestClient.o : tTestClient.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tTestClient_factory.h $(GEN_DIR)/tTestClient_tecsgen.h
+

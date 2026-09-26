@@ -1,0 +1,26 @@
+{
+  "id": "ErrorCase/composite_err",
+  "source": "ErrorCase/Makefile [composite_err]",
+  "cwd": "ErrorCase",
+  "args": [
+    "-L",
+    ".",
+    "composite_err.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 26,
+  "warnings": 7,
+  "expect": [
+    26,
+    7
+  ],
+  "expect_matched": true,
+  "created": [],
+  "modified": [],
+  "deleted": [],
+  "excluded": {}
+}

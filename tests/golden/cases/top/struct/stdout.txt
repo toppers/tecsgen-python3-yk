@@ -1,0 +1,10 @@
+struct.cdl:16:2: warning: W1002 tCellStruct: non-active celltype has no entry port & factory
+struct.cdl:73:2: warning: W1002 tTypedefStruct: non-active celltype has no entry port & factory
+struct.cdl:18:18: warning: W1007 ::structCell : non-active cell has no entry join and no factory
+struct.cdl:23:18: warning: W1007 ::structCell2 : non-active cell has no entry join and no factory
+struct.cdl:52:18: warning: W1007 ::structComp : non-active cell has no entry join and no factory
+struct.cdl:58:18: warning: W1007 ::structCcmp2 : non-active cell has no entry join and no factory
+struct.cdl:75:21: warning: W1007 ::TypedefStruct : non-active cell has no entry join and no factory
+struct.cdl:52:18: warning: W1007 ::structComp_Cell : non-active cell has no entry join and no factory
+struct.cdl:58:18: warning: W1007 ::structCcmp2_Cell : non-active cell has no entry join and no factory
+9 warnings

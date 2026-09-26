@@ -1,0 +1,20 @@
+# Celltype: tTask  #_MDEP_#
+$(_TECS_OBJ_DIR)tTask_tecsgen.o : tTask_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+$(_TECS_OBJ_DIR)tTask_templ.o : tTask_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+$(_TECS_OBJ_DIR)tTask.o : tTask.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+
+# Celltype: tMain  #_MDEP_#
+$(_TECS_OBJ_DIR)tMain_tecsgen.o : tMain_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tMain_factory.h $(GEN_DIR)/tMain_tecsgen.h
+$(_TECS_OBJ_DIR)tMain_templ.o : tMain_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tMain_factory.h $(GEN_DIR)/tMain_tecsgen.h
+$(_TECS_OBJ_DIR)tMain.o : tMain.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tMain_factory.h $(GEN_DIR)/tMain_tecsgen.h
+
+# Celltype: tCBMain  #_MDEP_#
+$(_TECS_OBJ_DIR)tCBMain_tecsgen.o : tCBMain_tecsgen.c  $(GEN_DIR)/tCBTarget_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCallback_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tCBMain_factory.h $(GEN_DIR)/tCBMain_tecsgen.h
+$(_TECS_OBJ_DIR)tCBMain_templ.o : tCBMain_templ.c  $(GEN_DIR)/tCBTarget_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCallback_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tCBMain_factory.h $(GEN_DIR)/tCBMain_tecsgen.h
+$(_TECS_OBJ_DIR)tCBMain.o : tCBMain.c  $(GEN_DIR)/tCBTarget_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCallback_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tCBMain_factory.h $(GEN_DIR)/tCBMain_tecsgen.h
+
+# Celltype: tCBTarget  #_MDEP_#
+$(_TECS_OBJ_DIR)tCBTarget_tecsgen.o : tCBTarget_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCallback_tecsgen.h $(GEN_DIR)/tCBTarget_factory.h $(GEN_DIR)/tCBTarget_tecsgen.h
+$(_TECS_OBJ_DIR)tCBTarget_templ.o : tCBTarget_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCallback_tecsgen.h $(GEN_DIR)/tCBTarget_factory.h $(GEN_DIR)/tCBTarget_tecsgen.h
+$(_TECS_OBJ_DIR)tCBTarget.o : tCBTarget.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCallback_tecsgen.h $(GEN_DIR)/tCBTarget_factory.h $(GEN_DIR)/tCBTarget_tecsgen.h
+

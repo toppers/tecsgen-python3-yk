@@ -1,0 +1,33 @@
+{
+  "id": "composite_alloc2",
+  "source": "composite_alloc2/Makefile [tecsgen.timestamp]（TARGETS には無い）",
+  "cwd": "composite_alloc2",
+  "args": [
+    "-I",
+    "../cygwin",
+    "-I",
+    "../../tecs",
+    "composite_alloc2.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 8,
+  "warnings": 1,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "composite_alloc2/gen/tmp_C_src.c",
+    "composite_alloc2/gen/tmp_cygwin_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "composite_alloc2/gen/tmp_cygwin_tecs.h": {
+      "sha256": "013946d0e301df439d5ed2d9b1c01d986e88315a1cf3936b764c332ee5731245",
+      "size": 14873
+    }
+  }
+}

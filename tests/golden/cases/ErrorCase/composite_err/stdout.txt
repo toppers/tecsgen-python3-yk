@@ -1,0 +1,35 @@
+composite_err.cdl:52:25: error: S1062 eEntry has no export definition
+composite_err.cdl:53:24: error: S1060 'cCall1' : port type mismatch. ENTRY type is allowed here.
+composite_err.cdl:53:24: error: S1062 cCall1 has no export definition
+composite_err.cdl:54:15: error: S1059 'a' : exporting attribute. write in cell or use '=' to export attribute
+composite_err.cdl:54:15: error: S1062 a has no export definition
+composite_err.cdl:55:2: error: S1052 attribute 'a' not initialized in cell 'cell2'
+composite_err.cdl:70:2: warning: W1002 tCell_clnt: non-active celltype has no entry port & factory
+composite_err.cdl:116:10: error: S1034 a : cannot refer to tCell1's attribute here. Use 'composite.a' to refer to composite celltype's
+composite_err.cdl:116:10: error: S1064 a : type 'int32_t' mismatch with pprevious definition'int16_t'
+composite_err.cdl:129:24: error: S1060 'cCall1' : port type mismatch. ENTRY type is allowed here.
+composite_err.cdl:129:24: error: S1065 cCall1 : port type CALL mismatch with previous definition ENTRY
+composite_err.cdl:130:25: error: S1065 eEntry : port type ENTRY mismatch with previous definition CALL
+composite_err.cdl:131:25: error: S1065 eEntry : port type ENTRY mismatch with previous definition CALL
+composite_err.cdl:131:25: error: S2001 'eEntry' duplicate export in composite celltype tComposite_active_singleton
+previous: composite_err.cdl: line 130 'eEntry' defined here
+composite_err.cdl:132:2: error: S1052 attribute 'a' not initialized in cell 'cell2'
+composite_err.cdl:132:2: error: S1052 attribute 'a' not initialized in cell 'cell3'
+composite_err.cdl:149:2: warning: W1002 tCelltype: non-active celltype has no entry port & factory
+composite_err.cdl:161:2: error: S1170 'buf' has size_is but export attr 'buf' doesn't have
+composite_err.cdl:161:2: error: S1172 'buf' size_is argument mismatch with exporting one 'buf'
+composite_err.cdl:77:7: error: S1117 'a' not in celltype
+composite_err.cdl:78:28: error: S1117 'cCall1' not in celltype
+composite_err.cdl:82:7: error: S1117 'a' not in celltype
+composite_err.cdl:83:28: error: S1117 'cCall1' not in celltype
+composite_err.cdl:88:27: error: S1111 'eEntry' not found
+composite_err.cdl:139:29: error: S1101 'cCall1' cannot initialize entry port
+composite_err.cdl:94:10: error: S1024 tCell2_active_single: multiple cell for singleton celltype
+composite_err.cdl:137:34: error: S1042 call port 'eEntry' not initialized in cell 'active_singleton'
+composite_err.cdl:137:34: error: S1042 call port 'eEntry' not initialized in cell 'active_singleton'
+composite_err.cdl:72:17: warning: W1007 ::cell_serv : non-active cell has no entry join and no factory
+composite_err.cdl:81:17: warning: W1007 ::compcell2 : non-active cell has no entry join and no factory
+composite_err.cdl:86:17: warning: W1007 ::cell_clnt : non-active cell has no entry join and no factory
+composite_err.cdl:134:17: warning: W1007 ::cell_serv2 : non-active cell has no entry join and no factory
+composite_err.cdl:81:17: warning: W1007 ::compcell2_cell2 : non-active cell has no entry join and no factory
+26 errors  7 warnings

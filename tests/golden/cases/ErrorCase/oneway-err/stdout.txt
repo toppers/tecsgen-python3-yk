@@ -1,0 +1,4 @@
+oneway-err.cdl:7:38: error: T1030 oneway function cannot have INOUT parameter for 'ioval'
+oneway-err.cdl:9:39: error: T1030 oneway function cannot have OUT parameter for 'outval'
+oneway-err.cdl:11:25: error: T1029 oneway function cannot return type 'int32_t', 'void' or 'ER' is permitted
+3 errors

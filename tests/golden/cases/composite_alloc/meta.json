@@ -1,0 +1,75 @@
+{
+  "id": "composite_alloc",
+  "source": "composite_alloc/Makefile [tecs]",
+  "cwd": "composite_alloc",
+  "args": [
+    "-I",
+    "../cygwin3",
+    "composite_alloc.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 4,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "composite_alloc/gen/Makefile.depend",
+    "composite_alloc/gen/Makefile.tecsgen",
+    "composite_alloc/gen/Makefile.templ",
+    "composite_alloc/gen/global_tecsgen.h",
+    "composite_alloc/gen/sAllocTMO_tecsgen.h",
+    "composite_alloc/gen/sAlloc_tecsgen.h",
+    "composite_alloc/gen/sDataqueue_tecsgen.h",
+    "composite_alloc/gen/sEventflag_tecsgen.h",
+    "composite_alloc/gen/sKernel_tecsgen.h",
+    "composite_alloc/gen/sSemaphore_tecsgen.h",
+    "composite_alloc/gen/sSendRecv_tecsgen.h",
+    "composite_alloc/gen/sTaskBody_tecsgen.h",
+    "composite_alloc/gen/sTaskExceptionBody_tecsgen.h",
+    "composite_alloc/gen/sTask_tecsgen.h",
+    "composite_alloc/gen/siDataqueue_tecsgen.h",
+    "composite_alloc/gen/siEventflag_tecsgen.h",
+    "composite_alloc/gen/siKernel_tecsgen.h",
+    "composite_alloc/gen/siSemaphore_tecsgen.h",
+    "composite_alloc/gen/tAlloc_factory.h",
+    "composite_alloc/gen/tAlloc_tecsgen.c",
+    "composite_alloc/gen/tAlloc_tecsgen.h",
+    "composite_alloc/gen/tAlloc_templ.c",
+    "composite_alloc/gen/tTask_factory.h",
+    "composite_alloc/gen/tTask_inline_templ.h",
+    "composite_alloc/gen/tTask_tecsgen.c",
+    "composite_alloc/gen/tTask_tecsgen.h",
+    "composite_alloc/gen/tTestClient_factory.h",
+    "composite_alloc/gen/tTestClient_tecsgen.c",
+    "composite_alloc/gen/tTestClient_tecsgen.h",
+    "composite_alloc/gen/tTestClient_templ.c",
+    "composite_alloc/gen/tTestComponent_factory.h",
+    "composite_alloc/gen/tTestComponent_tecsgen.c",
+    "composite_alloc/gen/tTestComponent_tecsgen.h",
+    "composite_alloc/gen/tTestComponent_templ.c",
+    "composite_alloc/gen/tTestServ_factory.h",
+    "composite_alloc/gen/tTestServ_tecsgen.c",
+    "composite_alloc/gen/tTestServ_tecsgen.h",
+    "composite_alloc/gen/tTestServ_templ.c",
+    "composite_alloc/gen/tecsgen.rbdmp",
+    "composite_alloc/gen/tecsgen.timestamp",
+    "composite_alloc/gen/tmp_C_src.c",
+    "composite_alloc/gen/tmp_cygwin_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "composite_alloc/gen/tecsgen.rbdmp": {
+      "sha256": "9ee2476e69c241b80fdc24a445a58870ce487a676a418f4c47a22acec20bd964",
+      "size": 104437
+    },
+    "composite_alloc/gen/tmp_cygwin_tecs.h": {
+      "sha256": "4e3b975cdc2f9adc9500c8f3ffdf8a0c267ffada81e2337742aad65d3fb277fb",
+      "size": 15511
+    }
+  }
+}

@@ -1,0 +1,25 @@
+# Celltype: tTask  #_MDEP_#
+$(_TECS_OBJ_DIR)tTask_tecsgen.o : tTask_tecsgen.c  $(GEN_DIR)/tAlloc_tecsgen.h  $(GEN_DIR)/tTestClient_tecsgen.h  $(GEN_DIR)/tTestComponent_tecsgen.h  $(GEN_DIR)/tTestServ_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+$(_TECS_OBJ_DIR)tTask_templ.o : tTask_templ.c  $(GEN_DIR)/tAlloc_tecsgen.h  $(GEN_DIR)/tTestClient_tecsgen.h  $(GEN_DIR)/tTestComponent_tecsgen.h  $(GEN_DIR)/tTestServ_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+$(_TECS_OBJ_DIR)tTask.o : tTask.c  $(GEN_DIR)/tAlloc_tecsgen.h  $(GEN_DIR)/tTestClient_tecsgen.h  $(GEN_DIR)/tTestComponent_tecsgen.h  $(GEN_DIR)/tTestServ_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+
+# Celltype: tAlloc  #_MDEP_#
+$(_TECS_OBJ_DIR)tAlloc_tecsgen.o : tAlloc_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/tAlloc_factory.h $(GEN_DIR)/tAlloc_tecsgen.h
+$(_TECS_OBJ_DIR)tAlloc_templ.o : tAlloc_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/tAlloc_factory.h $(GEN_DIR)/tAlloc_tecsgen.h
+$(_TECS_OBJ_DIR)tAlloc.o : tAlloc.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/tAlloc_factory.h $(GEN_DIR)/tAlloc_tecsgen.h
+
+# Celltype: tTestComponent  #_MDEP_#
+$(_TECS_OBJ_DIR)tTestComponent_tecsgen.o : tTestComponent_tecsgen.c  $(GEN_DIR)/tAlloc_tecsgen.h  $(GEN_DIR)/tTestServ_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/sSendRecv_tecsgen.h $(GEN_DIR)/tTestComponent_factory.h $(GEN_DIR)/tTestComponent_tecsgen.h
+$(_TECS_OBJ_DIR)tTestComponent_templ.o : tTestComponent_templ.c  $(GEN_DIR)/tAlloc_tecsgen.h  $(GEN_DIR)/tTestServ_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/sSendRecv_tecsgen.h $(GEN_DIR)/tTestComponent_factory.h $(GEN_DIR)/tTestComponent_tecsgen.h
+$(_TECS_OBJ_DIR)tTestComponent.o : tTestComponent.c  $(GEN_DIR)/tAlloc_tecsgen.h  $(GEN_DIR)/tTestServ_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/sSendRecv_tecsgen.h $(GEN_DIR)/tTestComponent_factory.h $(GEN_DIR)/tTestComponent_tecsgen.h
+
+# Celltype: tTestServ  #_MDEP_#
+$(_TECS_OBJ_DIR)tTestServ_tecsgen.o : tTestServ_tecsgen.c  $(GEN_DIR)/tAlloc_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/sSendRecv_tecsgen.h $(GEN_DIR)/tTestServ_factory.h $(GEN_DIR)/tTestServ_tecsgen.h
+$(_TECS_OBJ_DIR)tTestServ_templ.o : tTestServ_templ.c  $(GEN_DIR)/tAlloc_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/sSendRecv_tecsgen.h $(GEN_DIR)/tTestServ_factory.h $(GEN_DIR)/tTestServ_tecsgen.h
+$(_TECS_OBJ_DIR)tTestServ.o : tTestServ.c  $(GEN_DIR)/tAlloc_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/sSendRecv_tecsgen.h $(GEN_DIR)/tTestServ_factory.h $(GEN_DIR)/tTestServ_tecsgen.h
+
+# Celltype: tTestClient  #_MDEP_#
+$(_TECS_OBJ_DIR)tTestClient_tecsgen.o : tTestClient_tecsgen.c  $(GEN_DIR)/tAlloc_tecsgen.h  $(GEN_DIR)/tTestComponent_tecsgen.h  $(GEN_DIR)/tTestServ_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/sSendRecv_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tTestClient_factory.h $(GEN_DIR)/tTestClient_tecsgen.h
+$(_TECS_OBJ_DIR)tTestClient_templ.o : tTestClient_templ.c  $(GEN_DIR)/tAlloc_tecsgen.h  $(GEN_DIR)/tTestComponent_tecsgen.h  $(GEN_DIR)/tTestServ_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/sSendRecv_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tTestClient_factory.h $(GEN_DIR)/tTestClient_tecsgen.h
+$(_TECS_OBJ_DIR)tTestClient.o : tTestClient.c  $(GEN_DIR)/tAlloc_tecsgen.h  $(GEN_DIR)/tTestComponent_tecsgen.h  $(GEN_DIR)/tTestServ_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlloc_tecsgen.h $(GEN_DIR)/sSendRecv_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tTestClient_factory.h $(GEN_DIR)/tTestClient_tecsgen.h
+

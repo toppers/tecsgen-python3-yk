@@ -1,0 +1,997 @@
+# Ruby 版 tecsgen の正解データを採取するテストケース一覧。
+#
+# 移植元リポジトリの test/ 配下の Makefile・シェルスクリプト（test-normal.sh、
+# test-abnormal.sh、ErrorCase/test_err.sh）から tecsgen の呼び出しを抜き出したもの。
+# make や gcc による C コンパイルは行わず、tecsgen の実行だけを再現する。
+#
+#   id       : ケース名（出力ディレクトリ名になる）
+#   cwd      : 実行ディレクトリ（test/ からの相対パス）
+#   args     : tecsgen に渡す引数。{TECSPATH} は作業コピー内の tecsgen/tecs に置換される
+#   source   : 抜き出し元（Makefile とターゲット）
+#   expect   : ErrorCase の期待件数 [エラー数, 警告数]（test_err.sh の引数）
+#   skip     : 採取しない理由（指定時のみ）
+
+[defaults]
+# メッセージ言語を固定する（英語）
+env = { LANG = "C" }
+
+# ---------------------------------------------------------------- test/Makefile 直下
+# TECSGEN = tecsgen -I RUNTIME/runtime/include -I RUNTIME/runtime/test
+
+[[case]]
+id = "top/singleton"
+cwd = "."
+args = ["-I", "RUNTIME/runtime/include", "-I", "RUNTIME/runtime/test", "singleton.cdl"]
+source = "Makefile [singleton]"
+
+[[case]]
+id = "top/portarray"
+cwd = "."
+args = ["-I", "RUNTIME/runtime/include", "-I", "RUNTIME/runtime/test", "portarray.cdl"]
+source = "Makefile [portarray]"
+
+[[case]]
+id = "top/factory"
+cwd = "."
+args = ["-I", "RUNTIME/runtime/include", "-I", "RUNTIME/runtime/test", "factory.cdl"]
+source = "Makefile [factory]"
+
+[[case]]
+id = "top/init"
+cwd = "."
+args = ["-I", "RUNTIME/runtime/include", "-I", "RUNTIME/runtime/test", "init.cdl"]
+source = "Makefile [init]"
+
+[[case]]
+id = "top/id"
+cwd = "."
+args = ["-I", "RUNTIME/runtime/include", "-I", "RUNTIME/runtime/test", "-v", "id.cdl"]
+source = "Makefile [id]"
+
+[[case]]
+id = "top/c_exp"
+cwd = "."
+args = ["c_exp.cdl"]
+source = "Makefile [c_exp]"
+
+[[case]]
+id = "top/composite_cexp"
+cwd = "."
+args = ["composite_cexp.cdl"]
+source = "Makefile [c_exp]"
+
+[[case]]
+id = "top/struct"
+cwd = "."
+args = ["-I", "RUNTIME/runtime/include", "-I", "RUNTIME/runtime/test", "struct.cdl"]
+source = "Makefile [struct.1]"
+
+[[case]]
+id = "top/const"
+cwd = "."
+args = ["-I", "RUNTIME/runtime/include", "-I", "RUNTIME/runtime/test", "const.cdl"]
+source = "Makefile [const]"
+
+[[case]]
+id = "top/float"
+cwd = "."
+args = ["-I", "RUNTIME/runtime/include", "-I", "RUNTIME/runtime/test", "float.cdl"]
+source = "Makefile [float]"
+
+[[case]]
+id = "top/bug_test"
+cwd = "."
+args = ["-I", "RUNTIME/runtime/include", "-I", "RUNTIME/runtime/test", "bug_test.cdl"]
+source = "Makefile [bug_test]（TARGETS からは外されている）"
+
+# ---------------------------------------------------------------- サブディレクトリ
+
+[[case]]
+id = "allocator"
+cwd = "allocator"
+args = ["-r", "-I../RUNTIME/tecs-runtime/target", "-I../RUNTIME/tecs-runtime/include", "-Igen", "-Isrc", "allocator.cdl"]
+source = "allocator/Makefile [tecsgen.timestamp]"
+
+[[case]]
+id = "allocator2"
+cwd = "allocator2"
+args = ["-r", "-I../RUNTIME/tecs-runtime/target", "-I../RUNTIME/tecs-runtime/include", "-Igen", "-Isrc", "allocator.cdl"]
+source = "allocator2/Makefile [tecsgen.timestamp]"
+
+[[case]]
+id = "allocatorCB"
+cwd = "allocatorCB"
+args = ["-I", "../cygwin3", "-I", "../../tecs", "allocator.cdl"]
+source = "allocatorCB/Makefile [tecs]"
+
+[[case]]
+id = "attribute/NG"
+cwd = "attribute"
+args = ["-I", "../RUNTIME/tecs-runtime/include/", "-I", "../RUNTIME/tecs-runtime/workaround/", "-I", "../RUNTIME/tecs-runtime/target/", "-I", "src", "attribute.cdl"]
+source = "attribute/Makefile.NG [tecsgen.timestamp]"
+
+[[case]]
+id = "attribute/RAM"
+cwd = "attribute"
+args = ["-g", "./gen.RAM", "-I", "../RUNTIME/tecs-runtime/include/", "-I", "../RUNTIME/tecs-runtime/workaround/", "-I", "../RUNTIME/tecs-runtime/target/", "-I", "src", "attribute.cdl"]
+source = "attribute/Makefile.RAM [tecs]"
+
+[[case]]
+id = "attribute/RAMONLY"
+cwd = "attribute"
+args = ["-r", "-g", "./gen.RAMONLY", "-I", "../RUNTIME/tecs-runtime/include/", "-I", "../RUNTIME/tecs-runtime/workaround/", "-I", "../RUNTIME/tecs-runtime/target/", "-I", "src", "attribute.cdl"]
+source = "attribute/Makefile.RAMONLY [tecs]"
+
+[[case]]
+id = "attribute/ROM"
+cwd = "attribute"
+args = ["-g", "./gen.ROM", "-I", "../RUNTIME/tecs-runtime/include/", "-I", "../RUNTIME/tecs-runtime/workaround/", "-I", "../RUNTIME/tecs-runtime/target/", "-I", "src", "-R", "attribute.cdl"]
+source = "attribute/Makefile.ROM [tecs]"
+
+[[case]]
+id = "bool"
+cwd = "bool"
+args = ["-I", "../cygwin", "bool.cdl"]
+source = "bool/Makefile [tecs]"
+
+[[case]]
+id = "cellPlugin"
+cwd = "cellPlugin"
+args = ["-L", ".", "-I", "../cygwin/", "-I", "../../tecsgen/tecs", "cellPlugin.cdl"]
+source = "cellPlugin/Makefile [tecs]"
+
+[[case]]
+id = "celltypePlugin"
+cwd = "celltypePlugin"
+args = ["-I", "../cygwin/", "-I", "../../tecsgen/tecs", "./generate.cdl"]
+source = "celltypePlugin/Makefile [tecs]"
+
+[[case]]
+id = "cifplugin"
+cwd = "cifplugin"
+args = ["-I", "../../tecsgen/tecs", "-I", "../cygwin", "cifplugin.cdl"]
+source = "cifplugin/Makefile [tecs]"
+
+[[case]]
+id = "class"
+cwd = "class"
+args = ["-L", ".", "-I", "../cygwin3", "class.cdl"]
+source = "class/Makefile [tecs]"
+
+[[case]]
+id = "composite"
+cwd = "composite"
+args = ["-I", "../cygwin", "-I", "{TECSPATH}", "-I", "../RUNTIME/runtime/include", "-I", "../RUNTIME/runtime/test", "-I", "src", "--gen=gen_comp", "composite.cdl"]
+source = "composite/Makefile [tecs]"
+
+[[case]]
+id = "composite_alloc"
+cwd = "composite_alloc"
+args = ["-I", "../cygwin3", "composite_alloc.cdl"]
+source = "composite_alloc/Makefile [tecs]"
+
+[[case]]
+id = "composite_alloc2"
+cwd = "composite_alloc2"
+args = ["-I", "../cygwin", "-I", "../../tecs", "composite_alloc2.cdl"]
+source = "composite_alloc2/Makefile [tecsgen.timestamp]（TARGETS には無い）"
+
+[[case]]
+id = "composite_alloc3"
+cwd = "composite_alloc3"
+args = ["-I", "../cygwin", "-I", "../../tecs", "composite_alloc3.cdl"]
+source = "composite_alloc3/Makefile [tecs]"
+
+[[case]]
+id = "composite_namespace"
+cwd = "composite_namespace"
+args = ["-I", "/usr/include", "composite_namespace.cdl"]
+source = "composite_namespace/Makefile [tecs]"
+
+[[case]]
+id = "cp_omit/1"
+cwd = "cp_omit"
+args = ["-R", "-I", "../cygwin3", "cp_omit.cdl"]
+source = "cp_omit/Makefile1 [tecs]"
+
+[[case]]
+id = "cp_omit/2"
+cwd = "cp_omit"
+args = ["-R", "-g", "./gen2", "-I", "../cygwin3/", "null_cp.cdl"]
+source = "cp_omit/Makefile2 [tecs]"
+
+[[case]]
+id = "CPPBridge"
+cwd = "CPPBridge"
+args = ["-L", ".", "-I", "../cygwin", "cpp.cdl"]
+source = "CPPBridge/Makefile [tecs]"
+
+[[case]]
+id = "cppifplugin"
+cwd = "cppifplugin"
+args = ["-I", "../../tecsgen/tecs", "-I", "../cygwin", "cppifplugin.cdl"]
+source = "cppifplugin/Makefile [tecs]"
+
+[[case]]
+id = "DataPumpHolder"
+cwd = "DataPumpHolder"
+args = ["-I", "../cygwin3/", "DataPumpHolderTest.cdl"]
+source = "DataPumpHolder/Makefile [tecs]"
+
+[[case]]
+id = "dataqueue"
+cwd = "dataqueue"
+args = ["-I", "./.", "-I", "./../cygwin3/", "-I", "{TECSPATH}", "-I", "{TECSPATH}/mruby", "-I", "{TECSPATH}/posix", "-I", "{TECSPATH}/rpc", "-I", "./gen", "temp.cdl"]
+source = "dataqueue/Makefile [tecs]（$(INCLUDES) を展開）"
+
+[[case]]
+id = "domainPlugin"
+cwd = "domainPlugin"
+args = ["-L", ".", "-I", "../cygwin3", "domainPlugin.cdl"]
+source = "domainPlugin/Makefile [tecs]"
+
+[[case]]
+id = "dynamic/array"
+cwd = "dynamic"
+args = ["-I", "../cygwin3", "-g", "gen-array", "dynamic-array.cdl"]
+source = "dynamic/Makefile-array [tecs]"
+
+[[case]]
+id = "dynamic/array-r"
+cwd = "dynamic"
+args = ["-r", "-I", "../cygwin3", "-g", "gen-array-r", "dynamic-array.cdl"]
+source = "dynamic/Makefile-array-r [tecs]"
+
+[[case]]
+id = "dynamic/array-ram-initializer"
+cwd = "dynamic"
+args = ["-R", "-I", "../cygwin3", "-g", "./gen-array-ram-initializer", "dynamic-array.cdl"]
+source = "dynamic/Makefile-array-ram-initializer [tecs]"
+
+[[case]]
+id = "dynamic/normal"
+cwd = "dynamic"
+args = ["-I", "../cygwin3", "dynamic.cdl"]
+source = "dynamic/Makefile-normal [tecs]"
+
+[[case]]
+id = "dynamic/ram-initializer"
+cwd = "dynamic"
+args = ["-R", "-g", "./gen-ram-initializer", "-I", "../cygwin3", "dynamic.cdl"]
+source = "dynamic/Makefile-ram-initializer [tecs]"
+
+[[case]]
+id = "dynamic/ramonly"
+cwd = "dynamic"
+args = ["-g", "./gen-r", "-r", "-I", "../cygwin3", "dynamic.cdl"]
+source = "dynamic/Makefile-ramonly [tecs]"
+
+[[case]]
+id = "dynamic/singleton"
+cwd = "dynamic"
+args = ["-g", "./gen-single", "-I", "../cygwin3", "dynamic-singleton.cdl"]
+source = "dynamic/Makefile-singleton [tecs]"
+
+[[case]]
+id = "dynamic/singleton-array"
+cwd = "dynamic"
+args = ["-I", "../cygwin3", "-g", "gen-single-array", "dynamic-singleton-array.cdl"]
+source = "dynamic/Makefile-singleton-array [tecs]"
+
+[[case]]
+id = "dynamic/singleton-array-r"
+cwd = "dynamic"
+args = ["-r", "-I", "../cygwin3", "-g", "gen-single-array-r", "dynamic-singleton-array.cdl"]
+source = "dynamic/Makefile-singleton-array-r [tecs]"
+
+[[case]]
+id = "dynamic/singleton-array-ram-initializer"
+cwd = "dynamic"
+args = ["-I", "../cygwin3", "-R", "-g", "gen-single-array-ram-initializer", "dynamic-singleton-array.cdl"]
+source = "dynamic/Makefile-singleton-array-ram-initializer [tecs]"
+
+[[case]]
+id = "dynamic/singleton-ram-initializer"
+cwd = "dynamic"
+args = ["-R", "-g", "./gen-single-ram-initializer", "-I", "../cygwin3", "dynamic-singleton.cdl"]
+source = "dynamic/Makefile-singleton-ram-initializer [tecs]"
+
+[[case]]
+id = "dynamic/singleton-ramonly"
+cwd = "dynamic"
+args = ["-r", "-g", "./gen-single-r", "-I", "../cygwin3", "dynamic-singleton.cdl"]
+source = "dynamic/Makefile-singleton-ramonly [tecs]"
+
+[[case]]
+id = "foreach"
+cwd = "foreach"
+args = ["-I../RUNTIME/tecs-runtime/include", "-I../RUNTIME/tecs-runtime/target", "-I../RUNTIME/tecs-runtime/workaround", "-Igen", "-Isrc", "foreach.cdl"]
+source = "foreach/Makefile [tecsgen.timestamp]"
+
+[[case]]
+id = "generate"
+cwd = "generate"
+args = ["-L", ".", "-I", "../cygwin/", "generate.cdl"]
+source = "generate/Makefile [tecs]（TARGETS には無い）"
+
+[[case]]
+id = "hello"
+cwd = "hello"
+args = ["-I", "../cygwin", "-I", "../../tecs", "hello.cdl"]
+source = "hello/Makefile [tecs]"
+
+[[case]]
+id = "import_C/a"
+cwd = "import_C"
+args = ["-I", "include", "-Iconfig_win", "-I.", "import_C.cdl"]
+source = "import_C/Makefile [a]"
+
+[[case]]
+id = "import_C/b"
+cwd = "import_C"
+args = ["-I", "include", "-Iconfig_win", "-I.", "toppers_jsp.cdl"]
+source = "import_C/Makefile [b]"
+
+[[case]]
+id = "import_C/c"
+cwd = "import_C"
+args = ["-I", "include", "-Iconfig_win", "-I.", "myappl.cdl"]
+source = "import_C/Makefile [c]"
+
+[[case]]
+id = "import_C/e"
+cwd = "import_C"
+args = ["-I", "include", "-Iconfig_win", "-I.", "dupl-incl.cdl"]
+source = "import_C/Makefile [e]"
+
+[[case]]
+id = "import_C/error"
+cwd = "import_C"
+args = ["-Iinclude", "-Iconfig_win", "-I.", "-DERROR", "import_C.cdl"]
+source = "import_C/Makefile [error]（ErrorCase の import_C-err も同じ）"
+
+[[case]]
+id = "import_C/z"
+cwd = "import_C"
+args = []
+source = "import_C/Makefile [z]"
+skip = "シェル変数 $cpp を --cpp に埋め込む形で、Makefile の外では再現できない"
+
+[[case]]
+id = "inline"
+cwd = "inline"
+args = ["inline.cdl"]
+source = "inline/Makefile [tecs]"
+
+[[case]]
+id = "merge/1"
+cwd = "merge"
+args = ["-k", "utf8", "-I", "../cygwin", "-I", "../../tecs", "-g", "gen-1", "merge-1.cdl"]
+source = "merge/Makefile [gen-1]"
+
+[[case]]
+id = "merge/2"
+cwd = "merge"
+args = ["-k", "utf8", "-I", "../cygwin", "-I", "../../tecs", "-g", "gen-2", "merge-2.cdl"]
+source = "merge/Makefile [gen-2]"
+
+[[case]]
+id = "merge/3"
+cwd = "merge"
+args = ["-k", "utf8", "-I", "../cygwin", "-I", "../../tecs", "-g", "gen-3", "merge-3.cdl"]
+source = "merge/Makefile [gen-3]"
+
+[[case]]
+id = "merge/4"
+cwd = "merge"
+args = ["-k", "utf8", "-I", "../cygwin", "-I", "../../tecs", "-g", "gen-4", "merge-4.cdl"]
+source = "merge/Makefile [gen-4]"
+
+[[case]]
+id = "merge/5"
+cwd = "merge"
+args = ["-k", "utf8", "-I", "../cygwin", "-I", "../../tecs", "-g", "gen-5", "merge-5.cdl"]
+source = "merge/Makefile [gen-5]"
+
+[[case]]
+id = "merge/6"
+cwd = "merge"
+args = ["-k", "utf8", "-I", "../cygwin", "-I", "../../tecs", "-g", "gen-6", "merge-6.cdl"]
+source = "merge/Makefile [gen-6]"
+
+[[case]]
+id = "multiplugin/1"
+cwd = "multiplugin"
+args = ["-I", "../cygwin/", "multiplugin.cdl"]
+source = "multiplugin/Makefile [tecs]（TARGETS には無い）"
+
+[[case]]
+id = "multiplugin/2"
+cwd = "multiplugin"
+args = ["-I", "../cygwin/", "-g", "gen2", "multiplugin2.cdl"]
+source = "multiplugin/Makefile2 [tecs]（TARGETS には無い）"
+
+[[case]]
+id = "namespace"
+cwd = "namespace"
+args = ["-I", "../cygwin", "namespace.cdl"]
+source = "namespace/Makefile [tecs]"
+
+[[case]]
+id = "NotificationPlugin"
+cwd = "NotificationPlugin"
+args = ["-I", "./src", "-L", ".", "test.cdl"]
+source = "NotificationPlugin/Makefile [tecs]"
+
+[[case]]
+id = "opaqueMarshaler"
+cwd = "opaqueMarshaler"
+args = ["-I", "../cygwin3", "opaqueMarshaler.cdl"]
+source = "opaqueMarshaler/Makefile [tecs]"
+
+[[case]]
+id = "opaqueRPC"
+cwd = "opaqueRPC"
+args = ["-I", "../cygwin3", "opaqueRPC.cdl"]
+source = "opaqueRPC/Makefile [tecs]"
+
+[[case]]
+id = "optimize/normal"
+cwd = "optimize"
+args = ["-v", "-I", "../RUNTIME/tecs-runtime/target", "-I", "../RUNTIME/tecs-runtime/include", "optimize.cdl"]
+source = "optimize/Makefile-normal [tecs]（optimize.1 は TARGETS でコメントアウトされている）"
+
+[[case]]
+id = "optimize/r"
+cwd = "optimize"
+args = ["-g", "./gen-r", "-r", "-v", "-I", "../RUNTIME/tecs-runtime/target", "-I", "../RUNTIME/tecs-runtime/include", "optimize.cdl"]
+source = "optimize/Makefile-r [tecs]"
+
+[[case]]
+id = "optimize/ram-initializer"
+cwd = "optimize"
+args = ["-g", "./gen-ram-initializer", "-R", "-v", "-I", "../RUNTIME/tecs-runtime/target", "-I", "../RUNTIME/tecs-runtime/include", "optimize.cdl"]
+source = "optimize/Makefile-ram-initializer [tecs]"
+
+[[case]]
+id = "optional/normal"
+cwd = "optional"
+args = ["-I", "../cygwin3", "optional.cdl"]
+source = "optional/Makefile-normal [tecs]"
+
+[[case]]
+id = "optional/r"
+cwd = "optional"
+args = ["-r", "-g", "./gen-r", "-I", "../cygwin3", "optional.cdl"]
+source = "optional/Makefile-r [tecs]"
+
+[[case]]
+id = "optional/ram-initializer"
+cwd = "optional"
+args = ["-R", "-g", "./gen-ram-initializer", "-I", "../cygwin3", "optional.cdl"]
+source = "optional/Makefile-ram-initializer [tecs]"
+
+[[case]]
+id = "params"
+cwd = "params"
+args = ["-I", "../RUNTIME/tecs-runtime/target", "-I", "../RUNTIME/tecs-runtime/include", "params.cdl"]
+source = "params/Makefile [tecs]"
+
+[[case]]
+id = "pointer"
+cwd = "pointer"
+args = ["-I", "../RUNTIME/tecs-runtime/include/", "-I", "../RUNTIME/tecs-runtime/target/", "pointer.cdl"]
+source = "pointer/Makefile [tecs]"
+
+[[case]]
+id = "proto"
+cwd = "proto"
+args = ["-I", "../cygwin3", "proto.cdl"]
+source = "proto/Makefile [tecs]"
+
+[[case]]
+id = "recursive_composite"
+cwd = "recursive_composite"
+args = ["-L", "../RUNTIME/generator", "-I../RUNTIME/runtime/test", "-I../RUNTIME/runtime/include", "--gen=gen_rec_comp", "recursive_composite.cdl"]
+source = "recursive_composite/Makefile [tecs]"
+
+[[case]]
+id = "recursive_composite2"
+cwd = "recursive_composite2"
+args = ["-I../RUNTIME/runtime/test", "-I../RUNTIME/runtime/include", "--gen=gen_rec_comp", "recursive_composite.cdl"]
+source = "recursive_composite2/Makefile [tecs]"
+
+[[case]]
+id = "recursive_composite2_idx_is_id"
+cwd = "recursive_composite2_idx_is_id"
+args = ["-u", "-I../RUNTIME/runtime/test", "-I../RUNTIME/runtime/include", "--gen=gen_rec_comp", "recursive_composite.cdl"]
+source = "recursive_composite2_idx_is_id/Makefile [tecs]"
+
+[[case]]
+id = "recursive_composite3"
+cwd = "recursive_composite3"
+args = ["-I", "../cygwin3/", "--gen=gen_rec_comp", "recursive_composite.cdl"]
+source = "recursive_composite3/Makefile [tecs]"
+
+[[case]]
+id = "region"
+cwd = "region"
+args = ["-L", ".", "-G", "", "-G", "rRegion1", "-G", "rRegion2", "-I", "../cygwin", "-I", "../../tecs", "region.cdl"]
+source = "region/Makefile [tecs]"
+
+[[case]]
+id = "region2"
+cwd = "region2"
+args = ["-I", "../RUNTIME/tecs-runtime/include", "-I", "../RUNTIME/tecs-runtime/target", "region.cdl"]
+source = "region2/Makefile [tecsgen.timestamp]"
+
+[[case]]
+id = "require"
+cwd = "require"
+args = ["-I", "../RUNTIME/tecs-runtime/target", "-I", "../RUNTIME/tecs-runtime/include", "require.cdl"]
+source = "require/Makefile [tecs]"
+
+[[case]]
+id = "require2"
+cwd = "require2"
+args = ["-I", "../cygwin3", "-U", "require2.cdl"]
+source = "require2/Makefile [tecs]"
+
+[[case]]
+id = "restrict"
+cwd = "restrict"
+args = ["-L", ".", "-I", "../cygwin3", "restrict.cdl"]
+source = "restrict/Makefile [tecs]"
+
+[[case]]
+id = "reverse_join"
+cwd = "reverse_join"
+args = ["-I", "../cygwin3", "reverse_join.cdl"]
+source = "reverse_join/Makefile [tecs]"
+
+[[case]]
+id = "reverse_require"
+cwd = "reverse_require"
+args = ["-I", "../cygwin", "-I", "../../tecs", "rr.cdl"]
+source = "reverse_require/Makefile [tecs]"
+
+[[case]]
+id = "romram/normal"
+cwd = "romram"
+args = ["-u", "-i", "-I../RUNTIME/tecs-runtime/target", "-I../RUNTIME/tecs-runtime/include", "-Igen", "-Isrc", "romram.cdl"]
+source = "romram/Makefile-normal [tecs]"
+
+[[case]]
+id = "romram/r"
+cwd = "romram"
+args = ["-g", "./gen-r", "-r", "-u", "-i", "-I../RUNTIME/tecs-runtime/target", "-I../RUNTIME/tecs-runtime/include", "-Igen", "-Isrc", "romram.cdl"]
+source = "romram/Makefile-r [tecs]"
+
+[[case]]
+id = "romram/ram-initializer"
+cwd = "romram"
+args = ["-g", "./gen-ram-initializer", "-R", "-u", "-i", "-I../RUNTIME/tecs-runtime/target", "-I../RUNTIME/tecs-runtime/include", "-Igen", "-Isrc", "romram.cdl"]
+source = "romram/Makefile-ram-initializer [tecs]"
+
+[[case]]
+id = "rpc"
+cwd = "rpc"
+args = ["-I", "../cygwin3", "rpc_test.cdl"]
+source = "rpc/Makefile [tecs]"
+
+[[case]]
+id = "series"
+cwd = "series"
+args = ["-I", "../../tecs", "-I", "../cygwin", "series.cdl"]
+source = "series/Makefile [tecs]"
+
+[[case]]
+id = "sharedOpaqueRPC"
+cwd = "sharedOpaqueRPC"
+args = ["--generate-all-template", "-g", "gen", "-D", "__extension__=", "-I", "..", "-I", "../cygwin3", "opaqueRPC.cdl"]
+source = "sharedOpaqueRPC/Makefile [tecs]"
+
+[[case]]
+id = "sharedRPC"
+cwd = "sharedRPC"
+args = ["-I", "../cygwin3", "rpc_test.cdl"]
+source = "sharedRPC/Makefile [tecs]"
+
+[[case]]
+id = "signaturePlugin"
+cwd = "signaturePlugin"
+args = ["-L", ".", "-I", "../cygwin3", "-I", "../../tecs", "generate.cdl"]
+source = "signaturePlugin/Makefile [tecs]"
+
+[[case]]
+id = "simple"
+cwd = "simple"
+args = ["-I", "../RUNTIME/tecs-runtime/include/", "-I", "../RUNTIME/tecs-runtime/target/", "simple.cdl"]
+source = "simple/Makefile [tecsgen.timestamp]"
+
+[[case]]
+id = "simple/trace"
+cwd = "simple"
+args = ["-I", "../../tecs/", "-I", "../cygwin", "simple-trace.cdl"]
+source = "simple/Makefile.trace [tecs]（TARGETS には無い）"
+
+[[case]]
+id = "sjis"
+cwd = "sjis"
+args = ["-I", "gen", "-I", "src", "-I", "../RUNTIME/tecs-runtime/target", "-I", "../RUNTIME/tecs-runtime/workaround", "-I", "../RUNTIME/tecs-runtime/include", "sjis.cdl"]
+# Makefile は -k を付けず、利用者のロケールが Shift_JIS であることを前提にしている
+env = { TECSGEN_FILE_LANG = "ja_JP.SJIS" }
+source = "sjis/Makefile [tecs]"
+
+[[case]]
+id = "struct"
+cwd = "struct"
+args = ["-I", "../cygwin3", "struct.cdl"]
+source = "struct/Makefile [tecs]"
+
+[[case]]
+id = "SWIGBridge"
+cwd = "SWIGBridge"
+args = ["-L", ".", "-I", "../cygwin", "-I", "../../tecs", "generate.cdl"]
+source = "SWIGBridge/Makefile [tecs]（TARGETS には無い）"
+
+[[case]]
+id = "TECSInfo/raminitializer"
+cwd = "TECSInfo"
+args = ["-R", "-I", "../cygwin3", "-g", "./gen-raminitializer", "info.cdl"]
+source = "TECSInfo/Makefile-raminitializer [tecs]"
+
+[[case]]
+id = "TECSInfo/ramonly"
+cwd = "TECSInfo"
+args = ["-r", "-I", "../cygwin3", "-g", "./gen-ramonly", "info.cdl"]
+source = "TECSInfo/Makefile-ramonly [tecs]"
+
+[[case]]
+id = "TECSInfoAccessor/raminitializer"
+cwd = "TECSInfoAccessor"
+args = ["-R", "-I", "../cygwin3", "-g", "./gen-raminitializer", "info.cdl"]
+source = "TECSInfoAccessor/Makefile-raminitializer [tecs]"
+
+[[case]]
+id = "TECSInfoAccessor/ramonly"
+cwd = "TECSInfoAccessor"
+args = ["-r", "-I", "../cygwin3", "-g", "./gen-ramonly", "info.cdl"]
+source = "TECSInfoAccessor/Makefile-ramonly [tecs]"
+
+[[case]]
+id = "through"
+cwd = "through"
+args = ["-L", ".", "-I", "../cygwin", "-I", "../../tecs", "-I", "src", "through.cdl"]
+source = "through/Makefile [tecs]"
+
+[[case]]
+id = "var"
+cwd = "var"
+args = ["-I", "../cygwin", "var.cdl"]
+source = "var/Makefile [tecs]"
+
+[[case]]
+id = "mruby"
+cwd = "mruby"
+args = []
+source = "mruby/*/Makefile"
+skip = "MRUBYPATH・ASP/ASP3 のソースツリーが必要で、この環境には無い"
+
+# ---------------------------------------------------------------- sample（test-normal.sh / test-abnormal.sh）
+
+[[case]]
+id = "sample/normal-1"
+cwd = "sample/data-normal"
+args = ["normal-1.idl"]
+source = "test-normal.sh"
+
+[[case]]
+id = "sample/normal-2"
+cwd = "sample/data-normal"
+args = ["normal-2.idl"]
+source = "test-normal.sh"
+
+[[case]]
+id = "sample/flat"
+cwd = "sample/data-flat"
+args = ["jsp_flat.sig.CPP", "sample1_flat.blt.CPP", "sample1_flat.ct.CPP"]
+source = "test-normal.sh"
+
+[[case]]
+id = "sample/abnormal-1"
+cwd = "sample/data-abnormal"
+args = ["abnormal-1.idl"]
+source = "test-abnormal.sh"
+
+[[case]]
+id = "sample/abnormal-2"
+cwd = "sample/data-abnormal"
+args = ["abnormal-2.idl"]
+source = "test-abnormal.sh"
+
+[[case]]
+id = "sample/abnormal-3"
+cwd = "sample/data-abnormal"
+args = ["abnormal-3.idl"]
+source = "test-abnormal.sh"
+
+[[case]]
+id = "sample/abnormal-4"
+cwd = "sample/data-abnormal"
+args = ["abnormal-4.idl"]
+source = "test-abnormal.sh"
+
+[[case]]
+id = "sample/abnormal-5"
+cwd = "sample/data-abnormal"
+args = ["abnormal-5.idl"]
+source = "test-abnormal.sh"
+
+[[case]]
+id = "sample/error-1"
+cwd = "sample/data-error"
+args = ["error-1.idl"]
+source = "test-abnormal.sh"
+
+[[case]]
+id = "sample/error-2"
+cwd = "sample/data-error"
+args = ["error-2.idl"]
+source = "test-abnormal.sh"
+
+[[case]]
+id = "sample/error-3"
+cwd = "sample/data-error"
+args = ["error-3.idl"]
+source = "test-abnormal.sh"
+
+[[case]]
+id = "sample/error-4"
+cwd = "sample/data-error"
+args = ["error-4.idl"]
+source = "test-abnormal.sh"
+
+[[case]]
+id = "sample/error-5"
+cwd = "sample/data-error"
+args = ["error-5.idl"]
+source = "test-abnormal.sh"
+
+[[case]]
+id = "sample/error-6"
+cwd = "sample/data-error"
+args = ["error-6.idl"]
+source = "test-abnormal.sh"
+
+[[case]]
+id = "sample/error-7"
+cwd = "sample/data-error"
+args = ["error-7.idl"]
+source = "test-abnormal.sh"
+
+[[case]]
+id = "sample/error-8"
+cwd = "sample/data-error"
+args = ["error-8.idl"]
+source = "test-abnormal.sh"
+
+[[case]]
+id = "sample/error-9"
+cwd = "sample/data-error"
+args = ["error-9.idl"]
+source = "test-abnormal.sh"
+
+[[case]]
+id = "sample/error-10"
+cwd = "sample/data-error"
+args = ["error-10.idl"]
+source = "test-abnormal.sh"
+
+[[case]]
+id = "sample/error-11"
+cwd = "sample/data-error"
+args = ["error-11.idl"]
+source = "test-abnormal.sh"
+
+[[case]]
+id = "sample/error-12"
+cwd = "sample/data-error"
+args = ["error-12.idl"]
+source = "test-abnormal.sh"
+
+[[case]]
+id = "sample/error-13"
+cwd = "sample/data-error"
+args = ["error-13.idl"]
+source = "test-abnormal.sh"
+
+# ---------------------------------------------------------------- ErrorCase（test_err.sh は "tecsgen -L . 引数" で実行する）
+
+[[case]]
+id = "ErrorCase/portarray-err"
+cwd = "ErrorCase"
+args = ["-L", ".", "portarray-err.cdl"]
+expect = [15, 4]
+source = "ErrorCase/Makefile [portarray-err]"
+
+[[case]]
+id = "ErrorCase/composite_err"
+cwd = "ErrorCase"
+args = ["-L", ".", "composite_err.cdl"]
+expect = [26, 7]
+source = "ErrorCase/Makefile [composite_err]"
+
+[[case]]
+id = "ErrorCase/composite_init_err"
+cwd = "ErrorCase"
+args = ["-L", ".", "composite_init_err.cdl"]
+expect = [3, 8]
+source = "ErrorCase/Makefile [composite_init_err]"
+
+[[case]]
+id = "ErrorCase/only_proto"
+cwd = "ErrorCase"
+args = ["-L", ".", "only_proto.cdl"]
+expect = [1, 2]
+source = "ErrorCase/Makefile [only_proto]"
+
+[[case]]
+id = "ErrorCase/factory-err"
+cwd = "ErrorCase"
+args = ["-L", ".", "factory-err.cdl"]
+expect = [7, 0]
+source = "ErrorCase/Makefile [factory-err]"
+
+[[case]]
+id = "ErrorCase/factory-err2"
+cwd = "ErrorCase"
+args = ["-L", ".", "factory-err2.cdl"]
+expect = [2, 0]
+source = "ErrorCase/Makefile [factory-err]"
+
+[[case]]
+id = "ErrorCase/init-err"
+cwd = "ErrorCase"
+args = ["-L", ".", "init-err.cdl"]
+expect = [19, 6]
+source = "ErrorCase/Makefile [init-err]"
+
+[[case]]
+id = "ErrorCase/attribute-err"
+cwd = "ErrorCase"
+args = ["-I", "RUNTIME/runtime/include", "-I", "RUNTIME/runtime/test", "-I", "../cgywin", "attribute-err.cdl"]
+source = "ErrorCase/Makefile [attribute-err]（test_err.sh を使わない。Makefile のコメントでは Ruby 例外で終わり 23 errors）"
+
+[[case]]
+id = "ErrorCase/attribute-err2"
+cwd = "ErrorCase"
+args = ["-L", ".", "attribute-err2.cdl"]
+expect = [10, 4]
+source = "ErrorCase/Makefile [attribute-err2]"
+
+[[case]]
+id = "ErrorCase/attribute-err-1"
+cwd = "ErrorCase"
+args = ["-L", ".", "attribute-err-1.cdl"]
+expect = [56, 0]
+source = "ErrorCase/Makefile [attribute-err-1]"
+
+[[case]]
+id = "ErrorCase/attribute-err-2"
+cwd = "ErrorCase"
+args = ["-L", ".", "attribute-err-2.cdl"]
+expect = [2, 1]
+source = "ErrorCase/Makefile [attribute-err-2]"
+
+[[case]]
+id = "ErrorCase/attribute-err-3"
+cwd = "ErrorCase"
+args = ["-L", ".", "attribute-err-3.cdl"]
+expect = [7, 0]
+source = "ErrorCase/Makefile [attribute-err-3]"
+
+[[case]]
+id = "ErrorCase/attribute-err-4"
+cwd = "ErrorCase"
+args = ["-L", ".", "attribute-err-4.cdl"]
+expect = [0, 1]
+source = "ErrorCase/Makefile [attribute-err-4]"
+
+[[case]]
+id = "ErrorCase/attribute-err-5"
+cwd = "ErrorCase"
+args = ["-L", ".", "attribute-err-5.cdl"]
+expect = [2, 3]
+source = "ErrorCase/Makefile [attribute-err-5]"
+
+[[case]]
+id = "ErrorCase/const-err"
+cwd = "ErrorCase"
+args = ["-L", ".", "const-err.cdl"]
+expect = [9, 1]
+source = "ErrorCase/Makefile [const-err]"
+
+[[case]]
+id = "ErrorCase/sign-err"
+cwd = "ErrorCase"
+args = ["-L", ".", "sign-err.cdl"]
+expect = [2, 4]
+source = "ErrorCase/Makefile [sign-err]"
+
+[[case]]
+id = "ErrorCase/require-err"
+cwd = "ErrorCase"
+args = ["-L", ".", "require-err.cdl"]
+expect = [3, 5]
+source = "ErrorCase/Makefile [require-err]"
+
+[[case]]
+id = "ErrorCase/oneway-err"
+cwd = "ErrorCase"
+args = ["-L", ".", "oneway-err.cdl"]
+expect = [3, 0]
+source = "ErrorCase/Makefile [oneway-err]"
+
+[[case]]
+id = "ErrorCase/duplicate-err"
+cwd = "ErrorCase"
+args = ["-L", ".", "duplicate-err.cdl"]
+expect = [13, 1]
+source = "ErrorCase/Makefile [duplicate-err]"
+
+[[case]]
+id = "ErrorCase/region-err"
+cwd = "ErrorCase"
+args = ["-L", ".", "region-err.cdl"]
+expect = [3, 4]
+source = "ErrorCase/Makefile [region-err]"
+
+[[case]]
+id = "ErrorCase/expression-err"
+cwd = "ErrorCase"
+args = ["-L", ".", "expression-err.cdl"]
+expect = [13, 5]
+source = "ErrorCase/Makefile [expression-err]"
+
+[[case]]
+id = "ErrorCase/bug_test2-err"
+cwd = "ErrorCase"
+args = ["-L", ".", "bug_test2-err.cdl"]
+expect = [1, 2]
+source = "ErrorCase/Makefile [bug_test2-err]"
+
+[[case]]
+id = "ErrorCase/singleton-err"
+cwd = "ErrorCase"
+args = ["-L", ".", "singleton-err.cdl"]
+expect = [2, 3]
+source = "ErrorCase/Makefile [singleton-err]"
+
+[[case]]
+id = "ErrorCase/param-err"
+cwd = "ErrorCase"
+args = ["-L", ".", "param-err.cdl"]
+expect = [8, 0]
+source = "ErrorCase/Makefile [param-err]"
+
+[[case]]
+id = "ErrorCase/domainPlugin-err"
+cwd = "ErrorCase"
+args = ["-L", ".", "-I", "../cygwin", "domainPlugin-err.cdl"]
+expect = [3, 0]
+source = "ErrorCase/Makefile [domainPlugin-err]"
+
+[[case]]
+id = "ErrorCase/cell-err"
+cwd = "ErrorCase"
+args = ["-L", ".", "-I", "../cygwin", "cell-err.cdl"]
+expect = [7, 1]
+source = "ErrorCase/Makefile [cell-err]"
+
+[[case]]
+id = "ErrorCase/struct-err"
+cwd = "ErrorCase"
+args = ["-L", ".", "struct-err.cdl"]
+expect = [3, 2]
+source = "ErrorCase/Makefile [struct-err]"

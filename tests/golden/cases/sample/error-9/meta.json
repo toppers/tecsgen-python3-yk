@@ -1,0 +1,21 @@
+{
+  "id": "sample/error-9",
+  "source": "test-abnormal.sh",
+  "cwd": "sample/data-error",
+  "args": [
+    "error-9.idl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 1,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [],
+  "modified": [],
+  "deleted": [],
+  "excluded": {}
+}

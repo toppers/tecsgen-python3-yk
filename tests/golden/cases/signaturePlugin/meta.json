@@ -1,0 +1,78 @@
+{
+  "id": "signaturePlugin",
+  "source": "signaturePlugin/Makefile [tecs]",
+  "cwd": "signaturePlugin",
+  "args": [
+    "-L",
+    ".",
+    "-I",
+    "../cygwin3",
+    "-I",
+    "../../tecs",
+    "generate.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 1,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "signaturePlugin/gen/Makefile.depend",
+    "signaturePlugin/gen/Makefile.tecsgen",
+    "signaturePlugin/gen/Makefile.templ",
+    "signaturePlugin/gen/TestProto.h",
+    "signaturePlugin/gen/global_tecsgen.h",
+    "signaturePlugin/gen/nC2TECS_tsTest.c",
+    "signaturePlugin/gen/nC2TECS_tsTest_factory.h",
+    "signaturePlugin/gen/nC2TECS_tsTest_tecsgen.c",
+    "signaturePlugin/gen/nC2TECS_tsTest_tecsgen.h",
+    "signaturePlugin/gen/sDataqueue_tecsgen.h",
+    "signaturePlugin/gen/sEventflag_tecsgen.h",
+    "signaturePlugin/gen/sKernel_tecsgen.h",
+    "signaturePlugin/gen/sSemaphore_tecsgen.h",
+    "signaturePlugin/gen/sTaskBody_tecsgen.h",
+    "signaturePlugin/gen/sTaskExceptionBody_tecsgen.h",
+    "signaturePlugin/gen/sTask_tecsgen.h",
+    "signaturePlugin/gen/sTest_tecsgen.h",
+    "signaturePlugin/gen/siDataqueue_tecsgen.h",
+    "signaturePlugin/gen/siEventflag_tecsgen.h",
+    "signaturePlugin/gen/siKernel_tecsgen.h",
+    "signaturePlugin/gen/siSemaphore_tecsgen.h",
+    "signaturePlugin/gen/tSignaturePlugin_sTest_factory.h",
+    "signaturePlugin/gen/tSignaturePlugin_sTest_inline.h",
+    "signaturePlugin/gen/tSignaturePlugin_sTest_tecsgen.c",
+    "signaturePlugin/gen/tSignaturePlugin_sTest_tecsgen.h",
+    "signaturePlugin/gen/tTECSTest_factory.h",
+    "signaturePlugin/gen/tTECSTest_tecsgen.c",
+    "signaturePlugin/gen/tTECSTest_tecsgen.h",
+    "signaturePlugin/gen/tTECSTest_templ.c",
+    "signaturePlugin/gen/tTask_factory.h",
+    "signaturePlugin/gen/tTask_inline_templ.h",
+    "signaturePlugin/gen/tTask_tecsgen.c",
+    "signaturePlugin/gen/tTask_tecsgen.h",
+    "signaturePlugin/gen/tecsgen.rbdmp",
+    "signaturePlugin/gen/tecsgen.timestamp",
+    "signaturePlugin/gen/tmp_C2TECSBridgePlugin_0.cdl",
+    "signaturePlugin/gen/tmp_C2TECSBridgePlugin_post_code.cdl",
+    "signaturePlugin/gen/tmp_C_src.c",
+    "signaturePlugin/gen/tmp_SignaturePlugin_0.cdl",
+    "signaturePlugin/gen/tmp_SignaturePlugin_post_code.cdl",
+    "signaturePlugin/gen/tmp_cygwin_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "signaturePlugin/gen/tecsgen.rbdmp": {
+      "sha256": "a339dd184e480d8713592d3c60e17d780ed98356d87ae3043d0e3799fddaf1d2",
+      "size": 68559
+    },
+    "signaturePlugin/gen/tmp_cygwin_tecs.h": {
+      "sha256": "4e3b975cdc2f9adc9500c8f3ffdf8a0c267ffada81e2337742aad65d3fb277fb",
+      "size": 15511
+    }
+  }
+}

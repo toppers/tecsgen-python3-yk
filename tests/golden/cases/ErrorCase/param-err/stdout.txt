@@ -1,0 +1,9 @@
+param-err.cdl:3:36: error: S2027 'b' parameter cannot be void type
+param-err.cdl:4:39: error: S2015 'a' must be const for 'in' parameter PtrType
+param-err.cdl:4:52: error: S2028 'a' max (size_is 2nd parameter) not constant
+param-err.cdl:5:35: error: S2014 a need pointer or more pointer
+param-err.cdl:5:35: error: T1003 size_is: unsuitable specifier for IntType
+param-err.cdl:6:43: error: T1040 size_is specified for void pointer type
+param-err.cdl:7:52: error: T1040 size_is specified for void pointer type
+param-err.cdl:7:52: error: T9999 size_is & nullable cannot be specified simultaneously. If size is zero, pointer must be null
+8 errors

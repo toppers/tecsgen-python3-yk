@@ -1,0 +1,67 @@
+{
+  "id": "allocator2",
+  "source": "allocator2/Makefile [tecsgen.timestamp]",
+  "cwd": "allocator2",
+  "args": [
+    "-r",
+    "-I../RUNTIME/tecs-runtime/target",
+    "-I../RUNTIME/tecs-runtime/include",
+    "-Igen",
+    "-Isrc",
+    "allocator.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 5,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "allocator2/gen/Makefile.depend",
+    "allocator2/gen/Makefile.tecsgen",
+    "allocator2/gen/Makefile.templ",
+    "allocator2/gen/global_tecsgen.h",
+    "allocator2/gen/sAllocTMO_tecsgen.h",
+    "allocator2/gen/sAlloc_tecsgen.h",
+    "allocator2/gen/sSendRecv_tecsgen.h",
+    "allocator2/gen/tAlloc_factory.h",
+    "allocator2/gen/tAlloc_tecsgen.c",
+    "allocator2/gen/tAlloc_tecsgen.h",
+    "allocator2/gen/tAlloc_templ.c",
+    "allocator2/gen/tRelayComponent_factory.h",
+    "allocator2/gen/tRelayComponent_tecsgen.c",
+    "allocator2/gen/tRelayComponent_tecsgen.h",
+    "allocator2/gen/tRelayComponent_templ.c",
+    "allocator2/gen/tTargetComponent_factory.h",
+    "allocator2/gen/tTargetComponent_tecsgen.c",
+    "allocator2/gen/tTargetComponent_tecsgen.h",
+    "allocator2/gen/tTargetComponent_templ.c",
+    "allocator2/gen/tTestClient_factory.h",
+    "allocator2/gen/tTestClient_tecsgen.c",
+    "allocator2/gen/tTestClient_tecsgen.h",
+    "allocator2/gen/tTestClient_templ.c",
+    "allocator2/gen/tTestOptional_factory.h",
+    "allocator2/gen/tTestOptional_tecsgen.c",
+    "allocator2/gen/tTestOptional_tecsgen.h",
+    "allocator2/gen/tTestOptional_templ.c",
+    "allocator2/gen/tecsgen.rbdmp",
+    "allocator2/gen/tecsgen.timestamp",
+    "allocator2/gen/tmp_C_src.c",
+    "allocator2/gen/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "allocator2/gen/tecsgen.rbdmp": {
+      "sha256": "821237f45911e284077529c044f8b10ea5218d94ae6d0297f5490228d3ca1097",
+      "size": 62947
+    },
+    "allocator2/gen/tmp_tecs.h": {
+      "sha256": "b81868a53d73edd43338665d5480f5535c4d85fffda8bd366d2666c6f31d3eb4",
+      "size": 50567
+    }
+  }
+}

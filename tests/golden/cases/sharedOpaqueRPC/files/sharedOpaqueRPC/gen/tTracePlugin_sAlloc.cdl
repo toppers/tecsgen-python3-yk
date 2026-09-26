@@ -1,0 +1,10 @@
+celltype tTracePlugin_sAlloc {
+  entry ::sAlloc eThroughEntry;
+  call  ::sAlloc cCall;
+  attr{
+    char_t   *probeName_str      = "";
+    char_t   *from_str           = "";
+  };
+  require  tSysLog.eSysLog;
+  require  tKernel.eKernel;
+};

@@ -1,0 +1,20 @@
+# Celltype: tArithmeticOperation  #_MDEP_#
+$(_TECS_OBJ_DIR)tArithmeticOperation_tecsgen.o : tArithmeticOperation_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sArithmeticOperation32_tecsgen.h $(GEN_DIR)/sArithmeticOperation64_tecsgen.h $(GEN_DIR)/tArithmeticOperation_factory.h $(GEN_DIR)/tArithmeticOperation_tecsgen.h
+$(_TECS_OBJ_DIR)tArithmeticOperation_templ.o : tArithmeticOperation_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sArithmeticOperation32_tecsgen.h $(GEN_DIR)/sArithmeticOperation64_tecsgen.h $(GEN_DIR)/tArithmeticOperation_factory.h $(GEN_DIR)/tArithmeticOperation_tecsgen.h
+$(_TECS_OBJ_DIR)tArithmeticOperation.o : tArithmeticOperation.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sArithmeticOperation32_tecsgen.h $(GEN_DIR)/sArithmeticOperation64_tecsgen.h $(GEN_DIR)/tArithmeticOperation_factory.h $(GEN_DIR)/tArithmeticOperation_tecsgen.h
+
+# Celltype: tArithmeticOperationSingleton  #_MDEP_#
+$(_TECS_OBJ_DIR)tArithmeticOperationSingleton_tecsgen.o : tArithmeticOperationSingleton_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sArithmeticOperation32_tecsgen.h $(GEN_DIR)/sArithmeticOperation64_tecsgen.h $(GEN_DIR)/tArithmeticOperationSingleton_factory.h $(GEN_DIR)/tArithmeticOperationSingleton_tecsgen.h
+$(_TECS_OBJ_DIR)tArithmeticOperationSingleton_templ.o : tArithmeticOperationSingleton_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sArithmeticOperation32_tecsgen.h $(GEN_DIR)/sArithmeticOperation64_tecsgen.h $(GEN_DIR)/tArithmeticOperationSingleton_factory.h $(GEN_DIR)/tArithmeticOperationSingleton_tecsgen.h
+$(_TECS_OBJ_DIR)tArithmeticOperationSingleton.o : tArithmeticOperationSingleton.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sArithmeticOperation32_tecsgen.h $(GEN_DIR)/sArithmeticOperation64_tecsgen.h $(GEN_DIR)/tArithmeticOperationSingleton_factory.h $(GEN_DIR)/tArithmeticOperationSingleton_tecsgen.h
+
+# Celltype: tArithmeticOperationEA  #_MDEP_#
+$(_TECS_OBJ_DIR)tArithmeticOperationEA_tecsgen.o : tArithmeticOperationEA_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sArithmeticOperation32_tecsgen.h $(GEN_DIR)/sArithmeticOperation64_tecsgen.h $(GEN_DIR)/tArithmeticOperationEA_factory.h $(GEN_DIR)/tArithmeticOperationEA_tecsgen.h
+$(_TECS_OBJ_DIR)tArithmeticOperationEA_templ.o : tArithmeticOperationEA_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sArithmeticOperation32_tecsgen.h $(GEN_DIR)/sArithmeticOperation64_tecsgen.h $(GEN_DIR)/tArithmeticOperationEA_factory.h $(GEN_DIR)/tArithmeticOperationEA_tecsgen.h
+$(_TECS_OBJ_DIR)tArithmeticOperationEA.o : tArithmeticOperationEA.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sArithmeticOperation32_tecsgen.h $(GEN_DIR)/sArithmeticOperation64_tecsgen.h $(GEN_DIR)/tArithmeticOperationEA_factory.h $(GEN_DIR)/tArithmeticOperationEA_tecsgen.h
+
+# Celltype: tArithmeticOperationSingletonEA  #_MDEP_#
+$(_TECS_OBJ_DIR)tArithmeticOperationSingletonEA_tecsgen.o : tArithmeticOperationSingletonEA_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sArithmeticOperation32_tecsgen.h $(GEN_DIR)/sArithmeticOperation64_tecsgen.h $(GEN_DIR)/tArithmeticOperationSingletonEA_factory.h $(GEN_DIR)/tArithmeticOperationSingletonEA_tecsgen.h
+$(_TECS_OBJ_DIR)tArithmeticOperationSingletonEA_templ.o : tArithmeticOperationSingletonEA_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sArithmeticOperation32_tecsgen.h $(GEN_DIR)/sArithmeticOperation64_tecsgen.h $(GEN_DIR)/tArithmeticOperationSingletonEA_factory.h $(GEN_DIR)/tArithmeticOperationSingletonEA_tecsgen.h
+$(_TECS_OBJ_DIR)tArithmeticOperationSingletonEA.o : tArithmeticOperationSingletonEA.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sArithmeticOperation32_tecsgen.h $(GEN_DIR)/sArithmeticOperation64_tecsgen.h $(GEN_DIR)/tArithmeticOperationSingletonEA_factory.h $(GEN_DIR)/tArithmeticOperationSingletonEA_tecsgen.h
+

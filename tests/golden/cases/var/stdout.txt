@@ -1,0 +1,5 @@
+var.cdl:31:2: warning: W1002 tCelltype: non-active celltype has no entry port & factory
+var.cdl:33:16: warning: W1007 ::Cell0 : non-active cell has no entry join and no factory
+var.cdl:35:16: warning: W1007 ::Cell1 : non-active cell has no entry join and no factory
+var.cdl:38:16: warning: W1007 ::Cell2 : non-active cell has no entry join and no factory
+4 warnings

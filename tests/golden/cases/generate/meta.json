@@ -1,0 +1,67 @@
+{
+  "id": "generate",
+  "source": "generate/Makefile [tecs]（TARGETS には無い）",
+  "cwd": "generate",
+  "args": [
+    "-L",
+    ".",
+    "-I",
+    "../cygwin/",
+    "generate.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 2,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "generate/gen/Makefile.depend",
+    "generate/gen/Makefile.tecsgen",
+    "generate/gen/Makefile.templ",
+    "generate/gen/TASK_tecsgen.oil",
+    "generate/gen/global_tecsgen.h",
+    "generate/gen/sTaskBody_tecsgen.h",
+    "generate/gen/sTest_tecsgen.h",
+    "generate/gen/tRTMsTestBridge.c",
+    "generate/gen/tRTMsTestBridge_factory.h",
+    "generate/gen/tRTMsTestBridge_tecsgen.c",
+    "generate/gen/tRTMsTestBridge_tecsgen.h",
+    "generate/gen/tTECSTest_factory.h",
+    "generate/gen/tTECSTest_tecsgen.c",
+    "generate/gen/tTECSTest_tecsgen.h",
+    "generate/gen/tTECSTest_templ.c",
+    "generate/gen/tTaskBody_factory.h",
+    "generate/gen/tTaskBody_tecsgen.c",
+    "generate/gen/tTaskBody_tecsgen.h",
+    "generate/gen/tTaskBody_templ.c",
+    "generate/gen/tTask_factory.h",
+    "generate/gen/tTask_tecsgen.c",
+    "generate/gen/tTask_tecsgen.h",
+    "generate/gen/tTask_templ.c",
+    "generate/gen/tecsgen.idl",
+    "generate/gen/tecsgen.rbdmp",
+    "generate/gen/tecsgen.timestamp",
+    "generate/gen/tmp_ATK1TaskPlugin_0.cdl",
+    "generate/gen/tmp_ATK1TaskPlugin_post_code.cdl",
+    "generate/gen/tmp_C_src.c",
+    "generate/gen/tmp_RTMBridgePlugin_0.cdl",
+    "generate/gen/tmp_RTMBridgePlugin_post_code.cdl",
+    "generate/gen/tmp_cygwin_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "generate/gen/tecsgen.rbdmp": {
+      "sha256": "5945025831c09aac6cbc1f8eefc2f4d5af7da9fa16216d6169bfa13f5f3a85e7",
+      "size": 37063
+    },
+    "generate/gen/tmp_cygwin_tecs.h": {
+      "sha256": "013946d0e301df439d5ed2d9b1c01d986e88315a1cf3936b764c332ee5731245",
+      "size": 14873
+    }
+  }
+}

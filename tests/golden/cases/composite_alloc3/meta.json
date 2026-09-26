@@ -1,0 +1,72 @@
+{
+  "id": "composite_alloc3",
+  "source": "composite_alloc3/Makefile [tecs]",
+  "cwd": "composite_alloc3",
+  "args": [
+    "-I",
+    "../cygwin",
+    "-I",
+    "../../tecs",
+    "composite_alloc3.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 1,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "composite_alloc3/gen/Makefile.depend",
+    "composite_alloc3/gen/Makefile.tecsgen",
+    "composite_alloc3/gen/Makefile.templ",
+    "composite_alloc3/gen/global_tecsgen.h",
+    "composite_alloc3/gen/sAlloc_tecsgen.h",
+    "composite_alloc3/gen/sDataqueue_tecsgen.h",
+    "composite_alloc3/gen/sEventflag_tecsgen.h",
+    "composite_alloc3/gen/sKernel_tecsgen.h",
+    "composite_alloc3/gen/sSemaphore_tecsgen.h",
+    "composite_alloc3/gen/sSig_tecsgen.h",
+    "composite_alloc3/gen/sTaskBody_tecsgen.h",
+    "composite_alloc3/gen/sTaskExceptionBody_tecsgen.h",
+    "composite_alloc3/gen/sTask_tecsgen.h",
+    "composite_alloc3/gen/siDataqueue_tecsgen.h",
+    "composite_alloc3/gen/siEventflag_tecsgen.h",
+    "composite_alloc3/gen/siKernel_tecsgen.h",
+    "composite_alloc3/gen/siSemaphore_tecsgen.h",
+    "composite_alloc3/gen/tAlloc_factory.h",
+    "composite_alloc3/gen/tAlloc_tecsgen.c",
+    "composite_alloc3/gen/tAlloc_tecsgen.h",
+    "composite_alloc3/gen/tAlloc_templ.c",
+    "composite_alloc3/gen/tCt1_factory.h",
+    "composite_alloc3/gen/tCt1_tecsgen.c",
+    "composite_alloc3/gen/tCt1_tecsgen.h",
+    "composite_alloc3/gen/tCt1_templ.c",
+    "composite_alloc3/gen/tCt2_factory.h",
+    "composite_alloc3/gen/tCt2_tecsgen.c",
+    "composite_alloc3/gen/tCt2_tecsgen.h",
+    "composite_alloc3/gen/tCt2_templ.c",
+    "composite_alloc3/gen/tCt3_factory.h",
+    "composite_alloc3/gen/tCt3_tecsgen.c",
+    "composite_alloc3/gen/tCt3_tecsgen.h",
+    "composite_alloc3/gen/tCt3_templ.c",
+    "composite_alloc3/gen/tecsgen.rbdmp",
+    "composite_alloc3/gen/tecsgen.timestamp",
+    "composite_alloc3/gen/tmp_C_src.c",
+    "composite_alloc3/gen/tmp_cygwin_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "composite_alloc3/gen/tecsgen.rbdmp": {
+      "sha256": "c9ed17aec2dcc5f53a804fdb82728c87576e448543e3c53fecf325a1d3c3fc6e",
+      "size": 80845
+    },
+    "composite_alloc3/gen/tmp_cygwin_tecs.h": {
+      "sha256": "013946d0e301df439d5ed2d9b1c01d986e88315a1cf3936b764c332ee5731245",
+      "size": 14873
+    }
+  }
+}

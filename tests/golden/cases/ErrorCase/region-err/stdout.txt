@@ -1,0 +1,8 @@
+region-err.cdl:7:2: warning: W1002 tClient: non-active celltype has no entry port & factory
+region-err.cdl:20:30: error: S1120 cCall: going in to region 'rServer' not permitted
+region-err.cdl:28:34: error: S1119 cCall: going from region 'rClient' to 'rServer' not permitted
+region-err.cdl:32:25: error: S1118 cCall: going out from region 'rClient' not permitted
+region-err.cdl:19:14: warning: W1007 ::Client : non-active cell has no entry join and no factory
+region-err.cdl:27:16: warning: W1007 ::rClient::Client : non-active cell has no entry join and no factory
+region-err.cdl:31:16: warning: W1007 ::rClient::Client2 : non-active cell has no entry join and no factory
+3 errors  4 warnings

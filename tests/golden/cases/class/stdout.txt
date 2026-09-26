@@ -1,0 +1,18 @@
+MyClassPlugin: initialize: region=::, classTypeName=MyClass, option=root
+MyClassPlugin: initialize: region=rClass1, classTypeName=MyClass, option=CLS_ALL_PRC1
+MyClassPlugin: initialize: region=rClass2e, classTypeName=MyClass, option=CLS_PRC2
+MyClassPlugin: add_through_plugin: rClass1=>::, Simple.cSimple=>Sample1.eSample, OUT_THROUGH
+TracePlugin.new( 'Join_class_out_through__0', '', 'Sample1', 'eSample', tSample )
+ep_through: plugin_name=RPCPlugin
+RPCPlugin.new( 'RPCPlugin__0', '', 'Simple', 'eMain', tSimple )
+../cygwin3/cygwin_kernel.cdl:6:11: error: P2001 TransparentRPCSignaturePlugin.rb : fail to load plugin
+gen/tmp_RPCPlugin_0.cdl:3:41: error: S1148 gen/tMarshaler_sTaskBody.cdl not found in search path
+gen/tmp_RPCPlugin_0.cdl:10:46: error: S1148 gen/tRPCPlugin_tTDR_sTaskBody.cdl not found in search path
+gen/tmp_RPCPlugin_0.cdl:18:34: error: S1027 'tRPCPlugin_tTDR_sTaskBody' celltype not found
+MyClassPlugin: joinable? from rClass2e to :: (OUT_THROUGH)
+MyClassPlugin: joinable? from rClass1 to :: (OUT_THROUGH)
+MyClassPlugin: joinable? from rClass1 to :: (OUT_THROUGH)
+gen/tmp_RPCPlugin_0.cdl:14:28: warning: W1007 ::rClass2e::RPCPlugin__0_Channel : non-active cell has no entry join and no factory
+gen/tmp_RPCPlugin_0.cdl:14:28: warning: W1007 ::rClass2e::RPCPlugin__0_Channel_TDR : non-active cell has no entry join and no factory
+gen/tmp_RPCPlugin_0.cdl:14:28: warning: W1007 ::rClass2e::RPCPlugin__0_Channel_Dataqueue_Peer : non-active cell has no entry join and no factory
+4 errors  3 warnings

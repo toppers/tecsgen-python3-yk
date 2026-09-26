@@ -1,0 +1,45 @@
+{
+  "id": "top/bug_test",
+  "source": "Makefile [bug_test]（TARGETS からは外されている）",
+  "cwd": ".",
+  "args": [
+    "-I",
+    "RUNTIME/runtime/include",
+    "-I",
+    "RUNTIME/runtime/test",
+    "bug_test.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 4,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "gen/Makefile.depend",
+    "gen/Makefile.tecsgen",
+    "gen/Makefile.templ",
+    "gen/global_tecsgen.h",
+    "gen/tBugTest_factory.h",
+    "gen/tBugTest_tecsgen.c",
+    "gen/tBugTest_tecsgen.h",
+    "gen/tBugTest_templ.c",
+    "gen/tSingle_factory.h",
+    "gen/tSingle_tecsgen.c",
+    "gen/tSingle_tecsgen.h",
+    "gen/tSingle_templ.c",
+    "gen/tecsgen.rbdmp",
+    "gen/tecsgen.timestamp"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "gen/tecsgen.rbdmp": {
+      "sha256": "2cf99bceefb5410148592f1a308578be3fdd3277afceb37e72ddb3db9852357b",
+      "size": 5256
+    }
+  }
+}

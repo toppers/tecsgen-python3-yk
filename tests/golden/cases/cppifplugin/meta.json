@@ -1,0 +1,81 @@
+{
+  "id": "cppifplugin",
+  "source": "cppifplugin/Makefile [tecs]",
+  "cwd": "cppifplugin",
+  "args": [
+    "-I",
+    "../../tecsgen/tecs",
+    "-I",
+    "../cygwin",
+    "cppifplugin.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "cppifplugin/gen/Makefile.depend",
+    "cppifplugin/gen/Makefile.tecsgen",
+    "cppifplugin/gen/Makefile.templ",
+    "cppifplugin/gen/global_tecsgen.h",
+    "cppifplugin/gen/sArithmeticOperation32_cppif.hpp",
+    "cppifplugin/gen/sArithmeticOperation32_tecsgen.h",
+    "cppifplugin/gen/sArithmeticOperation64_cppif.hpp",
+    "cppifplugin/gen/sArithmeticOperation64_tecsgen.h",
+    "cppifplugin/gen/tArithmeticOperationEA_cppif.hpp",
+    "cppifplugin/gen/tArithmeticOperationEA_factory.h",
+    "cppifplugin/gen/tArithmeticOperationEA_tecsgen.c",
+    "cppifplugin/gen/tArithmeticOperationEA_tecsgen.h",
+    "cppifplugin/gen/tArithmeticOperationEA_templ.c",
+    "cppifplugin/gen/tArithmeticOperationSingletonEA_cppif.hpp",
+    "cppifplugin/gen/tArithmeticOperationSingletonEA_factory.h",
+    "cppifplugin/gen/tArithmeticOperationSingletonEA_tecsgen.c",
+    "cppifplugin/gen/tArithmeticOperationSingletonEA_tecsgen.h",
+    "cppifplugin/gen/tArithmeticOperationSingletonEA_templ.c",
+    "cppifplugin/gen/tArithmeticOperationSingleton_cppif.hpp",
+    "cppifplugin/gen/tArithmeticOperationSingleton_factory.h",
+    "cppifplugin/gen/tArithmeticOperationSingleton_tecsgen.c",
+    "cppifplugin/gen/tArithmeticOperationSingleton_tecsgen.h",
+    "cppifplugin/gen/tArithmeticOperationSingleton_templ.c",
+    "cppifplugin/gen/tArithmeticOperation_cppif.hpp",
+    "cppifplugin/gen/tArithmeticOperation_factory.h",
+    "cppifplugin/gen/tArithmeticOperation_tecsgen.c",
+    "cppifplugin/gen/tArithmeticOperation_tecsgen.h",
+    "cppifplugin/gen/tArithmeticOperation_templ.c",
+    "cppifplugin/gen/tecsgen.rbdmp",
+    "cppifplugin/gen/tecsgen.timestamp",
+    "cppifplugin/gen/tmp_C_src.c",
+    "cppifplugin/gen/tmp_CppIfGenCellPlugin_0.cdl",
+    "cppifplugin/gen/tmp_CppIfGenCellPlugin_1.cdl",
+    "cppifplugin/gen/tmp_CppIfGenCellPlugin_2.cdl",
+    "cppifplugin/gen/tmp_CppIfGenCellPlugin_3.cdl",
+    "cppifplugin/gen/tmp_CppIfGenCellPlugin_post_code.cdl",
+    "cppifplugin/gen/tmp_CppIfGenCelltypePlugin_0.cdl",
+    "cppifplugin/gen/tmp_CppIfGenCelltypePlugin_1.cdl",
+    "cppifplugin/gen/tmp_CppIfGenCelltypePlugin_2.cdl",
+    "cppifplugin/gen/tmp_CppIfGenCelltypePlugin_3.cdl",
+    "cppifplugin/gen/tmp_CppIfGenCelltypePlugin_4.cdl",
+    "cppifplugin/gen/tmp_CppIfGenCelltypePlugin_5.cdl",
+    "cppifplugin/gen/tmp_CppIfGenCelltypePlugin_6.cdl",
+    "cppifplugin/gen/tmp_CppIfGenCelltypePlugin_7.cdl",
+    "cppifplugin/gen/tmp_CppIfGenCelltypePlugin_post_code.cdl",
+    "cppifplugin/gen/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "cppifplugin/gen/tecsgen.rbdmp": {
+      "sha256": "c5ddd0f0ebd37acca81027f47ef9a467557de5ea20653148a61d50d61b56f80e",
+      "size": 28653
+    },
+    "cppifplugin/gen/tmp_tecs.h": {
+      "sha256": "993b279c0ea203ac6bdf429dd304c6f73fdf56d12ba7b0b12b4658b5108d5f6a",
+      "size": 8523
+    }
+  }
+}

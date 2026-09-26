@@ -1,0 +1,6 @@
+singleton-err.cdl:30:2: warning: W1002 tSingleCall: non-active celltype has no entry port & factory
+singleton-err.cdl:52:2: error: S1024 tSingle: multiple cell for singleton celltype
+singleton-err.cdl:62:11: error: G1016 syntax error near '='
+singleton-err.cdl:49:14: warning: W1007 ::single2 : non-active cell has no entry join and no factory
+singleton-err.cdl:54:18: warning: W1007 ::singlecall : non-active cell has no entry join and no factory
+2 errors  3 warnings

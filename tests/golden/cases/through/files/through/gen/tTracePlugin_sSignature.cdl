@@ -1,0 +1,14 @@
+celltype tTracePlugin_sSignature {
+  [ allocator(
+	func6.buf<=cCall.func6.buf,
+	func7.buf<=cCall.func7.buf
+  )]
+  entry ::sSignature eThroughEntry;
+  call  ::sSignature cCall;
+  attr{
+    char_t   *probeName_str      = "";
+    char_t   *from_str           = "";
+  };
+  require  tSysLog.eSysLog;
+  require  tKernel.eKernel;
+};

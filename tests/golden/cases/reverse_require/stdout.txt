@@ -1,0 +1,7 @@
+rr.cdl:41:16: warning: W1009 eInit: fixed join entry port has multi join
+rr.cdl:61:17: warning: W1009 eInit: fixed join entry port has multi join
+rr.cdl:122:18: warning: W1009 eInit: fixed join entry port has multi join
+rr.cdl:80:17: warning: W1009 eInit: fixed join entry port has multi join
+rr.cdl:142:22: warning: W1009 eInit: fixed join entry port has multi join
+rr.cdl:84:17: warning: W1007 ::CompCell32 : non-active cell has no entry join and no factory
+6 warnings

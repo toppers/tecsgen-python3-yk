@@ -1,0 +1,10 @@
+composite_cexp.cdl:8:2: warning: W1002 tCellIn1: non-active celltype has no entry port & factory
+composite_cexp.cdl:17:2: warning: W1002 tCellIn2: non-active celltype has no entry port & factory
+composite_cexp.cdl:37:17: warning: W1007 ::Composite : non-active cell has no entry join and no factory
+composite_cexp.cdl:53:26: warning: W1007 ::CompositeComposite : non-active cell has no entry join and no factory
+composite_cexp.cdl:37:17: warning: W1007 ::Composite_CellIn1 : non-active cell has no entry join and no factory
+composite_cexp.cdl:37:17: warning: W1007 ::Composite_CellIn2 : non-active cell has no entry join and no factory
+composite_cexp.cdl:53:26: warning: W1007 ::CompositeComposite_Composite : non-active cell has no entry join and no factory
+composite_cexp.cdl:53:26: warning: W1007 ::CompositeComposite_Composite_CellIn1 : non-active cell has no entry join and no factory
+composite_cexp.cdl:53:26: warning: W1007 ::CompositeComposite_Composite_CellIn2 : non-active cell has no entry join and no factory
+9 warnings

@@ -1,0 +1,26 @@
+{
+  "id": "ErrorCase/attribute-err-2",
+  "source": "ErrorCase/Makefile [attribute-err-2]",
+  "cwd": "ErrorCase",
+  "args": [
+    "-L",
+    ".",
+    "attribute-err-2.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 2,
+  "warnings": 1,
+  "expect": [
+    2,
+    1
+  ],
+  "expect_matched": true,
+  "created": [],
+  "modified": [],
+  "deleted": [],
+  "excluded": {}
+}

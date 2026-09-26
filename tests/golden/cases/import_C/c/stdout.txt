@@ -1,0 +1,10 @@
+include/toppers_jsp.cdl:172:33: warning: W3003 p_data pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+include/toppers_jsp.cdl:173:34: warning: W3003 p_data pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+include/toppers_jsp.cdl:174:34: warning: W3003 p_data pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+include/toppers_jsp.cdl:203:34: warning: W3003 ppk_msg pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+include/toppers_jsp.cdl:204:35: warning: W3003 ppk_msg pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+include/toppers_jsp.cdl:205:35: warning: W3003 ppk_msg pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+include/toppers_jsp.cdl:227:28: warning: W3003 p_blk pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+include/toppers_jsp.cdl:228:29: warning: W3003 p_blk pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+include/toppers_jsp.cdl:229:29: warning: W3003 p_blk pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+9 warnings

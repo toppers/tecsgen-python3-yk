@@ -1,0 +1,45 @@
+{
+  "id": "var",
+  "source": "var/Makefile [tecs]",
+  "cwd": "var",
+  "args": [
+    "-I",
+    "../cygwin",
+    "var.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 4,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "var/gen/Makefile.depend",
+    "var/gen/Makefile.tecsgen",
+    "var/gen/Makefile.templ",
+    "var/gen/global_tecsgen.h",
+    "var/gen/tCelltype_factory.h",
+    "var/gen/tCelltype_tecsgen.c",
+    "var/gen/tCelltype_tecsgen.h",
+    "var/gen/tCelltype_templ.c",
+    "var/gen/tecsgen.rbdmp",
+    "var/gen/tecsgen.timestamp",
+    "var/gen/tmp_C_src.c",
+    "var/gen/tmp_cygwin_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "var/gen/tecsgen.rbdmp": {
+      "sha256": "9157f03c491611dc455aa2b3765e75d08d31b7283550e6bcc11d44376b04c3c0",
+      "size": 30985
+    },
+    "var/gen/tmp_cygwin_tecs.h": {
+      "sha256": "013946d0e301df439d5ed2d9b1c01d986e88315a1cf3936b764c332ee5731245",
+      "size": 14873
+    }
+  }
+}

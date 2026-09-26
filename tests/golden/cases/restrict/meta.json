@@ -1,0 +1,86 @@
+{
+  "id": "restrict",
+  "source": "restrict/Makefile [tecs]",
+  "cwd": "restrict",
+  "args": [
+    "-L",
+    ".",
+    "-I",
+    "../cygwin3",
+    "restrict.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 1,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "restrict/gen/Makefile.depend",
+    "restrict/gen/Makefile.tecsgen",
+    "restrict/gen/Makefile.templ",
+    "restrict/gen/global_tecsgen.h",
+    "restrict/gen/sDataqueue_tecsgen.h",
+    "restrict/gen/sEventflag_tecsgen.h",
+    "restrict/gen/sKernel_tecsgen.h",
+    "restrict/gen/sSemaphore_tecsgen.h",
+    "restrict/gen/sSig_tecsgen.h",
+    "restrict/gen/sSysLog_tecsgen.h",
+    "restrict/gen/sTaskBody_tecsgen.h",
+    "restrict/gen/sTaskExceptionBody_tecsgen.h",
+    "restrict/gen/sTask_tecsgen.h",
+    "restrict/gen/siDataqueue_tecsgen.h",
+    "restrict/gen/siEventflag_tecsgen.h",
+    "restrict/gen/siKernel_tecsgen.h",
+    "restrict/gen/siSemaphore_tecsgen.h",
+    "restrict/gen/tCelltypeClient_factory.h",
+    "restrict/gen/tCelltypeClient_rRegionSrc_tecsgen.c",
+    "restrict/gen/tCelltypeClient_tecsgen.h",
+    "restrict/gen/tCelltypeClient_templ.c",
+    "restrict/gen/tCelltype_factory.h",
+    "restrict/gen/tCelltype_rRegionDst_tecsgen.c",
+    "restrict/gen/tCelltype_tecsgen.h",
+    "restrict/gen/tCelltype_templ.c",
+    "restrict/gen/tKernel_factory.h",
+    "restrict/gen/tKernel_tecsgen.c",
+    "restrict/gen/tKernel_tecsgen.h",
+    "restrict/gen/tMyTracePlugin_sSig.c",
+    "restrict/gen/tMyTracePlugin_sSig.cdl",
+    "restrict/gen/tMyTracePlugin_sSig_factory.h",
+    "restrict/gen/tMyTracePlugin_sSig_rRegionSrc_tecsgen.c",
+    "restrict/gen/tMyTracePlugin_sSig_tecsgen.h",
+    "restrict/gen/tSysLog_factory.h",
+    "restrict/gen/tSysLog_tecsgen.c",
+    "restrict/gen/tSysLog_tecsgen.h",
+    "restrict/gen/tTask_factory.h",
+    "restrict/gen/tTask_rRegionSrc_tecsgen.c",
+    "restrict/gen/tTask_tecsgen.h",
+    "restrict/gen/tecsgen.rbdmp",
+    "restrict/gen/tecsgen.timestamp",
+    "restrict/gen/tmp_C_src.c",
+    "restrict/gen/tmp_MyDomainPlugin_post_code.cdl",
+    "restrict/gen/tmp_MyTracePlugin_0.cdl",
+    "restrict/gen/tmp_MyTracePlugin_post_code.cdl",
+    "restrict/gen/tmp_cygwin_tecs.h",
+    "restrict/gen/tmp_t_syslog.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "restrict/gen/tecsgen.rbdmp": {
+      "sha256": "f2528744f431c26728557c89724161cc362b99070db9760a5f9c62576c82d0d3",
+      "size": 72559
+    },
+    "restrict/gen/tmp_cygwin_tecs.h": {
+      "sha256": "4e3b975cdc2f9adc9500c8f3ffdf8a0c267ffada81e2337742aad65d3fb277fb",
+      "size": 15511
+    },
+    "restrict/gen/tmp_t_syslog.h": {
+      "sha256": "81998c66d8d19d5833d03994dc44230c77eaae39387d8a3aae1fc80bffa90daf",
+      "size": 571
+    }
+  }
+}

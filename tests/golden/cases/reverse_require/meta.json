@@ -1,0 +1,60 @@
+{
+  "id": "reverse_require",
+  "source": "reverse_require/Makefile [tecs]",
+  "cwd": "reverse_require",
+  "args": [
+    "-I",
+    "../cygwin",
+    "-I",
+    "../../tecs",
+    "rr.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 6,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "reverse_require/gen/Makefile.depend",
+    "reverse_require/gen/Makefile.tecsgen",
+    "reverse_require/gen/Makefile.templ",
+    "reverse_require/gen/global_tecsgen.h",
+    "reverse_require/gen/sInit_tecsgen.h",
+    "reverse_require/gen/tCelltype2_factory.h",
+    "reverse_require/gen/tCelltype2_tecsgen.c",
+    "reverse_require/gen/tCelltype2_tecsgen.h",
+    "reverse_require/gen/tCelltype2_templ.c",
+    "reverse_require/gen/tCelltype3_factory.h",
+    "reverse_require/gen/tCelltype3_tecsgen.c",
+    "reverse_require/gen/tCelltype3_tecsgen.h",
+    "reverse_require/gen/tCelltype3_templ.c",
+    "reverse_require/gen/tCelltype_factory.h",
+    "reverse_require/gen/tCelltype_tecsgen.c",
+    "reverse_require/gen/tCelltype_tecsgen.h",
+    "reverse_require/gen/tCelltype_templ.c",
+    "reverse_require/gen/tInitializer_factory.h",
+    "reverse_require/gen/tInitializer_tecsgen.c",
+    "reverse_require/gen/tInitializer_tecsgen.h",
+    "reverse_require/gen/tInitializer_templ.c",
+    "reverse_require/gen/tecsgen.rbdmp",
+    "reverse_require/gen/tecsgen.timestamp",
+    "reverse_require/gen/tmp_C_src.c",
+    "reverse_require/gen/tmp_cygwin_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "reverse_require/gen/tecsgen.rbdmp": {
+      "sha256": "687a06ac8803ec6cf6d79f34b6c1703d9d4c25e78324d4e53d3254132dc8d97f",
+      "size": 45149
+    },
+    "reverse_require/gen/tmp_cygwin_tecs.h": {
+      "sha256": "013946d0e301df439d5ed2d9b1c01d986e88315a1cf3936b764c332ee5731245",
+      "size": 14873
+    }
+  }
+}

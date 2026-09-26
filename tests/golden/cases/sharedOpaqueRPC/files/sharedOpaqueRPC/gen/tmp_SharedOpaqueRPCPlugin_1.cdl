@@ -1,0 +1,37 @@
+
+import( "gen/tOpaqueMarshaler_sSimple.cdl" );
+import( "gen/tSharedOpaqueRPCPluginChannel_tTDR.cdl" );
+region rClient{
+  cell tSharedOpaqueRPCPluginChannel_tTDR_Client MyChannel;
+  [allocator(eClientEntry.func21.a = CAlloc.eAlloc,
+             eClientEntry.func22.sta = CAlloc.eAlloc,
+             eClientEntry.func23.str = CAlloc.eAlloc,
+             eClientEntry.func24.msg = CAlloc.eAlloc,
+             eClientEntry.func25.msg = CAlloc.eAlloc,
+             eClientEntry.func26.sta = CAlloc.eAlloc,
+             eClientEntry.func27.array2 = CAlloc.eAlloc,
+             eClientEntry.func31.a = CAlloc.eAlloc,
+             eClientEntry.func32.sta = CAlloc.eAlloc,
+             eClientEntry.func33.str = CAlloc.eAlloc,
+             eClientEntry.func34.msg = CAlloc.eAlloc,
+             eClientEntry.func35.msg = CAlloc.eAlloc,
+             eClientEntry.func36.sta = CAlloc.eAlloc,
+             eClientEntry.func37.sta = CAlloc.eAlloc,
+             eClientEntry.func38.array2 = CAlloc.eAlloc,
+             eClientEntry.func39.arraySt = CAlloc.eAlloc)]
+/* OpaqueRPC Marshaler Cell */
+  cell tOpaqueMarshaler_sSimple Join_to_through___1 {
+    cTDR         = MyChannel.eTDR;
+    cLockChannel = MyChannel.eSemaphore[1];
+  };
+};
+region rServer{
+/* Server Channel Cell prototype */
+  cell tSharedOpaqueRPCPluginChannel_tTDR_Server MyChannel_Server;
+
+  cell tOpaqueUnmarshaler_sSimple Join_to_through___1_Server {
+    cTDR         = MyChannel_Server.eTDR;
+    cServerCall  = ::rServer::rSPon::Join_in_through__0.eThroughEntry;
+    cPPAllocator = PPAllocator_MyChannel.ePPAllocator;
+  };
+};

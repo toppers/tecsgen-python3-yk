@@ -1,0 +1,70 @@
+{
+  "id": "struct",
+  "source": "struct/Makefile [tecs]",
+  "cwd": "struct",
+  "args": [
+    "-I",
+    "../cygwin3",
+    "struct.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "struct/gen/Makefile.depend",
+    "struct/gen/Makefile.tecsgen",
+    "struct/gen/Makefile.templ",
+    "struct/gen/global_tecsgen.h",
+    "struct/gen/sAlloc_tecsgen.h",
+    "struct/gen/sDataqueue_tecsgen.h",
+    "struct/gen/sEventflag_tecsgen.h",
+    "struct/gen/sKernel_tecsgen.h",
+    "struct/gen/sSemaphore_tecsgen.h",
+    "struct/gen/sSig_tecsgen.h",
+    "struct/gen/sTaskBody_tecsgen.h",
+    "struct/gen/sTaskExceptionBody_tecsgen.h",
+    "struct/gen/sTask_tecsgen.h",
+    "struct/gen/siDataqueue_tecsgen.h",
+    "struct/gen/siEventflag_tecsgen.h",
+    "struct/gen/siKernel_tecsgen.h",
+    "struct/gen/siSemaphore_tecsgen.h",
+    "struct/gen/tAlloc_factory.h",
+    "struct/gen/tAlloc_tecsgen.c",
+    "struct/gen/tAlloc_tecsgen.h",
+    "struct/gen/tAlloc_templ.c",
+    "struct/gen/tCelltypeCaller_factory.h",
+    "struct/gen/tCelltypeCaller_tecsgen.c",
+    "struct/gen/tCelltypeCaller_tecsgen.h",
+    "struct/gen/tCelltypeCaller_templ.c",
+    "struct/gen/tCelltype_factory.h",
+    "struct/gen/tCelltype_tecsgen.c",
+    "struct/gen/tCelltype_tecsgen.h",
+    "struct/gen/tCelltype_templ.c",
+    "struct/gen/tTask_factory.h",
+    "struct/gen/tTask_inline_templ.h",
+    "struct/gen/tTask_tecsgen.c",
+    "struct/gen/tTask_tecsgen.h",
+    "struct/gen/tecsgen.rbdmp",
+    "struct/gen/tecsgen.timestamp",
+    "struct/gen/tmp_C_src.c",
+    "struct/gen/tmp_cygwin_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "struct/gen/tecsgen.rbdmp": {
+      "sha256": "151c058e19d5d136c64adc9e5eae532e4cdbec8c530c3b8663bf0812aaf060cb",
+      "size": 80194
+    },
+    "struct/gen/tmp_cygwin_tecs.h": {
+      "sha256": "4e3b975cdc2f9adc9500c8f3ffdf8a0c267ffada81e2337742aad65d3fb277fb",
+      "size": 15511
+    }
+  }
+}

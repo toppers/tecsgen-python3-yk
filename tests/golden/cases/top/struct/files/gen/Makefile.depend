@@ -1,0 +1,10 @@
+# Celltype: tCellStruct  #_MDEP_#
+$(_TECS_OBJ_DIR)tCellStruct_tecsgen.o : tCellStruct_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tCellStruct_factory.h $(GEN_DIR)/tCellStruct_tecsgen.h
+$(_TECS_OBJ_DIR)tCellStruct_templ.o : tCellStruct_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tCellStruct_factory.h $(GEN_DIR)/tCellStruct_tecsgen.h
+$(_TECS_OBJ_DIR)tCellStruct.o : tCellStruct.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tCellStruct_factory.h $(GEN_DIR)/tCellStruct_tecsgen.h
+
+# Celltype: tTypedefStruct  #_MDEP_#
+$(_TECS_OBJ_DIR)tTypedefStruct_tecsgen.o : tTypedefStruct_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tTypedefStruct_factory.h $(GEN_DIR)/tTypedefStruct_tecsgen.h
+$(_TECS_OBJ_DIR)tTypedefStruct_templ.o : tTypedefStruct_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tTypedefStruct_factory.h $(GEN_DIR)/tTypedefStruct_tecsgen.h
+$(_TECS_OBJ_DIR)tTypedefStruct.o : tTypedefStruct.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tTypedefStruct_factory.h $(GEN_DIR)/tTypedefStruct_tecsgen.h
+

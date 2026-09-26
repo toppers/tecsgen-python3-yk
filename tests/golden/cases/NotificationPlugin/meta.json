@@ -1,0 +1,88 @@
+{
+  "id": "NotificationPlugin",
+  "source": "NotificationPlugin/Makefile [tecs]",
+  "cwd": "NotificationPlugin",
+  "args": [
+    "-I",
+    "./src",
+    "-L",
+    ".",
+    "test.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "NotificationPlugin/gen/Makefile.depend",
+    "NotificationPlugin/gen/Makefile.tecsgen",
+    "NotificationPlugin/gen/Makefile.templ",
+    "NotificationPlugin/gen/global_tecsgen.h",
+    "NotificationPlugin/gen/siHandlerBody_tecsgen.h",
+    "NotificationPlugin/gen/siNotificationHandler_tecsgen.h",
+    "NotificationPlugin/gen/tDataqueue_factory.h",
+    "NotificationPlugin/gen/tDataqueue_tecsgen.c",
+    "NotificationPlugin/gen/tDataqueue_tecsgen.h",
+    "NotificationPlugin/gen/tDataqueue_templ.c",
+    "NotificationPlugin/gen/tEventflag_factory.h",
+    "NotificationPlugin/gen/tEventflag_tecsgen.c",
+    "NotificationPlugin/gen/tEventflag_tecsgen.h",
+    "NotificationPlugin/gen/tEventflag_templ.c",
+    "NotificationPlugin/gen/tSemaphore_factory.h",
+    "NotificationPlugin/gen/tSemaphore_tecsgen.c",
+    "NotificationPlugin/gen/tSemaphore_tecsgen.h",
+    "NotificationPlugin/gen/tSemaphore_templ.c",
+    "NotificationPlugin/gen/tTask_factory.h",
+    "NotificationPlugin/gen/tTask_tecsgen.c",
+    "NotificationPlugin/gen/tTask_tecsgen.h",
+    "NotificationPlugin/gen/tTask_templ.c",
+    "NotificationPlugin/gen/tTestNotifier_factory.h",
+    "NotificationPlugin/gen/tTestNotifier_tecsgen.c",
+    "NotificationPlugin/gen/tTestNotifier_tecsgen.h",
+    "NotificationPlugin/gen/tTestNotifier_templ.c",
+    "NotificationPlugin/gen/tTimeEventHandler.c",
+    "NotificationPlugin/gen/tTimeEventHandler.h",
+    "NotificationPlugin/gen/tTimeEventHandler_aux.h",
+    "NotificationPlugin/gen/tTimeEventHandler_factory.h",
+    "NotificationPlugin/gen/tTimeEventHandler_tecsgen.c",
+    "NotificationPlugin/gen/tTimeEventHandler_tecsgen.h",
+    "NotificationPlugin/gen/tTimeEventHandler_templ.c",
+    "NotificationPlugin/gen/tUserCelltypeA_factory.h",
+    "NotificationPlugin/gen/tUserCelltypeA_tecsgen.c",
+    "NotificationPlugin/gen/tUserCelltypeA_tecsgen.h",
+    "NotificationPlugin/gen/tUserCelltypeA_templ.c",
+    "NotificationPlugin/gen/tUserCelltypeB_factory.h",
+    "NotificationPlugin/gen/tUserCelltypeB_tecsgen.c",
+    "NotificationPlugin/gen/tUserCelltypeB_tecsgen.h",
+    "NotificationPlugin/gen/tUserCelltypeB_templ.c",
+    "NotificationPlugin/gen/tecsgen.cfg",
+    "NotificationPlugin/gen/tecsgen.rbdmp",
+    "NotificationPlugin/gen/tecsgen.timestamp",
+    "NotificationPlugin/gen/tmp_C_src.c",
+    "NotificationPlugin/gen/tmp_NotifierPlugin_0.cdl",
+    "NotificationPlugin/gen/tmp_NotifierPlugin_post_code.cdl",
+    "NotificationPlugin/gen/tmp_id.h",
+    "NotificationPlugin/gen/tmp_types.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "NotificationPlugin/gen/tecsgen.rbdmp": {
+      "sha256": "5871b23940e459e33024c40e7ab4a7fdf407b02f119ad4497fbf4141ecf00f4e",
+      "size": 43821
+    },
+    "NotificationPlugin/gen/tmp_id.h": {
+      "sha256": "53a913f8aee4991cd46f890d2f1711a6a09636d2d15dd8e5b699dede9535414d",
+      "size": 297
+    },
+    "NotificationPlugin/gen/tmp_types.h": {
+      "sha256": "e68fcfeec0b019e575fd0aca928995c0179507de7aa7f13ac0400cabb135c0d7",
+      "size": 321
+    }
+  }
+}

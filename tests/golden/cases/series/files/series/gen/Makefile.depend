@@ -1,0 +1,10 @@
+# Celltype: tOSEKResource  #_MDEP_#
+$(_TECS_OBJ_DIR)tOSEKResource_tecsgen.o : tOSEKResource_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sLinkedResource_tecsgen.h $(GEN_DIR)/tOSEKResource_factory.h $(GEN_DIR)/tOSEKResource_tecsgen.h
+$(_TECS_OBJ_DIR)tOSEKResource_templ.o : tOSEKResource_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sLinkedResource_tecsgen.h $(GEN_DIR)/tOSEKResource_factory.h $(GEN_DIR)/tOSEKResource_tecsgen.h
+$(_TECS_OBJ_DIR)tOSEKResource.o : tOSEKResource.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sLinkedResource_tecsgen.h $(GEN_DIR)/tOSEKResource_factory.h $(GEN_DIR)/tOSEKResource_tecsgen.h
+
+# Celltype: tMain  #_MDEP_#
+$(_TECS_OBJ_DIR)tMain_tecsgen.o : tMain_tecsgen.c  $(GEN_DIR)/tOSEKResource_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sLinkedResource_tecsgen.h $(GEN_DIR)/tMain_factory.h $(GEN_DIR)/tMain_tecsgen.h
+$(_TECS_OBJ_DIR)tMain_templ.o : tMain_templ.c  $(GEN_DIR)/tOSEKResource_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sLinkedResource_tecsgen.h $(GEN_DIR)/tMain_factory.h $(GEN_DIR)/tMain_tecsgen.h
+$(_TECS_OBJ_DIR)tMain.o : tMain.c  $(GEN_DIR)/tOSEKResource_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sLinkedResource_tecsgen.h $(GEN_DIR)/tMain_factory.h $(GEN_DIR)/tMain_tecsgen.h
+

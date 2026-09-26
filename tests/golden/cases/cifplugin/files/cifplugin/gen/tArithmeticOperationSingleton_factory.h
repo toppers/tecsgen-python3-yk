@@ -1,0 +1,3 @@
+#ifndef tArithmeticOperationSingleton_FACTORY_H
+#define tArithmeticOperationSingleton_FACTORY_H
+#endif /* tArithmeticOperationSingleton_FACTORY_H */

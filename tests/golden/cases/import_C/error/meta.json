@@ -1,0 +1,85 @@
+{
+  "id": "import_C/error",
+  "source": "import_C/Makefile [error]（ErrorCase の import_C-err も同じ）",
+  "cwd": "import_C",
+  "args": [
+    "-Iinclude",
+    "-Iconfig_win",
+    "-I.",
+    "-DERROR",
+    "import_C.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 3,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "import_C/gen/Makefile.depend",
+    "import_C/gen/Makefile.tecsgen",
+    "import_C/gen/Makefile.templ",
+    "import_C/gen/global_tecsgen.h",
+    "import_C/gen/sSigSt_tecsgen.h",
+    "import_C/gen/sSig_tecsgen.h",
+    "import_C/gen/tCt_factory.h",
+    "import_C/gen/tCt_tecsgen.c",
+    "import_C/gen/tCt_tecsgen.h",
+    "import_C/gen/tCt_templ.c",
+    "import_C/gen/tecsgen.cfg",
+    "import_C/gen/tecsgen.rbdmp",
+    "import_C/gen/tecsgen.timestamp",
+    "import_C/gen/tmp_C_src.c",
+    "import_C/gen/tmp_enum.h",
+    "import_C/gen/tmp_int_const.h",
+    "import_C/gen/tmp_kernel.h",
+    "import_C/gen/tmp_my_stdint.h",
+    "import_C/gen/tmp_myheader.h",
+    "import_C/gen/tmp_some_types.h",
+    "import_C/gen/tmp_typedef.h",
+    "import_C/gen/tmp_union.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "import_C/gen/tecsgen.rbdmp": {
+      "sha256": "b5bd650f5a942ee53fc2e456d80a3a1eda5fd26c939b55f13c7f2aba0ecc7cfb",
+      "size": 30410
+    },
+    "import_C/gen/tmp_enum.h": {
+      "sha256": "0230cb1dedec8d0fdaf28d06359099aad3e701c7c1d30f5b1cc5e874c96f69e3",
+      "size": 380
+    },
+    "import_C/gen/tmp_int_const.h": {
+      "sha256": "62c2b56363ffce3a2b1331786a9af03e9b500e6ae36310a9670d8808fd037a35",
+      "size": 532
+    },
+    "import_C/gen/tmp_kernel.h": {
+      "sha256": "2fad12053dbdf950188e7f53509c0f9ff6545eb6b9d6161638100dd6a65de913",
+      "size": 11102
+    },
+    "import_C/gen/tmp_my_stdint.h": {
+      "sha256": "ede4d22080a244df63c586569dfd14fef34161ba20f0b88bb1571fa74bce5a93",
+      "size": 7203
+    },
+    "import_C/gen/tmp_myheader.h": {
+      "sha256": "4c67dd37bdbf367ea72e7c9ef1019d60802c86895a4e87fd0a6c366a4620b04b",
+      "size": 1966
+    },
+    "import_C/gen/tmp_some_types.h": {
+      "sha256": "49b4ec21fbcc0536ac049e3609dc6e6068489c4f57d96496a86aac9f4425a5f1",
+      "size": 370
+    },
+    "import_C/gen/tmp_typedef.h": {
+      "sha256": "1297a13068976a03ad0e1867ede96bfdca026cb52c1ead68895c731ec445c26f",
+      "size": 402
+    },
+    "import_C/gen/tmp_union.h": {
+      "sha256": "2d6260cf214a46e3671ac2eb7705fa55992d4e118d31a253c6a67f4b2d93cb96",
+      "size": 413
+    }
+  }
+}

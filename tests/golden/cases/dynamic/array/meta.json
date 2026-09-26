@@ -1,0 +1,74 @@
+{
+  "id": "dynamic/array",
+  "source": "dynamic/Makefile-array [tecs]",
+  "cwd": "dynamic",
+  "args": [
+    "-I",
+    "../cygwin3",
+    "-g",
+    "gen-array",
+    "dynamic-array.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "dynamic/gen-array/Makefile.depend",
+    "dynamic/gen-array/Makefile.tecsgen",
+    "dynamic/gen-array/Makefile.templ",
+    "dynamic/gen-array/global_tecsgen.h",
+    "dynamic/gen-array/sDataqueue_tecsgen.h",
+    "dynamic/gen-array/sEventflag_tecsgen.h",
+    "dynamic/gen-array/sHello_tecsgen.h",
+    "dynamic/gen-array/sKernel_tecsgen.h",
+    "dynamic/gen-array/sSemaphore_tecsgen.h",
+    "dynamic/gen-array/sTalkerSelector_tecsgen.h",
+    "dynamic/gen-array/sTaskBody_tecsgen.h",
+    "dynamic/gen-array/sTaskExceptionBody_tecsgen.h",
+    "dynamic/gen-array/sTask_tecsgen.h",
+    "dynamic/gen-array/siDataqueue_tecsgen.h",
+    "dynamic/gen-array/siEventflag_tecsgen.h",
+    "dynamic/gen-array/siKernel_tecsgen.h",
+    "dynamic/gen-array/siSemaphore_tecsgen.h",
+    "dynamic/gen-array/tMainArray_factory.h",
+    "dynamic/gen-array/tMainArray_tecsgen.c",
+    "dynamic/gen-array/tMainArray_tecsgen.h",
+    "dynamic/gen-array/tMainArray_templ.c",
+    "dynamic/gen-array/tSerialTaskBody_factory.h",
+    "dynamic/gen-array/tSerialTaskBody_tecsgen.c",
+    "dynamic/gen-array/tSerialTaskBody_tecsgen.h",
+    "dynamic/gen-array/tTalkerSelector_factory.h",
+    "dynamic/gen-array/tTalkerSelector_tecsgen.c",
+    "dynamic/gen-array/tTalkerSelector_tecsgen.h",
+    "dynamic/gen-array/tTalkerSelector_templ.c",
+    "dynamic/gen-array/tTalker_factory.h",
+    "dynamic/gen-array/tTalker_tecsgen.c",
+    "dynamic/gen-array/tTalker_tecsgen.h",
+    "dynamic/gen-array/tTalker_templ.c",
+    "dynamic/gen-array/tTask_factory.h",
+    "dynamic/gen-array/tTask_tecsgen.c",
+    "dynamic/gen-array/tTask_tecsgen.h",
+    "dynamic/gen-array/tecsgen.rbdmp",
+    "dynamic/gen-array/tecsgen.timestamp",
+    "dynamic/gen-array/tmp_C_src.c",
+    "dynamic/gen-array/tmp_cygwin_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "dynamic/gen-array/tecsgen.rbdmp": {
+      "sha256": "ff465dcb6880b699d07dd0d7d5e1395eced0bb5f9f24303edd3875104816316e",
+      "size": 83270
+    },
+    "dynamic/gen-array/tmp_cygwin_tecs.h": {
+      "sha256": "f45de59d87dfa053193b27b53dd1ca8c82c3518d5d86e20fab3386cd725d8133",
+      "size": 15535
+    }
+  }
+}

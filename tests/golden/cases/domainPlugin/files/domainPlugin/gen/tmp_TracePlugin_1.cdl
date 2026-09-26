@@ -1,0 +1,9 @@
+region rSimple{
+  region rSimple0{
+    cell tTracePlugin_sSimple Join_domain_out_through__0 {
+      cCall = ::rSample::rSample1::Join_domain_in_through__0.eThroughEntry;
+      probeName_str = ": ";
+      from_str = "Simple";
+    };
+  };
+};

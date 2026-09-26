@@ -1,0 +1,3 @@
+#ifndef tRPCDedicatedTaskMainWithOpener_FACTORY_H
+#define tRPCDedicatedTaskMainWithOpener_FACTORY_H
+#endif /* tRPCDedicatedTaskMainWithOpener_FACTORY_H */

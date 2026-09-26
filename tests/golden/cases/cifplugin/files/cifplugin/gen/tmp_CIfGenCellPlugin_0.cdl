@@ -1,0 +1,3 @@
+/* apply CIfGenCelltypePlugin to celltype 'tArithmeticOperationSingleton' (celltype of cell 'IAOSingleton') */
+generate( CIfGenCelltypePlugin, ::tArithmeticOperationSingleton, "" ); 
+

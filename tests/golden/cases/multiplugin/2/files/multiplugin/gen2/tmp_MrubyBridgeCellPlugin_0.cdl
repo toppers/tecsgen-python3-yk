@@ -1,0 +1,8 @@
+/* MrubyBridgeCellPlugin: generate for cell=SimpleServer */
+
+/* cell.port=SimpleServer.eEntB */
+generate( MrubyBridgePlugin, ::sSimpleB, "ignoreUnsigned=false, auto_exclude=true, " );
+/* BridgeCell */
+cell nMruby::tsSimpleB SimpleServereEntBBridge {
+    cTECS = ::SimpleServer.eEntB;
+};

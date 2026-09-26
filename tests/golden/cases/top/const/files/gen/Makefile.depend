@@ -1,0 +1,5 @@
+# Celltype: tIO  #_MDEP_#
+$(_TECS_OBJ_DIR)tIO_tecsgen.o : tIO_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tIO_factory.h $(GEN_DIR)/tIO_tecsgen.h
+$(_TECS_OBJ_DIR)tIO_templ.o : tIO_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tIO_factory.h $(GEN_DIR)/tIO_tecsgen.h
+$(_TECS_OBJ_DIR)tIO.o : tIO.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tIO_factory.h $(GEN_DIR)/tIO_tecsgen.h
+

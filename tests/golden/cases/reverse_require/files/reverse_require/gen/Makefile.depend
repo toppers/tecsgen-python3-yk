@@ -1,0 +1,20 @@
+# Celltype: tInitializer  #_MDEP_#
+$(_TECS_OBJ_DIR)tInitializer_tecsgen.o : tInitializer_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sInit_tecsgen.h $(GEN_DIR)/tInitializer_factory.h $(GEN_DIR)/tInitializer_tecsgen.h
+$(_TECS_OBJ_DIR)tInitializer_templ.o : tInitializer_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sInit_tecsgen.h $(GEN_DIR)/tInitializer_factory.h $(GEN_DIR)/tInitializer_tecsgen.h
+$(_TECS_OBJ_DIR)tInitializer.o : tInitializer.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sInit_tecsgen.h $(GEN_DIR)/tInitializer_factory.h $(GEN_DIR)/tInitializer_tecsgen.h
+
+# Celltype: tCelltype  #_MDEP_#
+$(_TECS_OBJ_DIR)tCelltype_tecsgen.o : tCelltype_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sInit_tecsgen.h $(GEN_DIR)/tCelltype_factory.h $(GEN_DIR)/tCelltype_tecsgen.h
+$(_TECS_OBJ_DIR)tCelltype_templ.o : tCelltype_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sInit_tecsgen.h $(GEN_DIR)/tCelltype_factory.h $(GEN_DIR)/tCelltype_tecsgen.h
+$(_TECS_OBJ_DIR)tCelltype.o : tCelltype.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sInit_tecsgen.h $(GEN_DIR)/tCelltype_factory.h $(GEN_DIR)/tCelltype_tecsgen.h
+
+# Celltype: tCelltype2  #_MDEP_#
+$(_TECS_OBJ_DIR)tCelltype2_tecsgen.o : tCelltype2_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sInit_tecsgen.h $(GEN_DIR)/tCelltype2_factory.h $(GEN_DIR)/tCelltype2_tecsgen.h
+$(_TECS_OBJ_DIR)tCelltype2_templ.o : tCelltype2_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sInit_tecsgen.h $(GEN_DIR)/tCelltype2_factory.h $(GEN_DIR)/tCelltype2_tecsgen.h
+$(_TECS_OBJ_DIR)tCelltype2.o : tCelltype2.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sInit_tecsgen.h $(GEN_DIR)/tCelltype2_factory.h $(GEN_DIR)/tCelltype2_tecsgen.h
+
+# Celltype: tCelltype3  #_MDEP_#
+$(_TECS_OBJ_DIR)tCelltype3_tecsgen.o : tCelltype3_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sInit_tecsgen.h $(GEN_DIR)/tCelltype3_factory.h $(GEN_DIR)/tCelltype3_tecsgen.h
+$(_TECS_OBJ_DIR)tCelltype3_templ.o : tCelltype3_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sInit_tecsgen.h $(GEN_DIR)/tCelltype3_factory.h $(GEN_DIR)/tCelltype3_tecsgen.h
+$(_TECS_OBJ_DIR)tCelltype3.o : tCelltype3.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sInit_tecsgen.h $(GEN_DIR)/tCelltype3_factory.h $(GEN_DIR)/tCelltype3_tecsgen.h
+

@@ -1,0 +1,53 @@
+{
+  "id": "foreach",
+  "source": "foreach/Makefile [tecsgen.timestamp]",
+  "cwd": "foreach",
+  "args": [
+    "-I../RUNTIME/tecs-runtime/include",
+    "-I../RUNTIME/tecs-runtime/target",
+    "-I../RUNTIME/tecs-runtime/workaround",
+    "-Igen",
+    "-Isrc",
+    "foreach.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 4,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "foreach/gen/Makefile.depend",
+    "foreach/gen/Makefile.tecsgen",
+    "foreach/gen/Makefile.templ",
+    "foreach/gen/global_tecsgen.h",
+    "foreach/gen/sSig_tecsgen.h",
+    "foreach/gen/tCt1_factory.h",
+    "foreach/gen/tCt1_tecsgen.c",
+    "foreach/gen/tCt1_tecsgen.h",
+    "foreach/gen/tCt1_templ.c",
+    "foreach/gen/tCt2_factory.h",
+    "foreach/gen/tCt2_tecsgen.c",
+    "foreach/gen/tCt2_tecsgen.h",
+    "foreach/gen/tCt2_templ.c",
+    "foreach/gen/tecsgen.rbdmp",
+    "foreach/gen/tecsgen.timestamp",
+    "foreach/gen/tmp_C_src.c",
+    "foreach/gen/tmp_t_stddef.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "foreach/gen/tecsgen.rbdmp": {
+      "sha256": "cef22638379b85ded1e9e2824567d9db9b21e475a6bb5b711f529d49a804646c",
+      "size": 23420
+    },
+    "foreach/gen/tmp_t_stddef.h": {
+      "sha256": "8204d5c0053c34927ef9aae4807880c860f1bc6afa1f58e83e6518debfd23677",
+      "size": 8036
+    }
+  }
+}

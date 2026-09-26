@@ -1,0 +1,31 @@
+{
+  "id": "sample/normal-1",
+  "source": "test-normal.sh",
+  "cwd": "sample/data-normal",
+  "args": [
+    "normal-1.idl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "sample/data-normal/gen/Makefile.tecsgen",
+    "sample/data-normal/gen/Makefile.templ",
+    "sample/data-normal/gen/tecsgen.rbdmp",
+    "sample/data-normal/gen/tecsgen.timestamp"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "sample/data-normal/gen/tecsgen.rbdmp": {
+      "sha256": "6b2e85c95da7cf55efa9af73f3fef4fcdb6d6bf443eac3b5f7fd0b05b3644c19",
+      "size": 2016
+    }
+  }
+}

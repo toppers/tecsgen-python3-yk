@@ -1,0 +1,8 @@
+import( "gen/tMyTracePlugin_sSig.cdl" );
+region rRegionSrc{
+  cell tMyTracePlugin_sSig Join_domain_to_through__0 {
+    cCall = ::rRegionDst::Cell.eEnt;
+    probeName_str = ": ";
+    from_str = "Cell";
+  };
+};

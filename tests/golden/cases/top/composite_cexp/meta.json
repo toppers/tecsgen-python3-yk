@@ -1,0 +1,41 @@
+{
+  "id": "top/composite_cexp",
+  "source": "Makefile [c_exp]",
+  "cwd": ".",
+  "args": [
+    "composite_cexp.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 9,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "gen/Makefile.depend",
+    "gen/Makefile.tecsgen",
+    "gen/Makefile.templ",
+    "gen/global_tecsgen.h",
+    "gen/tCellIn1_factory.h",
+    "gen/tCellIn1_tecsgen.c",
+    "gen/tCellIn1_tecsgen.h",
+    "gen/tCellIn1_templ.c",
+    "gen/tCellIn2_factory.h",
+    "gen/tCellIn2_tecsgen.c",
+    "gen/tCellIn2_tecsgen.h",
+    "gen/tCellIn2_templ.c",
+    "gen/tecsgen.rbdmp",
+    "gen/tecsgen.timestamp"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "gen/tecsgen.rbdmp": {
+      "sha256": "44a948c968d051bc77176996b1b573867f4d931fa464c658e1ffc9d1dc71fb6e",
+      "size": 10151
+    }
+  }
+}

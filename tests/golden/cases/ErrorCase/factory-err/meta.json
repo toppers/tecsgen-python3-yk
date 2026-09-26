@@ -1,0 +1,26 @@
+{
+  "id": "ErrorCase/factory-err",
+  "source": "ErrorCase/Makefile [factory-err]",
+  "cwd": "ErrorCase",
+  "args": [
+    "-L",
+    ".",
+    "factory-err.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 7,
+  "warnings": 0,
+  "expect": [
+    7,
+    0
+  ],
+  "expect_matched": true,
+  "created": [],
+  "modified": [],
+  "deleted": [],
+  "excluded": {}
+}

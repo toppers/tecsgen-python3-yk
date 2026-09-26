@@ -1,0 +1,5 @@
+# Celltype: tCt  #_MDEP_#
+$(_TECS_OBJ_DIR)tCt_tecsgen.o : tCt_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tCt_factory.h $(GEN_DIR)/tCt_tecsgen.h
+$(_TECS_OBJ_DIR)tCt_templ.o : tCt_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tCt_factory.h $(GEN_DIR)/tCt_tecsgen.h
+$(_TECS_OBJ_DIR)tCt.o : tCt.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tCt_factory.h $(GEN_DIR)/tCt_tecsgen.h
+

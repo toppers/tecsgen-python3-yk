@@ -1,0 +1,34 @@
+	TASK Task {
+		AUTOSTART = TRUE {
+			APPMODE = APPMODE1;
+			APPMODE = APPMODE2;
+		};
+		PRIORITY = 4;
+		ACTIVATION = 2;
+		SCHEDULE = FULL;
+		EVENT = Event1;
+		EVENT = Event2;
+		RESOURCE = Resource1;
+		RESOURCE = Resource2;
+		MESSAGE = Message1;
+		MESSAGE = Message2;
+		STACKSIZE = 0x400;
+	};
+
+	TASK Task2 {
+		AUTOSTART = TRUE {
+			APPMODE = APPMODE1;
+			APPMODE = APPMODE2;
+		};
+		PRIORITY = 4;
+		ACTIVATION = 2;
+		SCHEDULE = FULL;
+		EVENT = Event1;
+		EVENT = Event2;
+		RESOURCE = Resource1;
+		RESOURCE = Resource2;
+		MESSAGE = Message1;
+		MESSAGE = Message2;
+		STACKSIZE = 0x400;
+	};
+

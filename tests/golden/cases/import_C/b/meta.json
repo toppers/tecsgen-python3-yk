@@ -1,0 +1,65 @@
+{
+  "id": "import_C/b",
+  "source": "import_C/Makefile [b]",
+  "cwd": "import_C",
+  "args": [
+    "-I",
+    "include",
+    "-Iconfig_win",
+    "-I.",
+    "toppers_jsp.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 9,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "import_C/gen/Makefile.depend",
+    "import_C/gen/Makefile.tecsgen",
+    "import_C/gen/Makefile.templ",
+    "import_C/gen/global_tecsgen.h",
+    "import_C/gen/sCyc_tecsgen.h",
+    "import_C/gen/sDtq_tecsgen.h",
+    "import_C/gen/sFlg_tecsgen.h",
+    "import_C/gen/sMain_tecsgen.h",
+    "import_C/gen/sMbx_tecsgen.h",
+    "import_C/gen/sMpf_tecsgen.h",
+    "import_C/gen/sSem_tecsgen.h",
+    "import_C/gen/sSystem_tecsgen.h",
+    "import_C/gen/sTask_tecsgen.h",
+    "import_C/gen/sTex_tecsgen.h",
+    "import_C/gen/sTim_tecsgen.h",
+    "import_C/gen/sVsns_tecsgen.h",
+    "import_C/gen/sVxsns_tecsgen.h",
+    "import_C/gen/siDtq_tecsgen.h",
+    "import_C/gen/siFlg_tecsgen.h",
+    "import_C/gen/siSystem_tecsgen.h",
+    "import_C/gen/siTask_tecsgen.h",
+    "import_C/gen/tKernel_factory.h",
+    "import_C/gen/tKernel_tecsgen.c",
+    "import_C/gen/tKernel_tecsgen.h",
+    "import_C/gen/tKernel_templ.c",
+    "import_C/gen/tecsgen.cfg",
+    "import_C/gen/tecsgen.rbdmp",
+    "import_C/gen/tecsgen.timestamp",
+    "import_C/gen/tmp_C_src.c",
+    "import_C/gen/tmp_kernel.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "import_C/gen/tecsgen.rbdmp": {
+      "sha256": "1a204935a5030fe9de0cc2672114284c2a2ebb476d85138b7efcf372ff9eae5b",
+      "size": 56681
+    },
+    "import_C/gen/tmp_kernel.h": {
+      "sha256": "2fad12053dbdf950188e7f53509c0f9ff6545eb6b9d6161638100dd6a65de913",
+      "size": 11102
+    }
+  }
+}

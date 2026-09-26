@@ -1,0 +1,6 @@
+gen/tmp_tecs.h:1172:1: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+gen/tmp_tecs.h:1239:3: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+simple.cdl:14:37: warning: W3002 str: this string might cause buffer over run
+simple.cdl:23:2: warning: W1002 tSimpleClient: non-active celltype has no entry port & factory
+simple.cdl:28:20: warning: W1007 ::SimpleClient : non-active cell has no entry join and no factory
+3 warnings

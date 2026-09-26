@@ -1,0 +1,4 @@
+gen_rec_comp/tmp_tecs.h:1168:1: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+gen_rec_comp/tmp_tecs.h:1235:3: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+recursive_composite.cdl:187:17: warning: W1007 ::cell_serv2 : non-active cell has no entry join and no factory
+1 warning

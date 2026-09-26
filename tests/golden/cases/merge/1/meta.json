@@ -1,0 +1,52 @@
+{
+  "id": "merge/1",
+  "source": "merge/Makefile [gen-1]",
+  "cwd": "merge",
+  "args": [
+    "-k",
+    "utf8",
+    "-I",
+    "../cygwin",
+    "-I",
+    "../../tecs",
+    "-g",
+    "gen-1",
+    "merge-1.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 1,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "merge/gen-1/Makefile.depend",
+    "merge/gen-1/Makefile.tecsgen",
+    "merge/gen-1/Makefile.templ",
+    "merge/gen-1/global_tecsgen.h",
+    "merge/gen-1/sSig_tecsgen.h",
+    "merge/gen-1/tCelltype_factory.h",
+    "merge/gen-1/tCelltype_tecsgen.c",
+    "merge/gen-1/tCelltype_tecsgen.h",
+    "merge/gen-1/tCelltype_templ.c",
+    "merge/gen-1/tecsgen.rbdmp",
+    "merge/gen-1/tecsgen.timestamp",
+    "merge/gen-1/tmp_C_src.c",
+    "merge/gen-1/tmp_cygwin_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "merge/gen-1/tecsgen.rbdmp": {
+      "sha256": "c68e0163c54cfc51633012c28d67b6972f644da131ac2d48bee36e1762d98ef1",
+      "size": 29053
+    },
+    "merge/gen-1/tmp_cygwin_tecs.h": {
+      "sha256": "f18d3f8783ba4becaf2c01990ba6cd53be4bbf76c41b446db2ea2b128385ce9b",
+      "size": 14881
+    }
+  }
+}

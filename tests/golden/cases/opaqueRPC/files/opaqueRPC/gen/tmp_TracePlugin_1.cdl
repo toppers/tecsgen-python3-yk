@@ -1,0 +1,7 @@
+region rClient{
+  cell tTracePlugin_sSimple TracePlugin__0 {
+    cCall = ::rClient::Join_to_through___0.eThroughEntry;
+    probeName_str = ": ";
+    from_str = "SimpleClient";
+  };
+};

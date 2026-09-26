@@ -1,0 +1,10 @@
+celltype tTracePlugin_sTask {
+  entry ::sTask eThroughEntry;
+  call  ::sTask cCall;
+  attr{
+    char_t   *probeName_str      = "";
+    char_t   *from_str           = "";
+  };
+  require  tSysLog.eSysLog;
+  require  tKernel.eKernel;
+};

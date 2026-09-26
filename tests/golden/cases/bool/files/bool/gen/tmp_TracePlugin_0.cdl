@@ -1,0 +1,6 @@
+import( "gen/tTracePlugin_sSigBool_T.cdl" );
+cell tTracePlugin_sSigBool_T TracePlugin__0 {
+  cCall = ::Boo.eBooo;
+  probeName_str = ": ";
+  from_str = "boo_client";
+};

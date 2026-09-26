@@ -1,0 +1,5 @@
+# Celltype: tPtrCt  #_MDEP_#
+$(_TECS_OBJ_DIR)tPtrCt_tecsgen.o : tPtrCt_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tPtrCt_factory.h $(GEN_DIR)/tPtrCt_tecsgen.h
+$(_TECS_OBJ_DIR)tPtrCt_templ.o : tPtrCt_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tPtrCt_factory.h $(GEN_DIR)/tPtrCt_tecsgen.h
+$(_TECS_OBJ_DIR)tPtrCt.o : tPtrCt.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tPtrCt_factory.h $(GEN_DIR)/tPtrCt_tecsgen.h
+

@@ -1,0 +1,8 @@
+/* 'SharedRPCPlugin' post code */
+region rRegion{
+  cell tSharedRPCPlugin_tDataqueueOWChannel RPCSharedChannel {
+      cUnmarshalAndCallFunction[] = SharedRPCPlugin__0.eUnmarshalAndCallFunction;
+      cUnmarshalAndCallFunction[] = SharedRPCPlugin__0.eUnmarshalAndCallFunction;
+      priority = 8;
+  };
+};

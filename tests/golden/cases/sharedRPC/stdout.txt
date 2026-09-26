@@ -1,0 +1,5 @@
+rpc_test.cdl:12:46: warning: W3003 p pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+SharedRPCPlugin.new( 'SharedRPCPlugin__0', 'channelCell=RPCSharedChannel,PPAllocatorSize=64,', 'Sample', 'eEnt', tSample )
+SharedRPCPlugin.new( 'SharedRPCPlugin__1', 'channelCell=RPCSharedChannel,PPAllocatorSize=64', 'Sample2', 'eEnt', tSample )
+rpc_test.cdl:8:14: warning: W1007 ::Kernel : non-active cell has no entry join and no factory
+2 warnings

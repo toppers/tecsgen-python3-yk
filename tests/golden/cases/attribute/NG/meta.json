@@ -1,0 +1,89 @@
+{
+  "id": "attribute/NG",
+  "source": "attribute/Makefile.NG [tecsgen.timestamp]",
+  "cwd": "attribute",
+  "args": [
+    "-I",
+    "../RUNTIME/tecs-runtime/include/",
+    "-I",
+    "../RUNTIME/tecs-runtime/workaround/",
+    "-I",
+    "../RUNTIME/tecs-runtime/target/",
+    "-I",
+    "src",
+    "attribute.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 2,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "attribute/gen/Makefile.depend",
+    "attribute/gen/Makefile.tecsgen",
+    "attribute/gen/Makefile.templ",
+    "attribute/gen/global_tecsgen.h",
+    "attribute/gen/sMain_tecsgen.h",
+    "attribute/gen/tAttribute2_factory.h",
+    "attribute/gen/tAttribute2_tecsgen.c",
+    "attribute/gen/tAttribute2_tecsgen.h",
+    "attribute/gen/tAttribute2_templ.c",
+    "attribute/gen/tAttribute3_factory.h",
+    "attribute/gen/tAttribute3_tecsgen.c",
+    "attribute/gen/tAttribute3_tecsgen.h",
+    "attribute/gen/tAttribute3_templ.c",
+    "attribute/gen/tAttribute4_factory.h",
+    "attribute/gen/tAttribute4_tecsgen.c",
+    "attribute/gen/tAttribute4_tecsgen.h",
+    "attribute/gen/tAttribute4_templ.c",
+    "attribute/gen/tAttribute5_factory.h",
+    "attribute/gen/tAttribute5_tecsgen.c",
+    "attribute/gen/tAttribute5_tecsgen.h",
+    "attribute/gen/tAttribute5_templ.c",
+    "attribute/gen/tAttributeSt_factory.h",
+    "attribute/gen/tAttributeSt_tecsgen.c",
+    "attribute/gen/tAttributeSt_tecsgen.h",
+    "attribute/gen/tAttributeSt_templ.c",
+    "attribute/gen/tAttribute_factory.h",
+    "attribute/gen/tAttribute_tecsgen.c",
+    "attribute/gen/tAttribute_tecsgen.h",
+    "attribute/gen/tAttribute_templ.c",
+    "attribute/gen/tCEXP_factory.h",
+    "attribute/gen/tCEXP_tecsgen.c",
+    "attribute/gen/tCEXP_tecsgen.h",
+    "attribute/gen/tCEXP_templ.c",
+    "attribute/gen/tCelltype_factory.h",
+    "attribute/gen/tCelltype_tecsgen.c",
+    "attribute/gen/tCelltype_tecsgen.h",
+    "attribute/gen/tCelltype_templ.c",
+    "attribute/gen/tMain_factory.h",
+    "attribute/gen/tMain_tecsgen.c",
+    "attribute/gen/tMain_tecsgen.h",
+    "attribute/gen/tMain_templ.c",
+    "attribute/gen/tecsgen.rbdmp",
+    "attribute/gen/tecsgen.timestamp",
+    "attribute/gen/tmp_C_src.c",
+    "attribute/gen/tmp_attr.h",
+    "attribute/gen/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "attribute/gen/tecsgen.rbdmp": {
+      "sha256": "402c5cc5286089de287c47c6f38e9d439d89fb658041449d26f1381f3f9de930",
+      "size": 65281
+    },
+    "attribute/gen/tmp_attr.h": {
+      "sha256": "59d7dcbb43f8e528b7f947b432ed01f072c13ef3859a6615971efd8eb0c5af6c",
+      "size": 297
+    },
+    "attribute/gen/tmp_tecs.h": {
+      "sha256": "b81868a53d73edd43338665d5480f5535c4d85fffda8bd366d2666c6f31d3eb4",
+      "size": 50567
+    }
+  }
+}

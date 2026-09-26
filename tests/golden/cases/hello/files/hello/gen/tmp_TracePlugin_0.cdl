@@ -1,0 +1,6 @@
+import( "gen/tTracePlugin_sPrint.cdl" );
+cell tTracePlugin_sPrint TracePlugin__0 {
+  cCall = ::Output.ePrint;
+  probeName_str = ": ";
+  from_str = "Main";
+};

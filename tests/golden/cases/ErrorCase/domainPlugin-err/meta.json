@@ -1,0 +1,37 @@
+{
+  "id": "ErrorCase/domainPlugin-err",
+  "source": "ErrorCase/Makefile [domainPlugin-err]",
+  "cwd": "ErrorCase",
+  "args": [
+    "-L",
+    ".",
+    "-I",
+    "../cygwin",
+    "domainPlugin-err.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 3,
+  "warnings": 0,
+  "expect": [
+    3,
+    0
+  ],
+  "expect_matched": true,
+  "created": [
+    "ErrorCase/gen/tmp_C_src.c",
+    "ErrorCase/gen/tmp_MyDomainPlugin_post_code.cdl",
+    "ErrorCase/gen/tmp_cygwin_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "ErrorCase/gen/tmp_cygwin_tecs.h": {
+      "sha256": "013946d0e301df439d5ed2d9b1c01d986e88315a1cf3936b764c332ee5731245",
+      "size": 14873
+    }
+  }
+}

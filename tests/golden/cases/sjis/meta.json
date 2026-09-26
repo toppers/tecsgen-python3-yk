@@ -1,0 +1,56 @@
+{
+  "id": "sjis",
+  "source": "sjis/Makefile [tecs]",
+  "cwd": "sjis",
+  "args": [
+    "-I",
+    "gen",
+    "-I",
+    "src",
+    "-I",
+    "../RUNTIME/tecs-runtime/target",
+    "-I",
+    "../RUNTIME/tecs-runtime/workaround",
+    "-I",
+    "../RUNTIME/tecs-runtime/include",
+    "sjis.cdl"
+  ],
+  "env": {
+    "LANG": "C",
+    "TECSGEN_FILE_LANG": "ja_JP.SJIS"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "sjis/gen/Makefile.depend",
+    "sjis/gen/Makefile.tecsgen",
+    "sjis/gen/Makefile.templ",
+    "sjis/gen/global_tecsgen.h",
+    "sjis/gen/sSig_tecsgen.h",
+    "sjis/gen/tCelltype_factory.h",
+    "sjis/gen/tCelltype_tecsgen.c",
+    "sjis/gen/tCelltype_tecsgen.h",
+    "sjis/gen/tCelltype_templ.c",
+    "sjis/gen/tecsgen.cfg",
+    "sjis/gen/tecsgen.rbdmp",
+    "sjis/gen/tecsgen.timestamp",
+    "sjis/gen/tmp_C_src.c",
+    "sjis/gen/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "sjis/gen/tecsgen.rbdmp": {
+      "sha256": "363e264a16ca9d9cdab980f01d2da7fd0205c51c161063d844cc14ce030f8a05",
+      "size": 45750
+    },
+    "sjis/gen/tmp_tecs.h": {
+      "sha256": "b81868a53d73edd43338665d5480f5535c4d85fffda8bd366d2666c6f31d3eb4",
+      "size": 50567
+    }
+  }
+}

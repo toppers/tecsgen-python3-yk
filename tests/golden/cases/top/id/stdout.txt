@@ -1,0 +1,68 @@
+id.cdl is found in .
+id.cdl:5:2: warning: W1002 tCt: non-active celltype has no entry port & factory
+id.cdl:14:2: warning: W1002 tCelltype: non-active celltype has no entry port & factory
+id.cdl:7:10: warning: W1007 ::C0 : non-active cell has no entry join and no factory
+id.cdl:8:10: warning: W1007 ::C1 : non-active cell has no entry join and no factory
+id.cdl:17:16: warning: W1007 ::Cell2 : non-active cell has no entry join and no factory
+id.cdl:21:16: warning: W1007 ::Cell3 : non-active cell has no entry join and no factory
+id.cdl:25:16: warning: W1007 ::Cell4 : non-active cell has no entry join and no factory
+id.cdl:29:16: warning: W1007 ::Cell1 : non-active cell has no entry join and no factory
+id.cdl:33:16: warning: W1007 ::Cell5 : non-active cell has no entry join and no factory
+=====================================
+=== Region.path_str: ::
+=====================================
+=== id for the cells of celltype ::tCt ===
+C0: id=1
+C1: id=2
+id.cdl:1:10: info: I9999 celltype 'tCt' has cells in multi-domain.
+celltype=tCt subRegion=:: cells={ C0, C1 }
+=== id for the cells of celltype ::tCelltype ===
+Cell4: id=4  specified id=-2
+Cell1: id=1  specified id=1
+Cell5: id=5  specified id=-1
+Cell2: id=2
+Cell3: id=3
+id.cdl:10:10: info: I9999 celltype 'tCelltype' has cells in multi-domain.
+celltype=tCelltype subRegion=:: cells={ Cell2, Cell3, Cell4, Cell1, Cell5 }
+=== optimizing celltype ::tCt ===
+=== optimizing celltype ::tCelltype ===
+gen/Makefile.templ changed
+renaming 'gen/Makefile.templ.tmp' => 'gen/Makefile.templ'
+gen/Makefile.tecsgen changed
+renaming 'gen/Makefile.tecsgen.tmp' => 'gen/Makefile.tecsgen'
+gen/global_tecsgen.h changed
+renaming 'gen/global_tecsgen.h.tmp' => 'gen/global_tecsgen.h'
+gen/tCt_tecsgen.h changed
+renaming 'gen/tCt_tecsgen.h.tmp' => 'gen/tCt_tecsgen.h'
+gen/tCt_factory.h changed
+renaming 'gen/tCt_factory.h.tmp' => 'gen/tCt_factory.h'
+gen/tCt_tecsgen.c changed
+renaming 'gen/tCt_tecsgen.c.tmp' => 'gen/tCt_tecsgen.c'
+gen/tCt_templ.c changed
+renaming 'gen/tCt_templ.c.tmp' => 'gen/tCt_templ.c'
+gen/Makefile.depend changed
+renaming 'gen/Makefile.depend.tmp' => 'gen/Makefile.depend'
+gen/tCelltype_tecsgen.h changed
+renaming 'gen/tCelltype_tecsgen.h.tmp' => 'gen/tCelltype_tecsgen.h'
+gen/tCelltype_factory.h changed
+renaming 'gen/tCelltype_factory.h.tmp' => 'gen/tCelltype_factory.h'
+gen/tCelltype_tecsgen.c changed
+renaming 'gen/tCelltype_tecsgen.c.tmp' => 'gen/tCelltype_tecsgen.c'
+gen/tCelltype_templ.c changed
+renaming 'gen/tCelltype_templ.c.tmp' => 'gen/tCelltype_templ.c'
+9 warnings
+=== id for the cells of celltype ::tCt ===
+C0: id=1
+C1: id=2
+id.cdl:1:10: info: I9999 celltype 'tCt' has cells in multi-domain.
+celltype=tCt subRegion=:: cells={ C0, C1 }
+=== id for the cells of celltype ::tCelltype ===
+Cell4: id=4  specified id=-2
+Cell1: id=1  specified id=1
+Cell5: id=5  specified id=-1
+Cell2: id=2
+Cell3: id=3
+id.cdl:10:10: info: I9999 celltype 'tCelltype' has cells in multi-domain.
+celltype=tCelltype subRegion=:: cells={ Cell2, Cell3, Cell4, Cell1, Cell5 }
+=== optimizing celltype ::tCt ===
+=== optimizing celltype ::tCelltype ===

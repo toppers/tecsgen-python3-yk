@@ -1,0 +1,9 @@
+factory-err2.cdl:8:10: error: H1005 'gen/tecs.cfg' : write error while writing factory (specify -t to get more info)
+*** Begin Ruby exception message ***
+invalid value for Integer(): "true"
+*** End Ruby exception message ***
+factory-err2.cdl:8:10: error: H1005 'gen/tecs.cfg' : write error while writing factory (specify -t to get more info)
+*** Begin Ruby exception message ***
+too few arguments
+*** End Ruby exception message ***
+2 errors

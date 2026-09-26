@@ -1,0 +1,10 @@
+# Celltype: tCelltype  #_MDEP_#
+$(_TECS_OBJ_DIR)tCelltype_tecsgen.o : tCelltype_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig2_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tCelltype_factory.h $(GEN_DIR)/tCelltype_tecsgen.h
+$(_TECS_OBJ_DIR)tCelltype_templ.o : tCelltype_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig2_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tCelltype_factory.h $(GEN_DIR)/tCelltype_tecsgen.h
+$(_TECS_OBJ_DIR)tCelltype.o : tCelltype.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig2_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tCelltype_factory.h $(GEN_DIR)/tCelltype_tecsgen.h
+
+# Celltype: tCelltype2  #_MDEP_#
+$(_TECS_OBJ_DIR)tCelltype2_tecsgen.o : tCelltype2_tecsgen.c  $(GEN_DIR)/tCelltype_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tCelltype2_factory.h $(GEN_DIR)/tCelltype2_tecsgen.h
+$(_TECS_OBJ_DIR)tCelltype2_templ.o : tCelltype2_templ.c  $(GEN_DIR)/tCelltype_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tCelltype2_factory.h $(GEN_DIR)/tCelltype2_tecsgen.h
+$(_TECS_OBJ_DIR)tCelltype2.o : tCelltype2.c  $(GEN_DIR)/tCelltype_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSig_tecsgen.h $(GEN_DIR)/tCelltype2_factory.h $(GEN_DIR)/tCelltype2_tecsgen.h
+

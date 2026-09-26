@@ -1,0 +1,38 @@
+{
+  "id": "top/c_exp",
+  "source": "Makefile [c_exp]",
+  "cwd": ".",
+  "args": [
+    "c_exp.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "gen/Makefile.depend",
+    "gen/Makefile.tecsgen",
+    "gen/Makefile.templ",
+    "gen/global_tecsgen.h",
+    "gen/tC_exp_factory.h",
+    "gen/tC_exp_tecsgen.c",
+    "gen/tC_exp_tecsgen.h",
+    "gen/tC_exp_templ.c",
+    "gen/tecsgen.cfg",
+    "gen/tecsgen.rbdmp",
+    "gen/tecsgen.timestamp"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "gen/tecsgen.rbdmp": {
+      "sha256": "cbd0f326d5e8a57b0453473ac92f8c7f8e0676165b5265a2e0c3f9ec8328583b",
+      "size": 6636
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "ErrorCase/param-err",
+  "source": "ErrorCase/Makefile [param-err]",
+  "cwd": "ErrorCase",
+  "args": [
+    "-L",
+    ".",
+    "param-err.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 8,
+  "warnings": 0,
+  "expect": [
+    8,
+    0
+  ],
+  "expect_matched": true,
+  "created": [],
+  "modified": [],
+  "deleted": [],
+  "excluded": {}
+}

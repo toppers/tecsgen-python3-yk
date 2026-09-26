@@ -1,0 +1,5 @@
+attribute-err.cdl:15:2: error: E1001 sizeX: not found
+attribute-err.cdl:15:2: warning: W1002 tAttribute: non-active celltype has no entry port & factory
+attribute-err.cdl:34:28: error: E1001 size: not found
+attribute-err.cdl:34:28: error: T1010 size: initializer is not constant
+attribute-err.cdl:38:24: error: T1003 size_is: unsuitable specifier for IntType

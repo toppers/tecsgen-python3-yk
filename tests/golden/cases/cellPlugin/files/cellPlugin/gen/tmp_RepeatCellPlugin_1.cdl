@@ -1,0 +1,16 @@
+/*  4 times repeat of 'CellB0_001' */
+cell tCelltype2 CellB0_002{
+  a = 200;
+  cCall = CellX.eEnt[3];
+};
+
+cell tCelltype2 CellB0_003{
+  a = 200;
+  cCall = CellX.eEnt[4];
+};
+
+cell tCelltype2 CellB0_004{
+  a = 200;
+  cCall = CellX.eEnt[5];
+};
+

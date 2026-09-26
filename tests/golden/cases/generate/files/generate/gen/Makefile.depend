@@ -1,0 +1,20 @@
+# Celltype: tTECSTest  #_MDEP_#
+$(_TECS_OBJ_DIR)tTECSTest_tecsgen.o : tTECSTest_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h $(GEN_DIR)/tTECSTest_factory.h $(GEN_DIR)/tTECSTest_tecsgen.h
+$(_TECS_OBJ_DIR)tTECSTest_templ.o : tTECSTest_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h $(GEN_DIR)/tTECSTest_factory.h $(GEN_DIR)/tTECSTest_tecsgen.h
+$(_TECS_OBJ_DIR)tTECSTest.o : tTECSTest.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h $(GEN_DIR)/tTECSTest_factory.h $(GEN_DIR)/tTECSTest_tecsgen.h
+
+# Celltype: tRTMsTestBridge  #_MDEP_#
+$(_TECS_OBJ_DIR)tRTMsTestBridge_tecsgen.o : tRTMsTestBridge_tecsgen.c  $(GEN_DIR)/tTECSTest_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h $(GEN_DIR)/tRTMsTestBridge_factory.h $(GEN_DIR)/tRTMsTestBridge_tecsgen.h
+$(_TECS_OBJ_DIR)tRTMsTestBridge_templ.o : tRTMsTestBridge_templ.c  $(GEN_DIR)/tTECSTest_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h $(GEN_DIR)/tRTMsTestBridge_factory.h $(GEN_DIR)/tRTMsTestBridge_tecsgen.h
+$(_TECS_OBJ_DIR)tRTMsTestBridge.o : tRTMsTestBridge.c  $(GEN_DIR)/tTECSTest_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h $(GEN_DIR)/tRTMsTestBridge_factory.h $(GEN_DIR)/tRTMsTestBridge_tecsgen.h
+
+# Celltype: tTask  #_MDEP_#
+$(_TECS_OBJ_DIR)tTask_tecsgen.o : tTask_tecsgen.c  $(GEN_DIR)/tTaskBody_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h
+$(_TECS_OBJ_DIR)tTask_templ.o : tTask_templ.c  $(GEN_DIR)/tTaskBody_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h
+$(_TECS_OBJ_DIR)tTask.o : tTask.c  $(GEN_DIR)/tTaskBody_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h
+
+# Celltype: tTaskBody  #_MDEP_#
+$(_TECS_OBJ_DIR)tTaskBody_tecsgen.o : tTaskBody_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tTaskBody_factory.h $(GEN_DIR)/tTaskBody_tecsgen.h
+$(_TECS_OBJ_DIR)tTaskBody_templ.o : tTaskBody_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tTaskBody_factory.h $(GEN_DIR)/tTaskBody_tecsgen.h
+$(_TECS_OBJ_DIR)tTaskBody.o : tTaskBody.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tTaskBody_factory.h $(GEN_DIR)/tTaskBody_tecsgen.h
+

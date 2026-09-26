@@ -1,0 +1,43 @@
+{
+  "id": "ErrorCase/attribute-err-4",
+  "source": "ErrorCase/Makefile [attribute-err-4]",
+  "cwd": "ErrorCase",
+  "args": [
+    "-L",
+    ".",
+    "attribute-err-4.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 1,
+  "expect": [
+    0,
+    1
+  ],
+  "expect_matched": true,
+  "created": [
+    "ErrorCase/gen/Makefile.depend",
+    "ErrorCase/gen/Makefile.tecsgen",
+    "ErrorCase/gen/Makefile.templ",
+    "ErrorCase/gen/global_tecsgen.h",
+    "ErrorCase/gen/sIfetherv4_tecsgen.h",
+    "ErrorCase/gen/tIfetherv4_factory.h",
+    "ErrorCase/gen/tIfetherv4_inline_templ.h",
+    "ErrorCase/gen/tIfetherv4_tecsgen.c",
+    "ErrorCase/gen/tIfetherv4_tecsgen.h",
+    "ErrorCase/gen/tecsgen.rbdmp",
+    "ErrorCase/gen/tecsgen.timestamp"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "ErrorCase/gen/tecsgen.rbdmp": {
+      "sha256": "0e76062bcb10e2bc1ace003430d19a460bc45a3041f8761cccad87f3ab85d27b",
+      "size": 4533
+    }
+  }
+}

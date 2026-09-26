@@ -1,0 +1,57 @@
+attribute-err-1.cdl:4:22: error: T9999 a: non-size_is pointer cannot have array initializer
+attribute-err-1.cdl:8:17: error: T1035 c: unsuitable initializer for pointer
+attribute-err-1.cdl:9:17: error: T1035 d: unsuitable initializer for pointer
+attribute-err-1.cdl:10:17: error: T1035 e: unsuitable initializer for pointer
+attribute-err-1.cdl:11:17: error: T1035 f: unsuitable initializer for pointer
+attribute-err-1.cdl:12:17: error: E1009 cannot evaluate '&' operator
+attribute-err-1.cdl:12:17: error: T1035 g: unsuitable initializer for pointer
+attribute-err-1.cdl:13:17: error: T1035 h: unsuitable initializer for pointer
+attribute-err-1.cdl:14:19: error: T1035 i: unsuitable initializer for pointer
+attribute-err-1.cdl:15:19: error: T1035 j: unsuitable initializer for pointer
+attribute-err-1.cdl:16:19: error: T1035 k: unsuitable initializer for pointer
+attribute-err-1.cdl:17:19: error: T1035 l: unsuitable initializer for pointer
+attribute-err-1.cdl:18:19: error: T1035 m: unsuitable initializer for pointer
+attribute-err-1.cdl:19:19: error: T1035 n: unsuitable initializer for pointer
+attribute-err-1.cdl:20:20: error: T1035 o: unsuitable initializer for pointer
+attribute-err-1.cdl:21:19: error: T1035 p: unsuitable initializer for pointer
+attribute-err-1.cdl:22:20: error: T1035 q: unsuitable initializer for pointer
+attribute-err-1.cdl:23:19: error: T1035 r: unsuitable initializer for pointer
+attribute-err-1.cdl:24:19: error: T1035 s: unsuitable initializer for pointer
+attribute-err-1.cdl:25:20: error: T1035 t: unsuitable initializer for pointer
+attribute-err-1.cdl:26:20: error: T1035 u: unsuitable initializer for pointer
+attribute-err-1.cdl:27:20: error: T1035 v: unsuitable initializer for pointer
+attribute-err-1.cdl:28:20: error: T1035 w: unsuitable initializer for pointer
+attribute-err-1.cdl:29:20: error: T1035 x: unsuitable initializer for pointer
+attribute-err-1.cdl:30:20: error: T1035 y: unsuitable initializer for pointer
+attribute-err-1.cdl:32:2: error: S1159 a: non-size_is pointer cannot be initialized with array initializer
+attribute-err-1.cdl:32:2: error: S1159 b: non-size_is pointer cannot be initialized with array initializer
+attribute-err-1.cdl:32:2: error: E1009 cannot evaluate '&' operator
+attribute-err-1.cdl:37:22: error: T9999 a: non-size_is pointer cannot have array initializer
+attribute-err-1.cdl:41:17: error: T1035 c: unsuitable initializer for pointer
+attribute-err-1.cdl:42:17: error: T1035 d: unsuitable initializer for pointer
+attribute-err-1.cdl:43:17: error: T1035 e: unsuitable initializer for pointer
+attribute-err-1.cdl:44:17: error: T1035 f: unsuitable initializer for pointer
+attribute-err-1.cdl:45:17: error: E1009 cannot evaluate '&' operator
+attribute-err-1.cdl:45:17: error: T1035 g: unsuitable initializer for pointer
+attribute-err-1.cdl:46:17: error: T1035 h: unsuitable initializer for pointer
+attribute-err-1.cdl:47:19: error: T1035 i: unsuitable initializer for pointer
+attribute-err-1.cdl:48:19: error: T1035 j: unsuitable initializer for pointer
+attribute-err-1.cdl:49:19: error: T1035 k: unsuitable initializer for pointer
+attribute-err-1.cdl:50:19: error: T1035 l: unsuitable initializer for pointer
+attribute-err-1.cdl:51:19: error: T1035 m: unsuitable initializer for pointer
+attribute-err-1.cdl:52:19: error: T1035 n: unsuitable initializer for pointer
+attribute-err-1.cdl:53:20: error: T1035 o: unsuitable initializer for pointer
+attribute-err-1.cdl:54:19: error: T1035 p: unsuitable initializer for pointer
+attribute-err-1.cdl:55:20: error: T1035 q: unsuitable initializer for pointer
+attribute-err-1.cdl:56:19: error: T1035 r: unsuitable initializer for pointer
+attribute-err-1.cdl:57:19: error: T1035 s: unsuitable initializer for pointer
+attribute-err-1.cdl:58:20: error: T1035 t: unsuitable initializer for pointer
+attribute-err-1.cdl:59:20: error: T1035 u: unsuitable initializer for pointer
+attribute-err-1.cdl:60:20: error: T1035 v: unsuitable initializer for pointer
+attribute-err-1.cdl:61:20: error: T1035 w: unsuitable initializer for pointer
+attribute-err-1.cdl:62:20: error: T1035 x: unsuitable initializer for pointer
+attribute-err-1.cdl:63:20: error: T1035 y: unsuitable initializer for pointer
+attribute-err-1.cdl:65:2: error: S1159 a: non-size_is pointer cannot be initialized with array initializer
+attribute-err-1.cdl:65:2: error: S1159 b: non-size_is pointer cannot be initialized with array initializer
+attribute-err-1.cdl:65:2: error: E1009 cannot evaluate '&' operator
+56 errors

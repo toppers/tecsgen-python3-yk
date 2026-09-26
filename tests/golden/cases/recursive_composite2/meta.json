@@ -1,0 +1,72 @@
+{
+  "id": "recursive_composite2",
+  "source": "recursive_composite2/Makefile [tecs]",
+  "cwd": "recursive_composite2",
+  "args": [
+    "-I../RUNTIME/runtime/test",
+    "-I../RUNTIME/runtime/include",
+    "--gen=gen_rec_comp",
+    "recursive_composite.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "recursive_composite2/gen_rec_comp/Makefile.depend",
+    "recursive_composite2/gen_rec_comp/Makefile.tecsgen",
+    "recursive_composite2/gen_rec_comp/Makefile.templ",
+    "recursive_composite2/gen_rec_comp/global_tecsgen.h",
+    "recursive_composite2/gen_rec_comp/sSig1_tecsgen.h",
+    "recursive_composite2/gen_rec_comp/sSig2_tecsgen.h",
+    "recursive_composite2/gen_rec_comp/sSig3_tecsgen.h",
+    "recursive_composite2/gen_rec_comp/sSig4_tecsgen.h",
+    "recursive_composite2/gen_rec_comp/sSig5_tecsgen.h",
+    "recursive_composite2/gen_rec_comp/sSigB_tecsgen.h",
+    "recursive_composite2/gen_rec_comp/tCell1_factory.h",
+    "recursive_composite2/gen_rec_comp/tCell1_tecsgen.c",
+    "recursive_composite2/gen_rec_comp/tCell1_tecsgen.h",
+    "recursive_composite2/gen_rec_comp/tCell1_templ.c",
+    "recursive_composite2/gen_rec_comp/tCell2_factory.h",
+    "recursive_composite2/gen_rec_comp/tCell2_tecsgen.c",
+    "recursive_composite2/gen_rec_comp/tCell2_tecsgen.h",
+    "recursive_composite2/gen_rec_comp/tCell2_templ.c",
+    "recursive_composite2/gen_rec_comp/tCell3_factory.h",
+    "recursive_composite2/gen_rec_comp/tCell3_tecsgen.c",
+    "recursive_composite2/gen_rec_comp/tCell3_tecsgen.h",
+    "recursive_composite2/gen_rec_comp/tCell3_templ.c",
+    "recursive_composite2/gen_rec_comp/tCell4_factory.h",
+    "recursive_composite2/gen_rec_comp/tCell4_tecsgen.c",
+    "recursive_composite2/gen_rec_comp/tCell4_tecsgen.h",
+    "recursive_composite2/gen_rec_comp/tCell4_templ.c",
+    "recursive_composite2/gen_rec_comp/tCell_clnt_factory.h",
+    "recursive_composite2/gen_rec_comp/tCell_clnt_tecsgen.c",
+    "recursive_composite2/gen_rec_comp/tCell_clnt_tecsgen.h",
+    "recursive_composite2/gen_rec_comp/tCell_clnt_templ.c",
+    "recursive_composite2/gen_rec_comp/tCell_serv_factory.h",
+    "recursive_composite2/gen_rec_comp/tCell_serv_tecsgen.c",
+    "recursive_composite2/gen_rec_comp/tCell_serv_tecsgen.h",
+    "recursive_composite2/gen_rec_comp/tCell_serv_templ.c",
+    "recursive_composite2/gen_rec_comp/tecsgen.rbdmp",
+    "recursive_composite2/gen_rec_comp/tecsgen.timestamp",
+    "recursive_composite2/gen_rec_comp/tmp_C_src.c",
+    "recursive_composite2/gen_rec_comp/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "recursive_composite2/gen_rec_comp/tecsgen.rbdmp": {
+      "sha256": "8e9490c318543e2665481630d9d373ddde941b2f4c88531f52ba72e09723a912",
+      "size": 70526
+    },
+    "recursive_composite2/gen_rec_comp/tmp_tecs.h": {
+      "sha256": "894ddb718606f30b4bf98ef5d4fbebe9d485240ea4cfb5560983ab99fd159999",
+      "size": 49439
+    }
+  }
+}

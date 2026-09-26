@@ -1,0 +1,2 @@
+attribute-err-4.cdl:21:17: warning: W1007 ::Ifetherv4 : non-active cell has no entry join and no factory
+1 warning

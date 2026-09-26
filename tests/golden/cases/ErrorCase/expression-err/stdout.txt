@@ -1,0 +1,20 @@
+expression-err.cdl:2:36: error: V1001 <<: unable for FloatVal
+expression-err.cdl:2:36: error: T1019 f_val2: initializer is not constant
+expression-err.cdl:3:36: error: V1021 convert floating value to integer without cast
+expression-err.cdl:4:33: error: T1037 f_val4: not number
+expression-err.cdl:5:40: error: V1024 string cannot cast to pointer
+expression-err.cdl:5:40: error: T1035 p: unsuitable initializer for pointer
+expression-err.cdl:6:39: error: V1001 <<: unable for PointerVal
+expression-err.cdl:6:39: error: T1035 p: unsuitable initializer for pointer
+expression-err.cdl:6:39: error: S2001 'p' duplicate symbol in namespace '::'
+previous: expression-err.cdl: line 5 'p' defined here
+expression-err.cdl:7:39: error: S1094 p: pointer is not constant. check 'const'
+expression-err.cdl:8:49: warning: W2003 9999999999.999: too large to cast to int16_t, clipped(32767)
+expression-err.cdl:9:50: warning: W2004 -9999999999.999: too small to cast to int16_t, clipped(-32768)
+expression-err.cdl:10:51: warning: W2005 -9999999999.999: negative value for unsigned: convert to 0
+expression-err.cdl:11:47: warning: W2005 -9999999999: negative value for unsigned: convert to 7169
+expression-err.cdl:12:47: warning: W2005 -4279383126: negative value for unsigned: convert to 52138
+expression-err.cdl:13:31: error: T1012 i_val6: "abc": not integer
+expression-err.cdl:15:38: error: T1034 p_str1: unsuitable string constant
+expression-err.cdl:16:38: error: T1034 p_str2: unsuitable string constant
+13 errors  5 warnings

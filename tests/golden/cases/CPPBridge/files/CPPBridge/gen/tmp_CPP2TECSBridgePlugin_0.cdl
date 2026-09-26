@@ -1,0 +1,7 @@
+namespace nCPP {
+  /// C++ => TECS bridge celltype ///
+  [idx_is_id]
+  celltype tsSig {
+    call sSig cTECS;
+  };
+};

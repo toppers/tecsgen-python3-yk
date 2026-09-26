@@ -1,0 +1,17 @@
+// GenOpaqueMarshler0001
+celltype tOpaqueMarshaler_sSig {
+  entry ::sSig eClientEntry;
+  call sTDR       cTDR;
+  [optional]
+    call sSemaphore cLockChannel;
+  [optional]
+    call sRPCErrorHandler cErrorHandler;
+};
+celltype tOpaqueUnmarshaler_sSig {
+  call ::sSig cServerCall;
+  call  sTDR       cTDR;
+  [optional]
+    call sRPCErrorHandler cErrorHandler;
+  entry sUnmarshalerMain  eService;
+  call sPPAllocator cPPAllocator;
+};

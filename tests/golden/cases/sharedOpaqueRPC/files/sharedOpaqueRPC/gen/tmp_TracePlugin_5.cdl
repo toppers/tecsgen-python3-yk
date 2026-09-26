@@ -1,0 +1,10 @@
+import( "gen/tTracePlugin_sSysLog.cdl" );
+region rClient{
+  region rCPon{
+    cell tTracePlugin_sSysLog Join_out_through__4 {
+      cCall = ::rClient::ClientSysLog.eSysLog;
+      probeName_str = ": ";
+      from_str = "SimpleClient";
+    };
+  };
+};

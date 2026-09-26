@@ -1,0 +1,52 @@
+{
+  "id": "series",
+  "source": "series/Makefile [tecs]",
+  "cwd": "series",
+  "args": [
+    "-I",
+    "../../tecs",
+    "-I",
+    "../cygwin",
+    "series.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "series/gen/Makefile.depend",
+    "series/gen/Makefile.tecsgen",
+    "series/gen/Makefile.templ",
+    "series/gen/global_tecsgen.h",
+    "series/gen/sLinkedResource_tecsgen.h",
+    "series/gen/tMain_factory.h",
+    "series/gen/tMain_tecsgen.c",
+    "series/gen/tMain_tecsgen.h",
+    "series/gen/tMain_templ.c",
+    "series/gen/tOSEKResource_factory.h",
+    "series/gen/tOSEKResource_tecsgen.c",
+    "series/gen/tOSEKResource_tecsgen.h",
+    "series/gen/tOSEKResource_templ.c",
+    "series/gen/tecsgen.rbdmp",
+    "series/gen/tecsgen.timestamp",
+    "series/gen/tmp_C_src.c",
+    "series/gen/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "series/gen/tecsgen.rbdmp": {
+      "sha256": "0f40847352f41e68551252066cbec6404764aa832e3ea7b97c8c6f9acb97f347",
+      "size": 24735
+    },
+    "series/gen/tmp_tecs.h": {
+      "sha256": "29d2c44ee3aeaf69d3dcd14a0a13d72a4a1cc48f2903b63ba134f2abd3992d0e",
+      "size": 8592
+    }
+  }
+}

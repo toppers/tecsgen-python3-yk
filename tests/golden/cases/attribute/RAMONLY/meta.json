@@ -1,0 +1,92 @@
+{
+  "id": "attribute/RAMONLY",
+  "source": "attribute/Makefile.RAMONLY [tecs]",
+  "cwd": "attribute",
+  "args": [
+    "-r",
+    "-g",
+    "./gen.RAMONLY",
+    "-I",
+    "../RUNTIME/tecs-runtime/include/",
+    "-I",
+    "../RUNTIME/tecs-runtime/workaround/",
+    "-I",
+    "../RUNTIME/tecs-runtime/target/",
+    "-I",
+    "src",
+    "attribute.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 2,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "attribute/gen.RAMONLY/Makefile.depend",
+    "attribute/gen.RAMONLY/Makefile.tecsgen",
+    "attribute/gen.RAMONLY/Makefile.templ",
+    "attribute/gen.RAMONLY/global_tecsgen.h",
+    "attribute/gen.RAMONLY/sMain_tecsgen.h",
+    "attribute/gen.RAMONLY/tAttribute2_factory.h",
+    "attribute/gen.RAMONLY/tAttribute2_tecsgen.c",
+    "attribute/gen.RAMONLY/tAttribute2_tecsgen.h",
+    "attribute/gen.RAMONLY/tAttribute2_templ.c",
+    "attribute/gen.RAMONLY/tAttribute3_factory.h",
+    "attribute/gen.RAMONLY/tAttribute3_tecsgen.c",
+    "attribute/gen.RAMONLY/tAttribute3_tecsgen.h",
+    "attribute/gen.RAMONLY/tAttribute3_templ.c",
+    "attribute/gen.RAMONLY/tAttribute4_factory.h",
+    "attribute/gen.RAMONLY/tAttribute4_tecsgen.c",
+    "attribute/gen.RAMONLY/tAttribute4_tecsgen.h",
+    "attribute/gen.RAMONLY/tAttribute4_templ.c",
+    "attribute/gen.RAMONLY/tAttribute5_factory.h",
+    "attribute/gen.RAMONLY/tAttribute5_tecsgen.c",
+    "attribute/gen.RAMONLY/tAttribute5_tecsgen.h",
+    "attribute/gen.RAMONLY/tAttribute5_templ.c",
+    "attribute/gen.RAMONLY/tAttributeSt_factory.h",
+    "attribute/gen.RAMONLY/tAttributeSt_tecsgen.c",
+    "attribute/gen.RAMONLY/tAttributeSt_tecsgen.h",
+    "attribute/gen.RAMONLY/tAttributeSt_templ.c",
+    "attribute/gen.RAMONLY/tAttribute_factory.h",
+    "attribute/gen.RAMONLY/tAttribute_tecsgen.c",
+    "attribute/gen.RAMONLY/tAttribute_tecsgen.h",
+    "attribute/gen.RAMONLY/tAttribute_templ.c",
+    "attribute/gen.RAMONLY/tCEXP_factory.h",
+    "attribute/gen.RAMONLY/tCEXP_tecsgen.c",
+    "attribute/gen.RAMONLY/tCEXP_tecsgen.h",
+    "attribute/gen.RAMONLY/tCEXP_templ.c",
+    "attribute/gen.RAMONLY/tCelltype_factory.h",
+    "attribute/gen.RAMONLY/tCelltype_tecsgen.c",
+    "attribute/gen.RAMONLY/tCelltype_tecsgen.h",
+    "attribute/gen.RAMONLY/tCelltype_templ.c",
+    "attribute/gen.RAMONLY/tMain_factory.h",
+    "attribute/gen.RAMONLY/tMain_tecsgen.c",
+    "attribute/gen.RAMONLY/tMain_tecsgen.h",
+    "attribute/gen.RAMONLY/tMain_templ.c",
+    "attribute/gen.RAMONLY/tecsgen.rbdmp",
+    "attribute/gen.RAMONLY/tecsgen.timestamp",
+    "attribute/gen.RAMONLY/tmp_C_src.c",
+    "attribute/gen.RAMONLY/tmp_attr.h",
+    "attribute/gen.RAMONLY/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "attribute/gen.RAMONLY/tecsgen.rbdmp": {
+      "sha256": "0f06c98194b4019701c471156f671bd373477961b298b218076152a725efcb1c",
+      "size": 65291
+    },
+    "attribute/gen.RAMONLY/tmp_attr.h": {
+      "sha256": "89b2448d174faf3911654aeaa16b9e4cb72c421ad3bafcf4a9d5680b61014dba",
+      "size": 337
+    },
+    "attribute/gen.RAMONLY/tmp_tecs.h": {
+      "sha256": "078d530ae72aee3e5e39bf3627929b28e2f9b2991f9f1d540ddff88c3f612292",
+      "size": 50607
+    }
+  }
+}

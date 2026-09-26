@@ -1,0 +1,5 @@
+/// Ruby ⇒ TECS ブリッジセルタイプ ///
+[idx_is_id]
+celltype tSWIGsTestBridge {
+    call sTest cTECS;
+};

@@ -1,0 +1,75 @@
+{
+  "id": "reverse_join",
+  "source": "reverse_join/Makefile [tecs]",
+  "cwd": "reverse_join",
+  "args": [
+    "-I",
+    "../cygwin3",
+    "reverse_join.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "reverse_join/gen/Makefile.depend",
+    "reverse_join/gen/Makefile.tecsgen",
+    "reverse_join/gen/Makefile.templ",
+    "reverse_join/gen/global_tecsgen.h",
+    "reverse_join/gen/sCallback_tecsgen.h",
+    "reverse_join/gen/sDataqueue_tecsgen.h",
+    "reverse_join/gen/sEventflag_tecsgen.h",
+    "reverse_join/gen/sKernel_tecsgen.h",
+    "reverse_join/gen/sSemaphore_tecsgen.h",
+    "reverse_join/gen/sSig_tecsgen.h",
+    "reverse_join/gen/sTaskBody_tecsgen.h",
+    "reverse_join/gen/sTaskExceptionBody_tecsgen.h",
+    "reverse_join/gen/sTask_tecsgen.h",
+    "reverse_join/gen/siDataqueue_tecsgen.h",
+    "reverse_join/gen/siEventflag_tecsgen.h",
+    "reverse_join/gen/siKernel_tecsgen.h",
+    "reverse_join/gen/siSemaphore_tecsgen.h",
+    "reverse_join/gen/tCBMain_factory.h",
+    "reverse_join/gen/tCBMain_tecsgen.c",
+    "reverse_join/gen/tCBMain_tecsgen.h",
+    "reverse_join/gen/tCBMain_templ.c",
+    "reverse_join/gen/tCBTarget_factory.h",
+    "reverse_join/gen/tCBTarget_tecsgen.c",
+    "reverse_join/gen/tCBTarget_tecsgen.h",
+    "reverse_join/gen/tCBTarget_templ.c",
+    "reverse_join/gen/tMain_factory.h",
+    "reverse_join/gen/tMain_tecsgen.c",
+    "reverse_join/gen/tMain_tecsgen.h",
+    "reverse_join/gen/tMain_templ.c",
+    "reverse_join/gen/tTask_factory.h",
+    "reverse_join/gen/tTask_inline_templ.h",
+    "reverse_join/gen/tTask_tecsgen.c",
+    "reverse_join/gen/tTask_tecsgen.h",
+    "reverse_join/gen/tecsgen.rbdmp",
+    "reverse_join/gen/tecsgen.timestamp",
+    "reverse_join/gen/tmp_C_src.c",
+    "reverse_join/gen/tmp_cygwin_tecs.h",
+    "reverse_join/gen/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "reverse_join/gen/tecsgen.rbdmp": {
+      "sha256": "c388bd8707a57f6a9c40eab624070003551681c787d1ebcc7fd390617044e639",
+      "size": 74966
+    },
+    "reverse_join/gen/tmp_cygwin_tecs.h": {
+      "sha256": "4e3b975cdc2f9adc9500c8f3ffdf8a0c267ffada81e2337742aad65d3fb277fb",
+      "size": 15511
+    },
+    "reverse_join/gen/tmp_tecs.h": {
+      "sha256": "a4dee51c059a1bd61afd8c08411167c0619a9871b4701a31eea010ccc350d724",
+      "size": 9216
+    }
+  }
+}

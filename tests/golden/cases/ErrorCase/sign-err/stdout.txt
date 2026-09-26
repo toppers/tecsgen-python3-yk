@@ -1,0 +1,7 @@
+sign-err.cdl:4:12: warning: W2002 unsinged int8_t: obsolete. use uint8_t
+sign-err.cdl:5:12: warning: W2001 signed int8_t: obsolete. use int8_t
+sign-err.cdl:7:2: warning: W1002 tSign: non-active celltype has no entry port & factory
+sign-err.cdl:10:10: error: T1015 u8: negative value for unsigned
+sign-err.cdl:11:11: error: T1015 ui8: negative value for unsigned
+sign-err.cdl:9:12: warning: W1007 ::Sing : non-active cell has no entry join and no factory
+2 errors  4 warnings

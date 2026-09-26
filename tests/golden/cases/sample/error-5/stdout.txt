@@ -1,0 +1,2 @@
+error-5.idl:3:8: error: G1016 syntax error near 'int32'
+1 error

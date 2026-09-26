@@ -1,0 +1,26 @@
+{
+  "id": "ErrorCase/const-err",
+  "source": "ErrorCase/Makefile [const-err]",
+  "cwd": "ErrorCase",
+  "args": [
+    "-L",
+    ".",
+    "const-err.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 9,
+  "warnings": 1,
+  "expect": [
+    9,
+    1
+  ],
+  "expect_matched": true,
+  "created": [],
+  "modified": [],
+  "deleted": [],
+  "excluded": {}
+}

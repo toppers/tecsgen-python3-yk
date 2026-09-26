@@ -1,0 +1,4 @@
+composite_namespace.cdl:7:16: error: G1016 syntax error near 'int32'
+composite_namespace.cdl:11:18: error: S1075 'sSig' signature not found
+composite_namespace.cdl:13:1: error: G1016 syntax error near '}'
+3 errors

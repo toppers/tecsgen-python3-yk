@@ -1,0 +1,78 @@
+{
+  "id": "dynamic/singleton",
+  "source": "dynamic/Makefile-singleton [tecs]",
+  "cwd": "dynamic",
+  "args": [
+    "-g",
+    "./gen-single",
+    "-I",
+    "../cygwin3",
+    "dynamic-singleton.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "dynamic/gen-single/Makefile.depend",
+    "dynamic/gen-single/Makefile.tecsgen",
+    "dynamic/gen-single/Makefile.templ",
+    "dynamic/gen-single/global_tecsgen.h",
+    "dynamic/gen-single/sDataqueue_tecsgen.h",
+    "dynamic/gen-single/sEventflag_tecsgen.h",
+    "dynamic/gen-single/sHello_tecsgen.h",
+    "dynamic/gen-single/sKernel_tecsgen.h",
+    "dynamic/gen-single/sSemaphore_tecsgen.h",
+    "dynamic/gen-single/sTalkerSelector_tecsgen.h",
+    "dynamic/gen-single/sTaskBody_tecsgen.h",
+    "dynamic/gen-single/sTaskExceptionBody_tecsgen.h",
+    "dynamic/gen-single/sTask_tecsgen.h",
+    "dynamic/gen-single/siDataqueue_tecsgen.h",
+    "dynamic/gen-single/siEventflag_tecsgen.h",
+    "dynamic/gen-single/siKernel_tecsgen.h",
+    "dynamic/gen-single/siSemaphore_tecsgen.h",
+    "dynamic/gen-single/tMainSingletonForComp_factory.h",
+    "dynamic/gen-single/tMainSingletonForComp_tecsgen.c",
+    "dynamic/gen-single/tMainSingletonForComp_tecsgen.h",
+    "dynamic/gen-single/tMainSingletonForComp_templ.c",
+    "dynamic/gen-single/tMainSingleton_factory.h",
+    "dynamic/gen-single/tMainSingleton_tecsgen.c",
+    "dynamic/gen-single/tMainSingleton_tecsgen.h",
+    "dynamic/gen-single/tMainSingleton_templ.c",
+    "dynamic/gen-single/tSerialTaskBody_factory.h",
+    "dynamic/gen-single/tSerialTaskBody_tecsgen.c",
+    "dynamic/gen-single/tSerialTaskBody_tecsgen.h",
+    "dynamic/gen-single/tTalkerSelector_factory.h",
+    "dynamic/gen-single/tTalkerSelector_tecsgen.c",
+    "dynamic/gen-single/tTalkerSelector_tecsgen.h",
+    "dynamic/gen-single/tTalkerSelector_templ.c",
+    "dynamic/gen-single/tTalker_factory.h",
+    "dynamic/gen-single/tTalker_tecsgen.c",
+    "dynamic/gen-single/tTalker_tecsgen.h",
+    "dynamic/gen-single/tTalker_templ.c",
+    "dynamic/gen-single/tTask_factory.h",
+    "dynamic/gen-single/tTask_tecsgen.c",
+    "dynamic/gen-single/tTask_tecsgen.h",
+    "dynamic/gen-single/tecsgen.rbdmp",
+    "dynamic/gen-single/tecsgen.timestamp",
+    "dynamic/gen-single/tmp_C_src.c",
+    "dynamic/gen-single/tmp_cygwin_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "dynamic/gen-single/tecsgen.rbdmp": {
+      "sha256": "73bf15a19e648a7eb87a815dc3eb49f19427526ed69b342b8919cc82a8bd3b36",
+      "size": 83539
+    },
+    "dynamic/gen-single/tmp_cygwin_tecs.h": {
+      "sha256": "b6b175c74d8dcb9d60c4f0dc2e2bfca17ec8a34e4b0025fbc53b5b355fe7b36c",
+      "size": 15547
+    }
+  }
+}

@@ -1,0 +1,34 @@
+celltype tTracePlugin_sSimple {
+  [ allocator(
+	func21.a<=cCall.func21.a,
+	func22.sta<=cCall.func22.sta,
+	func23.str<=cCall.func23.str,
+	func24.msg<=cCall.func24.msg,
+	func25.msg<=cCall.func25.msg,
+	func26.sta<=cCall.func26.sta,
+	func27.array2<=cCall.func27.array2,
+	func31.a<=cCall.func31.a,
+	func32.sta<=cCall.func32.sta,
+	func33.str<=cCall.func33.str,
+	func34.msg<=cCall.func34.msg,
+	func35.msg<=cCall.func35.msg,
+	func36.sta<=cCall.func36.sta,
+	func37.sta<=cCall.func37.sta,
+	func38.array2<=cCall.func38.array2,
+	func39.arraySt<=cCall.func39.arraySt,
+	func63.sp<=cCall.func63.sp,
+	func64.rp<=cCall.func64.rp,
+	func70.sta<=cCall.func70.sta,
+	func71.str<=cCall.func71.str,
+	func72.sta<=cCall.func72.sta,
+	func73.str<=cCall.func73.str
+  )]
+  entry ::sSimple eThroughEntry;
+  call  ::sSimple cCall;
+  attr{
+    char_t   *probeName_str      = "";
+    char_t   *from_str           = "";
+  };
+  require  tSysLog.eSysLog;
+  require  tKernel.eKernel;
+};

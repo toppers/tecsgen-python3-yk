@@ -1,0 +1,8 @@
+import( "gen/tTracePlugin_sSample.cdl" );
+region rTransparent{
+  cell tTracePlugin_sSample TracePlugin__0 {
+    cCall = ::rTransparent::Sample.eEnt;
+    probeName_str = ": ";
+    from_str = "Simple";
+  };
+};

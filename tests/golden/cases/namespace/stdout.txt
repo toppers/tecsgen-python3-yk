@@ -1,0 +1,9 @@
+namespace.cdl:15:49: warning: W3003 buf pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+namespace.cdl:69:3: warning: W1002 tAppl: non-active celltype has no entry port & factory
+namespace.cdl:107:2: warning: W1002 tAppl: non-active celltype has no entry port & factory
+namespace.cdl:158:2: warning: W1002 tOSEKAppl: non-active celltype has no entry port & factory
+namespace.cdl:73:21: warning: W1007 ::Appl2 : non-active cell has no entry join and no factory
+namespace.cdl:109:12: warning: W1007 ::appl1 : non-active cell has no entry join and no factory
+namespace.cdl:115:12: warning: W1007 ::appl2 : non-active cell has no entry join and no factory
+namespace.cdl:160:16: warning: W1007 ::appl3 : non-active cell has no entry join and no factory
+8 warnings

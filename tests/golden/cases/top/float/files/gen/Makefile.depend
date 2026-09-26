@@ -1,0 +1,10 @@
+# Celltype: tFloat  #_MDEP_#
+$(_TECS_OBJ_DIR)tFloat_tecsgen.o : tFloat_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sFloat_tecsgen.h $(GEN_DIR)/tFloat_factory.h $(GEN_DIR)/tFloat_tecsgen.h
+$(_TECS_OBJ_DIR)tFloat_templ.o : tFloat_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sFloat_tecsgen.h $(GEN_DIR)/tFloat_factory.h $(GEN_DIR)/tFloat_tecsgen.h
+$(_TECS_OBJ_DIR)tFloat.o : tFloat.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sFloat_tecsgen.h $(GEN_DIR)/tFloat_factory.h $(GEN_DIR)/tFloat_tecsgen.h
+
+# Celltype: tFloat2  #_MDEP_#
+$(_TECS_OBJ_DIR)tFloat2_tecsgen.o : tFloat2_tecsgen.c  $(GEN_DIR)/tFloat_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sFloat_tecsgen.h $(GEN_DIR)/tFloat2_factory.h $(GEN_DIR)/tFloat2_tecsgen.h
+$(_TECS_OBJ_DIR)tFloat2_templ.o : tFloat2_templ.c  $(GEN_DIR)/tFloat_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sFloat_tecsgen.h $(GEN_DIR)/tFloat2_factory.h $(GEN_DIR)/tFloat2_tecsgen.h
+$(_TECS_OBJ_DIR)tFloat2.o : tFloat2.c  $(GEN_DIR)/tFloat_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sFloat_tecsgen.h $(GEN_DIR)/tFloat2_factory.h $(GEN_DIR)/tFloat2_tecsgen.h
+

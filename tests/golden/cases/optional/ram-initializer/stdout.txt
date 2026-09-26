@@ -1,0 +1,10 @@
+optional.cdl:154:2: warning: W1002 tNCPArray: non-active celltype has no entry port & factory
+optional.cdl:46:32: warning: W1007 ::SingleCellOptimizeCallee : non-active cell has no entry join and no factory
+optional.cdl:55:32: warning: W1007 ::SingleCellOptimizeCaller2 : non-active cell has no entry join and no factory
+optional.cdl:83:32: warning: W1007 ::VMTUselessOptimizeCaller2 : non-active cell has no entry join and no factory
+optional.cdl:111:36: warning: W1007 ::SkeltonUselessOptimizeCaller : non-active cell has no entry join and no factory
+optional.cdl:115:36: warning: W1007 ::SkeltonUselessOptimizeCaller2 : non-active cell has no entry join and no factory
+optional.cdl:155:16: warning: W1007 ::NCPArray1 : non-active cell has no entry join and no factory
+optional.cdl:158:16: warning: W1007 ::NCPArray2 : non-active cell has no entry join and no factory
+optional.cdl:217:20: warning: W1007 ::SendRecvServ : non-active cell has no entry join and no factory
+9 warnings

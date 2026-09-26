@@ -1,0 +1,5 @@
+/* MrubyBridgeCellPlugin: generate for cell=CompSimpleServer2 */
+/* BridgeCell */
+cell nMruby::tsSimple CompSimpleServer2eEntBridge {
+    cTECS = ::CompSimpleServer2.eEnt;
+};

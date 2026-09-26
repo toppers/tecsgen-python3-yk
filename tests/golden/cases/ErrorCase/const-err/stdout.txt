@@ -1,0 +1,11 @@
+const-err.cdl:1:27: error: V1010 / : divieded by zero
+const-err.cdl:2:29: error: V1009 / : divieded by zero
+const-err.cdl:2:29: error: T1011 a1: need cast to assign float to integer
+const-err.cdl:3:31: error: V1017 / : divieded by zero
+const-err.cdl:4:38: error: T1011 b0: need cast to assign float to integer
+const-err.cdl:7:32: error: V1001 >>: unable for FloatVal
+const-err.cdl:7:32: error: T1019 c1: initializer is not constant
+const-err.cdl:9:31: error: V1003 StringVal: cannot cast to integer (implicitly)
+const-err.cdl:20:36: error: S1096 st: should be int, float, bool or pointer type
+const-err.cdl:29:2: warning: W1002 tConst: non-active celltype has no entry port & factory
+9 errors  1 warning

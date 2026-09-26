@@ -1,0 +1,30 @@
+# Celltype: tSimpleServer  #_MDEP_#
+$(_TECS_OBJ_DIR)tSimpleServer_tecsgen.o : tSimpleServer_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSimple_tecsgen.h $(GEN_DIR)/tSimpleServer_factory.h $(GEN_DIR)/tSimpleServer_tecsgen.h
+$(_TECS_OBJ_DIR)tSimpleServer_templ.o : tSimpleServer_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSimple_tecsgen.h $(GEN_DIR)/tSimpleServer_factory.h $(GEN_DIR)/tSimpleServer_tecsgen.h
+$(_TECS_OBJ_DIR)tSimpleServer.o : tSimpleServer.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSimple_tecsgen.h $(GEN_DIR)/tSimpleServer_factory.h $(GEN_DIR)/tSimpleServer_tecsgen.h
+
+# Celltype: tSimpleClient  #_MDEP_#
+$(_TECS_OBJ_DIR)tSimpleClient_tecsgen.o : tSimpleClient_tecsgen.c  $(GEN_DIR)/tSimpleServer_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSimple_tecsgen.h $(GEN_DIR)/tSimpleClient_factory.h $(GEN_DIR)/tSimpleClient_tecsgen.h
+$(_TECS_OBJ_DIR)tSimpleClient_templ.o : tSimpleClient_templ.c  $(GEN_DIR)/tSimpleServer_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSimple_tecsgen.h $(GEN_DIR)/tSimpleClient_factory.h $(GEN_DIR)/tSimpleClient_tecsgen.h
+$(_TECS_OBJ_DIR)tSimpleClient.o : tSimpleClient.c  $(GEN_DIR)/tSimpleServer_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSimple_tecsgen.h $(GEN_DIR)/tSimpleClient_factory.h $(GEN_DIR)/tSimpleClient_tecsgen.h
+
+# Celltype: tTECSInitializer  #_MDEP_#
+$(_TECS_OBJ_DIR)nMruby_tTECSInitializer_tecsgen.o : nMruby_tTECSInitializer_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_sInitializeBridge_tecsgen.h $(GEN_DIR)/nMruby_sInitializeTECSBridge_tecsgen.h $(GEN_DIR)/nMruby_tTECSInitializer_factory.h $(GEN_DIR)/nMruby_tTECSInitializer_tecsgen.h
+$(_TECS_OBJ_DIR)nMruby_tTECSInitializer_templ.o : nMruby_tTECSInitializer_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_sInitializeBridge_tecsgen.h $(GEN_DIR)/nMruby_sInitializeTECSBridge_tecsgen.h $(GEN_DIR)/nMruby_tTECSInitializer_factory.h $(GEN_DIR)/nMruby_tTECSInitializer_tecsgen.h
+$(_TECS_OBJ_DIR)nMruby_tTECSInitializer.o : nMruby_tTECSInitializer.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_sInitializeBridge_tecsgen.h $(GEN_DIR)/nMruby_sInitializeTECSBridge_tecsgen.h $(GEN_DIR)/nMruby_tTECSInitializer_factory.h $(GEN_DIR)/nMruby_tTECSInitializer_tecsgen.h
+
+# Celltype: tCharPointer  #_MDEP_#
+$(_TECS_OBJ_DIR)nMruby_tCharPointer_tecsgen.o : nMruby_tCharPointer_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_sInitializeTECSBridge_tecsgen.h $(GEN_DIR)/nMruby_tCharPointer_factory.h $(GEN_DIR)/nMruby_tCharPointer_tecsgen.h
+$(_TECS_OBJ_DIR)nMruby_tCharPointer_templ.o : nMruby_tCharPointer_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_sInitializeTECSBridge_tecsgen.h $(GEN_DIR)/nMruby_tCharPointer_factory.h $(GEN_DIR)/nMruby_tCharPointer_tecsgen.h
+$(_TECS_OBJ_DIR)nMruby_tCharPointer.o : nMruby_tCharPointer.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_sInitializeTECSBridge_tecsgen.h $(GEN_DIR)/nMruby_tCharPointer_factory.h $(GEN_DIR)/nMruby_tCharPointer_tecsgen.h
+
+# Celltype: tsSimple  #_MDEP_#
+$(_TECS_OBJ_DIR)nMruby_tsSimple_tecsgen.o : nMruby_tsSimple_tecsgen.c  $(GEN_DIR)/tSimpleServer_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_tsSimple_factory.h $(GEN_DIR)/nMruby_tsSimple_tecsgen.h $(GEN_DIR)/sSimple_tecsgen.h
+$(_TECS_OBJ_DIR)nMruby_tsSimple_templ.o : nMruby_tsSimple_templ.c  $(GEN_DIR)/tSimpleServer_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_tsSimple_factory.h $(GEN_DIR)/nMruby_tsSimple_tecsgen.h $(GEN_DIR)/sSimple_tecsgen.h
+$(_TECS_OBJ_DIR)nMruby_tsSimple.o : nMruby_tsSimple.c  $(GEN_DIR)/tSimpleServer_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_tsSimple_factory.h $(GEN_DIR)/nMruby_tsSimple_tecsgen.h $(GEN_DIR)/sSimple_tecsgen.h
+
+# Celltype: tsSimple_Initializer  #_MDEP_#
+$(_TECS_OBJ_DIR)nMruby_tsSimple_Initializer_tecsgen.o : nMruby_tsSimple_Initializer_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_sInitializeTECSBridge_tecsgen.h $(GEN_DIR)/nMruby_tsSimple_Initializer_factory.h $(GEN_DIR)/nMruby_tsSimple_Initializer_tecsgen.h
+$(_TECS_OBJ_DIR)nMruby_tsSimple_Initializer_templ.o : nMruby_tsSimple_Initializer_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_sInitializeTECSBridge_tecsgen.h $(GEN_DIR)/nMruby_tsSimple_Initializer_factory.h $(GEN_DIR)/nMruby_tsSimple_Initializer_tecsgen.h
+$(_TECS_OBJ_DIR)nMruby_tsSimple_Initializer.o : nMruby_tsSimple_Initializer.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_sInitializeTECSBridge_tecsgen.h $(GEN_DIR)/nMruby_tsSimple_Initializer_factory.h $(GEN_DIR)/nMruby_tsSimple_Initializer_tecsgen.h
+

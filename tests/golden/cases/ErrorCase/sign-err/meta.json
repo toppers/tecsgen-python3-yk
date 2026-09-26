@@ -1,0 +1,26 @@
+{
+  "id": "ErrorCase/sign-err",
+  "source": "ErrorCase/Makefile [sign-err]",
+  "cwd": "ErrorCase",
+  "args": [
+    "-L",
+    ".",
+    "sign-err.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 2,
+  "warnings": 4,
+  "expect": [
+    2,
+    4
+  ],
+  "expect_matched": true,
+  "created": [],
+  "modified": [],
+  "deleted": [],
+  "excluded": {}
+}

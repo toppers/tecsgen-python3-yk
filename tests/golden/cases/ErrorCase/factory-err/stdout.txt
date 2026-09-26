@@ -1,0 +1,8 @@
+factory-err.cdl:21:56: error: S1135 celltype factory can't have parameter(s)
+factory-err.cdl:27:67: error: S1137 'c': not attribute
+factory-err.cdl:27:67: error: S1136 'd': not found
+factory-err.cdl:29:72: error: S1137 'c': not attribute
+factory-err.cdl:29:72: error: S1136 'd': not found
+factory-err.cdl:30:70: error: S1137 'c': not attribute
+factory-err.cdl:30:70: error: S1136 'd': not found
+7 errors

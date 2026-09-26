@@ -1,0 +1,4 @@
+only_proto.cdl:8:2: warning: W1002 tCell1: non-active celltype has no entry port & factory
+only_proto.cdl:15:22: error: S1093 ::cell2 : undefined cell
+only_proto.cdl:18:13: warning: W1007 ::cell1 : non-active cell has no entry join and no factory
+1 error  2 warnings

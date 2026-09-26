@@ -1,0 +1,86 @@
+{
+  "id": "bool",
+  "source": "bool/Makefile [tecs]",
+  "cwd": "bool",
+  "args": [
+    "-I",
+    "../cygwin",
+    "bool.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 4,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "bool/gen/Makefile.depend",
+    "bool/gen/Makefile.tecsgen",
+    "bool/gen/Makefile.templ",
+    "bool/gen/global_tecsgen.h",
+    "bool/gen/sDataqueue_tecsgen.h",
+    "bool/gen/sEventflag_tecsgen.h",
+    "bool/gen/sKernel_tecsgen.h",
+    "bool/gen/sSemaphore_tecsgen.h",
+    "bool/gen/sSigBool_T_tecsgen.h",
+    "bool/gen/sSysLog_tecsgen.h",
+    "bool/gen/sTaskBody_tecsgen.h",
+    "bool/gen/sTaskExceptionBody_tecsgen.h",
+    "bool/gen/sTask_tecsgen.h",
+    "bool/gen/siDataqueue_tecsgen.h",
+    "bool/gen/siEventflag_tecsgen.h",
+    "bool/gen/siKernel_tecsgen.h",
+    "bool/gen/siSemaphore_tecsgen.h",
+    "bool/gen/tCTBool_TClient_factory.h",
+    "bool/gen/tCTBool_TClient_tecsgen.c",
+    "bool/gen/tCTBool_TClient_tecsgen.h",
+    "bool/gen/tCTBool_TClient_templ.c",
+    "bool/gen/tCTBool_T_factory.h",
+    "bool/gen/tCTBool_T_tecsgen.c",
+    "bool/gen/tCTBool_T_tecsgen.h",
+    "bool/gen/tCTBool_T_templ.c",
+    "bool/gen/tKernel_factory.h",
+    "bool/gen/tKernel_tecsgen.c",
+    "bool/gen/tKernel_tecsgen.h",
+    "bool/gen/tSysLog_factory.h",
+    "bool/gen/tSysLog_tecsgen.c",
+    "bool/gen/tSysLog_tecsgen.h",
+    "bool/gen/tTracePlugin_sSigBool_T.c",
+    "bool/gen/tTracePlugin_sSigBool_T.cdl",
+    "bool/gen/tTracePlugin_sSigBool_T_factory.h",
+    "bool/gen/tTracePlugin_sSigBool_T_tecsgen.c",
+    "bool/gen/tTracePlugin_sSigBool_T_tecsgen.h",
+    "bool/gen/tecsgen.rbdmp",
+    "bool/gen/tecsgen.timestamp",
+    "bool/gen/tmp_C_src.c",
+    "bool/gen/tmp_TracePlugin_0.cdl",
+    "bool/gen/tmp_TracePlugin_1.cdl",
+    "bool/gen/tmp_TracePlugin_post_code.cdl",
+    "bool/gen/tmp_cygwin_tecs.h",
+    "bool/gen/tmp_t_syslog.h",
+    "bool/gen/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "bool/gen/tecsgen.rbdmp": {
+      "sha256": "ae664ecde3140d1f220c6001ca3e4222613ef164ce01f55bc7e685443061ae0f",
+      "size": 75937
+    },
+    "bool/gen/tmp_cygwin_tecs.h": {
+      "sha256": "013946d0e301df439d5ed2d9b1c01d986e88315a1cf3936b764c332ee5731245",
+      "size": 14873
+    },
+    "bool/gen/tmp_t_syslog.h": {
+      "sha256": "4581cbce8cbbff4b6d434a4b17e075b7299946598b120a45775f2ca9dddab05f",
+      "size": 568
+    },
+    "bool/gen/tmp_tecs.h": {
+      "sha256": "29d2c44ee3aeaf69d3dcd14a0a13d72a4a1cc48f2903b63ba134f2abd3992d0e",
+      "size": 8592
+    }
+  }
+}

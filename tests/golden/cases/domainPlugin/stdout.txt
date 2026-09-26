@@ -1,0 +1,21 @@
+MyDomainPlugin: initialize: region=::, domainTypeName=MyDomain, option=OutOfDomain
+MyDomainPlugin: initialize: region=rSimple0, domainTypeName=MyDomain, option=trusted
+MyDomainPlugin: initialize: region=rSample1, domainTypeName=MyDomain, option=nontrusted
+MyDomainPlugin: initialize: region=rSample, domainTypeName=MyDomain, option=nontrusted
+MyDomainPlugin: initialize: region=rSimple2, domainTypeName=MyDomain, option=nontrusted
+MyDomainPlugin: initialize: region=rSample2, domainTypeName=MyDomain, option=nontrusted
+MyDomainPlugin: add_through_plugin: rSimple0=>rSimple, Simple.cSimple=>Sample.eSample, OUT_THROUGH
+MyDomainPlugin: add_through_plugin: rSample=>rSample1, Simple.cSimple=>Sample.eSample, IN_THROUGH
+TracePlugin.new( 'Join_domain_in_through__0', '', 'Sample', 'eSample', tSample )
+TracePlugin.new( 'Join_domain_out_through__0', '', 'Join_domain_in_through__0', 'eThroughEntry', tSample )
+MyDomainPlugin: add_through_plugin: rSample=>rSample1, Simple.cSimple=>Sample.eSample, IN_THROUGH
+MyDomainPlugin: add_through_plugin: rSimple2=>rSample2, Simple2.cSimple=>Sample2.eSample, TO_THROUGH
+TracePlugin.new( 'Join_domain_to_through__0', '', 'Sample2', 'eSample', tSample )
+MyDomainPlugin: joinable? from rSample1 to rSample (OUT_THROUGH)
+MyDomainPlugin: joinable? from rSample to :: (OUT_THROUGH)
+MyDomainPlugin: joinable? from rSimple0 to rSimple (OUT_THROUGH)
+MyDomainPlugin: joinable? from rSimple2 to rTEST2 (OUT_THROUGH)
+MyDomainPlugin: joinable? from rSample1 to rSample (OUT_THROUGH)
+MyDomainPlugin: joinable? from rSample to :: (OUT_THROUGH)
+MyDomainPlugin: joinable? from rSimple0 to rSimple (OUT_THROUGH)
+MyDomainPlugin: joinable? from rSimple2 to rTEST2 (OUT_THROUGH)

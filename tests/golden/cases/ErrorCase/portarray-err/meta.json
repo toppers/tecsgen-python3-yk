@@ -1,0 +1,26 @@
+{
+  "id": "ErrorCase/portarray-err",
+  "source": "ErrorCase/Makefile [portarray-err]",
+  "cwd": "ErrorCase",
+  "args": [
+    "-L",
+    ".",
+    "portarray-err.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 15,
+  "warnings": 4,
+  "expect": [
+    15,
+    4
+  ],
+  "expect_matched": true,
+  "created": [],
+  "modified": [],
+  "deleted": [],
+  "excluded": {}
+}

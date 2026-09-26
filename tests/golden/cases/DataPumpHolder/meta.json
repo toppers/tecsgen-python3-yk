@@ -1,0 +1,50 @@
+{
+  "id": "DataPumpHolder",
+  "source": "DataPumpHolder/Makefile [tecs]",
+  "cwd": "DataPumpHolder",
+  "args": [
+    "-I",
+    "../cygwin3/",
+    "DataPumpHolderTest.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 1,
+  "timed_out": false,
+  "errors": 16,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "DataPumpHolder/gen/tPersonalData_celltype.cdl",
+    "DataPumpHolder/gen/tPersonalData_signature.cdl",
+    "DataPumpHolder/gen/tmp_C_src.c",
+    "DataPumpHolder/gen/tmp_DataPumpHolderPlugin_0.cdl",
+    "DataPumpHolder/gen/tmp_DataPumpHolderPlugin_post_code.cdl",
+    "DataPumpHolder/gen/tmp_cygwin_tecs.h",
+    "DataPumpHolder/gen/tmp_t_syslog.h",
+    "DataPumpHolder/gen/tmp_tecs.h",
+    "DataPumpHolder/gen/tmp_tecs_rpc.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "DataPumpHolder/gen/tmp_cygwin_tecs.h": {
+      "sha256": "4e3b975cdc2f9adc9500c8f3ffdf8a0c267ffada81e2337742aad65d3fb277fb",
+      "size": 15511
+    },
+    "DataPumpHolder/gen/tmp_t_syslog.h": {
+      "sha256": "81998c66d8d19d5833d03994dc44230c77eaae39387d8a3aae1fc80bffa90daf",
+      "size": 571
+    },
+    "DataPumpHolder/gen/tmp_tecs.h": {
+      "sha256": "a4dee51c059a1bd61afd8c08411167c0619a9871b4701a31eea010ccc350d724",
+      "size": 9216
+    },
+    "DataPumpHolder/gen/tmp_tecs_rpc.h": {
+      "sha256": "b35e41925578dd26575b5048027d2dc47de592232b976b9c19693ac6f1f585fd",
+      "size": 9426
+    }
+  }
+}

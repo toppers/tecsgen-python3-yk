@@ -1,0 +1,15 @@
+attribute-err2.cdl:4:24: error: T9999 a: non-size_is pointer cannot have array initializer
+attribute-err2.cdl:5:52: error: T9999 buf0[0]: non-size_is pointer cannot have array initializer
+attribute-err2.cdl:5:52: error: T9999 buf0[1]: non-size_is pointer cannot have array initializer
+attribute-err2.cdl:10:2: error: S1159 a: non-size_is pointer cannot be initialized with array initializer
+attribute-err2.cdl:10:2: error: S1159 c: non-size_is pointer cannot be initialized with array initializer
+attribute-err2.cdl:10:2: warning: W1002 tAttribute6: non-active celltype has no entry port & factory
+attribute-err2.cdl:16:21: error: T1012 b: "abc": not integer
+attribute-err2.cdl:22:22: error: T1035 d: unsuitable initializer for pointer
+attribute-err2.cdl:24:2: error: S1012 d: unsuitable initializer, need array initializer
+attribute-err2.cdl:24:2: warning: W1002 tAttribute5: non-active celltype has no entry port & factory
+attribute-err2.cdl:31:18: error: S1049 c: size_is arg not constant
+attribute-err2.cdl:31:18: error: S1049 d: size_is arg not constant
+attribute-err2.cdl:26:18: warning: W1007 ::Attribute5_1 : non-active cell has no entry join and no factory
+attribute-err2.cdl:31:18: warning: W1007 ::Attribute5_2 : non-active cell has no entry join and no factory
+10 errors  4 warnings

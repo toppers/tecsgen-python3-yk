@@ -1,0 +1,92 @@
+{
+  "id": "attribute/ROM",
+  "source": "attribute/Makefile.ROM [tecs]",
+  "cwd": "attribute",
+  "args": [
+    "-g",
+    "./gen.ROM",
+    "-I",
+    "../RUNTIME/tecs-runtime/include/",
+    "-I",
+    "../RUNTIME/tecs-runtime/workaround/",
+    "-I",
+    "../RUNTIME/tecs-runtime/target/",
+    "-I",
+    "src",
+    "-R",
+    "attribute.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 2,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "attribute/gen.ROM/Makefile.depend",
+    "attribute/gen.ROM/Makefile.tecsgen",
+    "attribute/gen.ROM/Makefile.templ",
+    "attribute/gen.ROM/global_tecsgen.h",
+    "attribute/gen.ROM/sMain_tecsgen.h",
+    "attribute/gen.ROM/tAttribute2_factory.h",
+    "attribute/gen.ROM/tAttribute2_tecsgen.c",
+    "attribute/gen.ROM/tAttribute2_tecsgen.h",
+    "attribute/gen.ROM/tAttribute2_templ.c",
+    "attribute/gen.ROM/tAttribute3_factory.h",
+    "attribute/gen.ROM/tAttribute3_tecsgen.c",
+    "attribute/gen.ROM/tAttribute3_tecsgen.h",
+    "attribute/gen.ROM/tAttribute3_templ.c",
+    "attribute/gen.ROM/tAttribute4_factory.h",
+    "attribute/gen.ROM/tAttribute4_tecsgen.c",
+    "attribute/gen.ROM/tAttribute4_tecsgen.h",
+    "attribute/gen.ROM/tAttribute4_templ.c",
+    "attribute/gen.ROM/tAttribute5_factory.h",
+    "attribute/gen.ROM/tAttribute5_tecsgen.c",
+    "attribute/gen.ROM/tAttribute5_tecsgen.h",
+    "attribute/gen.ROM/tAttribute5_templ.c",
+    "attribute/gen.ROM/tAttributeSt_factory.h",
+    "attribute/gen.ROM/tAttributeSt_tecsgen.c",
+    "attribute/gen.ROM/tAttributeSt_tecsgen.h",
+    "attribute/gen.ROM/tAttributeSt_templ.c",
+    "attribute/gen.ROM/tAttribute_factory.h",
+    "attribute/gen.ROM/tAttribute_tecsgen.c",
+    "attribute/gen.ROM/tAttribute_tecsgen.h",
+    "attribute/gen.ROM/tAttribute_templ.c",
+    "attribute/gen.ROM/tCEXP_factory.h",
+    "attribute/gen.ROM/tCEXP_tecsgen.c",
+    "attribute/gen.ROM/tCEXP_tecsgen.h",
+    "attribute/gen.ROM/tCEXP_templ.c",
+    "attribute/gen.ROM/tCelltype_factory.h",
+    "attribute/gen.ROM/tCelltype_tecsgen.c",
+    "attribute/gen.ROM/tCelltype_tecsgen.h",
+    "attribute/gen.ROM/tCelltype_templ.c",
+    "attribute/gen.ROM/tMain_factory.h",
+    "attribute/gen.ROM/tMain_tecsgen.c",
+    "attribute/gen.ROM/tMain_tecsgen.h",
+    "attribute/gen.ROM/tMain_templ.c",
+    "attribute/gen.ROM/tecsgen.rbdmp",
+    "attribute/gen.ROM/tecsgen.timestamp",
+    "attribute/gen.ROM/tmp_C_src.c",
+    "attribute/gen.ROM/tmp_attr.h",
+    "attribute/gen.ROM/tmp_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "attribute/gen.ROM/tecsgen.rbdmp": {
+      "sha256": "a1edfbfe6cd0a511f0b492656e63c88d96ceaf5ac9931f0a47b467b371843b0c",
+      "size": 65287
+    },
+    "attribute/gen.ROM/tmp_attr.h": {
+      "sha256": "79698f6cf2251479354b789a1523233a23d2e8ed11af04db4b82fd2c3aeb0a71",
+      "size": 321
+    },
+    "attribute/gen.ROM/tmp_tecs.h": {
+      "sha256": "68110d05d83af5156dd734e615db164317d01b60215c51eb47d72c4c972a1a67",
+      "size": 50591
+    }
+  }
+}

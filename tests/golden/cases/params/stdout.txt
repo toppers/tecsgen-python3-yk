@@ -1,0 +1,7 @@
+gen/tmp_tecs.h:1172:1: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+gen/tmp_tecs.h:1239:3: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+params.cdl:13:64: warning: W3003 str pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+params.cdl:30:44: warning: W3003 m pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+params.cdl:50:41: warning: W3002 wstr: this string might cause buffer over run
+params.cdl:57:56: warning: W3003 str pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+4 warnings

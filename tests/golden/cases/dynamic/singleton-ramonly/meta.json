@@ -1,0 +1,79 @@
+{
+  "id": "dynamic/singleton-ramonly",
+  "source": "dynamic/Makefile-singleton-ramonly [tecs]",
+  "cwd": "dynamic",
+  "args": [
+    "-r",
+    "-g",
+    "./gen-single-r",
+    "-I",
+    "../cygwin3",
+    "dynamic-singleton.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "dynamic/gen-single-r/Makefile.depend",
+    "dynamic/gen-single-r/Makefile.tecsgen",
+    "dynamic/gen-single-r/Makefile.templ",
+    "dynamic/gen-single-r/global_tecsgen.h",
+    "dynamic/gen-single-r/sDataqueue_tecsgen.h",
+    "dynamic/gen-single-r/sEventflag_tecsgen.h",
+    "dynamic/gen-single-r/sHello_tecsgen.h",
+    "dynamic/gen-single-r/sKernel_tecsgen.h",
+    "dynamic/gen-single-r/sSemaphore_tecsgen.h",
+    "dynamic/gen-single-r/sTalkerSelector_tecsgen.h",
+    "dynamic/gen-single-r/sTaskBody_tecsgen.h",
+    "dynamic/gen-single-r/sTaskExceptionBody_tecsgen.h",
+    "dynamic/gen-single-r/sTask_tecsgen.h",
+    "dynamic/gen-single-r/siDataqueue_tecsgen.h",
+    "dynamic/gen-single-r/siEventflag_tecsgen.h",
+    "dynamic/gen-single-r/siKernel_tecsgen.h",
+    "dynamic/gen-single-r/siSemaphore_tecsgen.h",
+    "dynamic/gen-single-r/tMainSingletonForComp_factory.h",
+    "dynamic/gen-single-r/tMainSingletonForComp_tecsgen.c",
+    "dynamic/gen-single-r/tMainSingletonForComp_tecsgen.h",
+    "dynamic/gen-single-r/tMainSingletonForComp_templ.c",
+    "dynamic/gen-single-r/tMainSingleton_factory.h",
+    "dynamic/gen-single-r/tMainSingleton_tecsgen.c",
+    "dynamic/gen-single-r/tMainSingleton_tecsgen.h",
+    "dynamic/gen-single-r/tMainSingleton_templ.c",
+    "dynamic/gen-single-r/tSerialTaskBody_factory.h",
+    "dynamic/gen-single-r/tSerialTaskBody_tecsgen.c",
+    "dynamic/gen-single-r/tSerialTaskBody_tecsgen.h",
+    "dynamic/gen-single-r/tTalkerSelector_factory.h",
+    "dynamic/gen-single-r/tTalkerSelector_tecsgen.c",
+    "dynamic/gen-single-r/tTalkerSelector_tecsgen.h",
+    "dynamic/gen-single-r/tTalkerSelector_templ.c",
+    "dynamic/gen-single-r/tTalker_factory.h",
+    "dynamic/gen-single-r/tTalker_tecsgen.c",
+    "dynamic/gen-single-r/tTalker_tecsgen.h",
+    "dynamic/gen-single-r/tTalker_templ.c",
+    "dynamic/gen-single-r/tTask_factory.h",
+    "dynamic/gen-single-r/tTask_tecsgen.c",
+    "dynamic/gen-single-r/tTask_tecsgen.h",
+    "dynamic/gen-single-r/tecsgen.rbdmp",
+    "dynamic/gen-single-r/tecsgen.timestamp",
+    "dynamic/gen-single-r/tmp_C_src.c",
+    "dynamic/gen-single-r/tmp_cygwin_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "dynamic/gen-single-r/tecsgen.rbdmp": {
+      "sha256": "725fbda133934d8a018745d881d93243059e91f0c84e61859e9c372125746c4d",
+      "size": 83541
+    },
+    "dynamic/gen-single-r/tmp_cygwin_tecs.h": {
+      "sha256": "56486ed732e231e08f361b23cc7f6215b6021d6485d5520260e9869df15c679f",
+      "size": 15555
+    }
+  }
+}

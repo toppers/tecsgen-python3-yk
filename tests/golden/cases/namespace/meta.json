@@ -1,0 +1,73 @@
+{
+  "id": "namespace",
+  "source": "namespace/Makefile [tecs]",
+  "cwd": "namespace",
+  "args": [
+    "-I",
+    "../cygwin",
+    "namespace.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 8,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "namespace/gen/Makefile.depend",
+    "namespace/gen/Makefile.tecsgen",
+    "namespace/gen/Makefile.templ",
+    "namespace/gen/OSEK_sSyscall_tecsgen.h",
+    "namespace/gen/OSEK_tKernel_factory.h",
+    "namespace/gen/OSEK_tKernel_tecsgen.c",
+    "namespace/gen/OSEK_tKernel_tecsgen.h",
+    "namespace/gen/OSEK_tKernel_templ.c",
+    "namespace/gen/TOPPERS_sSyscall_tecsgen.h",
+    "namespace/gen/TOPPERS_tAppl_factory.h",
+    "namespace/gen/TOPPERS_tAppl_tecsgen.c",
+    "namespace/gen/TOPPERS_tAppl_tecsgen.h",
+    "namespace/gen/TOPPERS_tAppl_templ.c",
+    "namespace/gen/TOPPERS_tKernel_factory.h",
+    "namespace/gen/TOPPERS_tKernel_tecsgen.c",
+    "namespace/gen/TOPPERS_tKernel_tecsgen.h",
+    "namespace/gen/TOPPERS_tKernel_templ.c",
+    "namespace/gen/global_tecsgen.h",
+    "namespace/gen/nAlloc_sAlloc_tecsgen.h",
+    "namespace/gen/nAlloc_tAlloc_factory.h",
+    "namespace/gen/nAlloc_tAlloc_tecsgen.c",
+    "namespace/gen/nAlloc_tAlloc_tecsgen.h",
+    "namespace/gen/nAlloc_tAlloc_templ.c",
+    "namespace/gen/sSyscall_tecsgen.h",
+    "namespace/gen/tAppl_factory.h",
+    "namespace/gen/tAppl_tecsgen.c",
+    "namespace/gen/tAppl_tecsgen.h",
+    "namespace/gen/tAppl_templ.c",
+    "namespace/gen/tKernel_factory.h",
+    "namespace/gen/tKernel_tecsgen.c",
+    "namespace/gen/tKernel_tecsgen.h",
+    "namespace/gen/tKernel_templ.c",
+    "namespace/gen/tOSEKAppl_factory.h",
+    "namespace/gen/tOSEKAppl_tecsgen.c",
+    "namespace/gen/tOSEKAppl_tecsgen.h",
+    "namespace/gen/tOSEKAppl_templ.c",
+    "namespace/gen/tecsgen.rbdmp",
+    "namespace/gen/tecsgen.timestamp",
+    "namespace/gen/tmp_C_src.c",
+    "namespace/gen/tmp_cygwin_tecs.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "namespace/gen/tecsgen.rbdmp": {
+      "sha256": "45bce4a9053f7577df48d027653cd647414c8299b72c5f0ff1b24ad990849210",
+      "size": 49342
+    },
+    "namespace/gen/tmp_cygwin_tecs.h": {
+      "sha256": "013946d0e301df439d5ed2d9b1c01d986e88315a1cf3936b764c332ee5731245",
+      "size": 14873
+    }
+  }
+}
