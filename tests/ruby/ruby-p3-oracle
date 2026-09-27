@@ -1,0 +1,3 @@
+#!/bin/sh
+# generate_golden.py の --ruby に渡すラッパー。p3_oracle.rb を読み込ませて Ruby を起動する。
+exec ruby -r "$(dirname "$0")/p3_oracle.rb" "$@"

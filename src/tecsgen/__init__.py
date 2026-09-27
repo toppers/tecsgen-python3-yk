@@ -1,2 +1,4 @@
 def main() -> None:
-    print("Hello from tecsgen-python3!")
+    from tecsgen.cli import main as cli_main
+
+    cli_main()

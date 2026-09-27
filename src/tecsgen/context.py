@@ -4,12 +4,14 @@ Ruby 版は `$force_overwrite`・`$CHARSET_FILE` などのグローバル変数�
 Python 版ではそれらを `TecsgenContext` の属性へ集約し、`get_context()` で参照する。
 属性名は Ruby の変数名を snake_case にしたもの（`$KCONV_CDL` → `kconv_cdl`）。
 
-P1 では言語・文字コード・出力制御に関わる変数だけを定義する。残りは各フェーズの移植時に足す。
+P1 で言語・文字コード・出力制御、P3 でオプションと import パスに関わる変数を定義した。
+残りは各フェーズの移植時に足す。
 """
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from typing import Any
 
 # Ruby の Kconv 定数に相当する値。Kconv::BINARY は「変換しない」を表す
 KCONV_EUC = "EUC"
@@ -39,11 +41,50 @@ class TecsgenContext:
     ruby19_file_encode: str = "ASCII-8BIT"  # $Ruby19_File_Encode
     in_exerb: bool = False  # $IN_EXERB（Python 版では常に偽）
 
-    # --- tecsgen.rb: オプション ---
+    # --- tecsgen.rb: オプション（initialize_global_var・analyze_option） ---
     kcode: str | None = None  # $kcode（-k）
     force_overwrite: bool = False  # $force_overwrite（-f）
-    verbose: bool = False  # $verbose（-v）
-    debug: bool = False  # $debug（-d）
+    verbose: bool = False  # $verbose（-v、-t）
+    debug: bool = False  # $debug（-t）
+    arguments: str = ""  # $arguments（コマンドライン引数を空白区切りで連結したもの）
+    unopt: bool = False  # $unopt（-U）
+    unopt_entry: bool = False  # $unopt_entry（--unoptimize-entry）
+    gen_base: str = "gen"  # $gen_base（-g）
+    gen: str = "gen"  # $gen（-g。生成中の region によって変わる）
+    generate_all_template: bool = False  # $generate_all_template
+    generate_no_template: bool = False  # $generate_no_template
+    idx_is_id: bool = False  # $idx_is_id（-i）
+    unique_id: bool = False  # $unique_id（-u）
+    dryrun: bool = False  # $dryrun（-d）
+    show_tree: bool = False  # $show_tree（-s）
+    yydebug: bool = False  # $yydebug（-y）
+    run_dir: str = ""  # $run_dir（起動時の Dir.pwd）
+    base_dir: dict[str, bool] = field(default_factory=dict)  # $base_dir
+    import_path: list[str] = field(default_factory=lambda: ["."])  # $import_path（-I）
+    import_path_opt: list[str] = field(default_factory=list)  # $import_path_opt
+    library_path: list[str] = field(default_factory=list)  # $library_path（-L）
+    define: list[str] = field(default_factory=list)  # $define（-D）
+    ram_initializer: bool = False  # $ram_initializer（-R）
+    region_list: dict[str, bool] = field(default_factory=dict)  # $region_list（-G）
+    generating_region: Any = None  # $generating_region
+    unit_test: bool = False  # $unit_test（--unit-test）
+    no_banner: bool = False  # $no_banner
+    print_version: bool = False  # $print_version
+    target: str = "tecs"  # $target
+    no_default_import_path: bool = False  # $no_default_import_path
+    c_suffix: str = "c"  # $c_suffix
+    h_suffix: str = "h"  # $h_suffix
+    rom: bool = True  # $rom（-r で偽）
+    b_cpp_specified: bool = False  # $b_cpp_specified
+    cpp: str | None = None  # $cpp（-c、TECS_CPP）
+    tecspath: str = ""  # $tecspath（TECSPATH）
+    tecsgen_base_path: str = ""  # $tecsgen_base_path（tecsgen.rb のあるディレクトリ）
+    title: str | None = None  # $title（tecsgen 以外の名前で起動するツール用）
+    tool_version: str | None = None  # $tool_version
+    b_no_gcc_extension_support: bool = False  # $b_no_gcc_extension_support
+    tecsflow: bool = False  # $TECSFLOW（Python 版では常に偽）
+    # ARGV（オプションを取り除いた残り）。Ruby 版は ARGV を書き換えて使う
+    argv: list[str] = field(default_factory=list)
 
     @property
     def file_codec(self) -> str:
