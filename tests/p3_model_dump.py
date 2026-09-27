@@ -19,6 +19,8 @@ import math
 import sys
 from typing import Any
 
+from tecsgen.ruby_compat import Symbol
+
 # Python 版のクラス名 → Ruby 版のクラス名（名前が違うもの）
 CLASS_NAMES: dict[str, str] = {
     "CdlParser": "Generator",
@@ -26,7 +28,7 @@ CLASS_NAMES: dict[str, str] = {
 }
 
 # クラス変数を比べないクラス（Python 版だけのクラスや、Ruby 版で比べていないもの）
-SKIP_CV_CLASSES = frozenset({"CdlParser", "TECSMsg"})
+SKIP_CV_CLASSES = frozenset({"CdlParser", "TECSMsg", "TECS_LANG"})
 
 
 def ruby_class_name(cls: type) -> str:
@@ -47,8 +49,18 @@ def _is_model(obj: Any) -> bool:
 
 
 def _ruby_str(s: str) -> str:
-    """Python の文字列を、オラクルと同じ「バイト列を latin-1 で読んだ文字列」にする。"""
-    return s.encode("utf-8", "surrogateescape").decode("latin-1")
+    """Python の文字列を、オラクルと同じ「バイト列を latin-1 で読んだ文字列」にする。
+
+    CDL から読んだ文字列はファイルの文字コード（Shift_JIS なら cp932）で復号しているので、
+    同じ文字コードで符号化してバイト列に戻す。
+    """
+    from tecsgen.context import get_context
+
+    try:
+        data = s.encode(get_context().file_codec, "surrogateescape")
+    except UnicodeEncodeError:
+        data = s.encode("utf-8", "surrogateescape")
+    return data.decode("latin-1")
 
 
 class Dumper:
@@ -67,6 +79,8 @@ class Dumper:
             if math.isinf(v):
                 return {"f": "Infinity" if v > 0 else "-Infinity"}
             return {"f": v}
+        if isinstance(v, Symbol):
+            return {"y": _ruby_str(v)}
         if isinstance(v, str):
             return _ruby_str(v)
         if isinstance(v, (list, tuple)):
@@ -85,17 +99,24 @@ class Dumper:
             return {"ref": self._seen[id(v)]}
         self._seen[id(v)] = len(self._seen)
         self._keep.append(v)
+        ivars = instance_variables(v)
         iv: dict[str, Any] = {}
-        for key in sorted(ivar_names(v)):
-            iv[key] = self.dump(getattr(v, "_" + key))
+        for key in sorted(ivars):
+            iv[key] = self.dump(ivars[key])
         return {"c": name, "iv": iv}
 
 
-def ivar_names(obj: Any) -> list[str]:
-    names = []
-    for key in vars(obj):
+def instance_variables(obj: Any) -> dict[str, Any]:
+    """Ruby のインスタンス変数に当たる属性（名前は先頭の _ を除いたもの）。
+
+    __slots__ で属性を持つクラス（Token）は、スロット名をそのまま Ruby の変数名とする。
+    """
+    if not hasattr(obj, "__dict__"):
+        return {n: getattr(obj, n) for n in type(obj).__slots__}
+    names = {}
+    for key, value in vars(obj).items():
         if key.startswith("_") and not key.startswith(("_py_", "__")):
-            names.append(key[1:])
+            names[key[1:]] = value
     return names
 
 

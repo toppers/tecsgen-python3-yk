@@ -20,7 +20,7 @@
 #
 # モデルのダンプ（Python 側は tests/p3_model_dump.py）:
 #   nil・true・false・Integer → そのまま、Float → {"f": 数値 | "NaN" | "Infinity" | "-Infinity"}
-#   String・Symbol → 文字列（区別しない）、Array → 配列、Hash → {"h": [[キー, 値]...]}
+#   String → 文字列、Symbol → {"y": 文字列}、Array → 配列、Hash → {"h": [[キー, 値]...]}
 #   Class・Module → {"cls": 名前}
 #   tecslib のクラスのオブジェクト → {"c": クラス名, "iv": {インスタンス変数名(@抜き): 値}}
 #     インスタンス変数は名前順に辿る。2回目以降に出会ったものは {"ref": 出会った順の番号}
@@ -52,7 +52,7 @@ module P3Oracle
   # Ruby 自身（require・rubygems）が調べるファイルは記録しない
   def self.noise?(path)
     s = path.to_s
-    s.start_with?("/usr/", "/var/lib/gems/") || s.include?("/.gem/") ||
+    s.start_with?("/usr/lib/ruby/", "/var/lib/gems/") || s.include?("/.gem/") ||
       s.end_with?(".rb", ".so", ".gemspec")
   end
 
@@ -68,7 +68,8 @@ module P3Oracle
     rescue StandardError
       nil
     end
-    !loc.nil? && !loc.empty? && loc[0].to_s.include?("/tecslib/")
+    # tecslib の下と、TECSGEN を最初に定義するトップの tecsgen.rb
+    !loc.nil? && !loc.empty? && (loc[0].to_s.include?("/tecslib/") || loc[0].to_s.end_with?("/tecsgen/tecsgen.rb"))
   end
 
   class Dumper
@@ -99,7 +100,8 @@ module P3Oracle
         elsif v.infinite? then { "f" => (v > 0 ? "Infinity" : "-Infinity") }
         else { "f" => v }
         end
-      when String, Symbol then P3Oracle.bytes(v)
+      when String then P3Oracle.bytes(v)
+      when Symbol then { "y" => P3Oracle.bytes(v) }
       when Array then v.map { |e| dump(e) }
       when Hash then { "h" => v.map { |k, e| [dump(k), dump(e)] } }
       when Module then { "cls" => v.name.to_s }

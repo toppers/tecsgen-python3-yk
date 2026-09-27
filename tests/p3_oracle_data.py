@@ -55,7 +55,9 @@ class CaseRecord:
     fs: dict[tuple[str, str, str], bool] = field(default_factory=dict)
     dirs: dict[tuple[str, str], list[str] | None] = field(default_factory=dict)
     reads: dict[tuple[str, str], bytes | None] = field(default_factory=dict)
-    popens: dict[tuple[str, str], bytes | None] = field(default_factory=dict)
+    # 同じコマンド（import_C の cpp は毎回 gen/tmp_C_src.c を読む）が何度も実行されるので、
+    # 出現順に並べておき、順に使う
+    popens: dict[tuple[str, str], list[bytes | None]] = field(default_factory=dict)
     plugins: list[tuple[str, str]] = field(default_factory=list)
     checkpoints: list[Checkpoint] = field(default_factory=list)
     exit_out: int = 0
@@ -108,7 +110,7 @@ def load_case(case_id: str) -> CaseRecord:
                 )
             elif kind == "popen":
                 d = ev["data"]
-                rec.popens[(text(ev["cwd"]), text(ev["cmd"]))] = (
+                rec.popens.setdefault((text(ev["cwd"]), text(ev["cmd"])), []).append(
                     None if d is None else raw(d)
                 )
             elif kind == "plugin":
@@ -138,6 +140,11 @@ class RecordedHost(Host):
         self._rec = rec
         self._written: dict[str, bytes] = {}
         self._made_dirs: set[str] = set()
+        self._popen_count: dict[tuple[str, str], int] = {}
+
+    def isabs(self, path: str) -> bool:
+        # 記録ではパスの先頭の作業ディレクトリ・ソースが @WORK@・@SOURCE@ に置き換わっている
+        return path.startswith(("/", "@WORK@", "@SOURCE@"))
 
     def _is_directory(self, abs_path: str) -> bool:
         # chdir 先の存在は記録から分からないので、あるものとして扱う
@@ -188,9 +195,12 @@ class RecordedHost(Host):
 
     def popen_read(self, cmd: str) -> bytes:
         key = (self._cwd, cmd)
-        if key not in self._rec.popens:
-            raise HostMiss(f"popen {cmd!r} in {self._cwd!r}")
-        data = self._rec.popens[key]
+        outputs = self._rec.popens.get(key, [])
+        n = self._popen_count.get(key, 0)
+        if n >= len(outputs):
+            raise HostMiss(f"popen #{n + 1} {cmd!r} in {self._cwd!r}")
+        self._popen_count[key] = n + 1
+        data = outputs[n]
         if data is None:
             raise FileNotFoundError(2, "No such file or directory", cmd)
         return data
