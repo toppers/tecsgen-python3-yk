@@ -17,6 +17,16 @@ uv run pytest
 
 正解データとの比較は WSL（Linux）で行います。Windows 側の `.venv` と混ざらないよう、仮想環境を別の場所に作ります（`/tmp` は WSL の再起動で消えるので使いません）。
 
+Windows から一式（lint・型検査・pytest）を WSL で実行するには:
+
+```powershell
+pwsh tools/port/wsl_check.ps1                      # テスト一式
+pwsh tools/port/wsl_check.ps1 -Oracle <移植元の作業コピー>   # 先に Ruby 版の記録を採り直す
+pwsh tools/port/wsl_check.ps1 -PytestArgs tests/test_p2_parser.py, -x
+```
+
+WSL の中で直接実行する場合は `sh tools/port/wsl_check.sh` です。手で実行するときは、次のように仮想環境の場所を指定します。
+
 ```sh
 export UV_PROJECT_ENVIRONMENT=$HOME/.venvs/tecsgen-python3
 uv sync
@@ -32,4 +42,5 @@ uv run pytest
 | `gen_messages.py` | メッセージ表 `src/tecsgen/messages/` を生成する |
 | `gen_racc_tables.py` | LALR 表 `src/tecsgen/syntax/cdl_tables.py`・`cdecl_tables.py` を生成する |
 | `gen_action_stubs.py` | 文法アクションの骨格 `cdl_actions.py`・`cdecl_actions.py` を生成する（一度だけ。本体は手で移植する） |
+| `wsl_check.ps1`・`wsl_check.sh` | WSL で uv sync・ruff・ty・pytest を実行する（仮想環境は `~/.venvs/tecsgen-python3`）。`-Oracle` で記録の採り直しも行う |
 | `run_p2_oracle.sh` | 構文解析の差分テスト用に、Ruby 版の経過を記録し直す（WSL で実行。`tests/golden/p2/`） |
