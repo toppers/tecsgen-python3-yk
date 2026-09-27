@@ -8,12 +8,13 @@ from __future__ import annotations
 from typing import Any, ClassVar
 
 from tecsgen.context import dbg_print
+from tecsgen.core.generate import ClassTypeGenerate
 from tecsgen.core.plugin_module import PluginModule
 from tecsgen.core.syntaxobj.node import Node
 from tecsgen.ruby_compat import rb_print, rb_puts, sym, to_s, truthy
 
 
-class ClassType(PluginModule, Node):
+class ClassType(ClassTypeGenerate, PluginModule, Node):
     """@name::Symbol / @region::Region / @plugin_name::Symbol / @option::String クラス名 | :global
     @plugin::ClassPlugin の子クラス / @node_root::Region
     """

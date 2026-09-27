@@ -222,24 +222,96 @@ def gsub(
 # --- sprintf ----------------------------------------------------------------
 
 
+_SPEC = re.compile(r"%([-+ 0#]*)(\*|\d+)?(?:\.(\*|\d+))?([a-zA-Z%])")
+
+
+def _pad_str(s: str, flags: str, width: str | None, prec: str | None) -> str:
+    """`%-Ns`・`%Ns` の桁合わせを、文字数ではなくバイト数（UTF-8）で行う。
+
+    tecsgen が CDL から読んだ文字列は、Ruby では既定でバイナリ（ASCII-8BIT）の String なので、
+    sprintf の幅はバイト数で数えられる（attribute の文字列初期値の `%-40s` などで差が出る）。
+    CDL の文字コードを Shift_JIS にしたとき（TECSGEN_FILE_LANG）は Shift_JIS の String になり、
+    文字数で数えられる。
+    """
+    from tecsgen.context import get_context
+
+    if prec is not None:
+        s = s[: int(prec)]
+    if width is None:
+        return s
+    ctx = get_context()
+    if ctx.ruby19_file_encode == "ASCII-8BIT":
+        n = len(s.encode(ctx.file_codec, "surrogateescape"))
+    else:
+        n = len(s)
+    pad = int(width) - n
+    if pad <= 0:
+        return s
+    return s + " " * pad if "-" in flags else " " * pad + s
+
+
+def _sprintf_num(a: Any, conv: str) -> Any:
+    """数値の変換（%d・%x・%f など）の引数を、Ruby と同じく数値に直す。
+
+    Ruby の sprintf は整数の変換に `Integer()`、浮動小数点の変換に `Float()` を使うので、
+    "10" のような文字列も受け付ける（factory の書式に属性の値を渡すときに使われる）。
+    """
+    if conv in "dixXobBu":
+        if isinstance(a, float):
+            return int(a)
+        if isinstance(a, int):
+            return a
+        return rb_integer(a)
+    if conv in "eEfgGaA":
+        if isinstance(a, (int, float)) and not isinstance(a, bool):
+            return float(a)
+        if isinstance(a, str):
+            try:
+                return float(a.strip().replace("_", ""))
+            except ValueError:
+                raise RubyArgumentError(
+                    f"invalid value for Float(): {_str_inspect(a)}"
+                ) from None
+        raise RubyTypeError(f"can't convert {class_name(type(a))} into Float")
+    return a
+
+
 def sprintf(fmt: str, *args: Any) -> str:
     """Ruby の `sprintf`。
 
-    `%s` の引数は Ruby の `to_s` で文字列にする。それ以外の変換は Python の `%` 演算子に任せる
-    （数値書式の細かな違いは P4 で生成物と突き合わせて詰める — TBC）。
+    `%s` の引数は Ruby の `to_s` で文字列にし、幅は Ruby の String の数え方に合わせる（`_pad_str`）。
+    それ以外の変換は Python の `%` 演算子に任せる。
     """
     if not args:
         return fmt % ()
-    converted: list[Any] = []
-    specs = re.findall(r"%[-+ 0#]*(?:\*|\d+)?(?:\.(?:\*|\d+))?([a-zA-Z%])", fmt)
+    out: list[str] = []
+    pos = 0
     it = iter(args)
-    for conv in specs:
+    for m in _SPEC.finditer(fmt):
+        out.append(fmt[pos : m.start()])
+        pos = m.end()
+        flags, width, prec, conv = m.groups()
         if conv == "%":
+            out.append("%")
             continue
-        a = next(it)
-        converted.append(to_s(a) if conv == "s" else a)
-    converted.extend(it)
-    return fmt % tuple(converted)
+        try:
+            if width == "*":
+                width = str(next(it))
+                if width.startswith("-"):  # 負の幅は左寄せ
+                    flags += "-"
+                    width = width[1:]
+            if prec == "*":
+                prec = str(next(it))
+            a = next(it)
+        except StopIteration:
+            raise RubyArgumentError("too few arguments") from None
+        if conv == "s":
+            out.append(_pad_str(to_s(a), flags, width, prec))
+        else:
+            spec = "%" + flags + (width or "") + ("" if prec is None else "." + prec)
+            out.append((spec + conv) % (_sprintf_num(a, conv),))
+    out.append(fmt[pos:])
+    return "".join(out)
 
 
 # --- 標準出力 ---------------------------------------------------------------
@@ -294,12 +366,15 @@ class RubyIO:
     """Ruby の File オブジェクトのうち、tecsgen が使う出力メソッド（print・puts・printf）を持つ。
 
     文字列は `codec` と `surrogateescape` で符号化し、改行コードは変換しない。
+    ファイルは `Host.open_write` で開く（差分テストでは記録を再生する Host が中身を受け取る）。
     """
 
     def __init__(self, path: str, mode: str, codec: str) -> None:
+        from tecsgen.host import get_host
+
         if mode not in ("w", "a"):
             raise ValueError(f"unsupported mode: {mode}")
-        self._file = open(path, mode + "b")  # noqa: SIM115  close() で閉じる
+        self._file = get_host().open_write(path, append=mode == "a")
         self._codec = codec
 
     def write(self, s: str) -> None:

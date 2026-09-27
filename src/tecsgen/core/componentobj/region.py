@@ -9,10 +9,11 @@ from typing import Any, ClassVar
 
 from tecsgen.context import dbg_print
 from tecsgen.core.componentobj.namespace import Namespace
+from tecsgen.core.generate import RegionGenerate
 from tecsgen.ruby_compat import Y, dualmethod, rb_print, rb_puts, to_s, truthy
 
 
-class Region(Namespace):
+class Region(RegionGenerate, Namespace):
     """@name:: string
     @in_through_list:: [ [ plugin_name, plugin_arg ], ... ] : plungin_name = nil の時 in 禁止
     @out_through_list:: [ [ plugin_name, plugin_arg ], ... ] : plungin_name = nil の時 out 禁止

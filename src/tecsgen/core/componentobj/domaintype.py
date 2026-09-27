@@ -8,12 +8,13 @@ from __future__ import annotations
 from typing import Any, ClassVar
 
 from tecsgen.context import dbg_print
+from tecsgen.core.generate import DomainTypeGenerate
 from tecsgen.core.plugin_module import PluginModule
 from tecsgen.core.syntaxobj.node import Node
 from tecsgen.ruby_compat import Y, class_name, rb_print, rb_puts, sym, to_s, truthy
 
 
-class DomainType(PluginModule, Node):
+class DomainType(DomainTypeGenerate, PluginModule, Node):
     """@name::Symbol / @region::Region / @plugin_name::Symbol / @option::String
     @plugin::DomainPlugin の子クラス / @node_root::Region
     """

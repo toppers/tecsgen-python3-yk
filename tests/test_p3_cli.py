@@ -1,7 +1,7 @@
 """P3: tecsgen の CLI（cli.run）を通しで動かす差分テストのうち、P3 の範囲で比べられるもの。
 
-コード生成（run2）は P4 で移植するので、ここでは構文解析・意味解析の途中で止まるケースだけを
-比べる。
+コード生成まで通しで比べる差分テストは tests/test_p4_gen.py。ここでは P4 の比較から外している
+ケースを比べる。
 
 - ErrorCase/attribute-err: Ruby 版は elements_eval_const の無限再帰で SystemStackError になる。
   Python 版は RecursionError を捕まえて、Ruby と同じく標準出力の内容と終了コード 1 を再現する

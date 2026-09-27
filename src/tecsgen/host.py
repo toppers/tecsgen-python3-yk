@@ -15,6 +15,7 @@ from __future__ import annotations
 import os
 import posixpath
 import subprocess
+from typing import BinaryIO
 
 
 class Host:
@@ -45,7 +46,10 @@ class Host:
         return posixpath.normpath(joined).replace("//", "/")
 
     def _abs(self, path: str) -> str:
-        return path if self.isabs(path) else posixpath.join(self._cwd, path)
+        # Windows のドライブ付きパス（C:\...）も、OS に渡すときは絶対パスとして扱う
+        if self.isabs(path) or os.path.isabs(path):
+            return path
+        return posixpath.join(self._cwd, path)
 
     # --- 問い合わせ ---------------------------------------------------------
 
@@ -74,6 +78,22 @@ class Host:
     def write_bytes(self, path: str, data: bytes) -> None:
         with open(self._abs(path), "wb") as f:
             f.write(data)
+
+    def open_write(self, path: str, append: bool = False) -> BinaryIO:
+        """書き込み用に開く（Ruby の `File.open(path, "w")`・`"a"`）。`write`・`close` を持つものを返す。"""
+        return open(self._abs(path), "ab" if append else "wb")
+
+    def is_readable(self, path: str) -> bool:
+        """Ruby の `File.readable?`。"""
+        return os.access(self._abs(path), os.R_OK)
+
+    def rename(self, src: str, dst: str) -> None:
+        """Ruby の `File.rename`（既にあれば置き換える）。"""
+        os.replace(self._abs(src), self._abs(dst))
+
+    def remove(self, path: str) -> None:
+        """Ruby の `File.delete`。"""
+        os.remove(self._abs(path))
 
     def mkdir(self, path: str) -> None:
         """Ruby の `Dir.mkdir`。"""

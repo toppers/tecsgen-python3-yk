@@ -9,6 +9,7 @@ import copy
 from typing import Any, ClassVar
 
 from tecsgen.context import dbg_print
+from tecsgen.core.generate import StructTypeGenerate
 from tecsgen.core.syntaxobj.node import Node
 from tecsgen.ruby_compat import (
     RubyNameError,
@@ -634,7 +635,7 @@ class EnumType(Type):  # mikan
         super().show_tree(indent + 1)
 
 
-class StructType(Type):
+class StructType(StructTypeGenerate, Type):
     """@tag:: / @b_define:: true if define, false if refer / @members_decl:: NamedList
     @definition:: StructType / @b_has_pointer_member:: bool / @b_has_sized_pointer_member:: bool
     @b_has_unsized_string_member:: bool / @b_hasTag:: bool

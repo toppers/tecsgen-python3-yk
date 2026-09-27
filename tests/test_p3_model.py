@@ -28,7 +28,7 @@ from tecsgen.core.generator import Generator
 from tecsgen.core.tecsgen import TECSGEN
 from tecsgen.host import set_host
 
-# P4 以降で移植するファイル（tool_info.rb）とプラグインのクラス変数は比べない
+# P5 で移植するファイル（tool_info.rb）とプラグインのクラス変数は比べない
 SKIP_CV = {
     "TOOL_INFO",
     "TECSGEN::Join_location",

@@ -6,7 +6,8 @@ Ruby 版の `TECSGEN` は2つのファイルにまたがる。
   `tecsgen.cli` へ移した）
 - core/tecsgen.rb: import パスの操作、`Makefile`、構文解析・意味解析・生成の各段階
 
-P3 では構文解析と意味解析（`run1`）までを移植した。`run2`（最適化・コード生成）は P4。
+P3 で構文解析と意味解析（`run1`）、P4 で最適化・コード生成（`run2`・`finalize`）と
+`dump_tecsgen_rbdmp`（ファイルは書かない）を移植した。
 """
 
 from __future__ import annotations
@@ -15,7 +16,7 @@ import re
 from typing import Any, ClassVar
 
 from tecsgen.context import dbg_print, get_context
-from tecsgen.ruby_compat import Y, gsub, sub_first, sym
+from tecsgen.ruby_compat import Y, gsub, rb_print, sub_first, sym, to_s, truthy
 
 
 class TECSGEN:
@@ -58,8 +59,13 @@ class TECSGEN:
         TECSGEN._current_tecsgen = None
 
     def run2(self) -> None:
-        """最適化とコード生成（P4 で移植）。"""
-        raise NotImplementedError("TECSGEN#run2 is ported in P4")
+        """最適化とコード生成。"""
+        TECSGEN._current_tecsgen = self
+
+        self.optimize_and_generate()
+        self.finalize()
+
+        TECSGEN._current_tecsgen = None
 
     def get_celltype_list(self) -> Any:
         return self._celltype_list
@@ -104,10 +110,20 @@ class TECSGEN:
 
     @staticmethod
     def is_absolute_path(path: str) -> bool:  # Ruby: is_absolute_path?
-        """'/' または '$' で始まる場合、絶対パスと判定する。"""
+        """'/' または '$' で始まる場合、絶対パスと判定する。
+
+        '/' で始まるかは Host に問い合わせる（記録を再生する差分テストでは、絶対パスの先頭が
+        `@WORK@` などに置き換わっているため）。
+        """
+        from tecsgen.host import get_host
+
         pa = path[0:1]
         pa2 = path[0:2]
-        res = pa == "/" or pa == "$" or re.search(r"[A-Za-z]:", pa2) is not None
+        res = (
+            get_host().isabs(path)
+            or pa == "$"
+            or re.search(r"[A-Za-z]:", pa2) is not None
+        )
         dbg_print(
             f"is_absolute( {path} ) = {'true' if res else 'false'}  {path[0:1]}\n"
         )
@@ -203,6 +219,197 @@ class TECSGEN:
 
         dbg_print("## Checking referenced but undefined cell\n")
         self._root_namespace.check_ref_but_undef()
+
+    def optimize_and_generate(self) -> None:
+        from tecsgen.cli import TecsgenExit
+        from tecsgen.core.componentobj.region import Region
+        from tecsgen.core.generator import Generator, print_report
+        from tecsgen.host import get_host
+
+        ctx = get_context()
+        host = get_host()
+        #### Region link root ごとにオプティマイズおよび生成 ####
+        for region in list(Region.get_link_roots()):
+            n_cells = region.get_n_cells()
+            path_str = region.get_namespace_path().get_path_str()
+
+            dbg_print(f"{to_s(region.get_name())} has {n_cells} cells\n")
+            if ctx.verbose:
+                rb_print("=====================================\n")
+                rb_print(f"=== Region.path_str: {to_s(path_str)}\n")
+                rb_print("=====================================\n")
+            else:
+                dbg_print(f"Region.path_str: {to_s(path_str)}\n")
+
+            if len(ctx.region_list) > 0:
+                if truthy(ctx.region_list.get(path_str)):
+                    ctx.region_list[path_str] = False
+                else:
+                    continue
+
+            # セルが一つもなければ生成しない
+            if region.get_n_cells() == 0:
+                if len(ctx.region_list) > 0:
+                    Generator.warning(
+                        "W9999 $1: specified to generate but has no cell",
+                        region.get_name(),
+                    )
+                if region is not self._root_namespace:
+                    continue
+
+            ctx.generating_region = region
+            if len(Region.get_link_roots()) > 1:
+                if region.get_name() == "::":
+                    ctx.gen = ctx.gen_base
+                else:
+                    ctx.gen = ctx.gen_base + "/" + to_s(region.get_global_name())
+                    try:
+                        if not host.is_directory(ctx.gen):
+                            host.mkdir(ctx.gen)
+                    except Exception:  # noqa: BLE001  Ruby の rescue
+                        rb_print(f"Cannot mkdir {ctx.gen}\n")
+                        raise TecsgenExit(1) from None
+            else:
+                ctx.gen = ctx.gen_base
+
+            dbg_print("## Unset optimize variables\n")
+            self._root_namespace.reset_optimize()  # 最適化をリセットする
+
+            if Generator.get_n_error() == 0:
+                # エラーが発生していたら、設定しない
+                dbg_print("## Set cell id\n")
+                # セルの ID とドメイン情報を設定（linkunit 毎に0からつける）
+                self._root_namespace.set_cell_id_and_domain()
+
+                # エラーが発生していたら、最適化は実施しない
+                if not ctx.unopt:
+                    dbg_print(
+                        f"## Optimizing: Link Region={to_s(self._root_namespace.get_name())}\n"
+                    )
+                    self._root_namespace.optimize()
+
+            if ctx.show_tree:
+                # エラーが発生していても表示（エラー発生時は最適化されていないので注意）
+                rb_print(
+                    f"##### show_tree LinkRegion={to_s(region.get_name())} #####\n"
+                )
+                self._root_namespace.show_tree(0)
+                rb_print(
+                    f"##### END       LinkRegion={to_s(region.get_name())} #####\n\n"
+                )
+
+            # 構文解釈、意味解析でエラー発生していたら、コード生成をしない
+            if Generator.get_n_error() != 0:
+                print_report()
+                raise TecsgenExit(1)
+
+            #### コード生成 ####
+            try:
+                dbg_print(
+                    f"## Generating: Link Region={to_s(self._root_namespace.get_name())}\n"
+                )
+                self._root_namespace.generate()
+                dbg_print(
+                    f"## Generating Post: Link Region={to_s(self._root_namespace.get_name())}\n"
+                )
+                self._root_namespace.generate_post()
+            except (TecsgenExit, RecursionError, NotImplementedError):
+                raise
+            except Exception:  # noqa: BLE001  Ruby の rescue（StandardError）
+                # 通常ここへは来ない (generate, generate_post で処置される)
+                Generator.error("G9999 fail to generate")
+
+    def finalize(self) -> None:
+        from tecsgen.cli import TecsgenExit, _stderr
+        from tecsgen.context import print_exception
+        from tecsgen.core.generate import AppFile
+        from tecsgen.core.generator import Generator, print_report
+        from tecsgen.host import get_host
+
+        ctx = get_context()
+        dbg_print("## Generating XML\n")
+
+        for region_path_str, val in ctx.region_list.items():
+            if val is True:
+                Generator.warning(
+                    "W9999 $1: not link root, -G ignored", region_path_str
+                )
+
+        # update する
+        # APPFile で生成されたファイルは、もし変化があれば、ここで更新する
+        # コード生成段階でエラーが発生すれば、更新しない
+        # CFile で生成されたものは、更新されている
+        if Generator.get_n_error() == 0:
+            try:
+                AppFile.update()
+            except Exception as evar:  # noqa: BLE001  Ruby の rescue => evar
+                Generator.error(
+                    "G9999 Fail to update. (error occurred while renaming generated files)"
+                )
+                print_exception(evar)
+
+        print_report()
+        if Generator.get_n_error() != 0:
+            _stderr(
+                f"error occurred while generating. some file can be corrupt in {ctx.gen_base}\n"
+            )
+            raise TecsgenExit(1)
+
+        get_host().open_write(f"{ctx.gen_base}/tecsgen.timestamp").close()
+
+    def dump_tecsgen_rbdmp(self) -> None:
+        """tecsgen.rbdmp（Ruby の Marshal 形式のモデル）の出力。
+
+        ファイルそのものは再現しない（P0 基本方針決定）。ただし Ruby 版はダンプの前に link root
+        ごとに最適化をやり直し、-v ではその経過を標準出力に出すので、そこまでは移植する。
+        unjoin_plugin（プラグインの参照を外す。unjoin_plugin.rb）は P5 で移植する。
+        """
+        from tecsgen.core.componentobj.region import Region
+
+        ctx = get_context()
+        dbg_print("dump_tecsgen_rbdmp 0:\n")
+        #### unjoin_plugin 後に行う必要があるため、コード生成後にダンプを行う
+        #### Region link root ごとにオプティマイズしてダンプ ####
+        for region in list(Region.get_link_roots()):
+            path_str = region.get_namespace_path().get_path_str()
+            dbg_print(f"dump_tecsgen_rbdmp 1: Region.path_str: {to_s(path_str)}\n")
+
+            if len(ctx.region_list) > 0:
+                if ctx.region_list.get(path_str) is False:
+                    ctx.region_list[path_str] = True
+                else:
+                    continue
+
+            dbg_print(f"dump_tecsgen_rbdmp 2: Region.path_str: {to_s(path_str)}\n")
+            # セルが一つもなければ生成しない
+            if region.get_n_cells() == 0 and region is not self._root_namespace:
+                continue
+
+            dbg_print(f"dump_tecsgen_rbdmp 3: Region.path_str: {to_s(path_str)}\n")
+            ctx.generating_region = region
+            if len(Region.get_link_roots()) > 1:
+                if region.get_name() == "::":
+                    ctx.gen = ctx.gen_base
+                else:
+                    ctx.gen = ctx.gen_base + "/" + to_s(region.get_global_name())
+            else:
+                ctx.gen = ctx.gen_base
+
+            dbg_print(f"dump_tecsgen_rbdmp 4: Region.path_str: {to_s(path_str)}\n")
+            dbg_print("## Unset optimize variables\n")
+            self._root_namespace.reset_optimize()  # 最適化をリセットする
+
+            dbg_print("## Set cell id\n")
+            # セルの ID とドメイン情報を設定（linkunit 毎に0からつける）
+            self._root_namespace.set_cell_id_and_domain()
+
+            if not ctx.unopt:
+                dbg_print(
+                    f"## Optimizing: Link Region={to_s(self._root_namespace.get_name())}\n"
+                )
+                self._root_namespace.optimize()
+            dbg_print(f"dump_tecsgen_rbdmp final: Region.path_str: {to_s(path_str)}\n")
+            # ここで Ruby 版は "#{$gen}/tecsgen.rbdmp" に Marshal.dump(Namespace.get_root) を書く
 
 
 class Makefile:

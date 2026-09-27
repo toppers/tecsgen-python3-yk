@@ -16,6 +16,7 @@ from typing import Any, ClassVar
 from tecsgen.context import dbg_print, get_context
 from tecsgen.core.generate import NamespaceGenerate
 from tecsgen.core.generator import _get_at, _set_at
+from tecsgen.core.optimize import NamespaceOptimize
 from tecsgen.core.syntaxobj.node import NSBDNode
 from tecsgen.ruby_compat import (
     RubyRuntimeError,
@@ -27,7 +28,7 @@ from tecsgen.ruby_compat import (
 )
 
 
-class Namespace(NamespaceGenerate, NSBDNode):
+class Namespace(NamespaceOptimize, NamespaceGenerate, NSBDNode):
     """@name::  Symbol     # root の場合 "::" (String)
     @global_name:: str
     @name_list:: NamedList   Signature,Celltype,CompositeCelltype,Cell,Typedef,Namespace

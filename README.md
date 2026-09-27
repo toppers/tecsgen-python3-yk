@@ -4,7 +4,7 @@ TECS のコンポーネント記述コンパイラ tecsgen（Ruby 実装、v1.9.
 
 - CLI は Ruby 版と完全互換にします。
 - CDL と import_C の C ヘッダは、Ruby 版と同じ方法で構文解析します。字句解析器は Ruby 版から移植し、パーサは Ruby 版の racc が生成した LALR 表（`bnf.tab.rb`・`C_parser.tab.rb`）を取り出して、racc の駆動部を移植したもので動かします。構文エラーの位置・件数やエラー回復も Ruby 版と一致します。
-- 同じ入力に対して、Ruby 版と同一の生成物を出力することを受入基準にします（正解データは `tests/golden/`、採取手順は `tools/golden/README.md`）。
+- 同じ入力に対して、Ruby 版と同一の生成物を出力することを受入基準にします（正解データは `tests/golden/`、採取手順は `tools/golden/README.md`）。プラグインを使わないテストケースは、生成物がすべてバイト単位で一致します（`tests/test_p4_gen.py`）。プラグイン機構は移植中です。
 
 ## セットアップ
 
@@ -45,3 +45,4 @@ uv run pytest
 | `wsl_check.ps1`・`wsl_check.sh` | WSL で uv sync・ruff・ty・pytest を実行する（仮想環境は `~/.venvs/tecsgen-python3`）。`-Oracle` で記録の採り直しも行う |
 | `run_p2_oracle.sh` | 構文解析の差分テスト用に、Ruby 版の経過を記録し直す（WSL で実行。`tests/golden/p2/`） |
 | `run_p3_oracle.sh` | モデルの差分テスト用に、Ruby 版のモデル（パース直後・意味解析1回目の後・2回目の後）と、ファイル存在判定・cpp 出力を記録し直す（WSL で実行。`tests/golden/p3/`）。pytest はこの記録を再生するので、Windows でも Ruby なしで動く |
+| `p4_progress.py` | プラグインを使わないケースを通しで実行し、生成物（`gen/`）・標準出力・終了コードの一致をケースごとに一覧する（Ruby 不要。P3 の記録を再生する）。`-v` で一致しなかったファイルと標準出力の差を表示する |

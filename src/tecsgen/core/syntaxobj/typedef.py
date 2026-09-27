@@ -4,11 +4,12 @@ from __future__ import annotations
 
 from typing import Any
 
+from tecsgen.core.generate import TypedefGenerate
 from tecsgen.core.syntaxobj.node import BDNode
 from tecsgen.ruby_compat import rb_print, rb_puts
 
 
-class Typedef(BDNode):
+class Typedef(TypedefGenerate, BDNode):
     """@declarator:: Decl"""
 
     @staticmethod

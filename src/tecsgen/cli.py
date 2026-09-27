@@ -354,6 +354,7 @@ def run(
             tecsgen = TECSGEN()
             tecsgen.run1()
             tecsgen.run2()
+            tecsgen.dump_tecsgen_rbdmp()
         except RecursionError:
             # Ruby の SystemStackError は StandardError ではないので、下の rescue に捕まらず、
             # Ruby 本体がメッセージとバックトレースを出して終了コード 1 で終わる

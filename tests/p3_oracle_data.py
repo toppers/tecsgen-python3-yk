@@ -132,15 +132,33 @@ class HostMiss(AssertionError):
     """記録に無い問い合わせ（Ruby 版はしなかった問い合わせ）。"""
 
 
+class _RecordedFile:
+    """RecordedHost.open_write が返す書き込み先。書いた内容は Host の記録に直接たまる。"""
+
+    def __init__(self, buf: bytearray) -> None:
+        self._buf = buf
+        self.closed = False
+
+    def write(self, data: bytes) -> int:
+        self._buf += data
+        return len(data)
+
+    def close(self) -> None:
+        self.closed = True
+
+
 class RecordedHost(Host):
     """記録を再生する Host。書き込んだファイルは覚えておき、後の読み込みで返す。"""
 
     def __init__(self, rec: CaseRecord) -> None:
         super().__init__(rec.cwd)
         self._rec = rec
-        self._written: dict[str, bytes] = {}
+        self._written: dict[str, bytearray] = {}
         self._made_dirs: set[str] = set()
         self._popen_count: dict[tuple[str, str], int] = {}
+
+    def _key(self, path: str) -> str:
+        return posixpath.normpath(self._abs(path))
 
     def isabs(self, path: str) -> bool:
         # 記録ではパスの先頭の作業ディレクトリ・ソースが @WORK@・@SOURCE@ に置き換わっている
@@ -151,11 +169,13 @@ class RecordedHost(Host):
         return True
 
     def _lookup_fs(self, op: str, path: str) -> bool:
+        # Python 版が書いたファイルは、記録より優先して自分の状態で答える
+        # （記録は Ruby 版が書く前・消した後の状態のこともある）
+        if self._key(path) in self._written:
+            return op != "directory?"
         key = (op, self._cwd, path)
         if key in self._rec.fs:
             return self._rec.fs[key]
-        if self._abs(path) in self._written:
-            return op != "directory?"
         if op == "directory?" and self.expand_path(path) in self._made_dirs:
             return True
         raise HostMiss(f"File.{op}({path!r}) in {self._cwd!r}")
@@ -165,6 +185,9 @@ class RecordedHost(Host):
 
     def is_directory(self, path: str) -> bool:
         return self._lookup_fs("directory?", path)
+
+    def is_readable(self, path: str) -> bool:
+        return self._lookup_fs("readable?", path)
 
     def listdir(self, path: str) -> list[str]:
         key = (self._cwd, path)
@@ -176,9 +199,9 @@ class RecordedHost(Host):
         return names
 
     def read_bytes(self, path: str) -> bytes:
-        abs_path = self._abs(path)
-        if abs_path in self._written:
-            return self._written[abs_path]
+        k = self._key(path)
+        if k in self._written:
+            return bytes(self._written[k])
         key = (self._cwd, path)
         if key not in self._rec.reads:
             raise HostMiss(f"read {path!r} in {self._cwd!r}")
@@ -188,7 +211,25 @@ class RecordedHost(Host):
         return data
 
     def write_bytes(self, path: str, data: bytes) -> None:
-        self._written[self._abs(path)] = data
+        self._written[self._key(path)] = bytearray(data)
+
+    def open_write(self, path: str, append: bool = False) -> Any:
+        k = self._key(path)
+        if not append or k not in self._written:
+            self._written[k] = bytearray()
+        return _RecordedFile(self._written[k])
+
+    def rename(self, src: str, dst: str) -> None:
+        k = self._key(src)
+        if k not in self._written:
+            raise HostMiss(f"rename {src!r} (not written) in {self._cwd!r}")
+        self._written[self._key(dst)] = self._written.pop(k)
+
+    def remove(self, path: str) -> None:
+        k = self._key(path)
+        if k not in self._written:
+            raise HostMiss(f"delete {path!r} (not written) in {self._cwd!r}")
+        del self._written[k]
 
     def mkdir(self, path: str) -> None:
         self._made_dirs.add(self.expand_path(path))
@@ -206,4 +247,9 @@ class RecordedHost(Host):
         return data
 
     def written(self, path: str) -> bytes | None:
-        return self._written.get(posixpath.normpath(self._abs(path)))
+        data = self._written.get(self._key(path))
+        return None if data is None else bytes(data)
+
+    def written_files(self) -> dict[str, bytes]:
+        """書いたファイル全部（絶対パス → 中身）。"""
+        return {k: bytes(v) for k, v in self._written.items()}
