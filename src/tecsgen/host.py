@@ -36,13 +36,16 @@ class Host:
             raise FileNotFoundError(2, "No such file or directory", path)
         self._cwd = target
 
+    def isabs(self, path: str) -> bool:
+        return posixpath.isabs(path)
+
     def expand_path(self, path: str) -> str:
         """Ruby の `File.expand_path`（`~` の展開は扱わない）。"""
-        joined = posixpath.join(self._cwd, path)
+        joined = path if self.isabs(path) else posixpath.join(self._cwd, path)
         return posixpath.normpath(joined).replace("//", "/")
 
     def _abs(self, path: str) -> str:
-        return path if posixpath.isabs(path) else posixpath.join(self._cwd, path)
+        return path if self.isabs(path) else posixpath.join(self._cwd, path)
 
     # --- 問い合わせ ---------------------------------------------------------
 

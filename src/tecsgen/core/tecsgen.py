@@ -15,7 +15,7 @@ import re
 from typing import Any, ClassVar
 
 from tecsgen.context import dbg_print, get_context
-from tecsgen.ruby_compat import gsub, sub_first
+from tecsgen.ruby_compat import Y, gsub, sub_first, sym
 
 
 class TECSGEN:
@@ -42,8 +42,8 @@ class TECSGEN:
         self._join_location_list: list[Any] = []
 
     def run1(self) -> None:
-        from tecsgen.core.componentobj.cell import Cell  # ty: ignore
-        from tecsgen.core.componentobj.celltype import Celltype  # ty: ignore
+        from tecsgen.core.componentobj.cell import Cell
+        from tecsgen.core.componentobj.celltype import Celltype
 
         TECSGEN._current_tecsgen = self
 
@@ -129,8 +129,8 @@ class TECSGEN:
     # ------ TECSGEN CDL analyze and generate ------
 
     def syntax_analisys(self, argv: list[str]) -> None:
-        from tecsgen.core.componentobj.import_cdl import Import  # ty: ignore
-        from tecsgen.core.componentobj.region import Region  # ty: ignore
+        from tecsgen.core.componentobj.import_cdl import Import
+        from tecsgen.core.componentobj.region import Region
         from tecsgen.core.generator import Generator
 
         # ルート namespace (region) を生成
@@ -150,11 +150,11 @@ class TECSGEN:
 
     def semantics_analisys_1(self) -> None:
         """意味解析1。セルだけを検査する（他のものは構文解析中に検査されている）。"""
-        from tecsgen.core.cdl_types import DescriptorType  # ty: ignore
-        from tecsgen.core.componentobj.cell import Cell  # ty: ignore
-        from tecsgen.core.componentobj.celltype import Celltype  # ty: ignore
-        from tecsgen.core.componentobj.signature import Signature  # ty: ignore
-        from tecsgen.core.plugin_module import PluginModule  # ty: ignore
+        from tecsgen.core.cdl_types import DescriptorType
+        from tecsgen.core.componentobj.cell import Cell
+        from tecsgen.core.componentobj.celltype import Celltype
+        from tecsgen.core.componentobj.signature import Signature
+        from tecsgen.core.plugin_module import PluginModule
 
         ####  意味解析１ (post コードを除く) ####
         dbg_print("## Creating reverse join \n")
@@ -189,7 +189,7 @@ class TECSGEN:
         self._root_namespace.set_require_join()
 
     def semantics_analisys_2(self) -> None:
-        from tecsgen.core.componentobj.cell import Cell  # ty: ignore
+        from tecsgen.core.componentobj.cell import Cell
 
         ####  意味解析２ ####
         Cell.make_cell_list2()
@@ -226,10 +226,10 @@ class Makefile:
     @classmethod
     def reset(cls) -> None:
         cls._fixed_vars = {
-            "INCLUDES": None,
-            "DEFINES": None,
-            "TARGET_BASE": None,
-            "BASE_DIR": None,
+            Y.INCLUDES: None,
+            Y.DEFINES: None,
+            Y.TARGET_BASE: None,
+            Y.BASE_DIR: None,
         }
         cls._config_mode = False
         cls._vars = {}
@@ -254,12 +254,12 @@ class Makefile:
             raise RuntimeError(f"fixed var '{var}' cannot be changed")
         if cls._config_mode:
             # Ruby 版は未定義の @@var_comments_default を参照して例外になる（そのまま再現する）
-            cls._vars_default[var] = val
+            cls._vars_default[sym(var)] = val
             raise NameError(
                 "uninitialized class variable @@var_comments_default in TECSGEN::Makefile"
             )
-        cls._vars[var] = val
-        cls._var_comments[var] = comment
+        cls._vars[sym(var)] = val
+        cls._var_comments[sym(var)] = comment
 
     @classmethod
     def add_ldflag(cls, ldflag: str) -> None:
