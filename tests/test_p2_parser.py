@@ -9,9 +9,11 @@ Ruby 版と比べる。
   stdout にある同じ種類の行と一致する（行の集合として比べる。import による入れ子で
   出力の順序が前後するため）
 
-TYPE_NAME の判定はシンボル表（P3 の Namespace）が要るので、Ruby 版の記録から
+TYPE_NAME の判定はシンボル表（Namespace）が要るので、Ruby 版の記録から
 「その位置のトークンが TYPE_NAME になったか」を返す仮の関数を使う。
-文法アクションは P3 まで未移植なので、import による入れ子のパースは起きない。
+文法アクションは、字句解析の状態を変えるもの（指定子の中か、TYPE_NAME に置き換えるか、
+typeof・__asm__ の読み飛ばし）だけを動かし、他は値を素通しする（モデルは P3 の
+test_p3_model で比べる）。そのため import による入れ子のパースは起きない。
 入れ子のパースは、Ruby 版の記録の parse ごとに独立に動かして確かめる。
 """
 
@@ -29,8 +31,44 @@ from test_p2_lexer import as_ruby, value_codec
 from tecsgen.context import TecsgenContext
 from tecsgen.core.generator import Generator
 from tecsgen.core.tecs_lang import TECS_LANG
+from tecsgen.syntax import cdecl_actions, cdl_actions
 from tecsgen.syntax.cdecl_parser import CdeclParser
 from tecsgen.syntax.cdl_parser import CdlParser
+
+# 字句解析の状態を変えるアクション（それ以外は素通しにする）
+CDL_LEXER_RULES = {419, 420}
+CDECL_LEXER_RULES = {
+    *range(102, 119),
+    120,
+    122,
+    123,
+    124,
+    127,
+    139,
+    140,
+    141,
+    142,
+    212,
+    261,
+}
+
+
+def _passthrough(self: Any, val: list[Any], _values: list[Any], result: Any) -> Any:
+    return result
+
+
+def _lexer_only_c_action(rule: int) -> Any:
+    """C_parser の、状態だけを変えるアクション（モデルは作らない）。"""
+    orig = getattr(cdecl_actions.CdeclActions, f"_reduce_{rule}")
+    if rule in (117, 261):
+        return orig  # トークンの読み飛ばし（モデルは CVoidType を作るだけ）
+
+    def f(self: Any, val: list[Any], _values: list[Any], result: Any) -> Any:
+        self.set_no_type_name(rule != 212)
+        return result
+
+    return f
+
 
 # 構文解析で出るメッセージ（stdout の行）
 # （print_exception の "*** Begin Ruby exception message ***" は、他のフェーズでも出るので含めない）
@@ -85,6 +123,16 @@ def make_parser(rec: ParseRecord) -> Any:
             else:
                 self.returned.append(as_ruby(token[0], token[1]))
             return token
+
+    if rec.parser == "cdl":
+        for r in cdl_actions.ACTION_RULES - CDL_LEXER_RULES:
+            setattr(RecordingParser, f"_reduce_{r}", _passthrough)
+    else:
+        for r in cdecl_actions.ACTION_RULES:
+            f = _lexer_only_c_action(r) if r in CDECL_LEXER_RULES else _passthrough
+            setattr(RecordingParser, f"_reduce_{r}", f)
+    RecordingParser._push_model_stacks = lambda self: None  # type: ignore[method-assign]
+    RecordingParser._pop_model_stacks = lambda self: None  # type: ignore[method-assign]
 
     parser = RecordingParser(reader)
     parser.returned = []

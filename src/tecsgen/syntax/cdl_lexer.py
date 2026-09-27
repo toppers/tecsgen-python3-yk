@@ -25,7 +25,7 @@ from typing import Any
 
 from tecsgen.context import get_context
 from tecsgen.core.generator import Generator, Token
-from tecsgen.ruby_compat import rb_puts
+from tecsgen.ruby_compat import Symbol, rb_puts
 
 # 予約語（bnf.y.rb の RESERVED）。値はトークン種別
 RESERVED: dict[str, str] = {
@@ -243,7 +243,13 @@ def _lex_main(
         if kind == "space" or kind == "line_comment":
             pass
         elif kind == "ident":
-            q.append((RESERVED.get(text, "IDENTIFIER"), Token(text, file, lineno, col)))
+            # Ruby 版は word.intern（Symbol）
+            q.append(
+                (
+                    RESERVED.get(text, "IDENTIFIER"),
+                    Token(Symbol(text), file, lineno, col),
+                )
+            )
         elif kind == "INTEGER_CONSTANT":
             q.append((kind, Token(int(text), file, lineno, col)))
         elif kind in (

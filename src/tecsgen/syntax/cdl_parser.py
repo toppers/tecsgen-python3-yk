@@ -10,8 +10,7 @@ Ruby 版の `Generator` は racc が生成したパーサクラスで、次の3�
 （`racc_runtime`）。`import` のアクションは、パースの途中で別の `CdlParser` を作って
 同期的にパースする（入れ子）。
 
-TYPE_NAME の判定（Ruby の `Namespace.is_typename?`）はシンボル表を引くので、P3 の
-`Namespace` ができるまでは `CdlParser.typename_resolver` を差し替えて使う。
+TYPE_NAME の判定は `Namespace.is_typename?`（`typename_resolver`。差分テストでは差し替える）。
 """
 
 from __future__ import annotations
@@ -80,15 +79,20 @@ RESERVED2: dict[str, str] = {
 }
 
 
-def _no_typename(name: Any) -> bool:
-    return False
+def _namespace_is_typename(name: Any) -> bool:
+    """Namespace.is_typename?（TYPE_NAME の判定）。"""
+    from tecsgen.core.componentobj.namespace import Namespace
+
+    return Namespace.is_typename(name)
 
 
 class CdlParser(CdlActions, RaccParser):
     TABLES = cdl_tables
 
-    # Namespace.is_typename? に当たる関数。P3 で Namespace のものに差し替える
-    typename_resolver: ClassVar[Callable[[Any], bool]] = staticmethod(_no_typename)
+    # Namespace.is_typename? に当たる関数（テストで差し替えられるようにクラス属性にしている）
+    typename_resolver: ClassVar[Callable[[Any], bool]] = staticmethod(
+        _namespace_is_typename
+    )
 
     def __init__(self, reader: Reader = _read_file) -> None:
         super().__init__()
@@ -193,10 +197,24 @@ class CdlParser(CdlActions, RaccParser):
     def unset_in_specifier(self) -> None:
         self._in_specifier = False
 
-    # --- P3 で移植するもの ---------------------------------------------------
+    # --- モデルのスタック ------------------------------------------------------
 
     def _push_model_stacks(self) -> None:
-        """Namespace・Signature・Celltype・Cell・CompositeCelltype の push（P3 で移植）。"""
+        """Namespace・Signature・Celltype・Cell・CompositeCelltype の push。"""
+        from tecsgen.syntax import _model as m
+
+        m.Namespace.push()
+        m.Signature.push()
+        m.Celltype.push()
+        m.Cell.push()
+        m.CompositeCelltype.push()
 
     def _pop_model_stacks(self) -> None:
-        """Namespace・Signature・Celltype・Cell・CompositeCelltype の pop（P3 で移植）。"""
+        """finalize の中身。Namespace・Signature・Celltype・Cell・CompositeCelltype の pop。"""
+        from tecsgen.syntax import _model as m
+
+        m.Namespace.pop()
+        m.Signature.pop()
+        m.Celltype.pop()
+        m.Cell.pop()
+        m.CompositeCelltype.pop()

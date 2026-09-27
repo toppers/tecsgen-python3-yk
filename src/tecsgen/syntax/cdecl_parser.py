@@ -27,15 +27,20 @@ _RESET_NO_TYPE_NAME = frozenset({";", ":", ",", "(", ")", "{", "}"})
 _SET_NO_TYPE_NAME = frozenset({".", "->"})
 
 
-def _no_typename(name: Any) -> bool:
-    return False
+def _namespace_is_typename(name: Any) -> bool:
+    """Namespace.is_typename?（TYPE_NAME の判定）。"""
+    from tecsgen.core.componentobj.namespace import Namespace
+
+    return Namespace.is_typename(name)
 
 
 class CdeclParser(CdeclActions, RaccParser):
     TABLES = cdecl_tables
 
-    # Namespace.is_typename? に当たる関数。P3 で Namespace のものに差し替える
-    typename_resolver: ClassVar[Callable[[Any], bool]] = staticmethod(_no_typename)
+    # Namespace.is_typename? に当たる関数（テストで差し替えられるようにクラス属性にしている）
+    typename_resolver: ClassVar[Callable[[Any], bool]] = staticmethod(
+        _namespace_is_typename
+    )
 
     _generator_nest: ClassVar[int] = -1
     _generator_stack: ClassVar[list[Any]] = []
@@ -165,10 +170,22 @@ class CdeclParser(CdeclActions, RaccParser):
     def set_no_type_name(self, b_no_type_name: bool) -> None:
         self._b_no_type_name = b_no_type_name
 
-    # --- P3 で移植するもの ---------------------------------------------------
+    # --- モデルのスタック ------------------------------------------------------
 
     def _push_model_stacks(self) -> None:
-        """Celltype・Cell・CompositeCelltype・Region の push（P3 で移植）。"""
+        """Celltype・Cell・CompositeCelltype・Region の push（mikan Namespace.push）。"""
+        from tecsgen.syntax import _model as m
+
+        m.Celltype.push()
+        m.Cell.push()
+        m.CompositeCelltype.push()
+        m.Region.push()
 
     def _pop_model_stacks(self) -> None:
-        """Celltype・Cell・CompositeCelltype・Region の pop（P3 で移植）。"""
+        """finalize の中身。Celltype・Cell・CompositeCelltype・Region の pop。"""
+        from tecsgen.syntax import _model as m
+
+        m.Celltype.pop()
+        m.Cell.pop()
+        m.CompositeCelltype.pop()
+        m.Region.pop()

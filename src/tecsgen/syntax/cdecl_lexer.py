@@ -16,6 +16,7 @@ from typing import Any
 
 from tecsgen.context import print_exception
 from tecsgen.core.generator import Generator, Token
+from tecsgen.ruby_compat import Symbol
 from tecsgen.syntax.cdl_lexer import (
     LexError,
     Reader,
@@ -167,7 +168,13 @@ def _lex_main(
         if kind == "space" or kind == "line_comment":
             pass
         elif kind == "ident":
-            q.append((RESERVED.get(text, "IDENTIFIER"), Token(text, file, lineno, col)))
+            # Ruby 版は word.intern（Symbol）
+            q.append(
+                (
+                    RESERVED.get(text, "IDENTIFIER"),
+                    Token(Symbol(text), file, lineno, col),
+                )
+            )
         elif kind == "INTEGER_CONSTANT":
             q.append((kind, Token(_ruby_to_i(text), file, lineno, col)))
         elif kind == "comment":

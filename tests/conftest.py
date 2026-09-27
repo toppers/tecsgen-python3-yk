@@ -8,12 +8,9 @@ from pathlib import Path
 import pytest
 
 from tecsgen.context import TecsgenContext, reset_context
-from tecsgen.core.generate import AppFile
-from tecsgen.core.generator import Generator
 from tecsgen.core.tecs_lang import TECS_LANG
-from tecsgen.core.tecsgen import TECSGEN
 from tecsgen.host import set_host
-from tecsgen.syntax.cdecl_parser import CdeclParser
+from tecsgen.state import reset_model_state
 
 # 移植元 Ruby 版 tecsgen（差分テストのオラクルに使う）。無ければ差分テストを飛ばす
 RUBY_SRC = Path(
@@ -36,10 +33,7 @@ def fresh_state() -> Iterator[TecsgenContext]:
     正解データの採取条件（LANG=C）に合わせて言語を設定する。
     """
     ctx = reset_context()
-    Generator.reset()
-    CdeclParser.reset()
-    AppFile.reset()
-    TECSGEN.reset()
+    reset_model_state()
     set_host(None)
     TECS_LANG.setup(ctx, {"LANG": "C"})
     yield ctx
