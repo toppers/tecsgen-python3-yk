@@ -1,9 +1,12 @@
-"""P4 の差分テストの進み具合を一覧する（Ruby は不要。記録を再生する）。
+"""P4/P5 の差分テストの進み具合を一覧する（Ruby は不要。記録を再生する）。
 
     uv run python tools/port/p4_progress.py [ケースID の前方一致...] [-v]
 
-プラグインを使わないケースを通しで実行し、ケースごとに終了コード・標準出力・生成物の一致を表示する。
--v で、一致しなかった生成物の名前も表示する。
+プラグインを使う・使わないケースの両方を通しで実行し、ケースごとに終了コード・標準出力・
+生成物の一致を表示する。プラグインを使うケースは末尾に " [plugin]" を付け、集計もプラグイン
+の有無で分けて出す（[[tecsgen-python3移植計画]] P5「最初に」の一致一覧・1ケース差分表示）。
+-v で、一致しなかった生成物の名前・標準出力の差分も表示する（1ケースの差分表示は
+`uv run python tools/port/p4_progress.py <ケースID> -v` で見る）。
 """
 
 from __future__ import annotations
@@ -25,24 +28,33 @@ def main(argv: list[str]) -> int:
     prefixes = [a for a in argv if not a.startswith("-")]
     n_ok = 0
     n_total = 0
+    n_ok_plugin = 0
+    n_total_plugin = 0
     kinds: Counter[str] = Counter()
     for cid in case_ids():
         if prefixes and not any(cid.startswith(p) for p in prefixes):
             continue
         rec = load_case(cid)
-        if rec.uses_plugin or rec.exit_error == "SystemStackError":
+        if rec.exit_error == "SystemStackError":
             continue
-        n_total += 1
+        if rec.uses_plugin:
+            n_total_plugin += 1
+        else:
+            n_total += 1
         try:
             r = run_case_captured(cid)
-        except Exception:  # noqa: BLE001
-            print(f"EXC  {cid}")
+        except Exception as exc:  # noqa: BLE001
+            print(f"EXC  {cid}: {exc}")
             if verbose:
                 traceback.print_exc()
             continue
         if r.ok:
-            n_ok += 1
+            if rec.uses_plugin:
+                n_ok_plugin += 1
+            else:
+                n_ok += 1
         mark = "OK  " if r.ok else "NG  "
+        tag = " [plugin]" if rec.uses_plugin else ""
         st = (
             ""
             if r.status == r.golden_status
@@ -50,7 +62,7 @@ def main(argv: list[str]) -> int:
         )
         so = "" if r.stdout == r.golden_stdout else " stdout!"
         files = f"{len(r.same)}/{len(r.golden)}"
-        print(f"{mark}{cid}: files {files}{st}{so}")
+        print(f"{mark}{cid}{tag}: files {files}{st}{so}")
         for name in r.missing + r.differ + r.extra:
             kinds[
                 Path(name).name.split("_")[-1]
@@ -84,7 +96,8 @@ def main(argv: list[str]) -> int:
                     "      "
                     + r.stderr.decode("utf-8", "replace").replace("\n", "\n      ")
                 )
-    print(f"\n{n_ok}/{n_total} cases match")
+    print(f"\n{n_ok}/{n_total} cases match (no plugin)")
+    print(f"{n_ok_plugin}/{n_total_plugin} cases match (plugin)")
     if kinds:
         print("mismatched file kinds:", dict(kinds.most_common()))
     return 0
