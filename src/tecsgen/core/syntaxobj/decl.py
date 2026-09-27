@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from tecsgen.core.syntaxobj.node import BDNode
+from tecsgen.core.tecsinfo import DeclTECSInfo
 from tecsgen.ruby_compat import (
     RubyRuntimeError,
     Y,
@@ -17,7 +18,7 @@ from tecsgen.ruby_compat import (
 )
 
 
-class Decl(BDNode):
+class Decl(DeclTECSInfo, BDNode):
     """宣言。@kind で示される各種の宣言。
 
     @identifer:: String

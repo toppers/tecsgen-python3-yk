@@ -14,6 +14,7 @@ from tecsgen.context import dbg_print, get_context, print_exception
 from tecsgen.core.generator import _get_at, _set_at
 from tecsgen.core.plugin_module import PluginModule, PluginNotPorted
 from tecsgen.core.syntaxobj.node import NSBDNode
+from tecsgen.core.tecsinfo import CellTECSInfo
 from tecsgen.ruby_compat import (
     RubyRuntimeError,
     Y,
@@ -33,7 +34,7 @@ def _is_int(x: Any) -> bool:
     return isinstance(x, int) and not isinstance(x, bool)
 
 
-class Cell(PluginModule, NSBDNode):  # < Nestable
+class Cell(CellTECSInfo, PluginModule, NSBDNode):  # < Nestable
     """@name:: Symbol / @global_name:: Symbol / @local_name:: str
     @celltype:: Celltype | CompositeCelltype / @join_list:: NamedList / @reverse_join_list:: NamedList
     @b_defined / @b_prototype / @b_duplicate / @b_checked:: bool

@@ -12,6 +12,7 @@ from tecsgen.core.generator import _get_at, _set_at
 from tecsgen.core.optimize import CelltypeOptimize
 from tecsgen.core.plugin_module import PluginModule
 from tecsgen.core.syntaxobj.node import NSBDNode
+from tecsgen.core.tecsinfo import CelltypeTECSInfo
 from tecsgen.ruby_compat import (
     RubyRuntimeError,
     Y,
@@ -25,7 +26,12 @@ from tecsgen.ruby_compat import (
 
 
 class Celltype(
-    CelltypeGenerate, CelltypeOptimize, CelltypePluginModule, PluginModule, NSBDNode
+    CelltypeTECSInfo,
+    CelltypeGenerate,
+    CelltypeOptimize,
+    CelltypePluginModule,
+    PluginModule,
+    NSBDNode,
 ):  # < Nestable
     """@name:: Symbol / @global_name:: Symbol / @name_list:: NamedList item: Decl (attribute, var), Port
     @port:: Port[] / @attribute:: Decl[] / @var:: Decl[] / @require:: [[cp_name,Celltype|Cell,Port],...]

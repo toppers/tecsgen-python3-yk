@@ -9,6 +9,7 @@ from tecsgen.core.generate import SignatureGenerate
 from tecsgen.core.generator import _get_at, _set_at
 from tecsgen.core.plugin_module import PluginModule, PluginNotPorted
 from tecsgen.core.syntaxobj.node import NSBDNode
+from tecsgen.core.tecsinfo import SignatureTECSInfo
 from tecsgen.ruby_compat import (
     RubyRuntimeError,
     Y,
@@ -23,7 +24,7 @@ from tecsgen.ruby_compat import (
 )
 
 
-class Signature(SignatureGenerate, PluginModule, NSBDNode):  # < Nestable
+class Signature(SignatureTECSInfo, SignatureGenerate, PluginModule, NSBDNode):  # < Nestable
     """@name:: Symbol / @global_name:: Symbol
     @function_head_list:: NamedList : FuncHead のインスタンスが要素
     @func_name_to_id::  {String}  :  関数名を添字とする配列で id を記憶する（1から始まる）

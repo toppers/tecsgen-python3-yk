@@ -49,3 +49,16 @@ def reset_model_state() -> None:
         PluginModule,
     ):
         cls.reset()
+
+    # プラグインは Ruby 版では実際に使われたときだけ require されるので、ここでは強制 import
+    # しない（テストの model 比較が「Python でだけロードされているクラス」として誤検出する）。
+    # 既に import 済みならクラス変数（@@cell_list 相当）だけリセットする。
+    import sys
+
+    for mod_name, cls_name in (
+        ("tecsgen.plugin.TECSInfoPlugin", "TECSInfoPlugin"),
+        ("tecsgen.plugin.TECSInfoCompoPlugin", "TECSInfoCompoPlugin"),
+    ):
+        mod = sys.modules.get(mod_name)
+        if mod is not None:
+            getattr(mod, cls_name).reset()

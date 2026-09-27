@@ -6,6 +6,7 @@ from typing import Any
 
 from tecsgen.context import dbg_print, get_context
 from tecsgen.core.syntaxobj.node import BDNode
+from tecsgen.core.tecsinfo import PortTECSInfo
 from tecsgen.ruby_compat import RubyRuntimeError, Y, rb_print, rb_puts, to_s, truthy
 
 
@@ -13,7 +14,7 @@ def _is_int(x: Any) -> bool:
     return isinstance(x, int) and not isinstance(x, bool)
 
 
-class Port(BDNode):
+class Port(PortTECSInfo, BDNode):
     """@name::  str / @signature:: Signature / @port_type::  :CALL, :ENTRY
     @array_size:: nil: not array, "[]": sizeless, Integer: sized array
     @reverse_require_cell_path:: NamespacePath / @reverse_require_callport_name:: Symbol

@@ -11,6 +11,7 @@ from typing import Any, ClassVar
 from tecsgen.context import dbg_print
 from tecsgen.core.generate import StructTypeGenerate
 from tecsgen.core.syntaxobj.node import Node
+from tecsgen.core.tecsinfo import TypeTECSInfo
 from tecsgen.ruby_compat import (
     RubyNameError,
     RubyRuntimeError,
@@ -45,7 +46,7 @@ class HasType:
         self._b_cloned = True
 
 
-class Type(Node):
+class Type(TypeTECSInfo, Node):
     """@b_const : bool / @b_volatile : bool"""
 
     # tecsinfo.rb がクラス本体で定義するクラス変数

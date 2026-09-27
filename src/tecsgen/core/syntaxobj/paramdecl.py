@@ -5,10 +5,11 @@ from __future__ import annotations
 from typing import Any
 
 from tecsgen.core.syntaxobj.node import BDNode
+from tecsgen.core.tecsinfo import ParamDeclTECSInfo
 from tecsgen.ruby_compat import Y, rb_print, rb_puts, to_s, truthy
 
 
-class ParamDecl(BDNode):
+class ParamDecl(ParamDeclTECSInfo, BDNode):
     """関数パラメータの宣言。
 
     @declarator:: Decl:  Token, ArrayType, FuncType, PtrType

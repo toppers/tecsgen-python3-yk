@@ -9,10 +9,11 @@ from __future__ import annotations
 from typing import Any
 
 from tecsgen.core.syntaxobj.node import BDNode
+from tecsgen.core.tecsinfo import FuncHeadTECSInfo
 from tecsgen.ruby_compat import Y, rb_print, rb_puts
 
 
-class FuncHead(BDNode):
+class FuncHead(FuncHeadTECSInfo, BDNode):
     """@declarator:: Decl"""
 
     def __init__(self, declarator: Any, type_: Any, b_oneway: Any) -> None:
