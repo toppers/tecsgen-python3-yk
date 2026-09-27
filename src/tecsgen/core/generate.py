@@ -68,6 +68,43 @@ class AppFile:
                 os.remove(tmp)
 
 
+class NamespaceGenerate:
+    """generate.rb の Namespace 再オープン部分（mixin）。
+
+    P3 では、意味解析から呼ばれるもの（travers_all_*）だけを移植した。残りは P4。
+    """
+
+    _signature_list: list[Any]
+    _celltype_list: list[Any]
+    _namespace_list: list[Any]
+
+    def travers_all_signature(self, proc: Any) -> None:
+        """すべてのシグニチャをたどる（Ruby のブロック引数を関数で渡す）。"""
+        for sig in self._signature_list:
+            proc(sig)
+        for ns in self._namespace_list:
+            ns.travers_all_signature_proc(proc)
+
+    def travers_all_signature_proc(self, proc: Any) -> None:
+        for sig in self._signature_list:
+            proc(sig)
+        for ns in self._namespace_list:
+            ns.travers_all_signature_proc(proc)
+
+    def travers_all_celltype(self, proc: Any) -> None:
+        """すべてのセルタイプをたどる。"""
+        for ct in self._celltype_list:
+            proc(ct)
+        for ns in self._namespace_list:
+            ns.travers_all_celltype_proc(proc)
+
+    def travers_all_celltype_proc(self, proc: Any) -> None:
+        for ct in self._celltype_list:
+            proc(ct)
+        for ns in self._namespace_list:
+            ns.travers_all_celltype_proc(proc)
+
+
 class MemFile:
     """文字列に書き溜める出力先（File と同じ print を持つ）。"""
 
