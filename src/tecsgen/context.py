@@ -86,3 +86,34 @@ def dbg_printf(fmt: str, *args: object) -> None:
         from tecsgen.ruby_compat import rb_print, sprintf
 
         rb_print(sprintf(fmt, *args))
+
+
+def ruby_exception_message(evar: BaseException) -> str:
+    """Python の例外を、Ruby 版で同じ状況に出る例外の to_s に近い文字列にする（TBC）。
+
+    Ruby の例外メッセージは版によって書式が変わる。正解データの Ruby 3.2 に合わせている。
+    """
+    if isinstance(evar, FileNotFoundError):
+        return f"No such file or directory @ rb_sysopen - {evar.filename}"
+    if isinstance(evar, IsADirectoryError):
+        return f"Is a directory @ io_fread - {evar.filename}"
+    if isinstance(evar, PermissionError):
+        return f"Permission denied @ rb_sysopen - {evar.filename}"
+    if type(evar).__name__ == "LexError":
+        # 字句解析でどの正規表現にも当たらなかったとき、Ruby 版は $' が nil になる
+        return "undefined method `empty?' for nil:NilClass"
+    return str(evar)
+
+
+def print_exception(evar: BaseException) -> None:
+    """tecsgen.rb の print_exception。Ruby の例外メッセージを出力する。"""
+    from tecsgen.ruby_compat import rb_print, rb_puts
+
+    rb_print("*** Begin Ruby exception message ***\n")
+    rb_puts(ruby_exception_message(evar))
+    if _context.debug:
+        import traceback
+
+        rb_puts("#### stack trace ####")
+        rb_print("".join(traceback.format_tb(evar.__traceback__)))
+    rb_print("*** End Ruby exception message ***\n")

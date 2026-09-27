@@ -6,6 +6,7 @@ Generator#parse に渡したすべてのファイルについて、種別・値�
 
 from __future__ import annotations
 
+import re
 from typing import Any
 
 import pytest
@@ -15,11 +16,11 @@ from p2_oracle_data import ParseRecord, case_env, case_ids, load_case, raw
 from tecsgen.context import TecsgenContext, get_context
 from tecsgen.core.generator import Token
 from tecsgen.core.tecs_lang import TECS_LANG
-from tecsgen.syntax.cdl_lexer import RESERVED, lex_files
+from tecsgen.syntax.cdl_lexer import lex_files
 
-# Ruby 版で種別が Symbol になるもの（それ以外は記号そのものの String）
-SYMBOL_KINDS = set(RESERVED.values()) | {
-    "IDENTIFIER",
+# リテラルの種別。これ以外の名前の種別（予約語・IDENTIFIER・TYPE_NAME など）は、
+# Ruby 版では値も Symbol（word.intern）になる
+LITERAL_KINDS = {
     "HEX_CONSTANT",
     "OCTAL_CONSTANT",
     "FLOATING_CONSTANT",
@@ -28,8 +29,8 @@ SYMBOL_KINDS = set(RESERVED.values()) | {
     "STRING_LITERAL",
     "AB_STRING_LITERAL",
 }
-# 値が Symbol になるもの（識別子と予約語。Ruby 版は word.intern を値にする）
-SYMBOL_VALUE_KINDS = set(RESERVED.values()) | {"IDENTIFIER"}
+# 名前の種別（Ruby の Symbol）。記号の種別（Ruby の String）は、この形にならない
+NAMED_KIND = re.compile(r"[A-Z_][A-Z0-9_]*")
 
 
 def value_codec() -> str:
@@ -44,11 +45,12 @@ def as_ruby(kind: str, tok: Token) -> list[Any]:
     def s(x: str) -> str:
         return x.encode(codec, errors="surrogateescape").decode("latin-1")
 
-    kind_v = ["Symbol", kind] if kind in SYMBOL_KINDS else ["String", s(kind)]
+    named = NAMED_KIND.fullmatch(kind) is not None
+    kind_v = ["Symbol", kind] if named else ["String", s(kind)]
     if isinstance(tok.val, int):
         val = ["Integer", str(tok.val)]
     else:
-        cls = "Symbol" if kind in SYMBOL_VALUE_KINDS else "String"
+        cls = "Symbol" if named and kind not in LITERAL_KINDS else "String"
         val = [cls, s(tok.val)]
     return [kind_v, val, [s(tok.file), tok.lineno, tok.col]]
 

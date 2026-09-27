@@ -11,6 +11,7 @@ from tecsgen.context import TecsgenContext, reset_context
 from tecsgen.core.generate import AppFile
 from tecsgen.core.generator import Generator
 from tecsgen.core.tecs_lang import TECS_LANG
+from tecsgen.syntax.cdecl_parser import CdeclParser
 
 # 移植元 Ruby 版 tecsgen（差分テストのオラクルに使う）。無ければ差分テストを飛ばす
 RUBY_SRC = Path(
@@ -34,6 +35,7 @@ def fresh_state() -> Iterator[TecsgenContext]:
     """
     ctx = reset_context()
     Generator.reset()
+    CdeclParser.reset()
     AppFile.reset()
     TECS_LANG.setup(ctx, {"LANG": "C"})
     yield ctx

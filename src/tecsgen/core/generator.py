@@ -1,7 +1,7 @@
 """bnf.y.rb のうち、`Generator` のエラー処理・位置情報と `Token` の移植（内部仕様11章）。
 
 Ruby 版の `Generator` は racc が生成するパーサクラスで、構文解析とエラー報告の両方を担う。
-Python 版では、構文解析（`parse`・`next_token` など）を `tecsgen.syntax.cdl_builder` へ移し、
+Python 版では、構文解析（`parse`・`next_token` など）を `tecsgen.syntax.cdl_parser` へ移し、
 このモジュールには全フェーズから呼ばれるエラー報告と、パーサの入れ子（import による再帰的な
 パース）の状態だけを置く。
 
@@ -162,10 +162,9 @@ class Generator:
 
         if cls._import_C:
             # import_C の中でのエラー
-            # P2 で移植するモジュール
-            from tecsgen.syntax.cdecl_builder import C_parser  # ty: ignore
+            from tecsgen.syntax.cdecl_parser import CdeclParser
 
-            locale = C_parser.current_locale()
+            locale = CdeclParser.current_locale()
         elif not cls._b_end_all_parse or locale is None:
             # 構文解析中は、Node が記憶する位置ではなく、解析中の位置を出力する
             locale = cls.current_locale()
