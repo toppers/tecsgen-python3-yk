@@ -6,6 +6,7 @@
 from __future__ import annotations
 
 import importlib
+import sys
 from typing import TYPE_CHECKING, Any, ClassVar
 
 from tecsgen.context import dbg_print, get_context
@@ -58,6 +59,18 @@ def _import_plugin_class(name: str) -> Any:
     return getattr(module, name, None)
 
 
+def _lookup_loaded_plugin_class(name: str) -> Any:
+    """`Object.const_get(name)`（require し直さない）に相当。
+
+    `load_plugin` は2度目以降、require を試みず定数参照だけを行うので、
+    `sys.modules` に既にあるモジュールからだけクラスを引く（無ければ nil）。
+    """
+    module = sys.modules.get(f"tecsgen.plugin.{name}")
+    if module is None:
+        return None
+    return getattr(module, name, None)
+
+
 def _resolve_super_class(super_class: Any) -> type:
     """load_plugin の `superClass` 引数（クラスまたはクラス名の文字列）を解決する。"""
     if isinstance(super_class, type):
@@ -106,10 +119,10 @@ class PluginModule(_Base):
                     self.cdl_error("P2001 $1.rb : fail to load plugin", plugin_name)
                     return None
             else:
-                pl_class = _import_plugin_class(to_s(plugin_name))
+                # 2度目以降は require し直さず、定数参照だけを行う（失敗すれば例外 → P2003）
+                pl_class = _lookup_loaded_plugin_class(to_s(plugin_name))
                 if pl_class is None:
-                    self.cdl_error("P2001 $1.rb : fail to load plugin", plugin_name)
-                    return None
+                    raise RubyError(f"uninitialized constant {to_s(plugin_name)}")
 
             super_cls = _resolve_super_class(superClass)
             if issubclass(pl_class, super_cls):  # plClass inherits superClass
