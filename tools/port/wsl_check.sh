@@ -8,7 +8,7 @@
 # - 仮想環境は $HOME/.venvs/tecsgen-python3 に作る（UV_PROJECT_ENVIRONMENT）。
 #   指定しないと、リポジトリの .venv（Windows 用）が Linux 用に作り直されてしまう。
 #   /tmp は WSL の再起動で消えるので使わない
-# - --oracle を付けると、先に run_p2_oracle.sh で Ruby 版の記録（tests/golden/p2/）を採り直す
+# - --oracle を付けると、先に run_p2_oracle.sh・run_p3_oracle.sh で Ruby 版の記録（tests/golden/p2/・p3/）を採り直す
 # - 続けて uv sync・ruff check・ruff format --check・ty check・pytest を順に実行し、
 #   最後に各段階の結果をまとめて表示する。どれかが失敗すると終了コード 1
 set -u
@@ -51,6 +51,7 @@ step() {
 
 if [ -n "$ORACLE_WC" ]; then
   step "run_p2_oracle.sh" sh tools/port/run_p2_oracle.sh "$ORACLE_WC"
+  step "run_p3_oracle.sh" sh tools/port/run_p3_oracle.sh "$ORACLE_WC"
 fi
 step "uv sync" uv sync --quiet
 step "ruff check" uv run --quiet ruff check .

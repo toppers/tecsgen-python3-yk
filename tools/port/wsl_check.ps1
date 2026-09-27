@@ -13,7 +13,7 @@
   pwsh tools/port/wsl_check.ps1 -PytestArgs tests/test_p2_parser.py, -x
 #>
 param(
-  # 指定すると、先に Ruby 版の記録（tests/golden/p2/）を採り直す
+  # 指定すると、先に Ruby 版の記録（tests/golden/p2/・p3/）を採り直す
   [string]$Oracle = "",
   # pytest にそのまま渡す引数
   [string[]]$PytestArgs = @()
