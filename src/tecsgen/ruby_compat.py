@@ -4,6 +4,8 @@
 - `sub_first`: Ruby の `String#sub` （置換文字列中の `\\1`・`\\&`・`\\\\` などを Ruby の規則で解釈する）
 - `truthy`: Ruby の真偽判定（nil と false だけが偽）
 - `rb_print`・`rb_puts`: Ruby の `print`・`puts`（改行コードを変換せず、標準出力へバイト列で書く）
+- `Symbol`: Ruby の Symbol（同じ綴りの String とは等しくない。Hash のキーとしても別物）
+- `rb_integer`・`str_to_i`・`str_oct` など: Ruby の数値変換
 
 標準出力の改行コードは常に LF にする（正解データは Linux 上の Ruby で採取している）。
 """
@@ -25,6 +27,16 @@ def truthy(x: Any) -> bool:
     return x is not None and x is not False
 
 
+def rb_or(a: Any, b: Any) -> Any:
+    """Ruby の `a || b`（値を返す。b は評価済みの値を渡す）。"""
+    return a if truthy(a) else b
+
+
+def rb_and(a: Any, b: Any) -> Any:
+    """Ruby の `a && b`（値を返す。b は評価済みの値を渡す）。"""
+    return b if truthy(a) else a
+
+
 # --- to_s / inspect ---------------------------------------------------------
 
 
@@ -41,13 +53,15 @@ def to_s(obj: Any) -> str:
     if obj is False:
         return "false"
     if isinstance(obj, str):
-        return obj
+        return str(obj)  # Symbol も String になる
     if isinstance(obj, int):
         return str(obj)
     if isinstance(obj, float):
         return _float_to_s(obj)
-    if isinstance(obj, (list, tuple)):
+    if isinstance(obj, (list, tuple, dict)):
         return inspect(obj)
+    if isinstance(obj, type):
+        return class_name(obj)
     method = getattr(obj, "to_s", None)
     if callable(method):
         return method()
@@ -66,12 +80,16 @@ def inspect(obj: Any) -> str:
         return "true"
     if obj is False:
         return "false"
+    if isinstance(obj, Symbol):
+        return _symbol_inspect(obj)
     if isinstance(obj, str):
         return _str_inspect(obj)
     if isinstance(obj, int):
         return str(obj)
     if isinstance(obj, float):
         return _float_to_s(obj)
+    if isinstance(obj, type):
+        return class_name(obj)
     if isinstance(obj, (list, tuple)):
         return "[" + ", ".join(inspect(o) for o in obj) + "]"
     if isinstance(obj, dict):
@@ -316,3 +334,304 @@ class RubyIO:
 
     def __exit__(self, *exc: object) -> None:
         self.close()
+
+
+# --- Symbol -----------------------------------------------------------------
+
+
+class Symbol(str):
+    """Ruby の Symbol。
+
+    Ruby では `:abc == "abc"` は偽で、Hash のキーとしても別物になる。tecsgen は識別子を
+    Symbol、文字列リテラルや連結の結果を String で持ち、両者を比べたり Hash を引いたりする
+    箇所がある（意図せず一致しないものもある）。その挙動を再現するため、str の派生クラスに
+    して、等値比較とハッシュ値だけを str と区別する。文字列としての操作（連結・書式化）の結果は
+    str（Ruby の String）になる。
+    """
+
+    __slots__ = ()
+
+    def __eq__(self, other: object) -> bool:
+        return type(other) is Symbol and str.__eq__(self, other)
+
+    def __ne__(self, other: object) -> bool:
+        return not self.__eq__(other)
+
+    def __hash__(self) -> int:
+        return hash((Symbol, str.__str__(self)))
+
+    def __repr__(self) -> str:
+        return _symbol_inspect(self)
+
+
+def sym(s: Any) -> Symbol:
+    """Ruby の `to_sym`・`intern`・`:"..."`。"""
+    if isinstance(s, Symbol):
+        return s
+    return Symbol(to_s(s))
+
+
+class _SymbolLiterals:
+    """Symbol のリテラル。Ruby の `:VAR` を `Y.VAR` と書く。"""
+
+    def __getattr__(self, name: str) -> Symbol:
+        return Symbol(name)
+
+
+Y = _SymbolLiterals()
+
+
+_SIMPLE_SYMBOL = re.compile(
+    r"\A(?:[A-Za-z_][A-Za-z0-9_]*[?!=]?|\[\]=?|[-+*/%<>=!~^&|]+)\Z"
+)
+
+
+def _symbol_inspect(s: str) -> str:
+    body = str.__str__(s)
+    if _SIMPLE_SYMBOL.match(body):
+        return ":" + body
+    return ":" + _str_inspect(body)
+
+
+class dualmethod:
+    """Ruby の、同じ名前のクラスメソッドとインスタンスメソッド。
+
+    Ruby では `Namespace.find(path)`（クラスメソッド）と `ns.find(name)`（インスタンスメソッド）が
+    別のメソッドとして共存する。Python ではクラス属性が1つしか持てないので、クラスから引いたか
+    インスタンスから引いたかで呼び分けるデスクリプタにする。
+
+        @dualmethod
+        def find(cls, path): ...      # Namespace.find
+        @find.instance
+        def find(self, name): ...     # ns.find
+
+    子クラスで片方だけを上書きするときは、子クラスでも dualmethod を使い、もう片方を
+    `parent_dual.cls_func` / `parent_dual.inst_func` で引き継ぐ。
+    """
+
+    def __init__(self, cls_func: Callable[..., Any]) -> None:
+        self.cls_func = cls_func
+        self.inst_func: Callable[..., Any] | None = None
+        self.__doc__ = cls_func.__doc__
+
+    def instance(self, inst_func: Callable[..., Any]) -> dualmethod:
+        self.inst_func = inst_func
+        return self
+
+    def __get__(self, obj: Any, owner: type | None = None) -> Any:
+        import types
+
+        if obj is None:
+            return types.MethodType(self.cls_func, owner)
+        if self.inst_func is None:
+            raise AttributeError(getattr(self.cls_func, "__name__", "dualmethod"))
+        return types.MethodType(self.inst_func, obj)
+
+
+def class_name(cls: type) -> str:
+    """Ruby のクラス名（`obj.class.name`・`obj.class.to_s`）。"""
+    name = cls.__dict__.get("RUBY_NAME")
+    return name if isinstance(name, str) else cls.__name__
+
+
+# --- 例外 -------------------------------------------------------------------
+
+
+class RubyError(Exception):
+    """Ruby の例外。`str()` は Ruby の例外の to_s（print_exception が出力する文字列）。"""
+
+
+class RubyRuntimeError(RubyError):
+    """`raise "message"`（RuntimeError）。"""
+
+
+class RubyNoMethodError(RubyError):
+    """NoMethodError。"""
+
+
+class RubyNameError(RubyError):
+    """NameError。"""
+
+
+class RubyTypeError(RubyError):
+    """TypeError。"""
+
+
+class RubyArgumentError(RubyError):
+    """ArgumentError。"""
+
+
+def _recv_desc(recv: Any) -> str:
+    if recv is None:
+        return "nil:NilClass"
+    if recv is True:
+        return "true:TrueClass"
+    if recv is False:
+        return "false:FalseClass"
+    if isinstance(recv, int):
+        return f"{recv}:Integer"
+    if isinstance(recv, float):
+        return f"{_float_to_s(recv)}:Float"
+    if isinstance(recv, Symbol):
+        return f"{_symbol_inspect(recv)}:Symbol"
+    if isinstance(recv, str):
+        return f"{_str_inspect(recv)}:String"
+    return f"an instance of {class_name(type(recv))}"
+
+
+def no_method(name: str, recv: Any) -> RubyNoMethodError:
+    """Ruby 3.2 の NoMethodError（"undefined method `x' for nil:NilClass"）。
+
+    モデルクラスのインスタンスが受け手のときは、Ruby 3.2 のメッセージは
+    `#<Class:0x...>` のようなアドレスを含むので一致しない（TBC）。
+    """
+    return RubyNoMethodError(f"undefined method `{name}' for {_recv_desc(recv)}")
+
+
+# --- 数値変換 ---------------------------------------------------------------
+
+_INT_PREFIX = re.compile(r"\A\s*([-+]?)(\d+(?:_\d+)*)")
+
+
+def str_to_i(s: str) -> int:
+    """Ruby の `String#to_i`（10進。先頭の空白と符号を許し、数字でない文字で止まる）。"""
+    m = _INT_PREFIX.match(s)
+    if m is None:
+        return 0
+    v = int(m.group(2).replace("_", ""))
+    return -v if m.group(1) == "-" else v
+
+
+_HEX_DIGITS = "0123456789abcdefABCDEF"
+
+
+def _str_to_base(s: str, base: int) -> int:
+    m = re.match(r"\A\s*([-+]?)", s)
+    assert m is not None
+    sign = -1 if m.group(1) == "-" else 1
+    rest = s[m.end() :]
+    digits = {16: _HEX_DIGITS, 8: "01234567", 2: "01"}[base]
+    head = rest[:2]
+    if base == 16 and head in ("0x", "0X"):
+        rest = rest[2:]
+    elif base == 8:
+        # String#oct は 0x・0b・0o の接頭辞も解釈する
+        if head in ("0x", "0X"):
+            base, digits, rest = 16, _HEX_DIGITS, rest[2:]
+        elif head in ("0b", "0B"):
+            base, digits, rest = 2, "01", rest[2:]
+        elif head in ("0o", "0O"):
+            rest = rest[2:]
+    out: list[str] = []
+    prev_underscore = True
+    for ch in rest:
+        if ch in digits:
+            out.append(ch)
+            prev_underscore = False
+        elif ch == "_" and not prev_underscore:
+            prev_underscore = True
+        else:
+            break
+    if not out:
+        return 0
+    return sign * int("".join(out), base)
+
+
+def str_hex(s: str) -> int:
+    """Ruby の `String#hex`。"""
+    return _str_to_base(s, 16)
+
+
+def str_oct(s: str) -> int:
+    """Ruby の `String#oct`（0x・0b・0o の接頭辞も解釈する）。"""
+    return _str_to_base(s, 8)
+
+
+_FLOAT_PREFIX = re.compile(
+    r"\A\s*[-+]?(?:\d+(?:_\d+)*(?:\.\d+(?:_\d+)*)?|\.\d+)(?:[eE][-+]?\d+)?"
+)
+
+
+def str_to_f(s: str) -> float:
+    """Ruby の `String#to_f`（数値として読める先頭部分だけを読む）。"""
+    m = _FLOAT_PREFIX.match(s)
+    if m is None:
+        return 0.0
+    return float(m.group(0).replace("_", ""))
+
+
+def rb_to_i(x: Any) -> int:
+    """`x.to_i`（Integer・Float・String・nil、および to_i を持つモデルの値）。"""
+    if x is None:
+        return 0
+    if isinstance(x, bool):
+        raise no_method("to_i", x)
+    if isinstance(x, int):
+        return x
+    if isinstance(x, float):
+        if math.isnan(x) or math.isinf(x):
+            raise RubyError(_float_to_s(x))  # FloatDomainError
+        return int(x)
+    if isinstance(x, str):
+        return str_to_i(x)
+    method = getattr(x, "to_i", None)
+    if callable(method):
+        return method()
+    raise no_method("to_i", x)
+
+
+def rb_to_f(x: Any) -> float:
+    """`x.to_f`。巨大な整数は Infinity になる。"""
+    if x is None:
+        return 0.0
+    if isinstance(x, bool):
+        raise no_method("to_f", x)
+    if isinstance(x, int):
+        try:
+            return float(x)
+        except OverflowError:
+            return math.inf if x > 0 else -math.inf
+    if isinstance(x, float):
+        return x
+    if isinstance(x, str):
+        return str_to_f(x)
+    method = getattr(x, "to_f", None)
+    if callable(method):
+        return method()
+    raise no_method("to_f", x)
+
+
+def rb_integer(x: Any) -> int:
+    """`Kernel#Integer(x)`（Float は切り捨て、nil・true などは TypeError）。"""
+    if x is None or isinstance(x, bool):
+        cls = {None: "nil", True: "true", False: "false"}[x]
+        raise RubyTypeError(f"can't convert {cls} into Integer")
+    if isinstance(x, int):
+        return x
+    if isinstance(x, float):
+        if math.isnan(x) or math.isinf(x):
+            raise RubyError(_float_to_s(x))  # FloatDomainError
+        return int(x)
+    if isinstance(x, str):
+        try:
+            return int(x.strip().replace("_", ""), 0)
+        except ValueError:
+            raise RubyArgumentError(
+                f"invalid value for Integer(): {_str_inspect(x)}"
+            ) from None
+    raise RubyTypeError(f"can't convert {class_name(type(x))} into Integer")
+
+
+def rb_lshift(a: int, b: int) -> int:
+    """Integer#<<（負のシフト量は右シフト）。"""
+    return a << b if b >= 0 else a >> -b
+
+
+def rb_rshift(a: int, b: int) -> int:
+    """Integer#>>（負のシフト量は左シフト）。"""
+    return a >> b if b >= 0 else a << -b
+
+
+def rb_downcase(s: Any) -> str:
+    """`x.to_s.downcase`（ASCII のみ）。"""
+    return to_s(s).lower()

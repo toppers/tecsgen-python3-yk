@@ -15,7 +15,14 @@ from typing import Any, ClassVar
 
 from tecsgen.core.messages import TECSMsg
 from tecsgen.core.tecs_lang import Console
-from tecsgen.ruby_compat import rb_print, sub_first, to_s
+from tecsgen.ruby_compat import (
+    RubyArgumentError,
+    Symbol,
+    rb_print,
+    sub_first,
+    sym,
+    to_s,
+)
 from tecsgen.syntax.tecsio import TECSIO
 
 Locale = tuple[str, int, int]
@@ -48,6 +55,9 @@ class Generator:
     # statement_specifier は構文解釈途中で参照したいため
     _statement_specifier_stack: ClassVar[list[list[Any] | None]] = []
 
+    # tag なし struct（bnf.y.rb の文法アクションが使う）
+    _no_struct_tag_num: ClassVar[int] = 0
+
     @classmethod
     def reset(cls) -> None:
         """クラス変数を初期状態に戻す（Ruby 版には無い。1プロセスで複数回実行するテスト用）。"""
@@ -60,6 +70,7 @@ class Generator:
         cls._n_warning = 0
         cls._n_info = 0
         cls._statement_specifier_stack = []
+        cls._no_struct_tag_num = 0
 
     # --- パーサの入れ子 ------------------------------------------------------
 
@@ -99,6 +110,17 @@ class Generator:
     @classmethod
     def parsing_C(cls) -> bool:  # Ruby: parsing_C?
         return cls._import_C
+
+    @classmethod
+    def get_plugin(cls) -> Any:
+        """Generator.get_plugin。tecsgen 引数の cdl が import される時は nil。"""
+        parser = cls.current_parser()
+        return parser.get_plugin() if parser is not None else None
+
+    @classmethod
+    def is_reuse(cls) -> bool:  # Ruby: is_reuse?
+        parser = cls.current_parser()
+        return parser.is_reuse() if parser is not None else False
 
     @classmethod
     def end_all_parse(cls) -> None:
@@ -231,7 +253,7 @@ class Token:
 
     __slots__ = ("col", "file", "lineno", "val")
 
-    def __init__(self, val: Any, file: str, lineno: int, col: int) -> None:
+    def __init__(self, val: Any, file: Any, lineno: Any, col: Any) -> None:
         self.val = val
         self.file = file
         self.lineno = lineno
@@ -243,8 +265,8 @@ class Token:
     def __str__(self) -> str:
         return self.to_s()
 
-    def to_sym(self) -> str:
-        return to_s(self.val)
+    def to_sym(self) -> Symbol:
+        return sym(self.val)
 
     def get_name(self) -> Any:
         return self.val
@@ -253,12 +275,14 @@ class Token:
         return (self.file, self.lineno, self.col)
 
     def __eq__(self, other: object) -> bool:
-        # Ruby 版の eql?（== の別名）。Symbol も String も Python では str
+        # Ruby 版の eql?（== の別名）
+        if isinstance(other, Symbol):
+            return self.val == other
         if isinstance(other, Token):
             return self.val == other.val
         if isinstance(other, str):
             return to_s(self.val) == other
-        raise TypeError(f"cannot compare Token with {type(other).__name__}")
+        raise RubyArgumentError("ArgumentError")
 
     __hash__ = object.__hash__
 

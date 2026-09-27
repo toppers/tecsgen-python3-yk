@@ -16,6 +16,7 @@ from tecsgen.core.syntaxobj import node as node_mod
 from tecsgen.core.syntaxobj.namedlist import NamedList
 from tecsgen.core.syntaxobj.node import BDNode, Node
 from tecsgen.core.tecs_lang import TECS_LANG, Console
+from tecsgen.ruby_compat import RubyArgumentError, RubyRuntimeError, Y, sym
 from tecsgen.syntax.tecsio import TECSIO
 
 
@@ -130,8 +131,10 @@ def test_token() -> None:
     assert (t.to_s(), t.get_name(), t.locale()) == ("tTask", "tTask", ("a.cdl", 2, 7))
     assert t == "tTask"
     assert t == Token("tTask", "b.cdl", 1, 1)
-    with pytest.raises(TypeError):
+    with pytest.raises(RubyArgumentError):
         _ = t == 1
+    # Symbol の値とは Symbol どうしで比べる（Ruby の Token#eql?）
+    assert Token(Y.tTask, "a.cdl", 2, 7) == Y.tTask
 
 
 # --- Node ---------------------------------------------------------------------
@@ -190,7 +193,7 @@ class Item(Node):
         return self._name
 
     def clone_for_composite(self, ct_name: Any, cell_name: Any, locale: Any) -> Item:
-        c = Item(f"{self._name}_c")
+        c = Item(sym(f"{self._name}_c"))
         c.cloned_with = (ct_name, cell_name, locale)
         return c
 
@@ -200,14 +203,14 @@ def test_namedlist_keeps_order_and_reports_duplicates(
 ) -> None:
     Generator.push_parser(object())
     Generator.set_current_locale(("d.cdl", 1, 1))
-    a = Item("a")
+    a = Item(Y.a)
     Generator.set_current_locale(("d.cdl", 5, 3))
     nl = NamedList(a, "attribute")
-    nl.add_item(Item("b"))
-    nl.add_item(Item("a"))
-    assert [i.get_name() for i in nl.get_items()] == ["a", "b"]
-    assert nl.get_item("a") is a
-    assert nl.get_item("zz") is None
+    nl.add_item(Item(Y.b))
+    nl.add_item(Item(Y.a))
+    assert [i.get_name() for i in nl.get_items()] == [Y.a, Y.b]
+    assert nl.get_item(Y.a) is a
+    assert nl.get_item(Y.zz) is None
     assert stdout_bytes(capfdbinary) == (
         b"d.cdl:5:3: error: S2001 'a' duplicate attribute\nprevious: d.cdl: line 1 'a' defined here\n"
     )
@@ -219,32 +222,35 @@ def test_namedlist_accepts_nil_first_item() -> None:
 
 
 def test_namedlist_change_and_delete() -> None:
-    a1, b, a2 = Item("a"), Item("b"), Item("a")
+    a1, b, a2 = Item(Y.a), Item(Y.b), Item(Y.a)
     nl = NamedList(a1, "x")
     nl.add_item(b)
     nl.change_item(a2)
     assert nl.get_items() == [b, a2]
-    assert nl.get_item("a") is a2
+    assert nl.get_item(Y.a) is a2
     nl.del_item(b)
     assert nl.get_items() == [a2]
-    assert nl.get_item("b") is None
+    assert nl.get_item(Y.b) is None
 
 
-def test_namedlist_rejects_non_symbol() -> None:
-    with pytest.raises(TypeError):
+def test_namedlist_rejects_non_symbol(
+    capfdbinary: pytest.CaptureFixture[bytes],
+) -> None:
+    with pytest.raises(RubyRuntimeError, match="Not symbol"):
         NamedList(Item(1), "x")
     nl = NamedList(None, "x")
-    with pytest.raises(TypeError):
-        nl.get_item(1)
+    # Ruby と同じく、String の名前でも例外になる
+    with pytest.raises(RubyRuntimeError, match="not Symbol"):
+        nl.get_item("a")
 
 
 def test_namedlist_clone_for_composite() -> None:
-    nl = NamedList(Item("j1"), "join")
+    nl = NamedList(Item(Y.j1), "join")
     cl = nl.clone_for_composite("tComp", "cell", ("f", 1, 1))
-    assert [i.get_name() for i in cl.get_items()] == ["j1_c"]
-    assert cl.get_item("j1_c").cloned_with == ("tComp", "cell", ("f", 1, 1))
+    assert [i.get_name() for i in cl.get_items()] == [Y.j1_c]
+    assert cl.get_item(Y.j1_c).cloned_with == ("tComp", "cell", ("f", 1, 1))
     # 元のリストは変わらない
-    assert [i.get_name() for i in nl.get_items()] == ["j1"]
+    assert [i.get_name() for i in nl.get_items()] == [Y.j1]
 
 
 # --- TECSIO -------------------------------------------------------------------

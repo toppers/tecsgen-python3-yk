@@ -17,8 +17,7 @@ from tecsgen.core.tecs_lang import Console
 from tecsgen.ruby_compat import to_s, truthy
 
 if TYPE_CHECKING:
-    # P3 で移植するモジュール
-    from tecsgen.core.componentobj.namespace import Namespace  # ty: ignore
+    from tecsgen.core.componentobj.namespace import Namespace
 
 
 class Node:
@@ -26,6 +25,18 @@ class Node:
 
     def __init__(self) -> None:
         self._locale = Generator.current_locale()
+
+    def __getattr__(self, name: str) -> Any:
+        """代入されていないインスタンス変数（`_x`）は、Ruby と同じく nil として読める。
+
+        通常の属性の探索で見つからなかったときだけ呼ばれる。インスタンス変数の既定値を
+        クラス属性で与えると、クラス変数の比較に混ざってしまうので、こうしている。
+        """
+        if name.startswith("_") and not name.startswith("__"):
+            return None
+        raise AttributeError(
+            f"{type(self).__name__!r} object has no attribute {name!r}"
+        )
 
     def cdl_error(self, message: str, *args: Any) -> None:
         """エラーを出力する。"""
@@ -35,7 +46,7 @@ class Node:
         """エラーを出力する。locale は構文解析中は無視される。"""
         Generator.error2(locale, message, *args)
 
-    def cdl_error3(self, locale: Locale, message: str, *args: Any) -> None:
+    def cdl_error3(self, locale: Any, message: str, *args: Any) -> None:
         """エラーを出力する。構文解析中でも locale を別の行に出力する。"""
         Generator.error(message, *args)
         Console.puts(
@@ -68,8 +79,7 @@ class Node:
 
 def _current_import() -> Any:
     """Import.get_current（componentobj/import.rb、P2 で移植）。"""
-    # P2 で移植するモジュール
-    from tecsgen.core.componentobj.import_cdl import Import  # ty: ignore
+    from tecsgen.core.componentobj.import_cdl import Import
 
     return Import.get_current()
 
@@ -111,8 +121,7 @@ class NSBDNode(BDNode):
 
     def get_namespace(self) -> Namespace | None:
         """属する namespace を得る。owner を namespace にたどり着くまで上にたどる。"""
-        # P3 で移植するモジュール
-        from tecsgen.core.componentobj.namespace import Namespace  # ty: ignore
+        from tecsgen.core.componentobj.namespace import Namespace
 
         if isinstance(self._owner, Namespace):
             return self._owner

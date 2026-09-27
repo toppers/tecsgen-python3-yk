@@ -1,7 +1,7 @@
 """namedlist.rb の移植。名前で引ける、定義順を保つ要素のリスト。
 
-要素（item）は `get_name()` を持つこと。Ruby 版では戻り値が Symbol でなければならない。
-Python 版は Symbol を str で表すので、str であることを確認する。
+要素（item）は `get_name()` を持つこと。戻り値は Symbol でなければならない（Ruby 版と同じく、
+String を渡すと例外になる）。
 """
 
 from __future__ import annotations
@@ -11,7 +11,15 @@ from typing import Any
 
 from tecsgen.context import dbg_print
 from tecsgen.core.generator import Generator
-from tecsgen.ruby_compat import inspect, rb_print, rb_puts, to_s, truthy
+from tecsgen.ruby_compat import (
+    RubyRuntimeError,
+    Symbol,
+    inspect,
+    rb_print,
+    rb_puts,
+    to_s,
+    truthy,
+)
 
 
 class NamedList:
@@ -59,11 +67,11 @@ class NamedList:
         self._items = [i for i in self._items if i is not item]
 
     def get_item(self, name: Any) -> Any:
-        if not isinstance(name, str):
+        if not isinstance(name, Symbol):
             rb_print(f"get_item: '{to_s(name)}', items are below\n")
             for nm in self._names:
                 rb_print(inspect(nm) + "\n")
-            raise TypeError(f"get_item: {to_s(name)}: not Symbol")
+            raise RubyRuntimeError(f"get_item: {to_s(name)}: not Symbol")
         return self._names.get(name)
 
     def get_items(self) -> list[Any]:
@@ -95,8 +103,8 @@ class NamedList:
         self._names = names
 
     def assert_name(self, item: Any) -> None:
-        if not isinstance(item.get_name(), str):
-            raise TypeError("Not symbol for NamedList item")
+        if not isinstance(item.get_name(), Symbol):
+            raise RubyRuntimeError("Not symbol for NamedList item")
 
     def show_tree(self, indent: int) -> None:
         for i in self._items:
