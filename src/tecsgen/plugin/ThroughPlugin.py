@@ -40,6 +40,15 @@ class ThroughPlugin(Plugin):
     # この Plugin が生成したセルタイプのリスト
     _generated_celltype: ClassVar[dict[Any, list[Any]]] = {}
 
+    @classmethod
+    def reset(cls) -> None:
+        """`@@generated_celltype` を初期化する（1プロセスで何度も実行するテスト用）。
+
+        Ruby のクラス変数なので ThroughPlugin の子クラス全体で1つを共有する。子クラスは
+        この辞書を書き換えるだけで代入し直さないので、ここで中身を空にすればよい。
+        """
+        ThroughPlugin._generated_celltype.clear()
+
     def __init__(
         self,
         cell_name: Any,

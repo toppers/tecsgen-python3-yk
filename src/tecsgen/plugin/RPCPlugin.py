@@ -23,7 +23,7 @@ from tecsgen.plugin.ThroughPlugin import ThroughPlugin
 from tecsgen.ruby_compat import Symbol, sym, to_s, truthy
 
 
-class RPCPlugin(ThroughPlugin, GenTransparentMarshaler, GenParamCopy):
+class RPCPlugin(GenParamCopy, GenTransparentMarshaler, ThroughPlugin):
     # RPCPlugin 専用のオプション（GenTransparentMarshaler.RPC_PLUGIN_ARG_PROC の複製 + 追加）
     TRANSPARENT_RPC_PLUGIN_ARG_PROC: ClassVar[dict[str, Any]] = {}
 
