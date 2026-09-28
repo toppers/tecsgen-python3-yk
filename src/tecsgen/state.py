@@ -59,6 +59,7 @@ def reset_model_state() -> None:
         ("tecsgen.plugin.TECSInfoPlugin", "TECSInfoPlugin"),
         ("tecsgen.plugin.TECSInfoCompoPlugin", "TECSInfoCompoPlugin"),
         ("tecsgen.plugin.CppIfGenCelltypePlugin", "CppIfGenCelltypePlugin"),
+        ("tecsgen.plugin.ATK1KernelPlugin", "ATK1KernelPlugin"),
     ):
         mod = sys.modules.get(mod_name)
         if mod is not None:
