@@ -57,6 +57,8 @@ def reset_model_state() -> None:
 
     for mod_name, cls_name in (
         ("tecsgen.plugin.ThroughPlugin", "ThroughPlugin"),
+        ("tecsgen.plugin.C2TECSBridgePlugin", "C2TECSBridgePlugin"),
+        ("tecsgen.plugin.RepeatCellPlugin", "RepeatCellPlugin"),
         ("tecsgen.plugin.SharedRPCPlugin", "SharedRPCPlugin"),
         ("tecsgen.plugin.SharedOpaqueRPCPlugin", "SharedOpaqueRPCPlugin"),
         ("tecsgen.plugin.TECSInfoPlugin", "TECSInfoPlugin"),
