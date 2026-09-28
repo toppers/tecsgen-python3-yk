@@ -60,7 +60,12 @@ def reset_model_state() -> None:
         ("tecsgen.plugin.TECSInfoCompoPlugin", "TECSInfoCompoPlugin"),
         ("tecsgen.plugin.CppIfGenCelltypePlugin", "CppIfGenCelltypePlugin"),
         ("tecsgen.plugin.ATK1KernelPlugin", "ATK1KernelPlugin"),
+        ("tecsgen.plugin.MrubyBridgeSignaturePlugin", "MrubyBridgeSignaturePlugin"),
+        ("tecsgen.plugin.MrubyBridgeCellPlugin", "MrubyBridgeCellPlugin"),
     ):
         mod = sys.modules.get(mod_name)
         if mod is not None:
             getattr(mod, cls_name).reset()
+    mod = sys.modules.get("tecsgen.plugin.lib.MrubyBridgeCelltypePluginModule")
+    if mod is not None:
+        mod.MrubyBridgeCelltypePluginModule.reset_module()

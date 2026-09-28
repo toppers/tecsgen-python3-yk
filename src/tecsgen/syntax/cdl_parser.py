@@ -109,7 +109,10 @@ class CdlParser(CdlActions, RaccParser):
         cls, file_name: str, plugin: Any = None, b_reuse: bool = False
     ) -> None:
         """Ruby の `Generator.parse`。別のパーサインスタンスで file_name を読み込む。"""
-        parser = cls()
+        # Import・PluginModule.generate_and_parse と同じくホスト経由で読む（生成直後のファイルを読むため）
+        from tecsgen.core.componentobj.import_cdl import _host_reader
+
+        parser = cls(_host_reader)
         # plugin から import されている場合の plugin 設定
         parser.set_plugin(plugin)
         # reuse フラグを設定
