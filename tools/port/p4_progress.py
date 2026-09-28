@@ -7,10 +7,12 @@
 の有無で分けて出す（[[tecsgen-python3移植計画]] P5「最初に」の一致一覧・1ケース差分表示）。
 -v で、一致しなかった生成物の名前・標準出力の差分も表示する（1ケースの差分表示は
 `uv run python tools/port/p4_progress.py <ケースID> -v` で見る）。
+-d で、中身が違う生成物の unified diff（正解 → Python）も表示する。
 """
 
 from __future__ import annotations
 
+import difflib
 import sys
 import traceback
 from collections import Counter
@@ -25,6 +27,7 @@ from p4_gen_check import run_case_captured  # ty: ignore[unresolved-import]
 
 def main(argv: list[str]) -> int:
     verbose = "-v" in argv
+    show_diff = "-d" in argv
     prefixes = [a for a in argv if not a.startswith("-")]
     n_ok = 0
     n_total = 0
@@ -77,6 +80,9 @@ def main(argv: list[str]) -> int:
             ):
                 for n in names:
                     print(f"      {label}: {n}")
+            if show_diff:
+                for n in r.differ:
+                    _print_file_diff(n, r.golden[n], r.written[n])
             if r.stdout != r.golden_stdout:
                 print("      --- stdout (python)")
                 print(
@@ -101,6 +107,14 @@ def main(argv: list[str]) -> int:
     if kinds:
         print("mismatched file kinds:", dict(kinds.most_common()))
     return 0
+
+
+def _print_file_diff(name: str, golden: bytes, written: bytes) -> None:
+    """生成物1件の unified diff（正解 → Python）を表示する。"""
+    a = golden.decode("utf-8", "replace").splitlines(keepends=True)
+    b = written.decode("utf-8", "replace").splitlines(keepends=True)
+    for line in difflib.unified_diff(a, b, f"ruby/{name}", f"python/{name}"):
+        print("      " + line, end="" if line.endswith("\n") else "\n")
 
 
 if __name__ == "__main__":

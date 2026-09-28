@@ -754,9 +754,10 @@ class GenOpaqueMarshaler(_Base):
 
         for f in self._signature.get_function_head_array():  # type: ignore[attr-defined]
             f_name = f.get_name()
+            func_id = self._signature.get_id_from_func_name(f_name)  # type: ignore[attr-defined]
             file.print(
-                f"static ER tOpaqueUnmarshaler_{to_s(self._signature.get_global_name())}_{to_s(f_name)}"  # type: ignore[attr-defined]
-                "(CELLCB *p_cellcb, int16_t *state_);\n"
+                f"static ER  tOpaqueUnmarshaler_{to_s(self._signature.get_global_name())}_{to_s(f_name)}"  # type: ignore[attr-defined]
+                f"(CELLCB *p_cellcb, int16_t *state);\t/* func_id: {to_s(func_id)} */\n"
             )
         file.print("\n")
 

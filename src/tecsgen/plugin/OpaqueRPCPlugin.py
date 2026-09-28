@@ -15,7 +15,7 @@ from tecsgen.plugin.ThroughPlugin import ThroughPlugin
 from tecsgen.ruby_compat import Symbol, sym, to_s
 
 
-class OpaqueRPCPlugin(ThroughPlugin, GenOpaqueMarshaler, GenParamCopy):
+class OpaqueRPCPlugin(GenParamCopy, GenOpaqueMarshaler, ThroughPlugin):
     # OpaqueRPCPlugin 専用のオプション（GenOpaqueMarshaler.RPC_PLUGIN_ARG_PROC の複製 + 追加）
     OPAQUE_RPC_PLUGIN_ARG_PROC: ClassVar[dict[str, Any]] = {}
 
