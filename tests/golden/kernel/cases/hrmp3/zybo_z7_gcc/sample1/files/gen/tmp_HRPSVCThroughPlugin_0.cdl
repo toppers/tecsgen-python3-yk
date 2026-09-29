@@ -1,0 +1,21 @@
+/*
+ * generated automatically by HRPSVCThroughPlugin.
+ *   caller port=SysLogAdapter.cSysLog
+ *   callee port=SysLog.eSysLog
+ */
+
+/* generate celltypes for extended service call for signature sSysLog  */
+generate( HRPSVCSignaturePlugin, ::sSysLog, "" );
+
+region rOutOfDomain{
+  /* HRPSVCTHROUGH0003 */
+  //  Client Side Channel
+  cell tHRPSVCCaller_sSysLog Join_domain_to_through__0SVCCaller{
+    tfn_base = C_EXP( "TFN_SVCBODY_SYSLOG_ESYSLOG" );
+  };
+
+};
+
+
+/* HRPSVCTHROUGH0004 : generate kernel side cell */
+generate( HRPSVCBodyCellPlugin, ::rKernelDomain::rProcessor1Migratable::SysLog, "exportEntryPort=eSysLog:rOutOfDomain" );

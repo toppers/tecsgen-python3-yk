@@ -1,0 +1,21 @@
+/*
+ * generated automatically by HRPSVCThroughPlugin.
+ *   caller port=SerialAdapter.cSerialPort
+ *   callee port=SerialPort1.eSerialPort
+ */
+
+/* generate celltypes for extended service call for signature sSerialPort  */
+generate( HRPSVCSignaturePlugin, ::sSerialPort, "" );
+
+region rOutOfDomain{
+  /* HRPSVCTHROUGH0003 */
+  //  Client Side Channel
+  cell tHRPSVCCaller_sSerialPort Join_domain_to_through__1SVCCaller{
+    tfn_base = C_EXP( "TFN_SVCBODY_SERIALPORT1_ESERIALPORT" );
+  };
+
+};
+
+
+/* HRPSVCTHROUGH0004 : generate kernel side cell */
+generate( HRPSVCBodyCellPlugin, ::rKernelDomain::rProcessor1Migratable::SerialPort1, "exportEntryPort=eSerialPort:rOutOfDomain" );

@@ -35,7 +35,16 @@ rm -rf tests/golden && cp -r /tmp/golden-out tests/golden
 
 ## カーネル依存プラグインの正解データ
 
-`test/` には HRP・FMP 系のプラグインを使うケースが無いため、TOPPERS カーネル（hrp3+tecs・fmp3+tecs）の sample アプリケーションで別に採取します。`collect_kernel.py` が、リポジトリの `svn export` → 同梱 tecsgen を移植元へ差し替え → `configure.rb` → `make tecs` を再現し、`tests/golden/kernel/` に保存します。ケースは `cases_kernel.toml` です。
+`test/` には HRP・HRP2・FMP・HRMP 系のプラグインを使うケースが無いため、TOPPERS カーネル（hrp3+tecs・fmp3+tecs・hrmp3+tecs・ev3rt+tecs）の sample アプリケーションで別に採取します。`collect_kernel.py` が、リポジトリの `svn export` → 同梱 tecsgen を移植元へ差し替え → `configure.rb` → `make tecs` を再現し、`tests/golden/kernel/` に保存します。ケースは `cases_kernel.toml` です。
+
+| リポジトリ | プラグイン | 実行方法 |
+|---|---|---|
+| hrp3+tecs | HRP（`HRPObjectPlugin`・`HRPTaskPlugin`・`HRPSVC*` ほか） | `configure.rb` → `make tecs` |
+| fmp3+tecs | FMP（`FMPObjectPlugin` ほか） | 同上 |
+| hrmp3+tecs | HRMP（`HRMPKernelObjectPlugin`・`HRMPPlugin`） | 同上（`zybo_z7_gcc`。`zybo_gcc` は `Makefile.target` が無く使えない） |
+| ev3rt+tecs | HRP2（`HRP2Plugin`・`HRP2TaskPlugin` ほか） | `configure` を使わず、`hr-tecs/workspace/<名前>/` で `make tecs`（ケースの `workdir`） |
+
+HRP2 は hrp2+tecs 自体の sample1 では採れません。`region` の古い文法（`[domain(DOMAIN1), out_through(), in_through()]`）が現行の tecsgen で構文エラー（G1016）になり、プラグインまで進まないためです。HRP2 ベースの ev3rt+tecs（`hr-tecs`）を使っています。
 
 ```sh
 pwsh tools/port/wsl_check.ps1 -KernelGolden E:/Crepo/toppers-tecs-svn/toppers/tecsgen/branches/ykominami_r3033

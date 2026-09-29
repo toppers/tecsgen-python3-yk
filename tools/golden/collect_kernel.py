@@ -13,10 +13,11 @@ WSL（Linux）上で実行することを前提とする。標準ライブラリ
 1. カーネルのリポジトリを `svn export -r BASE --native-eol LF` で書き出す
 2. 同梱の tecsgen を、移植元（`--tecsgen-wc`）の tecsgen に差し替える
    （同梱の r3306 は Ruby 3.x で `Proc.new` のエラーになり、移植元と版も揃わない）
-3. `obj-golden/` で `configure.rb` を実行して Makefile を作る
+3. `obj-golden/` で `configure.rb` を実行して Makefile を作る（`configure` を持つケース）。
+   `workdir` を持つケース（ev3rt+tecs）は、リポジトリ内のそのディレクトリをそのまま使う
 4. `make -n tecs` で tecsgen の呼び出し行を記録し、`make tecs` を実行する
 
-の順に行い、`obj-golden/` の中に作られたファイルと標準出力・終了コードを保存する。
+の順に行い、作業ディレクトリの中に作られたファイルと標準出力・終了コードを保存する。
 
 tecsgen が C プリプロセッサとして呼ぶ `$(CC)` は、ターゲット本来の交差コンパイラ
 （`arm-none-eabi-gcc`）をそのまま使う。WSL に `gcc-arm-none-eabi` パッケージが必要。
@@ -54,7 +55,6 @@ DEFAULT_WORK = Path.home() / "p5kernel"
 MAKE_OVERRIDES: list[str] = []
 # ケースの target が使う交差コンパイラ。environment.json に版を記録する
 TARGET_GCC = "arm-none-eabi-gcc"
-TECSGEN_LINE_PREFIX = "ruby ../tecsgen/tecsgen.rb"
 
 
 def run(cmd: list[str], *, cwd: Path, env: dict[str, str], timeout: int):
@@ -86,9 +86,13 @@ def svn_export(src: Path, dest: Path) -> str:
 
 
 def find_tecsgen_command(make_n_stdout: bytes) -> list[str] | None:
-    """`make -n tecs` の出力から、tecsgen の呼び出し行を引数のリストにして返す。"""
-    for raw in make_n_stdout.decode(errors="replace").splitlines():
-        if raw.startswith(TECSGEN_LINE_PREFIX):
+    """`make -n tecs` の出力から、tecsgen の呼び出し行を引数のリストにして返す。
+
+    行末のバックスラッシュで続く行は1行につなぐ。`printf` などの表示用の行は除く。
+    """
+    text = make_n_stdout.decode(errors="replace").replace("\\\n", " ")
+    for raw in text.splitlines():
+        if "tecsgen.rb" in raw and not raw.lstrip().startswith("printf"):
             return shlex.split(raw)
     return None
 
@@ -106,22 +110,33 @@ def run_case(
     if run_root.exists():
         shutil.rmtree(run_root)
     shutil.copytree(pristine / case["repo"], run_root, symlinks=True)
-    # fmp3+tecs は obj/ を持っているので、別名のディレクトリで実行する
-    obj = run_root / "obj-golden"
-    obj.mkdir()
+    # workdir を指定したケースは、リポジトリ内に既にあるそのディレクトリで実行する。
+    # 指定しないケースは、別名のディレクトリを作って configure.rb を実行する
+    # （fmp3+tecs は obj/ を持っているので、obj-golden という別名にする）
+    if "workdir" in case:
+        obj = run_root / case["workdir"]
+        if not obj.is_dir():
+            raise RuntimeError(f"{case['id']}: workdir not found: {case['workdir']}")
+    else:
+        obj = run_root / "obj-golden"
+        obj.mkdir()
 
     env = dict(os.environ)
     env["LANG"] = "C"
     env.update(case.get("env", {}))
 
-    conf_code, conf_out, conf_err, _ = run(
-        ["ruby", "../configure.rb", *case["configure"]], cwd=obj, env=env, timeout=timeout
-    )
-    if conf_code != 0:
-        raise RuntimeError(
-            f"{case['id']}: configure.rb failed ({conf_code})\n"
-            f"{conf_out.decode(errors='replace')}\n{conf_err.decode(errors='replace')}"
+    if "configure" in case:
+        conf_code, conf_out, conf_err, _ = run(
+            ["ruby", "../configure.rb", *case["configure"]],
+            cwd=obj,
+            env=env,
+            timeout=timeout,
         )
+        if conf_code != 0:
+            raise RuntimeError(
+                f"{case['id']}: configure.rb failed ({conf_code})\n"
+                f"{conf_out.decode(errors='replace')}\n{conf_err.decode(errors='replace')}"
+            )
 
     _, dry_out, _, _ = run(
         ["make", "-n", "tecs", *MAKE_OVERRIDES], cwd=obj, env=env, timeout=timeout
@@ -163,7 +178,8 @@ def run_case(
         "repo": case["repo"],
         "repo_revision": revisions[case["repo"]],
         "target": case["target"],
-        "configure": case["configure"],
+        "workdir": case.get("workdir"),
+        "configure": case.get("configure"),
         "make_overrides": MAKE_OVERRIDES,
         "tecsgen_args": tecsgen_args,
         "exit_code": exit_code,
@@ -218,10 +234,13 @@ def main(argv: list[str] | None = None) -> int:
     for repo in sorted({c["repo"] for c in cases}):
         dest = pristine / repo
         revisions[repo] = svn_export(opts.repos_root / repo / "trunk", dest)
-        # 同梱の tecsgen（あれば）を移植元のものに差し替える
-        if (dest / "tecsgen").exists():
-            shutil.rmtree(dest / "tecsgen")
-        shutil.copytree(tecsgen_src, dest / "tecsgen", symlinks=True)
+        # 同梱の tecsgen（あれば）を移植元のものに差し替える。置き場所はリポジトリごとに違う
+        # （既定は tecsgen/。ev3rt+tecs は hr-tecs/tecsgen/tecsgen/）
+        rel = next(c.get("tecsgen_dest", "tecsgen") for c in cases if c["repo"] == repo)
+        if (dest / rel).exists():
+            shutil.rmtree(dest / rel)
+        (dest / rel).parent.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(tecsgen_src, dest / rel, symlinks=True)
 
     run_root = work / "run"
     normalize = Normalizer(run_root, tecsgen_src)

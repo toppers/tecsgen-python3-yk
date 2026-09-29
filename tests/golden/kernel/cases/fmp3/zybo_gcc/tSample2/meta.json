@@ -3,6 +3,7 @@
   "repo": "fmp3+tecs",
   "repo_revision": "3306",
   "target": "zybo_gcc",
+  "workdir": null,
   "configure": [
     "-T",
     "zybo_gcc",

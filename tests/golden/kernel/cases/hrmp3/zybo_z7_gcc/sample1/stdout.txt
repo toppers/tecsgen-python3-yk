@@ -1,0 +1,6 @@
+ruby ../tecsgen/tecsgen.rb ../sample/sample1.cdl -R -I. -I../include  -I../target/zybo_z7_gcc -I../arch/arm_gcc/zynq7000 -I../arch/arm_gcc/common -I../arch/gcc -I.. -I../sample -I./gen -I../tecs_kernel -I../tecsgen/tecs -I../tecsgen/tecs/rpc --cpp "arm-none-eabi-gcc  -DARM_PAGE_TABLE_RATIO=2 -DUSE_BYPASS_IPI_DISPATCH_HANDER -D__TARGET_ARCH_ARM=7  -I. -I../include  -I../target/zybo_z7_gcc -I../arch/arm_gcc/zynq7000 -I../arch/arm_gcc/common -I../arch/gcc -I.. -I../sample -I./gen -I../tecs_kernel -I../tecsgen/tecs -I../tecsgen/tecs/rpc -D TECSGEN -E" -g ./gen
+../sample/sample1.cdl:97:18: info: I9999 SerialPort1: restrict calling domain to rKernelDomain, which is same domain as the cell locates
+HRPSVCThroughPlugin.new( 'Join_domain_to_through__0', '', 'SysLog', 'eSysLog', tSysLog )
+./gen/tmp_HRPSVCThroughPlugin_0.cdl:8:49: info: HSI0001 sSysLog.write.p_syslog.logpar member type 'intptr_t' not checked by plugin
+./gen/tmp_HRPSVCThroughPlugin_0.cdl:8:49: info: HSI0001 sSysLog.read.p_syslog.logpar member type 'intptr_t' not checked by plugin
+HRPSVCThroughPlugin.new( 'Join_domain_to_through__1', '', 'SerialPort1', 'eSerialPort', tSerialPort )

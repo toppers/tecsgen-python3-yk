@@ -7,12 +7,14 @@
   "target_gcc": "arm-none-eabi-gcc (15:13.2.rel1-2) 13.2.1 20231009",
   "repo_revisions": {
     "fmp3+tecs": "3306",
-    "hrp3+tecs": "3306"
+    "hrp3+tecs": "3306",
+    "hrmp3+tecs": "3306",
+    "ev3rt+tecs": "3306"
   },
-  "manifest_sha256": "6ccd2d85abd7019629ddae60f654866a2dd137b343129c51b4e1edf30cae6703",
+  "manifest_sha256": "3b16c654d8180294174cdcd3b954da1d11b3813a28463d939210e3b292277066",
   "excluded_patterns": [
     "*.rbdmp",
     "tmp_*.h"
   ],
-  "cases": 4
+  "cases": 9
 }

@@ -35,3 +35,46 @@ id = "fmp3/zybo_gcc/tSample2"
 repo = "fmp3+tecs"
 target = "zybo_gcc"
 configure = ["-T", "zybo_gcc", "-t", "-A", "tSample2", "-a", "../sample", "-C", "tSample2.cdl", "-c", "tSample2.cfg"]
+
+# ---------------------------------------------------------------- hrmp3+tecs
+# tecs_kernel/kernel.cdl が generate(HRMPKernelObjectPlugin, ...) を使う。
+# target/zybo_gcc は Makefile.target が無く make が失敗するので使わない（zybo_z7_gcc を使う）
+[[case]]
+id = "hrmp3/zybo_z7_gcc/sample1"
+repo = "hrmp3+tecs"
+target = "zybo_z7_gcc"
+configure = ["-T", "zybo_z7_gcc", "-t", "-A", "sample1", "-a", "../sample", "-C", "sample1.cdl", "-c", "sample1.cfg"]
+
+[[case]]
+id = "hrmp3/zybo_z7_gcc/tSample2"
+repo = "hrmp3+tecs"
+target = "zybo_z7_gcc"
+configure = ["-T", "zybo_z7_gcc", "-t", "-A", "tSample2", "-a", "../sample", "-C", "tSample2.cdl", "-c", "tSample2.cfg"]
+
+# ---------------------------------------------------------------- ev3rt+tecs
+# HRP2 ベース（hr-tecs）。include/kernel.cdl が generate(HRP2*Plugin, ...) を使い、
+# アプリケーション CDL が MrubyBridgePlugin なども使う。
+# 古い構成のため configure は使わず、hr-tecs/workspace/<名前>/ の Makefile で `make tecs` を実行する。
+# tecsgen は hr-tecs/tecsgen/tecsgen/ に置く（Makefile が $(SRCDIR)/tecsgen/tecsgen/tecsgen.rb を呼ぶ）。
+# hrp2+tecs の sample1 は、region の古い文法（domain(DOMAIN1) など）が現行の tecsgen で
+# 構文エラー（G1016）になり、HRP2 プラグインまで進まないので使わない。
+[[case]]
+id = "ev3rt/ev3_gcc/sample1"
+repo = "ev3rt+tecs"
+target = "ev3_gcc"
+workdir = "hr-tecs/workspace/sample1"
+tecsgen_dest = "hr-tecs/tecsgen/tecsgen"
+
+[[case]]
+id = "ev3rt/ev3_gcc/sd"
+repo = "ev3rt+tecs"
+target = "ev3_gcc"
+workdir = "hr-tecs/workspace/sd"
+tecsgen_dest = "hr-tecs/tecsgen/tecsgen"
+
+[[case]]
+id = "ev3rt/ev3_gcc/bluetooth"
+repo = "ev3rt+tecs"
+target = "ev3_gcc"
+workdir = "hr-tecs/workspace/bluetooth"
+tecsgen_dest = "hr-tecs/tecsgen/tecsgen"

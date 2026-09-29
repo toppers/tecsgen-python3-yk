@@ -3,6 +3,7 @@
   "repo": "hrp3+tecs",
   "repo_revision": "3306",
   "target": "ct11mpcore_gcc",
+  "workdir": null,
   "configure": [
     "-T",
     "ct11mpcore_gcc",
