@@ -23,7 +23,11 @@ Windows から一式（lint・型検査・pytest）を WSL で実行するには
 pwsh tools/port/wsl_check.ps1                      # テスト一式
 pwsh tools/port/wsl_check.ps1 -Oracle <移植元の作業コピー>   # 先に Ruby 版の記録を採り直す
 pwsh tools/port/wsl_check.ps1 -PytestArgs tests/test_p2_parser.py, -x
+pwsh tools/port/wsl_check.ps1 -KernelGolden <移植元の作業コピー>    # テストの代わりに、カーネル依存プラグイン用の正解データ（tests/golden/kernel/）を採取する
+pwsh tools/port/wsl_check.ps1 -PluginCoverage <移植元の作業コピー>  # テストの代わりに、正解データがどのプラグインを実行したかを計測する
 ```
+
+`-KernelGolden` の採取を一部のケースに絞るには、`-PytestArgs` で `collect_kernel.py` の引数を配列で渡します（PowerShell のセッションから直接呼ぶ。例: `& ./tools/port/wsl_check.ps1 -KernelGolden <作業コピー> -PytestArgs '--case','atk1/*'`）。詳しくは `tools/golden/README.md` です。
 
 WSL の中で直接実行する場合は `sh tools/port/wsl_check.sh` です。手で実行するときは、次のように仮想環境の場所を指定します。
 
@@ -42,7 +46,17 @@ uv run pytest
 | `gen_messages.py` | メッセージ表 `src/tecsgen/messages/` を生成する |
 | `gen_racc_tables.py` | LALR 表 `src/tecsgen/syntax/cdl_tables.py`・`cdecl_tables.py` を生成する |
 | `gen_action_stubs.py` | 文法アクションの骨格 `cdl_actions.py`・`cdecl_actions.py` を生成する（一度だけ。本体は手で移植する） |
-| `wsl_check.ps1`・`wsl_check.sh` | WSL で uv sync・ruff・ty・pytest を実行する（仮想環境は `~/.venvs/tecsgen-python3`）。`-Oracle` で記録の採り直しも行う |
+| `wsl_check.ps1`・`wsl_check.sh` | WSL で uv sync・ruff・ty・pytest を実行する（仮想環境は `~/.venvs/tecsgen-python3`）。`-Oracle` で記録の採り直し、`-KernelGolden` でカーネル依存プラグイン用の正解データの採取、`-PluginCoverage` でプラグインの網羅状況の計測も行う |
 | `run_p2_oracle.sh` | 構文解析の差分テスト用に、Ruby 版の経過を記録し直す（WSL で実行。`tests/golden/p2/`） |
 | `run_p3_oracle.sh` | モデルの差分テスト用に、Ruby 版のモデル（パース直後・意味解析1回目の後・2回目の後）と、ファイル存在判定・cpp 出力を記録し直す（WSL で実行。`tests/golden/p3/`）。pytest はこの記録を再生するので、Windows でも Ruby なしで動く |
-| `p4_progress.py` | プラグインを使わないケースを通しで実行し、生成物（`gen/`）・標準出力・終了コードの一致をケースごとに一覧する（Ruby 不要。P3 の記録を再生する）。`-v` で一致しなかったファイルと標準出力の差を表示する |
+| `p4_progress.py` | プラグインを使うケースも含めて、ケースを通しで実行し、生成物（`gen/`）・標準出力・終了コードの一致をケースごとに一覧する（Ruby 不要。P3 の記録を再生する）。`-v` で一致しなかったファイルと標準出力の差を表示する |
+
+## 正解データの採取（`tools/golden/`）
+
+Ruby 版 tecsgen の実行結果を正解データとして保存するツールです。WSL（Linux）で実行します。詳しい手順は `tools/golden/README.md` です。
+
+| ツール | 内容 |
+|---|---|
+| `generate_golden.py`・`cases.toml` | tecsgen の `test/` の155ケース（一覧は157ケース、うち2件は採取不可）を実行し、`tests/golden/cases/` に保存する |
+| `collect_kernel.py`・`cases_kernel.toml` | TOPPERS カーネル（hrp3+tecs・fmp3+tecs・hrmp3+tecs・ev3rt+tecs・atk1+tecs）のアプリケーション CDL を実行し、HRP・FMP・HRMP・HRP2・ATK1 のプラグインの正解データ11ケースを `tests/golden/kernel/` に保存する |
+| `plugin_trace.rb`・`run_plugin_coverage.sh`・`plugin_coverage.py` | 上の採取を計測フック付きで実行し、どのプラグインが一度も実行されなかったか（正解データが無いか）を集計する（採取結果は捨てる） |
