@@ -18,6 +18,9 @@ param(
   # 指定すると、テストの代わりにカーネル依存プラグイン用の正解データ（tests/golden/kernel/）を採取する。
   # 値は移植元 tecsgen ブランチの作業コピー
   [string]$KernelGolden = "",
+  # 指定すると、テストの代わりに、正解データを採る Ruby 版の実行を計測フック付きで走らせ、
+  # どのプラグインが実行されたかを集計する。値は移植元 tecsgen ブランチの作業コピー
+  [string]$PluginCoverage = "",
   # pytest にそのまま渡す引数
   [string[]]$PytestArgs = @()
 )
@@ -34,7 +37,9 @@ function ConvertTo-WslPath([string]$Path) {
 
 $repo = ConvertTo-WslPath (Join-Path $PSScriptRoot "../..")
 $argsList = @()
-if ($KernelGolden) {
+if ($PluginCoverage) {
+  $argsList += @("--plugin-coverage", (ConvertTo-WslPath $PluginCoverage))
+} elseif ($KernelGolden) {
   $argsList += @("--kernel-golden", (ConvertTo-WslPath $KernelGolden))
 } elseif ($Oracle) {
   $argsList += @("--oracle", (ConvertTo-WslPath $Oracle))

@@ -60,6 +60,19 @@ pwsh tools/port/wsl_check.ps1 -KernelGolden E:/Crepo/toppers-tecs-svn/toppers/te
 - 各ケースの `meta.json` の `tecsgen_args` に、`make -n tecs` で得た tecsgen の呼び出しを記録します。
 - カーネルのリポジトリは r3306 で、移植元 tecsgen（r3304）とは版が違います。同梱の tecsgen（r3306）は Ruby 3.x で `Proc.new` のエラーになるため、r3304 に差し替えて実行しています。カーネル側の CDL 自体は r3306 のままです。
 
+## プラグインの網羅状況の計測
+
+正解データが TECS のどのプラグインを実際に実行したかを、`plugin_trace.rb` で計測します。プラグイン名を出力から検索する方法は、名前が出力に現れない経路（`OpaqueMarshalerPlugin` など）を見落とすので使いません。
+
+```sh
+pwsh tools/port/wsl_check.ps1 -PluginCoverage E:/Crepo/toppers-tecs-svn/toppers/tecsgen/branches/ykominami_r3033
+```
+
+- `run_plugin_coverage.sh` が、`test/` の155ケース（`generate_golden.py`）とカーネルのケース（`collect_kernel.py`）を、`RUBYOPT=-r plugin_trace.rb` 付きで実行します。採取結果は `~/p5kernel/cov/` に捨て、`tests/golden/` には何も書きません。20〜40分かかります。
+- `plugin_trace.rb` は、`Kernel#load`／`require` したファイル（`load`）と、`Plugin` の子クラスのインスタンス生成（`new`）を `TECS_PLUGIN_LOG` に書きます。
+- `plugin_coverage.py` がログを集計し、「一度もロードされなかった（正解データが無い）」「ロードされたが生成されなかった（基底・振り分け用・管理用。抜けとは限らない）」「生成回数が少ない」に分けて `~/p5kernel/cov/report.txt` に出します。
+- 判定はロードと生成の有無だけです。プラグイン内の全メソッド・全分岐を実行したかは見ません。出力が空になる場合（`ATK1EventPlugin` など）も「生成された」に数えます。
+
 ## 出力
 
 `tests/golden/cases/<id>/` に次のファイルを保存します（カーネル用の `tests/golden/kernel/cases/<id>/` も同じ構成です）。

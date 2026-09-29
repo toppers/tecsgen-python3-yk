@@ -40,6 +40,14 @@ if [ "${1:-}" = "--kernel-golden" ]; then
     --out tests/golden/kernel "$@"
 fi
 
+# --plugin-coverage <移植元 tecsgen ブランチの作業コピー>
+#   正解データを採る Ruby 版の実行を計測フック付きで走らせ、どのプラグインが実行されたかを集計して終わる。
+#   テストは走らせない。詳細は tools/golden/README.md
+if [ "${1:-}" = "--plugin-coverage" ]; then
+  TECSGEN_WC=${2:?--plugin-coverage には移植元 tecsgen ブランチの作業コピーを指定します}
+  exec sh tools/golden/run_plugin_coverage.sh "$TECSGEN_WC"
+fi
+
 export UV_PROJECT_ENVIRONMENT="${UV_PROJECT_ENVIRONMENT:-$HOME/.venvs/tecsgen-python3}"
 # 別のプロジェクトで有効化した仮想環境が残っていると uv が警告するので外す
 unset VIRTUAL_ENV
