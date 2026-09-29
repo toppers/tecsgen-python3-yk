@@ -1,0 +1,28 @@
+import_C( "t_stdlib.h" );
+
+/* HRPSVC0001 : callee side celltype */
+[active]
+celltype tHRPSVCBody_sSerialPort {
+    call sSerialPort cCall;
+    attr {
+      ACPTN   restrict_acptn_open;
+      ACPTN   restrict_acptn_close;
+      ACPTN   restrict_acptn_read;
+      ACPTN   restrict_acptn_write;
+      ACPTN   restrict_acptn_control;
+      ACPTN   restrict_acptn_refer;
+      };
+    FACTORY {
+    write("$ct$_tecsgen.h", "#include \"kernel_cfg.h\"");
+    };
+};
+/* HRPSVC0002 : caller side celltype */
+celltype tHRPSVCCaller_sSerialPort {
+    attr {
+      FN  tfn_base;    //  TFN base number
+    };
+    entry sSerialPort eEntry;
+    FACTORY {
+      write("$ct$_factory.h", "#include \"tHRPSVCCaller_sSerialPort_id.h\"");
+    };
+};

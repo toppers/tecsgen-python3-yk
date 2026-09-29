@@ -1,0 +1,37 @@
+# カーネル依存プラグイン（HRP・FMP など）の正解データを採取するケース一覧。
+#
+# TOPPERS カーネル（hrp3+tecs・fmp3+tecs）の sample アプリケーションについて、
+# `configure.rb` → `make tecs` で tecsgen が実行される流れを再現する。
+# 各ケースの `tecs_kernel/kernel.cdl` が `generate(HRPObjectPlugin, ...)` などで
+# カーネル依存プラグインを起動する。
+#
+#   id         : ケース名（出力ディレクトリ名になる）
+#   repo       : --repos-root 直下のリポジトリ名（trunk を持つもの）
+#   target     : ターゲット名（configure.rb の -T）。ケースの識別と記録用
+#   configure  : obj/ で実行する configure.rb の引数
+
+# ---------------------------------------------------------------- hrp3+tecs
+[[case]]
+id = "hrp3/blueninja_gcc/sample1"
+repo = "hrp3+tecs"
+target = "blueninja_gcc"
+configure = ["-T", "blueninja_gcc", "-t", "-A", "sample1", "-a", "../sample", "-C", "sample1.cdl", "-c", "sample1.cfg"]
+
+[[case]]
+id = "hrp3/ct11mpcore_gcc/sample1"
+repo = "hrp3+tecs"
+target = "ct11mpcore_gcc"
+configure = ["-T", "ct11mpcore_gcc", "-t", "-A", "sample1", "-a", "../sample", "-C", "sample1.cdl", "-c", "sample1.cfg"]
+
+# ---------------------------------------------------------------- fmp3+tecs
+[[case]]
+id = "fmp3/zybo_gcc/sample1"
+repo = "fmp3+tecs"
+target = "zybo_gcc"
+configure = ["-T", "zybo_gcc", "-t", "-A", "sample1", "-a", "../sample", "-C", "sample1.cdl", "-c", "sample1.cfg"]
+
+[[case]]
+id = "fmp3/zybo_gcc/tSample2"
+repo = "fmp3+tecs"
+target = "zybo_gcc"
+configure = ["-T", "zybo_gcc", "-t", "-A", "tSample2", "-a", "../sample", "-C", "tSample2.cdl", "-c", "tSample2.cfg"]

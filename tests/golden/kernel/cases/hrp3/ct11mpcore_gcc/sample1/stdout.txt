@@ -1,0 +1,6 @@
+ruby ../tecsgen/tecsgen.rb ../sample/sample1.cdl -R -I. -I../include  -I../target/ct11mpcore_gcc -I../arch/arm_gcc/mpcore -I../arch/arm_gcc/common -I../arch/gcc -I.. -I../sample -I./gen -I../tecs_kernel -I../tecsgen/tecs -I../tecsgen/tecs/rpc --cpp "arm-none-eabi-gcc  -D__TARGET_ARCH_ARM=6  -I. -I../include  -I../target/ct11mpcore_gcc -I../arch/arm_gcc/mpcore -I../arch/arm_gcc/common -I../arch/gcc -I.. -I../sample -I./gen -I../tecs_kernel -I../tecsgen/tecs -I../tecsgen/tecs/rpc  -DTOPPERS_SVC_CALL -D TECSGEN -E" -g ./gen
+HRPSVCThroughPlugin.new( 'Join_domain_in_through__0', '', 'SysLog', 'eSysLog', tSysLog )
+./gen/tmp_HRPSVCThroughPlugin_0.cdl:8:49: info: HSI0001 sSysLog.write.p_syslog.logpar member type 'intptr_t' not checked by plugin
+./gen/tmp_HRPSVCThroughPlugin_0.cdl:8:49: info: HSI0001 sSysLog.read.p_syslog.logpar member type 'intptr_t' not checked by plugin
+HRPSVCThroughPlugin.new( 'Join_domain_in_through__1', '', 'SerialPort1', 'eSerialPort', tSerialPort )
+../sample/sample1.cdl:88:18: info: I9999 SerialPort1: restrict calling domain to rKernelDomain, which is same domain as the cell locates

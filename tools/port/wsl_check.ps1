@@ -15,6 +15,9 @@
 param(
   # 指定すると、先に Ruby 版の記録（tests/golden/p2/・p3/）を採り直す
   [string]$Oracle = "",
+  # 指定すると、テストの代わりにカーネル依存プラグイン用の正解データ（tests/golden/kernel/）を採取する。
+  # 値は移植元 tecsgen ブランチの作業コピー
+  [string]$KernelGolden = "",
   # pytest にそのまま渡す引数
   [string[]]$PytestArgs = @()
 )
@@ -31,7 +34,9 @@ function ConvertTo-WslPath([string]$Path) {
 
 $repo = ConvertTo-WslPath (Join-Path $PSScriptRoot "../..")
 $argsList = @()
-if ($Oracle) {
+if ($KernelGolden) {
+  $argsList += @("--kernel-golden", (ConvertTo-WslPath $KernelGolden))
+} elseif ($Oracle) {
   $argsList += @("--oracle", (ConvertTo-WslPath $Oracle))
 }
 $argsList += $PytestArgs

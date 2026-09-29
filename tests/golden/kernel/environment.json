@@ -1,0 +1,18 @@
+{
+  "ruby": "ruby 3.2.3 (2024-01-18 revision 52bb2ac0a6) [x86_64-linux-gnu]",
+  "gcc": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "tecsgen": "tecsgen  version 1.9.1",
+  "tecsgen_revision": "3304",
+  "platform": "Linux 6.18.33.2-microsoft-standard-WSL2 x86_64",
+  "target_gcc": "arm-none-eabi-gcc (15:13.2.rel1-2) 13.2.1 20231009",
+  "repo_revisions": {
+    "fmp3+tecs": "3306",
+    "hrp3+tecs": "3306"
+  },
+  "manifest_sha256": "6ccd2d85abd7019629ddae60f654866a2dd137b343129c51b4e1edf30cae6703",
+  "excluded_patterns": [
+    "*.rbdmp",
+    "tmp_*.h"
+  ],
+  "cases": 4
+}

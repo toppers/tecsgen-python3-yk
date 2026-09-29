@@ -28,6 +28,18 @@ if [ "${1:-}" = "--oracle" ]; then
   shift 2
 fi
 
+# --kernel-golden <移植元 tecsgen ブランチの作業コピー> [collect_kernel.py の引数]...
+#   カーネル依存プラグイン用の正解データ（tests/golden/kernel/）を採取して終わる。テストは走らせない。
+#   作業ディレクトリは $HOME/p5kernel、SVN 作業コピー群は $HOME/repo/svn-toppers-TECS-2/svn/toppers
+if [ "${1:-}" = "--kernel-golden" ]; then
+  TECSGEN_WC=${2:?--kernel-golden には移植元 tecsgen ブランチの作業コピーを指定します}
+  shift 2
+  exec python3 tools/golden/collect_kernel.py \
+    --repos-root "${KERNEL_REPOS_ROOT:-$HOME/repo/svn-toppers-TECS-2/svn/toppers}" \
+    --tecsgen-wc "$TECSGEN_WC" \
+    --out tests/golden/kernel "$@"
+fi
+
 export UV_PROJECT_ENVIRONMENT="${UV_PROJECT_ENVIRONMENT:-$HOME/.venvs/tecsgen-python3}"
 # 別のプロジェクトで有効化した仮想環境が残っていると uv が警告するので外す
 unset VIRTUAL_ENV
