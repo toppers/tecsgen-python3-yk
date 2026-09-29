@@ -138,15 +138,28 @@ def run_case(
                 f"{conf_out.decode(errors='replace')}\n{conf_err.decode(errors='replace')}"
             )
 
-    _, dry_out, _, _ = run(
-        ["make", "-n", "tecs", *MAKE_OVERRIDES], cwd=obj, env=env, timeout=timeout
-    )
-    tecsgen_args = find_tecsgen_command(dry_out)
-
-    before = snapshot(obj)
-    exit_code, stdout, stderr, timed_out = run(
-        ["make", "tecs", *MAKE_OVERRIDES], cwd=obj, env=env, timeout=timeout
-    )
+    if "tecsgen_args" in case:
+        # Makefile が無い構成（atk1+tecs）: tecsgen の引数を一覧に直接書き、make を使わない。
+        # リポジトリにコミットされている古い生成物が混ざらないよう、clean のディレクトリを消す
+        tecsgen_rb = run_root / case.get("tecsgen_dest", "tecsgen") / "tecsgen.rb"
+        tecsgen_args = ["ruby", os.path.relpath(tecsgen_rb, obj), *case["tecsgen_args"]]
+        for name in case.get("clean", []):
+            shutil.rmtree(obj / name, ignore_errors=True)
+        before = snapshot(obj)
+        exit_code, stdout, stderr, timed_out = run(
+            tecsgen_args, cwd=obj, env=env, timeout=timeout
+        )
+        make_overrides: list[str] = []
+    else:
+        _, dry_out, _, _ = run(
+            ["make", "-n", "tecs", *MAKE_OVERRIDES], cwd=obj, env=env, timeout=timeout
+        )
+        tecsgen_args = find_tecsgen_command(dry_out)
+        before = snapshot(obj)
+        exit_code, stdout, stderr, timed_out = run(
+            ["make", "tecs", *MAKE_OVERRIDES], cwd=obj, env=env, timeout=timeout
+        )
+        make_overrides = MAKE_OVERRIDES
     after = snapshot(obj)
     created = sorted(p for p in after if p not in before)
     modified = sorted(p for p in after if p in before and after[p] != before[p])
@@ -180,7 +193,7 @@ def run_case(
         "target": case["target"],
         "workdir": case.get("workdir"),
         "configure": case.get("configure"),
-        "make_overrides": MAKE_OVERRIDES,
+        "make_overrides": make_overrides,
         "tecsgen_args": tecsgen_args,
         "exit_code": exit_code,
         "timed_out": timed_out,

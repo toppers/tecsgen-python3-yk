@@ -1,0 +1,5 @@
+	OS ATK1Kernel {
+		STATUS = STANDARD;
+		STARTUPHOOK = TRUE;
+	};
+

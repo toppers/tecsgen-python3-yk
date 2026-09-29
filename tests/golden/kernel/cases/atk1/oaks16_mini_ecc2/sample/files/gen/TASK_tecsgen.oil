@@ -1,0 +1,28 @@
+	TASK Task1 {
+		AUTOSTART = TRUE {
+			APPMODE = AppMode1;
+			APPMODE = AppMode2;
+			APPMODE = AppMode3;
+		};
+		PRIORITY = 1;
+		ACTIVATION = 8;
+		SCHEDULE = NON;
+		STACKSIZE = 0x200;
+	};
+
+	TASK Task2 {
+		AUTOSTART = FALSE;
+		PRIORITY = 9;
+		ACTIVATION = 8;
+		SCHEDULE = NON;
+		STACKSIZE = 0x200;
+	};
+
+	TASK Task3 {
+		AUTOSTART = FALSE;
+		PRIORITY = 5;
+		ACTIVATION = 1;
+		SCHEDULE = NON;
+		STACKSIZE = 0x200;
+	};
+

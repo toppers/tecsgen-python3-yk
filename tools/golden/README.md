@@ -43,6 +43,11 @@ rm -rf tests/golden && cp -r /tmp/golden-out tests/golden
 | fmp3+tecs | FMP（`FMPObjectPlugin` ほか） | 同上 |
 | hrmp3+tecs | HRMP（`HRMPKernelObjectPlugin`・`HRMPPlugin`） | 同上（`zybo_z7_gcc`。`zybo_gcc` は `Makefile.target` が無く使えない） |
 | ev3rt+tecs | HRP2（`HRP2Plugin`・`HRP2TaskPlugin` ほか） | `configure` を使わず、`hr-tecs/workspace/<名前>/` で `make tecs`（ケースの `workdir`） |
+| atk1+tecs | ATK1（`ATK1KernelPlugin`・`ATK1TaskPlugin`・`ATK1AlarmPlugin`・`ATK1ISRPlugin`・`ATK1ResourcePlugin`・`ATK1EventPlugin`） | Makefile が無いので、tecsgen の引数をケースの `tecsgen_args` に直接書く（`.tmk` の呼び出しを r3304 向けに置き換えたもの。経緯は `cases_kernel.toml` のコメント）。`-U` の有無で2ケース |
+
+**`ATK1EventPlugin` の限界**: atk1+tecs のアプリケーション CDL は `sample.cdl` だけで、イベントを使うセルが無い（inferred）。プラグインは読み込まれて実行されるが、`tmp_ATK1EventPlugin_0.cdl`・`tmp_ATK1EventPlugin_post_code.cdl`・`EVENT_tecsgen.oil` は 0 バイトで、生成ロジックの本体は記録されていない。記録されているのは「イベントが無いとき何も出さない」経路だけ。`ATK1DelayTaskPlugin` は atk1+tecs の CDL に使用箇所が無く、対象外。
+
+一部のケースだけを採るには、`wsl_check.ps1` の `-PytestArgs` に `collect_kernel.py` の引数を配列で渡す。PowerShell のセッションから直接呼ぶ（例: `& ./tools/port/wsl_check.ps1 -KernelGolden <作業コピー> -PytestArgs '--case','atk1/*'`。atk1 の2ケースだけなら約30秒）。`pwsh ...` を子プロセスとして起動して `--case,'atk1/*'` と書くと、1つの文字列として渡されて `unrecognized arguments` になる。`-KernelGolden` の後ろに直接 `--case` を書いても、スクリプトのパラメータに束縛されず届かない（全ケースが再採取される）。
 
 HRP2 は hrp2+tecs 自体の sample1 では採れません。`region` の古い文法（`[domain(DOMAIN1), out_through(), in_through()]`）が現行の tecsgen で構文エラー（G1016）になり、プラグインまで進まないためです。HRP2 ベースの ev3rt+tecs（`hr-tecs`）を使っています。
 

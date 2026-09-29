@@ -1,0 +1,326 @@
+sample.cdl is found in .
+syslib_inst.cdl is found in .
+kernel.cdl is found in ../../../include
+tecs_kernel.h is found in ../../../include
+import_C header=../../../include/tecs_kernel.h, define=
+CPP: gcc -E -D NC30  -D 'TECS'  -I . -I ../../../config/m16c-renesas -I ../../../config/m16c-renesas/oaks16_mini -I ../../../include -I ../../.. -I ../../../syslib -I ../../../syslib/m16c-renesas/oaks16_mini -I . -I @WORK@/tecsgen/tecs -I @WORK@/tecsgen/tecs/mruby -I @WORK@/tecsgen/tecs/rpc -I @WORK@/tecsgen/tecs/TLSFMalloc -I @WORK@/tecsgen/tecs/DataPumpHolder -I @WORK@/tecsgen/tecs/posix -I @WORK@/tecsgen/tecs/TECSInfo gen/tmp_C_src.c
+load 'ATK1KernelPlugin.rb'
+new celltype plugin: plugin_object = Class.new( tKernel, "" )
+load 'ATK1TaskPlugin.rb'
+new celltype plugin: plugin_object = Class.new( tTask, "" )
+load 'ATK1ISRPlugin.rb'
+new celltype plugin: plugin_object = Class.new( tISR, "" )
+load 'ATK1AlarmPlugin.rb'
+new celltype plugin: plugin_object = Class.new( tAlarm, "" )
+load 'ATK1EventPlugin.rb'
+new celltype plugin: plugin_object = Class.new( tEvent, "" )
+load 'ATK1ResourcePlugin.rb'
+new celltype plugin: plugin_object = Class.new( tResource, "" )
+target_syslib_decl.cdl is found in .
+tHwSerial.cdl is found in ../../../syslib/m16c-renesas/oaks16_mini
+tHwSysTimer.cdl is found in ../../../syslib/m16c-renesas/oaks16_mini
+syslib/tString.cdl is found in ../../..
+syslib/tSerial.cdl is found in ../../..
+syslib/tSysTimer.cdl is found in ../../..
+target_syslib_inst.cdl is found in .
+gen_plugin_post_code: plClass.name}.gen_post_code( file )
+gen/tmp_ATK1KernelPlugin_post_code.cdl is found in .
+gen_plugin_post_code: plClass.name}.gen_post_code( file )
+gen/tmp_ATK1TaskPlugin_post_code.cdl is found in .
+gen_plugin_post_code: plClass.name}.gen_post_code( file )
+gen/tmp_ATK1ISRPlugin_post_code.cdl is found in .
+gen_plugin_post_code: plClass.name}.gen_post_code( file )
+gen/tmp_ATK1AlarmPlugin_post_code.cdl is found in .
+gen_plugin_post_code: plClass.name}.gen_post_code( file )
+gen/tmp_ATK1EventPlugin_post_code.cdl is found in .
+gen_plugin_post_code: plClass.name}.gen_post_code( file )
+gen/tmp_ATK1ResourcePlugin_post_code.cdl is found in .
+=====================================
+=== Region.path_str: ::
+=====================================
+=== id for the cells of celltype ::tCPU ===
+Current: id=1
+../../../include/kernel.cdl:46:10: info: I9999 celltype 'tCPU' has cells in multi-domain.
+celltype=tCPU subRegion=:: cells={ Current }
+=== id for the cells of celltype ::tKernel ===
+ATK1Kernel: id=1
+../../../include/kernel.cdl:210:10: info: I9999 celltype 'tKernel' has cells in multi-domain.
+celltype=tKernel subRegion=:: cells={ ATK1Kernel }
+=== id for the cells of celltype ::tApplicationMode ===
+AppMode1: id=1
+AppMode2: id=2
+AppMode3: id=3
+../../../include/kernel.cdl:250:10: info: I9999 celltype 'tApplicationMode' has cells in multi-domain.
+celltype=tApplicationMode subRegion=:: cells={ AppMode1, AppMode2, AppMode3 }
+=== id for the cells of celltype ::tTask ===
+Task1: id=1
+Task2: id=2
+Task3: id=3
+../../../include/kernel.cdl:310:10: info: I9999 celltype 'tTask' has cells in multi-domain.
+celltype=tTask subRegion=:: cells={ Task1, Task2, Task3 }
+=== id for the cells of celltype ::tISR ===
+RxHwSerialInt: id=1
+SysTimerInt: id=2
+../../../include/kernel.cdl:357:10: info: I9999 celltype 'tISR' has cells in multi-domain.
+celltype=tISR subRegion=:: cells={ RxHwSerialInt, SysTimerInt }
+=== id for the cells of celltype ::tCounter ===
+SysTimerCnt: id=1
+../../../include/kernel.cdl:386:10: info: I9999 celltype 'tCounter' has cells in multi-domain.
+celltype=tCounter subRegion=:: cells={ SysTimerCnt }
+=== id for the cells of celltype ::tAlarm ===
+Alm1: id=1
+../../../include/kernel.cdl:438:10: info: I9999 celltype 'tAlarm' has cells in multi-domain.
+celltype=tAlarm subRegion=:: cells={ Alm1 }
+=== id for the cells of celltype ::tEvent ===
+../../../include/kernel.cdl:479:10: info: I9999 celltype 'tEvent' has cells in multi-domain.
+=== id for the cells of celltype ::tResource ===
+../../../include/kernel.cdl:511:10: info: I9999 celltype 'tResource' has cells in multi-domain.
+=== id for the cells of celltype ::tAlarmSetter ===
+../../../include/kernel.cdl:540:10: info: I9999 celltype 'tAlarmSetter' has cells in multi-domain.
+=== id for the cells of celltype ::tHwSerial ===
+HwSerial: id=1
+../../../syslib/m16c-renesas/oaks16_mini/tHwSerial.cdl:86:10: info: I9999 celltype 'tHwSerial' has cells in multi-domain.
+celltype=tHwSerial subRegion=:: cells={ HwSerial }
+=== id for the cells of celltype ::tHwSysTimer ===
+HwSysTimer: id=1
+../../../syslib/m16c-renesas/oaks16_mini/tHwSysTimer.cdl:60:10: info: I9999 celltype 'tHwSysTimer' has cells in multi-domain.
+celltype=tHwSysTimer subRegion=:: cells={ HwSysTimer }
+=== id for the cells of celltype ::tString ===
+String: id=1
+../../../syslib/tString.cdl:52:10: info: I9999 celltype 'tString' has cells in multi-domain.
+celltype=tString subRegion=:: cells={ String }
+=== id for the cells of celltype ::tSerial ===
+Serial: id=1
+../../../syslib/tSerial.cdl:51:10: info: I9999 celltype 'tSerial' has cells in multi-domain.
+celltype=tSerial subRegion=:: cells={ Serial }
+=== id for the cells of celltype ::tSysTimer ===
+SysTimer: id=1
+../../../syslib/tSysTimer.cdl:48:10: info: I9999 celltype 'tSysTimer' has cells in multi-domain.
+celltype=tSysTimer subRegion=:: cells={ SysTimer }
+=== id for the cells of celltype ::tSample ===
+Sample: id=1
+sample.cdl:49:10: info: I9999 celltype 'tSample' has cells in multi-domain.
+celltype=tSample subRegion=:: cells={ Sample }
+gen/Makefile.templ changed
+renaming 'gen/Makefile.templ.tmp' => 'gen/Makefile.templ'
+gen/Makefile.tecsgen changed
+renaming 'gen/Makefile.tecsgen.tmp' => 'gen/Makefile.tecsgen'
+gen/global_tecsgen.h changed
+renaming 'gen/global_tecsgen.h.tmp' => 'gen/global_tecsgen.h'
+gen/sHookBody_tecsgen.h changed
+renaming 'gen/sHookBody_tecsgen.h.tmp' => 'gen/sHookBody_tecsgen.h'
+gen/sStatusTypeHookBody_tecsgen.h changed
+renaming 'gen/sStatusTypeHookBody_tecsgen.h.tmp' => 'gen/sStatusTypeHookBody_tecsgen.h'
+gen/sKernelTask_tecsgen.h changed
+renaming 'gen/sKernelTask_tecsgen.h.tmp' => 'gen/sKernelTask_tecsgen.h'
+gen/sKernelISR1_tecsgen.h changed
+renaming 'gen/sKernelISR1_tecsgen.h.tmp' => 'gen/sKernelISR1_tecsgen.h'
+gen/sKernelISR2_tecsgen.h changed
+renaming 'gen/sKernelISR2_tecsgen.h.tmp' => 'gen/sKernelISR2_tecsgen.h'
+gen/sKernelErrorHook_tecsgen.h changed
+renaming 'gen/sKernelErrorHook_tecsgen.h.tmp' => 'gen/sKernelErrorHook_tecsgen.h'
+gen/sKernelTaskHook_tecsgen.h changed
+renaming 'gen/sKernelTaskHook_tecsgen.h.tmp' => 'gen/sKernelTaskHook_tecsgen.h'
+gen/sKernelStartupHook_tecsgen.h changed
+renaming 'gen/sKernelStartupHook_tecsgen.h.tmp' => 'gen/sKernelStartupHook_tecsgen.h'
+gen/sKernelShutdownHook_tecsgen.h changed
+renaming 'gen/sKernelShutdownHook_tecsgen.h.tmp' => 'gen/sKernelShutdownHook_tecsgen.h'
+gen/sKernelAlarmCallback_tecsgen.h changed
+renaming 'gen/sKernelAlarmCallback_tecsgen.h.tmp' => 'gen/sKernelAlarmCallback_tecsgen.h'
+gen/sPreKernel_tecsgen.h changed
+renaming 'gen/sPreKernel_tecsgen.h.tmp' => 'gen/sPreKernel_tecsgen.h'
+gen/sEventTask_tecsgen.h changed
+renaming 'gen/sEventTask_tecsgen.h.tmp' => 'gen/sEventTask_tecsgen.h'
+gen/sEventISR2_tecsgen.h changed
+renaming 'gen/sEventISR2_tecsgen.h.tmp' => 'gen/sEventISR2_tecsgen.h'
+gen/sEventHook_tecsgen.h changed
+renaming 'gen/sEventHook_tecsgen.h.tmp' => 'gen/sEventHook_tecsgen.h'
+gen/sTaskBody_tecsgen.h changed
+renaming 'gen/sTaskBody_tecsgen.h.tmp' => 'gen/sTaskBody_tecsgen.h'
+gen/sTask_tecsgen.h changed
+renaming 'gen/sTask_tecsgen.h.tmp' => 'gen/sTask_tecsgen.h'
+gen/sTaskISR2_tecsgen.h changed
+renaming 'gen/sTaskISR2_tecsgen.h.tmp' => 'gen/sTaskISR2_tecsgen.h'
+gen/sTaskHook_tecsgen.h changed
+renaming 'gen/sTaskHook_tecsgen.h.tmp' => 'gen/sTaskHook_tecsgen.h'
+gen/sTaskEvent_tecsgen.h changed
+renaming 'gen/sTaskEvent_tecsgen.h.tmp' => 'gen/sTaskEvent_tecsgen.h'
+gen/sHandlerBody_tecsgen.h changed
+renaming 'gen/sHandlerBody_tecsgen.h.tmp' => 'gen/sHandlerBody_tecsgen.h'
+gen/sCounter_tecsgen.h changed
+renaming 'gen/sCounter_tecsgen.h.tmp' => 'gen/sCounter_tecsgen.h'
+gen/sAlarm_tecsgen.h changed
+renaming 'gen/sAlarm_tecsgen.h.tmp' => 'gen/sAlarm_tecsgen.h'
+gen/sAlarmHook_tecsgen.h changed
+renaming 'gen/sAlarmHook_tecsgen.h.tmp' => 'gen/sAlarmHook_tecsgen.h'
+gen/sEventMask_tecsgen.h changed
+renaming 'gen/sEventMask_tecsgen.h.tmp' => 'gen/sEventMask_tecsgen.h'
+gen/sResource_tecsgen.h changed
+renaming 'gen/sResource_tecsgen.h.tmp' => 'gen/sResource_tecsgen.h'
+gen/sCyclic_tecsgen.h changed
+renaming 'gen/sCyclic_tecsgen.h.tmp' => 'gen/sCyclic_tecsgen.h'
+gen/sHwSerial_tecsgen.h changed
+renaming 'gen/sHwSerial_tecsgen.h.tmp' => 'gen/sHwSerial_tecsgen.h'
+gen/sinHwSerial_tecsgen.h changed
+renaming 'gen/sinHwSerial_tecsgen.h.tmp' => 'gen/sinHwSerial_tecsgen.h'
+gen/siHwSerial_tecsgen.h changed
+renaming 'gen/siHwSerial_tecsgen.h.tmp' => 'gen/siHwSerial_tecsgen.h'
+gen/sHwSysTimer_tecsgen.h changed
+renaming 'gen/sHwSysTimer_tecsgen.h.tmp' => 'gen/sHwSysTimer_tecsgen.h'
+gen/sinHwSysTimer_tecsgen.h changed
+renaming 'gen/sinHwSysTimer_tecsgen.h.tmp' => 'gen/sinHwSysTimer_tecsgen.h'
+gen/sString_tecsgen.h changed
+renaming 'gen/sString_tecsgen.h.tmp' => 'gen/sString_tecsgen.h'
+gen/sSerial_tecsgen.h changed
+renaming 'gen/sSerial_tecsgen.h.tmp' => 'gen/sSerial_tecsgen.h'
+gen/sSysTimer_tecsgen.h changed
+renaming 'gen/sSysTimer_tecsgen.h.tmp' => 'gen/sSysTimer_tecsgen.h'
+gen/tCPU_tecsgen.h changed
+renaming 'gen/tCPU_tecsgen.h.tmp' => 'gen/tCPU_tecsgen.h'
+gen/tCPU_factory.h changed
+renaming 'gen/tCPU_factory.h.tmp' => 'gen/tCPU_factory.h'
+gen/tCPU_tecsgen.c changed
+renaming 'gen/tCPU_tecsgen.c.tmp' => 'gen/tCPU_tecsgen.c'
+gen/tecsgen.oil changed
+renaming 'gen/tecsgen.oil.tmp' => 'gen/tecsgen.oil'
+gen/Makefile.depend changed
+renaming 'gen/Makefile.depend.tmp' => 'gen/Makefile.depend'
+gen/tKernel_tecsgen.h changed
+renaming 'gen/tKernel_tecsgen.h.tmp' => 'gen/tKernel_tecsgen.h'
+gen/tKernel_factory.h changed
+renaming 'gen/tKernel_factory.h.tmp' => 'gen/tKernel_factory.h'
+gen/tKernel_tecsgen.c changed
+renaming 'gen/tKernel_tecsgen.c.tmp' => 'gen/tKernel_tecsgen.c'
+gen/KernelObjects_tecsgen.oil changed
+renaming 'gen/KernelObjects_tecsgen.oil.tmp' => 'gen/KernelObjects_tecsgen.oil'
+gen/tApplicationMode_tecsgen.h changed
+renaming 'gen/tApplicationMode_tecsgen.h.tmp' => 'gen/tApplicationMode_tecsgen.h'
+gen/tApplicationMode_factory.h changed
+renaming 'gen/tApplicationMode_factory.h.tmp' => 'gen/tApplicationMode_factory.h'
+gen/tApplicationMode_tecsgen.c changed
+renaming 'gen/tApplicationMode_tecsgen.c.tmp' => 'gen/tApplicationMode_tecsgen.c'
+gen/tTask_tecsgen.h changed
+renaming 'gen/tTask_tecsgen.h.tmp' => 'gen/tTask_tecsgen.h'
+gen/tTask_factory.h changed
+renaming 'gen/tTask_factory.h.tmp' => 'gen/tTask_factory.h'
+gen/tTask_tecsgen.c changed
+renaming 'gen/tTask_tecsgen.c.tmp' => 'gen/tTask_tecsgen.c'
+gen/tISR_tecsgen.h changed
+renaming 'gen/tISR_tecsgen.h.tmp' => 'gen/tISR_tecsgen.h'
+gen/tISR_factory.h changed
+renaming 'gen/tISR_factory.h.tmp' => 'gen/tISR_factory.h'
+gen/tISR_tecsgen.c changed
+renaming 'gen/tISR_tecsgen.c.tmp' => 'gen/tISR_tecsgen.c'
+gen/tCounter_tecsgen.h changed
+renaming 'gen/tCounter_tecsgen.h.tmp' => 'gen/tCounter_tecsgen.h'
+gen/tCounter_factory.h changed
+renaming 'gen/tCounter_factory.h.tmp' => 'gen/tCounter_factory.h'
+gen/tCounter_tecsgen.c changed
+renaming 'gen/tCounter_tecsgen.c.tmp' => 'gen/tCounter_tecsgen.c'
+gen/tAlarm_tecsgen.h changed
+renaming 'gen/tAlarm_tecsgen.h.tmp' => 'gen/tAlarm_tecsgen.h'
+gen/tAlarm_factory.h changed
+renaming 'gen/tAlarm_factory.h.tmp' => 'gen/tAlarm_factory.h'
+gen/tAlarm_tecsgen.c changed
+renaming 'gen/tAlarm_tecsgen.c.tmp' => 'gen/tAlarm_tecsgen.c'
+gen/tHwSerial_tecsgen.h changed
+renaming 'gen/tHwSerial_tecsgen.h.tmp' => 'gen/tHwSerial_tecsgen.h'
+gen/tHwSerial_factory.h changed
+renaming 'gen/tHwSerial_factory.h.tmp' => 'gen/tHwSerial_factory.h'
+gen/tHwSerial_tecsgen.c changed
+renaming 'gen/tHwSerial_tecsgen.c.tmp' => 'gen/tHwSerial_tecsgen.c'
+gen/tHwSysTimer_tecsgen.h changed
+renaming 'gen/tHwSysTimer_tecsgen.h.tmp' => 'gen/tHwSysTimer_tecsgen.h'
+gen/tHwSysTimer_factory.h changed
+renaming 'gen/tHwSysTimer_factory.h.tmp' => 'gen/tHwSysTimer_factory.h'
+gen/tHwSysTimer_tecsgen.c changed
+renaming 'gen/tHwSysTimer_tecsgen.c.tmp' => 'gen/tHwSysTimer_tecsgen.c'
+gen/tString_tecsgen.h changed
+renaming 'gen/tString_tecsgen.h.tmp' => 'gen/tString_tecsgen.h'
+gen/tString_factory.h changed
+renaming 'gen/tString_factory.h.tmp' => 'gen/tString_factory.h'
+gen/tString_tecsgen.c changed
+renaming 'gen/tString_tecsgen.c.tmp' => 'gen/tString_tecsgen.c'
+gen/tSerial_tecsgen.h changed
+renaming 'gen/tSerial_tecsgen.h.tmp' => 'gen/tSerial_tecsgen.h'
+gen/tSerial_factory.h changed
+renaming 'gen/tSerial_factory.h.tmp' => 'gen/tSerial_factory.h'
+gen/tSerial_tecsgen.c changed
+renaming 'gen/tSerial_tecsgen.c.tmp' => 'gen/tSerial_tecsgen.c'
+gen/tSysTimer_tecsgen.h changed
+renaming 'gen/tSysTimer_tecsgen.h.tmp' => 'gen/tSysTimer_tecsgen.h'
+gen/tSysTimer_factory.h changed
+renaming 'gen/tSysTimer_factory.h.tmp' => 'gen/tSysTimer_factory.h'
+gen/tSysTimer_tecsgen.c changed
+renaming 'gen/tSysTimer_tecsgen.c.tmp' => 'gen/tSysTimer_tecsgen.c'
+gen/tSample_tecsgen.h changed
+renaming 'gen/tSample_tecsgen.h.tmp' => 'gen/tSample_tecsgen.h'
+gen/tSample_factory.h changed
+renaming 'gen/tSample_factory.h.tmp' => 'gen/tSample_factory.h'
+gen/tSample_tecsgen.c changed
+renaming 'gen/tSample_tecsgen.c.tmp' => 'gen/tSample_tecsgen.c'
+gen/tSample_templ.c changed
+renaming 'gen/tSample_templ.c.tmp' => 'gen/tSample_templ.c'
+=== id for the cells of celltype ::tCPU ===
+Current: id=1
+../../../include/kernel.cdl:46:10: info: I9999 celltype 'tCPU' has cells in multi-domain.
+celltype=tCPU subRegion=:: cells={ Current }
+=== id for the cells of celltype ::tKernel ===
+ATK1Kernel: id=1
+../../../include/kernel.cdl:210:10: info: I9999 celltype 'tKernel' has cells in multi-domain.
+celltype=tKernel subRegion=:: cells={ ATK1Kernel }
+=== id for the cells of celltype ::tApplicationMode ===
+AppMode1: id=1
+AppMode2: id=2
+AppMode3: id=3
+../../../include/kernel.cdl:250:10: info: I9999 celltype 'tApplicationMode' has cells in multi-domain.
+celltype=tApplicationMode subRegion=:: cells={ AppMode1, AppMode2, AppMode3 }
+=== id for the cells of celltype ::tTask ===
+Task1: id=1
+Task2: id=2
+Task3: id=3
+../../../include/kernel.cdl:310:10: info: I9999 celltype 'tTask' has cells in multi-domain.
+celltype=tTask subRegion=:: cells={ Task1, Task2, Task3 }
+=== id for the cells of celltype ::tISR ===
+RxHwSerialInt: id=1
+SysTimerInt: id=2
+../../../include/kernel.cdl:357:10: info: I9999 celltype 'tISR' has cells in multi-domain.
+celltype=tISR subRegion=:: cells={ RxHwSerialInt, SysTimerInt }
+=== id for the cells of celltype ::tCounter ===
+SysTimerCnt: id=1
+../../../include/kernel.cdl:386:10: info: I9999 celltype 'tCounter' has cells in multi-domain.
+celltype=tCounter subRegion=:: cells={ SysTimerCnt }
+=== id for the cells of celltype ::tAlarm ===
+Alm1: id=1
+../../../include/kernel.cdl:438:10: info: I9999 celltype 'tAlarm' has cells in multi-domain.
+celltype=tAlarm subRegion=:: cells={ Alm1 }
+=== id for the cells of celltype ::tEvent ===
+../../../include/kernel.cdl:479:10: info: I9999 celltype 'tEvent' has cells in multi-domain.
+=== id for the cells of celltype ::tResource ===
+../../../include/kernel.cdl:511:10: info: I9999 celltype 'tResource' has cells in multi-domain.
+=== id for the cells of celltype ::tAlarmSetter ===
+../../../include/kernel.cdl:540:10: info: I9999 celltype 'tAlarmSetter' has cells in multi-domain.
+=== id for the cells of celltype ::tHwSerial ===
+HwSerial: id=1
+../../../syslib/m16c-renesas/oaks16_mini/tHwSerial.cdl:86:10: info: I9999 celltype 'tHwSerial' has cells in multi-domain.
+celltype=tHwSerial subRegion=:: cells={ HwSerial }
+=== id for the cells of celltype ::tHwSysTimer ===
+HwSysTimer: id=1
+../../../syslib/m16c-renesas/oaks16_mini/tHwSysTimer.cdl:60:10: info: I9999 celltype 'tHwSysTimer' has cells in multi-domain.
+celltype=tHwSysTimer subRegion=:: cells={ HwSysTimer }
+=== id for the cells of celltype ::tString ===
+String: id=1
+../../../syslib/tString.cdl:52:10: info: I9999 celltype 'tString' has cells in multi-domain.
+celltype=tString subRegion=:: cells={ String }
+=== id for the cells of celltype ::tSerial ===
+Serial: id=1
+../../../syslib/tSerial.cdl:51:10: info: I9999 celltype 'tSerial' has cells in multi-domain.
+celltype=tSerial subRegion=:: cells={ Serial }
+=== id for the cells of celltype ::tSysTimer ===
+SysTimer: id=1
+../../../syslib/tSysTimer.cdl:48:10: info: I9999 celltype 'tSysTimer' has cells in multi-domain.
+celltype=tSysTimer subRegion=:: cells={ SysTimer }
+=== id for the cells of celltype ::tSample ===
+Sample: id=1
+sample.cdl:49:10: info: I9999 celltype 'tSample' has cells in multi-domain.
+celltype=tSample subRegion=:: cells={ Sample }

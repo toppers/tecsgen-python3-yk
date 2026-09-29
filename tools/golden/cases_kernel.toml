@@ -78,3 +78,35 @@ repo = "ev3rt+tecs"
 target = "ev3_gcc"
 workdir = "hr-tecs/workspace/bluetooth"
 tecsgen_dest = "hr-tecs/tecsgen/tecsgen"
+
+# ---------------------------------------------------------------- atk1+tecs
+# include/kernel.cdl が generate(ATK1EventPlugin, "") ほか ATK1 のプラグインを使う。
+# Makefile が無く、tecsgen は Renesas の ProjectEditor（tools/m16c-renesas/.../*.tmk の
+# tecsgen ターゲット）が呼ぶ。そこに書かれた呼び出し
+#   tecsgen.exe -v -L -U -D TECS -c "$(CPP) -D NC30" -I<config/m16c-renesas> -I<.../oaks16_mini>
+#               -I<include> -I<tools/r16c-renesas/oaks16_mini_ecc2> sample.c
+# を、現行の tecsgen（r3304）向けに次のとおり置き換えた（NC30 が無く、Windows のパスでもないため）:
+#   - 末尾の sample.c は sample.cdl（.tmk の誤記と判断。inferred）
+#   - -c の C プリプロセッサは、NC30 ではなくホストの gcc -E（-D NC30 は残す）
+#   - -L -U は外し、syslib の import に必要な -I（リポジトリ直下・syslib・syslib/m16c-renesas/oaks16_mini・カレント）を足した
+#   - .tmk の -I tools/r16c-renesas/... は存在しないパス（誤記）なので使わない
+# コミット済みの古い gen/ は消してから実行する（clean）。
+[[case]]
+id = "atk1/oaks16_mini_ecc2/sample"
+repo = "atk1+tecs"
+target = "oaks16_mini_ecc2"
+workdir = "tools/m16c-renesas/oaks16_mini_ecc2"
+tecsgen_dest = "tecsgen"
+clean = ["gen"]
+tecsgen_args = ["-v", "-D", "TECS", "--cpp=gcc -E -D NC30", "-I../../../config/m16c-renesas", "-I../../../config/m16c-renesas/oaks16_mini", "-I../../../include", "-I../../..", "-I../../../syslib", "-I../../../syslib/m16c-renesas/oaks16_mini", "-I.", "sample.cdl"]
+
+# 上と同じで -U（最適化なし）を付けたもの。.tmk の呼び出しは -U を使う。
+# （.tmk の `-L -U` は、r3304 では -L が引数を取るため -U が -L の引数になってしまう。-L は不要なので外し、-U だけ残す）
+[[case]]
+id = "atk1/oaks16_mini_ecc2/sample-U"
+repo = "atk1+tecs"
+target = "oaks16_mini_ecc2"
+workdir = "tools/m16c-renesas/oaks16_mini_ecc2"
+tecsgen_dest = "tecsgen"
+clean = ["gen"]
+tecsgen_args = ["-v", "-U", "-D", "TECS", "--cpp=gcc -E -D NC30", "-I../../../config/m16c-renesas", "-I../../../config/m16c-renesas/oaks16_mini", "-I../../../include", "-I../../..", "-I../../../syslib", "-I../../../syslib/m16c-renesas/oaks16_mini", "-I.", "sample.cdl"]

@@ -1,0 +1,20 @@
+	#include "Kernel_tecsgen.oil"
+
+	APPMODE AppMode1 {};
+
+	APPMODE AppMode2 {};
+
+	APPMODE AppMode3 {};
+
+	#include "TASK_tecsgen.oil"
+
+	#include "ISR_tecsgen.oil"
+
+	COUNTER SysTimerCnt {
+		MINCYCLE = 1;
+		MAXALLOWEDVALUE = 999;
+		TICKSPERBASE = 1;
+	};
+
+	#include "ALARM_tecsgen.oil"
+

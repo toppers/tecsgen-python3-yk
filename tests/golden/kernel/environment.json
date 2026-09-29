@@ -9,12 +9,13 @@
     "fmp3+tecs": "3306",
     "hrp3+tecs": "3306",
     "hrmp3+tecs": "3306",
-    "ev3rt+tecs": "3306"
+    "ev3rt+tecs": "3306",
+    "atk1+tecs": "3306"
   },
-  "manifest_sha256": "3b16c654d8180294174cdcd3b954da1d11b3813a28463d939210e3b292277066",
+  "manifest_sha256": "2d1abfb5314c81acc3d18a729a7565923bf03848261dbadcbcccafa1e1d4e564",
   "excluded_patterns": [
     "*.rbdmp",
     "tmp_*.h"
   ],
-  "cases": 9
+  "cases": 11
 }

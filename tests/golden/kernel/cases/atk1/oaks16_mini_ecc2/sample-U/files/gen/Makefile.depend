@@ -1,0 +1,65 @@
+# Celltype: tCPU  #_MDEP_#
+$(_TECS_OBJ_DIR)tCPU_tecsgen.o : tCPU_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tCPU_factory.h $(GEN_DIR)/tCPU_tecsgen.h
+$(_TECS_OBJ_DIR)tCPU_templ.o : tCPU_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tCPU_factory.h $(GEN_DIR)/tCPU_tecsgen.h
+$(_TECS_OBJ_DIR)tCPU.o : tCPU.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tCPU_factory.h $(GEN_DIR)/tCPU_tecsgen.h
+
+# Celltype: tKernel  #_MDEP_#
+$(_TECS_OBJ_DIR)tKernel_tecsgen.o : tKernel_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sEventHook_tecsgen.h $(GEN_DIR)/sEventISR2_tecsgen.h $(GEN_DIR)/sEventTask_tecsgen.h $(GEN_DIR)/sHookBody_tecsgen.h $(GEN_DIR)/sKernelAlarmCallback_tecsgen.h $(GEN_DIR)/sKernelErrorHook_tecsgen.h $(GEN_DIR)/sKernelISR1_tecsgen.h $(GEN_DIR)/sKernelISR2_tecsgen.h $(GEN_DIR)/sKernelShutdownHook_tecsgen.h $(GEN_DIR)/sKernelStartupHook_tecsgen.h $(GEN_DIR)/sKernelTaskHook_tecsgen.h $(GEN_DIR)/sKernelTask_tecsgen.h $(GEN_DIR)/sPreKernel_tecsgen.h $(GEN_DIR)/sStatusTypeHookBody_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h tKernel_inline.h
+$(_TECS_OBJ_DIR)tKernel_templ.o : tKernel_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sEventHook_tecsgen.h $(GEN_DIR)/sEventISR2_tecsgen.h $(GEN_DIR)/sEventTask_tecsgen.h $(GEN_DIR)/sHookBody_tecsgen.h $(GEN_DIR)/sKernelAlarmCallback_tecsgen.h $(GEN_DIR)/sKernelErrorHook_tecsgen.h $(GEN_DIR)/sKernelISR1_tecsgen.h $(GEN_DIR)/sKernelISR2_tecsgen.h $(GEN_DIR)/sKernelShutdownHook_tecsgen.h $(GEN_DIR)/sKernelStartupHook_tecsgen.h $(GEN_DIR)/sKernelTaskHook_tecsgen.h $(GEN_DIR)/sKernelTask_tecsgen.h $(GEN_DIR)/sPreKernel_tecsgen.h $(GEN_DIR)/sStatusTypeHookBody_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h tKernel_inline.h
+$(_TECS_OBJ_DIR)tKernel.o : tKernel.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sEventHook_tecsgen.h $(GEN_DIR)/sEventISR2_tecsgen.h $(GEN_DIR)/sEventTask_tecsgen.h $(GEN_DIR)/sHookBody_tecsgen.h $(GEN_DIR)/sKernelAlarmCallback_tecsgen.h $(GEN_DIR)/sKernelErrorHook_tecsgen.h $(GEN_DIR)/sKernelISR1_tecsgen.h $(GEN_DIR)/sKernelISR2_tecsgen.h $(GEN_DIR)/sKernelShutdownHook_tecsgen.h $(GEN_DIR)/sKernelStartupHook_tecsgen.h $(GEN_DIR)/sKernelTaskHook_tecsgen.h $(GEN_DIR)/sKernelTask_tecsgen.h $(GEN_DIR)/sPreKernel_tecsgen.h $(GEN_DIR)/sStatusTypeHookBody_tecsgen.h $(GEN_DIR)/tKernel_factory.h $(GEN_DIR)/tKernel_tecsgen.h tKernel_inline.h
+
+# Celltype: tApplicationMode  #_MDEP_#
+$(_TECS_OBJ_DIR)tApplicationMode_tecsgen.o : tApplicationMode_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tApplicationMode_factory.h $(GEN_DIR)/tApplicationMode_tecsgen.h
+$(_TECS_OBJ_DIR)tApplicationMode_templ.o : tApplicationMode_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tApplicationMode_factory.h $(GEN_DIR)/tApplicationMode_tecsgen.h
+$(_TECS_OBJ_DIR)tApplicationMode.o : tApplicationMode.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/tApplicationMode_factory.h $(GEN_DIR)/tApplicationMode_tecsgen.h
+
+# Celltype: tTask  #_MDEP_#
+$(_TECS_OBJ_DIR)tTask_tecsgen.o : tTask_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sKernelTask_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskEvent_tecsgen.h $(GEN_DIR)/sTaskHook_tecsgen.h $(GEN_DIR)/sTaskISR2_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+$(_TECS_OBJ_DIR)tTask_templ.o : tTask_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sKernelTask_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskEvent_tecsgen.h $(GEN_DIR)/sTaskHook_tecsgen.h $(GEN_DIR)/sTaskISR2_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+$(_TECS_OBJ_DIR)tTask.o : tTask.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sKernelTask_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskEvent_tecsgen.h $(GEN_DIR)/sTaskHook_tecsgen.h $(GEN_DIR)/sTaskISR2_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+
+# Celltype: tISR  #_MDEP_#
+$(_TECS_OBJ_DIR)tISR_tecsgen.o : tISR_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHandlerBody_tecsgen.h $(GEN_DIR)/tISR_factory.h $(GEN_DIR)/tISR_tecsgen.h
+$(_TECS_OBJ_DIR)tISR_templ.o : tISR_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHandlerBody_tecsgen.h $(GEN_DIR)/tISR_factory.h $(GEN_DIR)/tISR_tecsgen.h
+$(_TECS_OBJ_DIR)tISR.o : tISR.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHandlerBody_tecsgen.h $(GEN_DIR)/tISR_factory.h $(GEN_DIR)/tISR_tecsgen.h
+
+# Celltype: tCounter  #_MDEP_#
+$(_TECS_OBJ_DIR)tCounter_tecsgen.o : tCounter_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCounter_tecsgen.h $(GEN_DIR)/tCounter_factory.h $(GEN_DIR)/tCounter_tecsgen.h tCounter_inline.h
+$(_TECS_OBJ_DIR)tCounter_templ.o : tCounter_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCounter_tecsgen.h $(GEN_DIR)/tCounter_factory.h $(GEN_DIR)/tCounter_tecsgen.h tCounter_inline.h
+$(_TECS_OBJ_DIR)tCounter.o : tCounter.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCounter_tecsgen.h $(GEN_DIR)/tCounter_factory.h $(GEN_DIR)/tCounter_tecsgen.h tCounter_inline.h
+
+# Celltype: tAlarm  #_MDEP_#
+$(_TECS_OBJ_DIR)tAlarm_tecsgen.o : tAlarm_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlarmHook_tecsgen.h $(GEN_DIR)/sAlarm_tecsgen.h $(GEN_DIR)/sHandlerBody_tecsgen.h $(GEN_DIR)/tAlarm_factory.h $(GEN_DIR)/tAlarm_tecsgen.h tAlarm_inline.h
+$(_TECS_OBJ_DIR)tAlarm_templ.o : tAlarm_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlarmHook_tecsgen.h $(GEN_DIR)/sAlarm_tecsgen.h $(GEN_DIR)/sHandlerBody_tecsgen.h $(GEN_DIR)/tAlarm_factory.h $(GEN_DIR)/tAlarm_tecsgen.h tAlarm_inline.h
+$(_TECS_OBJ_DIR)tAlarm.o : tAlarm.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlarmHook_tecsgen.h $(GEN_DIR)/sAlarm_tecsgen.h $(GEN_DIR)/sHandlerBody_tecsgen.h $(GEN_DIR)/tAlarm_factory.h $(GEN_DIR)/tAlarm_tecsgen.h tAlarm_inline.h
+
+# Celltype: tHwSerial  #_MDEP_#
+$(_TECS_OBJ_DIR)tHwSerial_tecsgen.o : tHwSerial_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHandlerBody_tecsgen.h $(GEN_DIR)/sHwSerial_tecsgen.h $(GEN_DIR)/siHwSerial_tecsgen.h $(GEN_DIR)/sinHwSerial_tecsgen.h $(GEN_DIR)/tHwSerial_factory.h $(GEN_DIR)/tHwSerial_tecsgen.h tHwSerial_inline.h
+$(_TECS_OBJ_DIR)tHwSerial_templ.o : tHwSerial_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHandlerBody_tecsgen.h $(GEN_DIR)/sHwSerial_tecsgen.h $(GEN_DIR)/siHwSerial_tecsgen.h $(GEN_DIR)/sinHwSerial_tecsgen.h $(GEN_DIR)/tHwSerial_factory.h $(GEN_DIR)/tHwSerial_tecsgen.h tHwSerial_inline.h
+$(_TECS_OBJ_DIR)tHwSerial.o : tHwSerial.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHandlerBody_tecsgen.h $(GEN_DIR)/sHwSerial_tecsgen.h $(GEN_DIR)/siHwSerial_tecsgen.h $(GEN_DIR)/sinHwSerial_tecsgen.h $(GEN_DIR)/tHwSerial_factory.h $(GEN_DIR)/tHwSerial_tecsgen.h tHwSerial_inline.h
+
+# Celltype: tHwSysTimer  #_MDEP_#
+$(_TECS_OBJ_DIR)tHwSysTimer_tecsgen.o : tHwSysTimer_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHandlerBody_tecsgen.h $(GEN_DIR)/sHwSysTimer_tecsgen.h $(GEN_DIR)/sinHwSysTimer_tecsgen.h $(GEN_DIR)/tHwSysTimer_factory.h $(GEN_DIR)/tHwSysTimer_tecsgen.h tHwSysTimer_inline.h
+$(_TECS_OBJ_DIR)tHwSysTimer_templ.o : tHwSysTimer_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHandlerBody_tecsgen.h $(GEN_DIR)/sHwSysTimer_tecsgen.h $(GEN_DIR)/sinHwSysTimer_tecsgen.h $(GEN_DIR)/tHwSysTimer_factory.h $(GEN_DIR)/tHwSysTimer_tecsgen.h tHwSysTimer_inline.h
+$(_TECS_OBJ_DIR)tHwSysTimer.o : tHwSysTimer.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHandlerBody_tecsgen.h $(GEN_DIR)/sHwSysTimer_tecsgen.h $(GEN_DIR)/sinHwSysTimer_tecsgen.h $(GEN_DIR)/tHwSysTimer_factory.h $(GEN_DIR)/tHwSysTimer_tecsgen.h tHwSysTimer_inline.h
+
+# Celltype: tString  #_MDEP_#
+$(_TECS_OBJ_DIR)tString_tecsgen.o : tString_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sString_tecsgen.h $(GEN_DIR)/tString_factory.h $(GEN_DIR)/tString_tecsgen.h
+$(_TECS_OBJ_DIR)tString_templ.o : tString_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sString_tecsgen.h $(GEN_DIR)/tString_factory.h $(GEN_DIR)/tString_tecsgen.h
+$(_TECS_OBJ_DIR)tString.o : tString.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sString_tecsgen.h $(GEN_DIR)/tString_factory.h $(GEN_DIR)/tString_tecsgen.h
+
+# Celltype: tSerial  #_MDEP_#
+$(_TECS_OBJ_DIR)tSerial_tecsgen.o : tSerial_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHwSerial_tecsgen.h $(GEN_DIR)/sKernelISR1_tecsgen.h $(GEN_DIR)/sKernelTask_tecsgen.h $(GEN_DIR)/sSerial_tecsgen.h $(GEN_DIR)/sString_tecsgen.h $(GEN_DIR)/siHwSerial_tecsgen.h $(GEN_DIR)/sinHwSerial_tecsgen.h $(GEN_DIR)/tSerial_factory.h $(GEN_DIR)/tSerial_tecsgen.h
+$(_TECS_OBJ_DIR)tSerial_templ.o : tSerial_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHwSerial_tecsgen.h $(GEN_DIR)/sKernelISR1_tecsgen.h $(GEN_DIR)/sKernelTask_tecsgen.h $(GEN_DIR)/sSerial_tecsgen.h $(GEN_DIR)/sString_tecsgen.h $(GEN_DIR)/siHwSerial_tecsgen.h $(GEN_DIR)/sinHwSerial_tecsgen.h $(GEN_DIR)/tSerial_factory.h $(GEN_DIR)/tSerial_tecsgen.h
+$(_TECS_OBJ_DIR)tSerial.o : tSerial.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHwSerial_tecsgen.h $(GEN_DIR)/sKernelISR1_tecsgen.h $(GEN_DIR)/sKernelTask_tecsgen.h $(GEN_DIR)/sSerial_tecsgen.h $(GEN_DIR)/sString_tecsgen.h $(GEN_DIR)/siHwSerial_tecsgen.h $(GEN_DIR)/sinHwSerial_tecsgen.h $(GEN_DIR)/tSerial_factory.h $(GEN_DIR)/tSerial_tecsgen.h
+
+# Celltype: tSysTimer  #_MDEP_#
+$(_TECS_OBJ_DIR)tSysTimer_tecsgen.o : tSysTimer_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCounter_tecsgen.h $(GEN_DIR)/sHandlerBody_tecsgen.h $(GEN_DIR)/sHwSysTimer_tecsgen.h $(GEN_DIR)/sKernelISR2_tecsgen.h $(GEN_DIR)/sKernelTask_tecsgen.h $(GEN_DIR)/sSysTimer_tecsgen.h $(GEN_DIR)/sinHwSysTimer_tecsgen.h $(GEN_DIR)/tSysTimer_factory.h $(GEN_DIR)/tSysTimer_tecsgen.h
+$(_TECS_OBJ_DIR)tSysTimer_templ.o : tSysTimer_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCounter_tecsgen.h $(GEN_DIR)/sHandlerBody_tecsgen.h $(GEN_DIR)/sHwSysTimer_tecsgen.h $(GEN_DIR)/sKernelISR2_tecsgen.h $(GEN_DIR)/sKernelTask_tecsgen.h $(GEN_DIR)/sSysTimer_tecsgen.h $(GEN_DIR)/sinHwSysTimer_tecsgen.h $(GEN_DIR)/tSysTimer_factory.h $(GEN_DIR)/tSysTimer_tecsgen.h
+$(_TECS_OBJ_DIR)tSysTimer.o : tSysTimer.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCounter_tecsgen.h $(GEN_DIR)/sHandlerBody_tecsgen.h $(GEN_DIR)/sHwSysTimer_tecsgen.h $(GEN_DIR)/sKernelISR2_tecsgen.h $(GEN_DIR)/sKernelTask_tecsgen.h $(GEN_DIR)/sSysTimer_tecsgen.h $(GEN_DIR)/sinHwSysTimer_tecsgen.h $(GEN_DIR)/tSysTimer_factory.h $(GEN_DIR)/tSysTimer_tecsgen.h
+
+# Celltype: tSample  #_MDEP_#
+$(_TECS_OBJ_DIR)tSample_tecsgen.o : tSample_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHandlerBody_tecsgen.h $(GEN_DIR)/sHookBody_tecsgen.h $(GEN_DIR)/sKernelTask_tecsgen.h $(GEN_DIR)/sSerial_tecsgen.h $(GEN_DIR)/sSysTimer_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tSample_factory.h $(GEN_DIR)/tSample_tecsgen.h
+$(_TECS_OBJ_DIR)tSample_templ.o : tSample_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHandlerBody_tecsgen.h $(GEN_DIR)/sHookBody_tecsgen.h $(GEN_DIR)/sKernelTask_tecsgen.h $(GEN_DIR)/sSerial_tecsgen.h $(GEN_DIR)/sSysTimer_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tSample_factory.h $(GEN_DIR)/tSample_tecsgen.h
+$(_TECS_OBJ_DIR)tSample.o : tSample.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHandlerBody_tecsgen.h $(GEN_DIR)/sHookBody_tecsgen.h $(GEN_DIR)/sKernelTask_tecsgen.h $(GEN_DIR)/sSerial_tecsgen.h $(GEN_DIR)/sSysTimer_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/tSample_factory.h $(GEN_DIR)/tSample_tecsgen.h
+
