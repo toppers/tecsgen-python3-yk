@@ -38,7 +38,7 @@ import tomllib
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from generate_golden import (  # noqa: E402
+from generate_golden import (
     EXCLUDED_PATTERNS,
     Normalizer,
     command_version,
@@ -73,7 +73,17 @@ def svn_export(src: Path, dest: Path) -> str:
         shutil.rmtree(dest)
     dest.parent.mkdir(parents=True, exist_ok=True)
     subprocess.run(
-        ["svn", "export", "-q", "-r", "BASE", "--native-eol", "LF", str(src), str(dest)],
+        [
+            "svn",
+            "export",
+            "-q",
+            "-r",
+            "BASE",
+            "--native-eol",
+            "LF",
+            str(src),
+            str(dest),
+        ],
         check=True,
     )
     info = subprocess.run(
@@ -212,17 +222,33 @@ def run_case(
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--repos-root", type=Path, required=True,
-                        help="<repo>/trunk を持つ SVN 作業コピー群のディレクトリ")
-    parser.add_argument("--tecsgen-wc", type=Path, required=True,
-                        help="移植元 tecsgen のブランチ（tecsgen/ を含む作業コピー）")
+    parser.add_argument(
+        "--repos-root",
+        type=Path,
+        required=True,
+        help="<repo>/trunk を持つ SVN 作業コピー群のディレクトリ",
+    )
+    parser.add_argument(
+        "--tecsgen-wc",
+        type=Path,
+        required=True,
+        help="移植元 tecsgen のブランチ（tecsgen/ を含む作業コピー）",
+    )
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
-    parser.add_argument("--work", type=Path, default=DEFAULT_WORK,
-                        help="作業ディレクトリ（毎回作り直す。/tmp は WSL 再起動で消える）")
+    parser.add_argument(
+        "--work",
+        type=Path,
+        default=DEFAULT_WORK,
+        help="作業ディレクトリ（毎回作り直す。/tmp は WSL 再起動で消える）",
+    )
     parser.add_argument("--timeout", type=int, default=600)
-    parser.add_argument("--case", action="append", default=[],
-                        help="対象ケースの id（glob 可、複数指定可）")
+    parser.add_argument(
+        "--case",
+        action="append",
+        default=[],
+        help="対象ケースの id（glob 可、複数指定可）",
+    )
     opts = parser.parse_args(argv)
 
     manifest = tomllib.loads(opts.manifest.read_text(encoding="utf-8"))
@@ -234,7 +260,9 @@ def main(argv: list[str] | None = None) -> int:
         return 2
     out_dir = opts.out.resolve()
     if opts.case:
-        cases = [c for c in cases if any(fnmatch.fnmatch(c["id"], p) for p in opts.case)]
+        cases = [
+            c for c in cases if any(fnmatch.fnmatch(c["id"], p) for p in opts.case)
+        ]
     elif (out_dir / "cases").exists():
         shutil.rmtree(out_dir / "cases")
 

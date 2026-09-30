@@ -1,0 +1,9 @@
+generate( MrubyBridgePlugin, ::sTest2, "silent=true" );
+generate( TECS2CBridgePlugin, ::sTest2, "silent=true" );
+
+cell nMruby::tsTest2 CsTest2{
+    cTECS = TECS2C_sTest2.eEnt;
+};
+cell nTECS2C::tsTest2 TECS2C_sTest2{};
+
+import( "Mruby2C_tsInitializerBridge.cdl" );

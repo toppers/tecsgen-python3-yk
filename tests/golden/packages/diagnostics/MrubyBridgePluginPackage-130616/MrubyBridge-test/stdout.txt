@@ -1,0 +1,6 @@
+test.cdl:1:30: error: S1148 cygwin_kernel.cdl not found in search path
+test.cdl:2:24: error: S1148 tSysLog.cdl not found in search path
+test.cdl:4:14: error: S1027 'tSysLog' celltype not found
+test.cdl:5:14: error: S1027 'tKernel' celltype not found
+test.cdl:20:2: error: G1016 syntax error near 'ER'
+5 errors

@@ -1,0 +1,14 @@
+	ALARM Alm1 {
+		COUNTER = SysTimerCnt;
+		ACTION = ALARMCALLBACK {
+			ALARMCALLBACKNAME = "alarm_cb";
+		};
+		AUTOSTART = TRUE {
+			ALARMTIME = 10;
+			CYCLETIME = 10;
+			APPMODE = AppMode1;
+			APPMODE = AppMode2;
+			APPMODE = AppMode3;
+		};
+	};
+

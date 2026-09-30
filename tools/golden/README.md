@@ -88,3 +88,18 @@ pwsh tools/port/wsl_check.ps1 -PluginCoverage E:/Crepo/toppers-tecs-svn/toppers/
 - `*.rbdmp`（Ruby の Marshal 形式。Python 版では再現しない）と `tmp_*.h`（C プリプロセッサの出力）は保存せず、ハッシュとサイズだけを `meta.json` に記録します。
 - 実行環境（Ruby・gcc・tecsgen のバージョン、ソースの出所）は `tests/golden/environment.json` に記録します。
 - `.gitattributes` で `tests/golden/**` を改行変換の対象外にしています。
+
+## 展開済みパッケージの Plugin 正解データ
+
+Vault の `work/active/tecsgen-python3/tecsgen-python3.md` の Context にある `~/Ccur/TECS-WG-DL/` の21パッケージは、すべて `.cdl` を含みます。採集対象と除外理由は `tests/golden/packages/package_inventory.json` に記録します。パッケージに同梱された古い tecsgen は実行せず、移植元の Ruby 版（r3304）を作業コピーに差し替えます。元の展開済みパッケージは変更しません。
+
+```powershell
+& ./tools/port/wsl_check.ps1 -PackageInventory
+& ./tools/port/wsl_check.ps1 -PackageGolden E:/Crepo/toppers-tecs-svn/toppers/tecsgen/branches/ykominami_r3033 -PytestArgs @('--out','/home/ykomi/p5packageplugins/new-capture')
+```
+
+`tools/golden/cases_packages.toml` が採集ケースです。`-PackageGolden` は `collect_packages.py` を呼び、成功したケースだけを `cases/<id>/` に保存します。既存の出力先は上書きせず、追加入力時は `--append --case <id>` を指定します。終了コード0、エラー0、タイムアウトなし、Plugin のインスタンス生成と生成ファイルあり、を正解ケースの条件とします。失敗した試行は `diagnostics/<id>/` に分離します。各 `meta.json` には元パッケージの CDL の SHA-256、実行引数、Plugin のロード・生成記録があり、`plugin_trace.txt` に生ログを保存します。
+
+`-PackageInventory -PytestArgs @('refs')` は CDL 内の `generate()` 指定、`@('targets')` は ASP3 ターゲット一覧を表示します。`@('layout','<package>')`、`@('file','<package>','<relative-path>')`、`@('locate','<package>','<filename>')` はパッケージの調査に使います。既知の失敗2ケースは manifest で `enabled = false` とし、診断の再実行時だけ `--include-disabled --case <id>` を渡します。
+
+採集済みは16ケースです。ASP3 系13パッケージの `NotifierPlugin`、`atk1+tecs` の ATK1 系、`MrubyBridgePluginPackage` の `Mruby2C`／C ブリッジ系、`mruby-on-ev3rt+tecs` の HRP2・mruby 系を含みます。RX 用の `ccrx.exe` は WSL に無く、旧 `MrubyBridge-test` は `cygwin_kernel.cdl` が r3304 で T1007 となるため、両試行は診断記録に留めています。`mruby-on-asp+tecs` と GR-PEACH の Plugin 使用は採集済み系統と重複し、`stm32primer2_tecs_edu` と `tecscde-MinGW` の製品 CDL には `generate()` の指定がありません。

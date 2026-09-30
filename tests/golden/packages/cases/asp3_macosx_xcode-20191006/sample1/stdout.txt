@@ -1,0 +1,1 @@
+ruby ../tecsgen/tecsgen.rb ../sample/sample1.cdl -R -I. -I../include  -I../target/macosx_xcode -I../arch/gcc -I.. -I../sample -I./gen -I../tecs_kernel --cpp "cc   -I. -I../include  -I../target/macosx_xcode -I../arch/gcc -I.. -I../sample -I./gen -I../tecs_kernel -D TECSGEN -E" -g ./gen

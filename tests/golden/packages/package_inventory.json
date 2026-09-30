@@ -1,0 +1,307 @@
+{
+  "source": "Vault work/active/tecsgen-python3/tecsgen-python3.md Context, package entries",
+  "packages_root": "~/Ccur/TECS-WG-DL",
+  "package_count": 21,
+  "packages_with_cdl": 21,
+  "golden_cases": 16,
+  "packages": [
+    {
+      "name": "MrubyBridgePluginPackage-130616",
+      "cdl_files": 157,
+      "plugin_references_outside_bundled_tecsgen": [
+        "C2TECSBridgePlugin",
+        "Mruby2CBridgePlugin",
+        "MrubyBridgePlugin"
+      ],
+      "status": "collected",
+      "golden_cases": [
+        "MrubyBridgePluginPackage-130616/Mruby2C"
+      ],
+      "diagnostic_cases": [
+        "MrubyBridgePluginPackage-130616/MrubyBridge-test"
+      ],
+      "resolved_diagnostics": [
+        "MrubyBridgePluginPackage-130616/Mruby2C"
+      ],
+      "note": "Mruby2C is valid; legacy MrubyBridge-test has incompatible cygwin_kernel.cdl."
+    },
+    {
+      "name": "asp3_arm_gcc-20260518",
+      "cdl_files": 51,
+      "plugin_references_outside_bundled_tecsgen": [
+        "NotifierPlugin"
+      ],
+      "status": "collected",
+      "golden_cases": [
+        "asp3_arm_gcc-20260518/sample1"
+      ],
+      "diagnostic_cases": [],
+      "resolved_diagnostics": [],
+      "note": ""
+    },
+    {
+      "name": "asp3_imx8mm_evk_gcc-20200710",
+      "cdl_files": 48,
+      "plugin_references_outside_bundled_tecsgen": [
+        "NotifierPlugin"
+      ],
+      "status": "collected",
+      "golden_cases": [
+        "asp3_imx8mm_evk_gcc-20200710/sample1"
+      ],
+      "diagnostic_cases": [],
+      "resolved_diagnostics": [],
+      "note": ""
+    },
+    {
+      "name": "asp3_lpc55s69evk_gcc-20230401",
+      "cdl_files": 47,
+      "plugin_references_outside_bundled_tecsgen": [
+        "NotifierPlugin"
+      ],
+      "status": "collected",
+      "golden_cases": [
+        "asp3_lpc55s69evk_gcc-20230401/sample1"
+      ],
+      "diagnostic_cases": [],
+      "resolved_diagnostics": [],
+      "note": ""
+    },
+    {
+      "name": "asp3_macosx_xcode-20191006",
+      "cdl_files": 42,
+      "plugin_references_outside_bundled_tecsgen": [
+        "NotifierPlugin"
+      ],
+      "status": "collected",
+      "golden_cases": [
+        "asp3_macosx_xcode-20191006/sample1"
+      ],
+      "diagnostic_cases": [],
+      "resolved_diagnostics": [],
+      "note": ""
+    },
+    {
+      "name": "asp3_mimxrt685evk_gcc-20230401",
+      "cdl_files": 47,
+      "plugin_references_outside_bundled_tecsgen": [
+        "NotifierPlugin"
+      ],
+      "status": "collected",
+      "golden_cases": [
+        "asp3_mimxrt685evk_gcc-20230401/sample1"
+      ],
+      "diagnostic_cases": [],
+      "resolved_diagnostics": [],
+      "note": ""
+    },
+    {
+      "name": "asp3_nrf5340_dk_gcc-20230401",
+      "cdl_files": 69,
+      "plugin_references_outside_bundled_tecsgen": [
+        "NotifierPlugin"
+      ],
+      "status": "collected",
+      "golden_cases": [
+        "asp3_nrf5340_dk_gcc-20230401/sample1"
+      ],
+      "diagnostic_cases": [],
+      "resolved_diagnostics": [],
+      "note": ""
+    },
+    {
+      "name": "asp3_nucleo_f401re_gcc-20260518",
+      "cdl_files": 47,
+      "plugin_references_outside_bundled_tecsgen": [
+        "NotifierPlugin"
+      ],
+      "status": "collected",
+      "golden_cases": [
+        "asp3_nucleo_f401re_gcc-20260518/sample1"
+      ],
+      "diagnostic_cases": [],
+      "resolved_diagnostics": [],
+      "note": ""
+    },
+    {
+      "name": "asp3_nucleo_h563zi_gcc-20260518",
+      "cdl_files": 46,
+      "plugin_references_outside_bundled_tecsgen": [
+        "NotifierPlugin"
+      ],
+      "status": "collected",
+      "golden_cases": [
+        "asp3_nucleo_h563zi_gcc-20260518/sample1"
+      ],
+      "diagnostic_cases": [],
+      "resolved_diagnostics": [],
+      "note": ""
+    },
+    {
+      "name": "asp3_nucleo_l552zeq_gcc-20230401",
+      "cdl_files": 47,
+      "plugin_references_outside_bundled_tecsgen": [
+        "NotifierPlugin"
+      ],
+      "status": "collected",
+      "golden_cases": [
+        "asp3_nucleo_l552zeq_gcc-20230401/sample1"
+      ],
+      "diagnostic_cases": [],
+      "resolved_diagnostics": [],
+      "note": ""
+    },
+    {
+      "name": "asp3_posix_gcc-20260518",
+      "cdl_files": 51,
+      "plugin_references_outside_bundled_tecsgen": [
+        "NotifierPlugin"
+      ],
+      "status": "collected",
+      "golden_cases": [
+        "asp3_posix_gcc-20260518/sample1"
+      ],
+      "diagnostic_cases": [],
+      "resolved_diagnostics": [],
+      "note": ""
+    },
+    {
+      "name": "asp3_raspberrypi_pico_gcc-20230401",
+      "cdl_files": 47,
+      "plugin_references_outside_bundled_tecsgen": [
+        "NotifierPlugin"
+      ],
+      "status": "collected",
+      "golden_cases": [
+        "asp3_raspberrypi_pico_gcc-20230401/sample1"
+      ],
+      "diagnostic_cases": [],
+      "resolved_diagnostics": [],
+      "note": ""
+    },
+    {
+      "name": "asp3_rx_ccrx-20240401",
+      "cdl_files": 22,
+      "plugin_references_outside_bundled_tecsgen": [
+        "NotifierPlugin"
+      ],
+      "status": "diagnostic_only",
+      "golden_cases": [],
+      "diagnostic_cases": [
+        "asp3_rx_ccrx-20240401/sample1"
+      ],
+      "resolved_diagnostics": [],
+      "note": "Requires Renesas ccrx.exe; WSL run recorded as a diagnostic."
+    },
+    {
+      "name": "asp3_zybo_gcc-20190325",
+      "cdl_files": 50,
+      "plugin_references_outside_bundled_tecsgen": [
+        "NotifierPlugin"
+      ],
+      "status": "collected",
+      "golden_cases": [
+        "asp3_zybo_gcc-20190325/sample1"
+      ],
+      "diagnostic_cases": [],
+      "resolved_diagnostics": [],
+      "note": ""
+    },
+    {
+      "name": "asp3_zybo_z7_gcc-20260520",
+      "cdl_files": 55,
+      "plugin_references_outside_bundled_tecsgen": [
+        "NotifierPlugin"
+      ],
+      "status": "collected",
+      "golden_cases": [
+        "asp3_zybo_z7_gcc-20260520/sample1"
+      ],
+      "diagnostic_cases": [],
+      "resolved_diagnostics": [],
+      "note": ""
+    },
+    {
+      "name": "atk1+tecs_1.0.0",
+      "cdl_files": 10,
+      "plugin_references_outside_bundled_tecsgen": [
+        "ATK1AlarmPlugin",
+        "ATK1EventPlugin",
+        "ATK1ISRPlugin",
+        "ATK1KernelPlugin",
+        "ATK1ResourcePlugin",
+        "ATK1TaskPlugin"
+      ],
+      "status": "collected",
+      "golden_cases": [
+        "atk1+tecs_1.0.0/oaks16_mini_ecc2/sample"
+      ],
+      "diagnostic_cases": [],
+      "resolved_diagnostics": [],
+      "note": ""
+    },
+    {
+      "name": "mruby-on-asp+tecs_package-130618",
+      "cdl_files": 13,
+      "plugin_references_outside_bundled_tecsgen": [
+        "MrubyBridgePlugin"
+      ],
+      "status": "not_selected",
+      "golden_cases": [],
+      "diagnostic_cases": [],
+      "resolved_diagnostics": [],
+      "note": "MrubyBridgePlugin usage is covered by the EV3 and MrubyBridge cases."
+    },
+    {
+      "name": "mruby-on-ev3rt+tecs_package-beta2.2.0",
+      "cdl_files": 251,
+      "plugin_references_outside_bundled_tecsgen": [
+        "HRP2HandlerPlugin",
+        "HRP2KernelObjectPlugin",
+        "HRP2ObjectPlugin",
+        "HRP2TaskPlugin",
+        "MrubyBridgePlugin"
+      ],
+      "status": "collected",
+      "golden_cases": [
+        "mruby-on-ev3rt+tecs_package-beta2.2.0/sample1"
+      ],
+      "diagnostic_cases": [],
+      "resolved_diagnostics": [],
+      "note": ""
+    },
+    {
+      "name": "mruby_on_GR-PEACH-TECS_package-alpha1.0.0",
+      "cdl_files": 41,
+      "plugin_references_outside_bundled_tecsgen": [
+        "MrubyBridgePlugin",
+        "NotifierPlugin"
+      ],
+      "status": "not_selected",
+      "golden_cases": [],
+      "diagnostic_cases": [],
+      "resolved_diagnostics": [],
+      "note": "MrubyBridgePlugin and NotifierPlugin usage is covered by selected cases."
+    },
+    {
+      "name": "stm32primer2_tecs_edu-20101129",
+      "cdl_files": 71,
+      "plugin_references_outside_bundled_tecsgen": [],
+      "status": "not_selected",
+      "golden_cases": [],
+      "diagnostic_cases": [],
+      "resolved_diagnostics": [],
+      "note": "No generate() plugin reference outside bundled tecsgen examples."
+    },
+    {
+      "name": "tecscde-MinGW-V0.5.0",
+      "cdl_files": 16,
+      "plugin_references_outside_bundled_tecsgen": [],
+      "status": "not_selected",
+      "golden_cases": [],
+      "diagnostic_cases": [],
+      "resolved_diagnostics": [],
+      "note": "No generate() plugin reference outside bundled tecsgen examples."
+    }
+  ]
+}

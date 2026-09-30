@@ -25,6 +25,8 @@ pwsh tools/port/wsl_check.ps1 -Oracle <移植元の作業コピー>   # 先に R
 pwsh tools/port/wsl_check.ps1 -PytestArgs tests/test_p2_parser.py, -x
 pwsh tools/port/wsl_check.ps1 -KernelGolden <移植元の作業コピー>    # テストの代わりに、カーネル依存プラグイン用の正解データ（tests/golden/kernel/）を採取する
 pwsh tools/port/wsl_check.ps1 -PluginCoverage <移植元の作業コピー>  # テストの代わりに、正解データがどのプラグインを実行したかを計測する
+pwsh tools/port/wsl_check.ps1 -PackageInventory  # WSL の展開済みパッケージにある CDL の件数を表示
+& ./tools/port/wsl_check.ps1 -PackageGolden <移植元の作業コピー> -PytestArgs @('--out','/home/ykomi/p5packageplugins/new-capture')  # Plugin 正解データを採集
 ```
 
 `-KernelGolden` の採取を一部のケースに絞るには、`-PytestArgs` で `collect_kernel.py` の引数を配列で渡します（PowerShell のセッションから直接呼ぶ。例: `& ./tools/port/wsl_check.ps1 -KernelGolden <作業コピー> -PytestArgs '--case','atk1/*'`）。詳しくは `tools/golden/README.md` です。
@@ -46,7 +48,8 @@ uv run pytest
 | `gen_messages.py` | メッセージ表 `src/tecsgen/messages/` を生成する |
 | `gen_racc_tables.py` | LALR 表 `src/tecsgen/syntax/cdl_tables.py`・`cdecl_tables.py` を生成する |
 | `gen_action_stubs.py` | 文法アクションの骨格 `cdl_actions.py`・`cdecl_actions.py` を生成する（一度だけ。本体は手で移植する） |
-| `wsl_check.ps1`・`wsl_check.sh` | WSL で uv sync・ruff・ty・pytest を実行する（仮想環境は `~/.venvs/tecsgen-python3`）。`-Oracle` で記録の採り直し、`-KernelGolden` でカーネル依存プラグイン用の正解データの採取、`-PluginCoverage` でプラグインの網羅状況の計測も行う |
+| `wsl_check.ps1`・`wsl_check.sh` | WSL で uv sync・ruff・ty・pytest を実行する（仮想環境は `~/.venvs/tecsgen-python3`）。`-Oracle` で記録の採り直し、`-KernelGolden` でカーネル用、`-PackageGolden` で展開済みパッケージの Plugin 正解データを採集する。`-PackageInventory` は CDL のあるパッケージを調べ、`-PluginCoverage` はプラグイン網羅状況を計測する |
+| `collect_packages.py`・`cases_packages.toml` | Vault Context にある展開済みパッケージから Ruby 版 Plugin の生成物・実行ログ・Plugin trace を `tests/golden/packages/` に採集する。詳細は `tools/golden/README.md` |
 | `run_p2_oracle.sh` | 構文解析の差分テスト用に、Ruby 版の経過を記録し直す（WSL で実行。`tests/golden/p2/`） |
 | `run_p3_oracle.sh` | モデルの差分テスト用に、Ruby 版のモデル（パース直後・意味解析1回目の後・2回目の後）と、ファイル存在判定・cpp 出力を記録し直す（WSL で実行。`tests/golden/p3/`）。pytest はこの記録を再生するので、Windows でも Ruby なしで動く |
 | `p4_progress.py` | プラグインを使うケースも含めて、ケースを通しで実行し、生成物（`gen/`）・標準出力・終了コードの一致をケースごとに一覧する（Ruby 不要。P3 の記録を再生する）。`-v` で一致しなかったファイルと標準出力の差を表示する |

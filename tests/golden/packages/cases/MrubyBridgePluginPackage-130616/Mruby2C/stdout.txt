@@ -1,0 +1,27 @@
+  Mruby2CBridgePlugin: [initialize function] 'void initializeBridge( mrb_state *mrb )' must be called from VM.
+  Mruby2CBridgePlugin: [object creattion]    object = TECS::TsTest.new( 'CsTest' )
+  Mruby2CBridgePlugin: [function call]       result = object.function( params )  # substitute 'function' and params 
+gen/tmp_tecs_mruby.h:542:1: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+gen/tmp_tecs_mruby.h:609:3: info: I9999 cannot evaluate 'sizeof' operator. this might causes later error.
+gen/tmp_tecs_mruby.h:3050:56: info: I9999 buf: array without subscript might not be handled
+gen/tmp_tecs_mruby.h:3051:64: info: I9999 buf: array without subscript might not be handled
+gen/tmp_tecs_mruby.h:3052:62: info: I9999 buf: array without subscript might not be handled
+gen/tmp_tecs_mruby.h:3054:56: info: I9999 buf: array without subscript might not be handled
+gen/tmp_tecs_mruby.h:3055:58: info: I9999 buf: array without subscript might not be handled
+gen/tmp_tecs_mruby.h:3056:58: info: I9999 buf: array without subscript might not be handled
+gen/tmp_tecs_mruby.h:3057:58: info: I9999 buf: array without subscript might not be handled
+gen/tmp_tecs_mruby.h:3058:56: info: I9999 buf: array without subscript might not be handled
+gen/tmp_tecs_mruby.h:3059:52: info: I9999 buf: array without subscript might not be handled
+gen/tmp_tecs_mruby.h:3060:56: info: I9999 buf: array without subscript might not be handled
+gen/tmp_tecs_mruby.h:3061:54: info: I9999 buf: array without subscript might not be handled
+gen/tmp_tecs_mruby.h:3063:58: info: I9999 buf: array without subscript might not be handled
+gen/tmp_tecs_mruby.h:3064:60: info: I9999 buf: array without subscript might not be handled
+gen/tmp_tecs_mruby.h:3065:60: info: I9999 buf: array without subscript might not be handled
+gen/tmp_tecs_mruby.h:3066:60: info: I9999 buf: array without subscript might not be handled
+gen/tmp_tecs_mruby.h:3067:58: info: I9999 buf: array without subscript might not be handled
+gen/tmp_tecs_mruby.h:3068:62: info: I9999 buf: array without subscript might not be handled
+gen/tmp_tecs_mruby.h:3069:66: info: I9999 buf: array without subscript might not be handled
+gen/tmp_tecs_mruby.h:3070:64: info: I9999 buf: array without subscript might not be handled
+gen/tmp_tecs_mruby.h:3072:57: info: I9999 buf: array without subscript might not be handled
+  Mruby2CBridgePlugin: [object creattion]    object = TECS::TsTest2.new( 'CsTest2' )
+  Mruby2CBridgePlugin: [function call]       result = object.function( params )  # substitute 'function' and params 

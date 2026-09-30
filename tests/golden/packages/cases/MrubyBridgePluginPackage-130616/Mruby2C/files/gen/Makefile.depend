@@ -1,0 +1,40 @@
+# Celltype: tTECSInitializer  #_MDEP_#
+$(_TECS_OBJ_DIR)nMruby_tTECSInitializer_tecsgen.o : nMruby_tTECSInitializer_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_sInitializeBridge_tecsgen.h $(GEN_DIR)/nMruby_sInitializeTECSBridge_tecsgen.h $(GEN_DIR)/nMruby_tTECSInitializer_factory.h $(GEN_DIR)/nMruby_tTECSInitializer_tecsgen.h
+$(_TECS_OBJ_DIR)nMruby_tTECSInitializer_templ.o : nMruby_tTECSInitializer_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_sInitializeBridge_tecsgen.h $(GEN_DIR)/nMruby_sInitializeTECSBridge_tecsgen.h $(GEN_DIR)/nMruby_tTECSInitializer_factory.h $(GEN_DIR)/nMruby_tTECSInitializer_tecsgen.h
+$(_TECS_OBJ_DIR)nMruby_tTECSInitializer.o : nMruby_tTECSInitializer.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_sInitializeBridge_tecsgen.h $(GEN_DIR)/nMruby_sInitializeTECSBridge_tecsgen.h $(GEN_DIR)/nMruby_tTECSInitializer_factory.h $(GEN_DIR)/nMruby_tTECSInitializer_tecsgen.h
+
+# Celltype: tsTest  #_MDEP_#
+$(_TECS_OBJ_DIR)nMruby_tsTest_tecsgen.o : nMruby_tsTest_tecsgen.c  $(GEN_DIR)/nTECS2C_tsTest_tecsgen.h  nTECS2C_tsTest_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_tsTest_factory.h $(GEN_DIR)/nMruby_tsTest_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h
+$(_TECS_OBJ_DIR)nMruby_tsTest_templ.o : nMruby_tsTest_templ.c  $(GEN_DIR)/nTECS2C_tsTest_tecsgen.h  nTECS2C_tsTest_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_tsTest_factory.h $(GEN_DIR)/nMruby_tsTest_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h
+$(_TECS_OBJ_DIR)nMruby_tsTest.o : nMruby_tsTest.c  $(GEN_DIR)/nTECS2C_tsTest_tecsgen.h  nTECS2C_tsTest_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_tsTest_factory.h $(GEN_DIR)/nMruby_tsTest_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h
+
+# Celltype: tsTest_Initializer  #_MDEP_#
+$(_TECS_OBJ_DIR)nMruby_tsTest_Initializer_tecsgen.o : nMruby_tsTest_Initializer_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_sInitializeTECSBridge_tecsgen.h $(GEN_DIR)/nMruby_tsTest_Initializer_factory.h $(GEN_DIR)/nMruby_tsTest_Initializer_tecsgen.h
+$(_TECS_OBJ_DIR)nMruby_tsTest_Initializer_templ.o : nMruby_tsTest_Initializer_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_sInitializeTECSBridge_tecsgen.h $(GEN_DIR)/nMruby_tsTest_Initializer_factory.h $(GEN_DIR)/nMruby_tsTest_Initializer_tecsgen.h
+$(_TECS_OBJ_DIR)nMruby_tsTest_Initializer.o : nMruby_tsTest_Initializer.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_sInitializeTECSBridge_tecsgen.h $(GEN_DIR)/nMruby_tsTest_Initializer_factory.h $(GEN_DIR)/nMruby_tsTest_Initializer_tecsgen.h
+
+# Celltype: tsTest2  #_MDEP_#
+$(_TECS_OBJ_DIR)nMruby_tsTest2_tecsgen.o : nMruby_tsTest2_tecsgen.c  $(GEN_DIR)/nTECS2C_tsTest2_tecsgen.h  nTECS2C_tsTest2_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_tsTest2_factory.h $(GEN_DIR)/nMruby_tsTest2_tecsgen.h $(GEN_DIR)/sTest2_tecsgen.h
+$(_TECS_OBJ_DIR)nMruby_tsTest2_templ.o : nMruby_tsTest2_templ.c  $(GEN_DIR)/nTECS2C_tsTest2_tecsgen.h  nTECS2C_tsTest2_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_tsTest2_factory.h $(GEN_DIR)/nMruby_tsTest2_tecsgen.h $(GEN_DIR)/sTest2_tecsgen.h
+$(_TECS_OBJ_DIR)nMruby_tsTest2.o : nMruby_tsTest2.c  $(GEN_DIR)/nTECS2C_tsTest2_tecsgen.h  nTECS2C_tsTest2_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_tsTest2_factory.h $(GEN_DIR)/nMruby_tsTest2_tecsgen.h $(GEN_DIR)/sTest2_tecsgen.h
+
+# Celltype: tsTest2_Initializer  #_MDEP_#
+$(_TECS_OBJ_DIR)nMruby_tsTest2_Initializer_tecsgen.o : nMruby_tsTest2_Initializer_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_sInitializeTECSBridge_tecsgen.h $(GEN_DIR)/nMruby_tsTest2_Initializer_factory.h $(GEN_DIR)/nMruby_tsTest2_Initializer_tecsgen.h
+$(_TECS_OBJ_DIR)nMruby_tsTest2_Initializer_templ.o : nMruby_tsTest2_Initializer_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_sInitializeTECSBridge_tecsgen.h $(GEN_DIR)/nMruby_tsTest2_Initializer_factory.h $(GEN_DIR)/nMruby_tsTest2_Initializer_tecsgen.h
+$(_TECS_OBJ_DIR)nMruby_tsTest2_Initializer.o : nMruby_tsTest2_Initializer.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nMruby_sInitializeTECSBridge_tecsgen.h $(GEN_DIR)/nMruby_tsTest2_Initializer_factory.h $(GEN_DIR)/nMruby_tsTest2_Initializer_tecsgen.h
+
+# Celltype: tsTest  #_MDEP_#
+$(_TECS_OBJ_DIR)nTECS2C_tsTest_tecsgen.o : nTECS2C_tsTest_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nTECS2C_tsTest_factory.h $(GEN_DIR)/nTECS2C_tsTest_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h nTECS2C_tsTest_inline.h
+$(_TECS_OBJ_DIR)nTECS2C_tsTest_templ.o : nTECS2C_tsTest_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nTECS2C_tsTest_factory.h $(GEN_DIR)/nTECS2C_tsTest_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h nTECS2C_tsTest_inline.h
+$(_TECS_OBJ_DIR)nTECS2C_tsTest.o : nTECS2C_tsTest.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nTECS2C_tsTest_factory.h $(GEN_DIR)/nTECS2C_tsTest_tecsgen.h $(GEN_DIR)/sTest_tecsgen.h nTECS2C_tsTest_inline.h
+
+# Celltype: tsTest2  #_MDEP_#
+$(_TECS_OBJ_DIR)nTECS2C_tsTest2_tecsgen.o : nTECS2C_tsTest2_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nTECS2C_tsTest2_factory.h $(GEN_DIR)/nTECS2C_tsTest2_tecsgen.h $(GEN_DIR)/sTest2_tecsgen.h nTECS2C_tsTest2_inline.h
+$(_TECS_OBJ_DIR)nTECS2C_tsTest2_templ.o : nTECS2C_tsTest2_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nTECS2C_tsTest2_factory.h $(GEN_DIR)/nTECS2C_tsTest2_tecsgen.h $(GEN_DIR)/sTest2_tecsgen.h nTECS2C_tsTest2_inline.h
+$(_TECS_OBJ_DIR)nTECS2C_tsTest2.o : nTECS2C_tsTest2.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nTECS2C_tsTest2_factory.h $(GEN_DIR)/nTECS2C_tsTest2_tecsgen.h $(GEN_DIR)/sTest2_tecsgen.h nTECS2C_tsTest2_inline.h
+
+# Celltype: tnMruby_sInitializeBridge  #_MDEP_#
+$(_TECS_OBJ_DIR)nC2TECS_tnMruby_sInitializeBridge_tecsgen.o : nC2TECS_tnMruby_sInitializeBridge_tecsgen.c  $(GEN_DIR)/nMruby_tTECSInitializer_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nC2TECS_tnMruby_sInitializeBridge_factory.h $(GEN_DIR)/nC2TECS_tnMruby_sInitializeBridge_tecsgen.h $(GEN_DIR)/nMruby_sInitializeBridge_tecsgen.h
+$(_TECS_OBJ_DIR)nC2TECS_tnMruby_sInitializeBridge_templ.o : nC2TECS_tnMruby_sInitializeBridge_templ.c  $(GEN_DIR)/nMruby_tTECSInitializer_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nC2TECS_tnMruby_sInitializeBridge_factory.h $(GEN_DIR)/nC2TECS_tnMruby_sInitializeBridge_tecsgen.h $(GEN_DIR)/nMruby_sInitializeBridge_tecsgen.h
+$(_TECS_OBJ_DIR)nC2TECS_tnMruby_sInitializeBridge.o : nC2TECS_tnMruby_sInitializeBridge.c  $(GEN_DIR)/nMruby_tTECSInitializer_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/nC2TECS_tnMruby_sInitializeBridge_factory.h $(GEN_DIR)/nC2TECS_tnMruby_sInitializeBridge_tecsgen.h $(GEN_DIR)/nMruby_sInitializeBridge_tecsgen.h
+

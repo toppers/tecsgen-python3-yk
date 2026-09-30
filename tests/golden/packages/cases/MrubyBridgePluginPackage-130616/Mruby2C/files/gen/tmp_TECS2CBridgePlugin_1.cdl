@@ -1,0 +1,7 @@
+namespace nTECS2C{
+  [singleton]
+  celltype tsTest2 {
+    [inline]
+    entry ::sTest2 eEnt;
+  };
+};
