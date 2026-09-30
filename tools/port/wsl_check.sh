@@ -2,6 +2,7 @@
 # WSL（Linux）上で、正解データを採った環境と同じ条件のテスト一式を実行する。
 #
 #   sh tools/port/wsl_check.sh [--oracle <移植元 tecsgen ブランチの作業コピー>] [pytest の引数]...
+#   --package-inventory [refs|targets|layout|file|locate] と --package-golden も PowerShell から使用する。
 #
 # Windows からは tools/port/wsl_check.ps1 で呼ぶ（パスの変換を任せられる）。
 #
@@ -21,6 +22,79 @@ case "$(uname -s)" in
   *) echo "wsl_check.sh: WSL（Linux）で実行してください。Windows からは tools/port/wsl_check.ps1 を使います" >&2
      exit 2 ;;
 esac
+
+if [ "${1:-}" = "--package-inventory" ]; then
+  root="$HOME/Ccur/TECS-WG-DL"
+  context="$R/tools/golden/packages_context.txt"
+  [ -d "$root" ] || { echo "package directory not found: $root" >&2; exit 2; }
+  [ -f "$context" ] || { echo "package list not found: $context" >&2; exit 2; }
+  if [ "${2:-}" = "refs" ]; then
+    while IFS= read -r package; do
+      [ -d "$root/$package" ] || continue
+      find "$root/$package" -type f -iname '*.cdl' -exec grep -HnE 'generate[[:space:]]*\(' {} +
+    done < "$context"
+    exit 0
+  fi
+  if [ "${2:-}" = "layout" ]; then
+    while IFS= read -r package; do
+      dir="$root/$package"
+      [ -d "$dir" ] || continue
+      [ -z "${3:-}" ] || [ "$package" = "$3" ] || continue
+      printf 'PACKAGE\t%s\n' "$package"
+      find "$dir" -maxdepth 9 -type f \( -name configure.rb -o -name Makefile -o -name tecsgen -o -name tecsgen.rb \) -print
+    done < "$context"
+    exit 0
+  fi
+  if [ "${2:-}" = "targets" ]; then
+    while IFS= read -r package; do
+      case "$package" in asp3_*) ;; *) continue ;; esac
+      dir="$root/$package"
+      [ -d "$dir" ] || continue
+      printf 'PACKAGE\t%s\n' "$package"
+      find "$dir" -type f -path '*/target/*/Makefile.target' -print
+    done < "$context"
+    exit 0
+  fi
+  if [ "${2:-}" = "file" ]; then
+    package=${3:?package name required}
+    relative=${4:?relative file path required}
+    grep -Fxq -- "$package" "$context" || { echo "package not in Context: $package" >&2; exit 2; }
+    case "$package/$relative" in
+      *..*|/*) echo "invalid package file path" >&2; exit 2 ;;
+    esac
+    file="$root/$package/$relative"
+    [ -f "$file" ] || { echo "package file not found: $file" >&2; exit 2; }
+    cat "$file"
+    exit 0
+  fi
+  if [ "${2:-}" = "locate" ]; then
+    package=${3:?package name required}
+    filename=${4:?file name required}
+    grep -Fxq -- "$package" "$context" || { echo "package not in Context: $package" >&2; exit 2; }
+    case "$package/$filename" in *..*|*/*/*) echo "invalid package or filename" >&2; exit 2 ;; esac
+    find "$root/$package" -type f -name "$filename" -print
+    exit 0
+  fi
+  while IFS= read -r package; do
+    dir="$root/$package"
+    if [ ! -d "$dir" ]; then
+      printf '%s\tMISSING\n' "$package"
+      continue
+    fi
+    count=$(find "$dir" -type f -iname '*.cdl' | wc -l)
+    printf '%s\t%s\n' "$package" "$count"
+  done < "$context"
+  exit 0
+fi
+
+if [ "${1:-}" = "--package-golden" ]; then
+  TECSGEN_WC=${2:?--package-golden requires the Ruby tecsgen working copy}
+  shift 2
+  exec python3 tools/golden/collect_packages.py \
+    --packages-root "$HOME/Ccur/TECS-WG-DL" \
+    --tecsgen-wc "$TECSGEN_WC" \
+    --out tests/golden/packages "$@"
+fi
 
 ORACLE_WC=""
 if [ "${1:-}" = "--oracle" ]; then

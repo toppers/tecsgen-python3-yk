@@ -1,0 +1,39 @@
+{
+  "ruby": "ruby 3.2.3 (2024-01-18 revision 52bb2ac0a6) [x86_64-linux-gnu]",
+  "tecsgen_revision": "3304",
+  "manifest_sha256": "312c1ba07a0af32a7346fe2001be9ca710e9b64b1a1d75fb10a0796066752846",
+  "packages": [
+    "MrubyBridgePluginPackage-130616",
+    "asp3_arm_gcc-20260518",
+    "asp3_imx8mm_evk_gcc-20200710",
+    "asp3_lpc55s69evk_gcc-20230401",
+    "asp3_macosx_xcode-20191006",
+    "asp3_mimxrt685evk_gcc-20230401",
+    "asp3_nrf5340_dk_gcc-20230401",
+    "asp3_nucleo_f401re_gcc-20260518",
+    "asp3_nucleo_h563zi_gcc-20260518",
+    "asp3_nucleo_l552zeq_gcc-20230401",
+    "asp3_posix_gcc-20260518",
+    "asp3_raspberrypi_pico_gcc-20230401",
+    "asp3_rx_ccrx-20240401",
+    "asp3_zybo_gcc-20190325",
+    "asp3_zybo_z7_gcc-20260520",
+    "atk1+tecs_1.0.0",
+    "mruby-on-ev3rt+tecs_package-beta2.2.0"
+  ],
+  "cases": 16,
+  "failed": [
+    "MrubyBridgePluginPackage-130616/MrubyBridge-test",
+    "asp3_rx_ccrx-20240401/sample1"
+  ],
+  "errors": {},
+  "manifest_sha256_current": "964bd9faccc666ecf4af857c8928480c4105f1f5d604f6bbc6fd39d34fa1f7a6",
+  "enabled_cases": 16,
+  "diagnostic_cases": [
+    "MrubyBridgePluginPackage-130616/MrubyBridge-test",
+    "asp3_rx_ccrx-20240401/sample1"
+  ],
+  "resolved_diagnostics": [
+    "MrubyBridgePluginPackage-130616/Mruby2C"
+  ]
+}

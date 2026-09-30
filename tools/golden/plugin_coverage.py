@@ -40,10 +40,19 @@ def read_trace(path: Path) -> tuple[collections.Counter, collections.Counter]:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--plugin-dir", type=Path, required=True,
-                        help="移植元の tecslib/plugin（lib/ を含む）")
-    parser.add_argument("--trace", action="append", default=[], metavar="名前=ログ",
-                        help="ケース群の名前とログのパス（複数指定可）")
+    parser.add_argument(
+        "--plugin-dir",
+        type=Path,
+        required=True,
+        help="移植元の tecslib/plugin（lib/ を含む）",
+    )
+    parser.add_argument(
+        "--trace",
+        action="append",
+        default=[],
+        metavar="名前=ログ",
+        help="ケース群の名前とログのパス（複数指定可）",
+    )
     opts = parser.parse_args(argv)
     if not opts.trace:
         parser.error("--trace を1つ以上指定してください")
@@ -65,7 +74,9 @@ def main(argv: list[str] | None = None) -> int:
         return sum(t[1][n] for t in traces.values())
 
     def per(n: str, which: int) -> str:
-        return " ".join(f"{k}={t[which][n + '.rb' if which == 0 else n]}" for k, t in traces.items())
+        return " ".join(
+            f"{k}={t[which][n + '.rb' if which == 0 else n]}" for k, t in traces.items()
+        )
 
     never = [n for n in plugins + libs if loaded(n) == 0]
     load_only = [n for n in plugins if loaded(n) > 0 and created(n) == 0]
@@ -79,7 +90,9 @@ def main(argv: list[str] | None = None) -> int:
     print("\n== NEVER LOADED (no golden data)")
     for n in never:
         print(f"  {n}{'  [lib]' if n in libs else ''}")
-    print("\n== LOADED BUT NEVER CREATED (abstract / dispatch / manager: not necessarily a gap)")
+    print(
+        "\n== LOADED BUT NEVER CREATED (abstract / dispatch / manager: not necessarily a gap)"
+    )
     for n in load_only:
         print(f"  {n:32} load: {per(n, 0)}")
     print(f"\n== THIN (created <= {THIN_LIMIT} times in total)")

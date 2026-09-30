@@ -1,0 +1,14 @@
+  Mruby2CBridgePlugin: [initialize function] 'void initializeBridge( mrb_state *mrb )' must be called from VM.
+  Mruby2CBridgePlugin: [object creattion]    object = TECS::TsTest.new( 'CsTest' )
+  Mruby2CBridgePlugin: [function call]       result = object.function( params )  # substitute 'function' and params 
+@WORK@/tecsgen/tecsgen/tecs/mruby/mrubyInitializer.cdl:39:36: error: G1016 syntax error near 'mrb_state'
+@WORK@/tecsgen/tecsgen/tecs/mruby/mrubyInitializer.cdl:43:33: error: G1016 syntax error near 'mrb_state'
+@WORK@/tecsgen/tecsgen/tecs/mruby/mrubyVMs.cdl:55:4: error: G1016 syntax error near 'mrb_state'
+@WORK@/tecsgen/tecsgen/tecs/mruby/mrubyVMs.cdl:55:4: error: G1009 unexpected specifier
+gen/CsTestInitializer.cdl:3:33: error: S1027 'nMruby::tTECSInitializer' celltype not found
+  Mruby2CBridgePlugin: [object creattion]    object = TECS::TsTest2.new( 'CsTest2' )
+  Mruby2CBridgePlugin: [function call]       result = object.function( params )  # substitute 'function' and params 
+gen/tmp_MrubyBridgeSignaturePlugin_post_code.cdl:8:33: error: S1027 'nMruby::tTECSInitializer' celltype not found
+gen/tmp_MrubyBridgeSignaturePlugin_post_code.cdl:3:35: warning: W1007 ::VM_tsTest_Initializer : non-active cell has no entry join and no factory
+gen/tmp_MrubyBridgeSignaturePlugin_post_code.cdl:4:36: warning: W1007 ::VM_tsTest2_Initializer : non-active cell has no entry join and no factory
+6 errors  2 warnings

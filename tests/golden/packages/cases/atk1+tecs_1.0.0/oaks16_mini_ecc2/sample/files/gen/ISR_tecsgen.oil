@@ -1,0 +1,12 @@
+	ISR RxHwSerialInt {
+		CATEGORY = 1;
+		PRIORITY = 6;
+		ENTRY = 20;
+	};
+
+	ISR SysTimerInt {
+		CATEGORY = 2;
+		PRIORITY = 4;
+		ENTRY = 21;
+	};
+

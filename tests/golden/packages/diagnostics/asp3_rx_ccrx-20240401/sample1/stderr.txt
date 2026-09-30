@@ -1,0 +1,27 @@
+Makefile:532: target 'objs/prc_timer.obj' doesn't match the target pattern
+Makefile:532: target 'objs/prc_kernel_impl.obj' doesn't match the target pattern
+Makefile:532: target 'objs/core_kernel_impl.obj' doesn't match the target pattern
+Makefile:532: target 'objs/target_kernel_impl.obj' doesn't match the target pattern
+Makefile:535: target 'objs/prc_timer.obj' doesn't match the target pattern
+Makefile:536: warning: overriding recipe for target 'objs/prc_timer.obj'
+Makefile:533: warning: ignoring old recipe for target 'objs/prc_timer.obj'
+Makefile:535: target 'objs/prc_kernel_impl.obj' doesn't match the target pattern
+Makefile:536: warning: overriding recipe for target 'objs/prc_kernel_impl.obj'
+Makefile:533: warning: ignoring old recipe for target 'objs/prc_kernel_impl.obj'
+Makefile:535: target 'objs/core_kernel_impl.obj' doesn't match the target pattern
+Makefile:536: warning: overriding recipe for target 'objs/core_kernel_impl.obj'
+Makefile:533: warning: ignoring old recipe for target 'objs/core_kernel_impl.obj'
+Makefile:535: target 'objs/target_kernel_impl.obj' doesn't match the target pattern
+Makefile:536: warning: overriding recipe for target 'objs/target_kernel_impl.obj'
+Makefile:533: warning: ignoring old recipe for target 'objs/target_kernel_impl.obj'
+Makefile:545: target 'objs/start.obj' doesn't match the target pattern
+Makefile:545: target 'objs/core_support.obj' doesn't match the target pattern
+Makefile:545: target 'objs/kernel_cfg_asm.obj' doesn't match the target pattern
+Makefile:548: target 'objs/prc_serial.obj' doesn't match the target pattern
+Makefile:551: target 'objs/prc_serial.obj' doesn't match the target pattern
+Makefile:552: warning: overriding recipe for target 'objs/prc_serial.obj'
+Makefile:549: warning: ignoring old recipe for target 'objs/prc_serial.obj'
+Makefile:554: target 'objs/core_start.obj' doesn't match the target pattern
+tecsgen: ambiguous option: -nclude=../target/hsbrx64mc_ccrx
+tecsgen  version 1.9.1  
+make: *** [Makefile:351: gen/tecsgen.timestamp] Error 1

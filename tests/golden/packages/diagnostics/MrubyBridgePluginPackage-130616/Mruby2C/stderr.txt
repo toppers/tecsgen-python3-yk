@@ -1,0 +1,12 @@
+tecsgen  version 1.9.1  
+In file included from gen/tmp_C_src.c:39:
+../../tecsgen/tecsgen/tecs/tecs.h:42:10: fatal error: t_stddef.h: No such file or directory
+   42 | #include "t_stddef.h"
+      |          ^~~~~~~~~~~~
+compilation terminated.
+MrubyBridgePlugin: version 2.0.0 (Suitable for mruby above ver 1.2.0).
+In file included from gen/tmp_C_src.c:39:
+@WORK@/tecsgen/tecsgen/tecs/mruby/tecs_mruby.h:44:10: fatal error: mruby.h: No such file or directory
+   44 | #include "mruby.h"
+      |          ^~~~~~~~~
+compilation terminated.

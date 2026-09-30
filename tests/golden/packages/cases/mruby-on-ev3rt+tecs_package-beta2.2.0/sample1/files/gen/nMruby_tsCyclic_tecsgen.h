@@ -1,0 +1,158 @@
+/*
+ * このファイルは tecsgen により自動生成されました
+ * このファイルを編集して使用することは、意図されていません
+ */
+#ifndef nMruby_tsCyclic_TECSGEN_H
+#define nMruby_tsCyclic_TECSGEN_H
+
+/*
+ * celltype          :  tsCyclic
+ * global name       :  nMruby_tsCyclic
+ * multi-domain      :  yes
+ * idx_is_id(actual) :  yes(yes)
+ * singleton         :  no
+ * has_CB            :  no
+ * has_INIB          :  yes
+ * rom               :  yes
+ * CB initializer    :  yes
+ */
+
+/* グローバルヘッダ #_IGH_# */
+#include "global_tecsgen.h"
+
+/* シグニチャヘッダ #_ISH_# */
+#include "sCyclic_tecsgen.h"
+
+#ifndef TOPPERS_MACRO_ONLY
+
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+/* セル INIB 型宣言 #_CIP_# */
+typedef const struct tag_nMruby_tsCyclic_INIB {
+    /* call port #_TCP_# */
+    const struct tag_tCyclicHandler_INIB * const cTECS;  /* TCP_4 */
+}  nMruby_tsCyclic_INIB;
+
+/* CB は存在しない。INIB を CB の代わりに使用するための define #_DCI_# */
+#define nMruby_tsCyclic_CB_ptab           nMruby_tsCyclic_INIB_ptab
+#define nMruby_tsCyclic_CB               nMruby_tsCyclic_INIB
+#define tag_nMruby_tsCyclic_CB           tag_nMruby_tsCyclic_INIB
+
+/* シングルトンセル CB プロトタイプ宣言 #_MCPP_# */
+extern nMruby_tsCyclic_INIB  *const nMruby_tsCyclic_INIB_ptab[];
+extern nMruby_tsCyclic_INIB  rDomainEV3_TaskCyclicWakeuppereCyclicBridge_INIB;
+extern nMruby_tsCyclic_INIB  rDomainEV3_CyclicHandlereCyclicBridge_INIB;
+
+/* セルタイプのIDX型 #_CTIX_# */
+typedef ID nMruby_tsCyclic_IDX;
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
+#endif /* TOPPERS_MACRO_ONLY */
+
+/* 最適化のため参照するセルタイプの CB 型の定義を取込む #_ICT_# */
+#ifndef  TOPPERS_CB_TYPE_ONLY
+#define  nMruby_tsCyclic_CB_TYPE_ONLY
+#define TOPPERS_CB_TYPE_ONLY
+#endif  /* TOPPERS_CB_TYPE_ONLY */
+#include "tCyclicHandler_tecsgen.h"
+#ifdef  nMruby_tsCyclic_CB_TYPE_ONLY
+#undef TOPPERS_CB_TYPE_ONLY
+#endif /* nMruby_tsCyclic_CB_TYPE_ONLY */
+#ifndef TOPPERS_CB_TYPE_ONLY
+
+#define nMruby_tsCyclic_ID_BASE        (1)  /* ID のベース  #_NIDB_# */
+#define nMruby_tsCyclic_N_CELL        (2)  /* セルの個数  #_NCEL_# */
+
+/* IDXの正当性チェックマクロ #_CVI_# */
+#define nMruby_tsCyclic_VALID_IDX(IDX) (nMruby_tsCyclic_ID_BASE <= (IDX) && (IDX) < nMruby_tsCyclic_ID_BASE+nMruby_tsCyclic_N_CELL)
+
+
+/* セルCBを得るマクロ #_GCB_# */
+#define nMruby_tsCyclic_GET_CELLCB(idx) (nMruby_tsCyclic_CB_ptab[(idx) - nMruby_tsCyclic_ID_BASE])
+#ifndef TECSFLOW
+ /* 呼び口関数マクロ #_CPM_# */
+#define nMruby_tsCyclic_cTECS_start( p_that ) \
+	  tCyclicHandler_eCyclic_start( \
+	   (p_that)->cTECS )
+#define nMruby_tsCyclic_cTECS_stop( p_that ) \
+	  tCyclicHandler_eCyclic_stop( \
+	   (p_that)->cTECS )
+#define nMruby_tsCyclic_cTECS_refer( p_that, pk_cyclicHandlerStatus ) \
+	  tCyclicHandler_eCyclic_refer( \
+	   (p_that)->cTECS, (pk_cyclicHandlerStatus) )
+
+#else  /* TECSFLOW */
+#define nMruby_tsCyclic_cTECS_start( p_that ) \
+	  (p_that)->cTECS.start__T( \
+ )
+#define nMruby_tsCyclic_cTECS_stop( p_that ) \
+	  (p_that)->cTECS.stop__T( \
+ )
+#define nMruby_tsCyclic_cTECS_refer( p_that, pk_cyclicHandlerStatus ) \
+	  (p_that)->cTECS.refer__T( \
+ (pk_cyclicHandlerStatus) )
+
+#endif /* TECSFLOW */
+#endif /* TOPPERS_CB_TYPE_ONLY */
+
+#ifndef TOPPERS_MACRO_ONLY
+
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
+#ifndef TOPPERS_CB_TYPE_ONLY
+
+#endif /* TOPPERS_CB_TYPE_ONLY */
+
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
+#endif /* TOPPERS_MACRO_ONLY */
+
+#ifndef TOPPERS_CB_TYPE_ONLY
+
+/* IDXの正当性チェックマクロ（短縮形） #_CVIA_# */
+#define VALID_IDX(IDX)  nMruby_tsCyclic_VALID_IDX(IDX)
+
+
+/* セルCBを得るマクロ(短縮形) #_GCBA_# */
+#define GET_CELLCB(idx)  nMruby_tsCyclic_GET_CELLCB(idx)
+
+/* CELLCB 型(短縮形) #_CCT_# */
+#define CELLCB	nMruby_tsCyclic_CB
+
+/* セルタイプのIDX型(短縮形) #_CTIXA_# */
+#define CELLIDX	nMruby_tsCyclic_IDX
+
+#define tsCyclic_IDX  nMruby_tsCyclic_IDX
+/* 呼び口関数マクロ（短縮形）#_CPMA_# */
+#define cTECS_start( ) \
+          ((void)p_cellcb, nMruby_tsCyclic_cTECS_start( p_cellcb ))
+#define cTECS_stop( ) \
+          ((void)p_cellcb, nMruby_tsCyclic_cTECS_stop( p_cellcb ))
+#define cTECS_refer( pk_cyclicHandlerStatus ) \
+          ((void)p_cellcb, nMruby_tsCyclic_cTECS_refer( p_cellcb, pk_cyclicHandlerStatus ))
+
+
+
+/* イテレータコード (FOREACH_CELL)の生成 #_FEC_# */
+#define FOREACH_CELL(i,p_cb)   \
+    for( (i) = 0; (i) < nMruby_tsCyclic_N_CELL; (i)++ ){ \
+       (p_cb) = nMruby_tsCyclic_CB_ptab[i];
+
+#define END_FOREACH_CELL   }
+
+/* CB 初期化マクロ #_CIM_# */
+#define INITIALIZE_CB(p_that)	(void)(p_that);
+#define SET_CB_INIB_POINTER(i,p_that)\
+	/* empty */
+#endif /* TOPPERS_CB_TYPE_ONLY */
+
+#ifndef TOPPERS_MACRO_ONLY
+
+#endif /* TOPPERS_MACRO_ONLY */
+
+#endif /* nMruby_tsCyclic_TECSGENH */

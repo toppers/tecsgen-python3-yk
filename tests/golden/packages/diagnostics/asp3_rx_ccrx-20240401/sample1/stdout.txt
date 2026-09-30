@@ -1,0 +1,13 @@
+ruby ../tecsgen/tecsgen.rb ../sample/sample1.cdl -R -I. -I../include  -include=../target/hsbrx64mc_ccrx -include=../arch/rx_ccrx/rx64m -include=../arch/rx_ccrx/common -include=../arch/ccrx -I.. -I../sample -I./gen -I../tecs_kernel --cpp "ccrx.exe   -I. -I../include  -include=../target/hsbrx64mc_ccrx -include=../arch/rx_ccrx/rx64m -include=../arch/rx_ccrx/common -include=../arch/ccrx -I.. -I../sample -I./gen -I../tecs_kernel -D TECSGEN -E" -g ./gen
+error: S1148 -include=../arch/rx_ccrx/rx64m not found in search path
+error: S1148 -include=../arch/rx_ccrx/common not found in search path
+error: S1148 -include=../arch/ccrx not found in search path
+error: S1148 -I.. not found in search path
+error: S1148 -I../sample not found in search path
+error: S1148 -I./gen not found in search path
+error: S1148 -I../tecs_kernel not found in search path
+error: S1148 --cpp not found in search path
+error: S1148 ccrx.exe   -I. -I../include  -include=../target/hsbrx64mc_ccrx -include=../arch/rx_ccrx/rx64m -include=../arch/rx_ccrx/common -include=../arch/ccrx -I.. -I../sample -I./gen -I../tecs_kernel -D TECSGEN -E not found in search path
+error: S1148 -g not found in search path
+error: G1014 while open or reading './gen'
+11 errors

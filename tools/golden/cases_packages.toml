@@ -1,0 +1,157 @@
+# Unpacked packages from the Vault tecsgen-python3 Context.
+# Run Ruby r3304 in a copy of each package and preserve generated files and trace.
+
+[[case]]
+id = "asp3_zybo_z7_gcc-20260520/sample1"
+package = "asp3_zybo_z7_gcc-20260520"
+source_subdir = "asp3_3.7"
+target = "zybo_z7_gcc"
+tecsgen_dest = "tecsgen"
+configure = ["-T", "zybo_z7_gcc", "-t", "-A", "sample1", "-a", "../sample", "-C", "sample1.cdl", "-c", "sample1.cfg"]
+
+[[case]]
+id = "asp3_arm_gcc-20260518/sample1"
+package = "asp3_arm_gcc-20260518"
+source_subdir = "asp3"
+target = "ct11mpcore_gcc"
+tecsgen_dest = "tecsgen"
+configure = ["-T", "ct11mpcore_gcc", "-t", "-A", "sample1", "-a", "../sample", "-C", "sample1.cdl", "-c", "sample1.cfg"]
+
+[[case]]
+id = "asp3_imx8mm_evk_gcc-20200710/sample1"
+package = "asp3_imx8mm_evk_gcc-20200710"
+source_subdir = "asp3_3.5"
+target = "imx8mm_evk"
+tecsgen_dest = "tecsgen"
+configure = ["-T", "imx8mm_evk", "-t", "-A", "sample1", "-a", "../sample", "-C", "sample1.cdl", "-c", "sample1.cfg"]
+
+[[case]]
+id = "asp3_lpc55s69evk_gcc-20230401/sample1"
+package = "asp3_lpc55s69evk_gcc-20230401"
+source_subdir = "asp3"
+target = "lpc55s69evk_gcc"
+tecsgen_dest = "tecsgen"
+configure = ["-T", "lpc55s69evk_gcc", "-t", "-A", "sample1", "-a", "../sample", "-C", "sample1.cdl", "-c", "sample1.cfg"]
+
+[[case]]
+id = "asp3_macosx_xcode-20191006/sample1"
+package = "asp3_macosx_xcode-20191006"
+source_subdir = "asp3"
+target = "macosx_xcode"
+tecsgen_dest = "tecsgen"
+configure = ["-T", "macosx_xcode", "-t", "-A", "sample1", "-a", "../sample", "-C", "sample1.cdl", "-c", "sample1.cfg"]
+
+[[case]]
+id = "asp3_mimxrt685evk_gcc-20230401/sample1"
+package = "asp3_mimxrt685evk_gcc-20230401"
+source_subdir = "asp3"
+target = "mimxrt685evk_gcc"
+tecsgen_dest = "tecsgen"
+configure = ["-T", "mimxrt685evk_gcc", "-t", "-A", "sample1", "-a", "../sample", "-C", "sample1.cdl", "-c", "sample1.cfg"]
+
+[[case]]
+id = "asp3_nrf5340_dk_gcc-20230401/sample1"
+package = "asp3_nrf5340_dk_gcc-20230401"
+source_subdir = "asp3"
+target = "nrf5340_dk_gcc"
+tecsgen_dest = "tecsgen"
+configure = ["-T", "nrf5340_dk_gcc", "-t", "-A", "sample1", "-a", "../sample", "-C", "sample1.cdl", "-c", "sample1.cfg"]
+
+[[case]]
+id = "asp3_nucleo_f401re_gcc-20260518/sample1"
+package = "asp3_nucleo_f401re_gcc-20260518"
+source_subdir = "asp3_3.7"
+target = "nucleo_f401re_gcc"
+tecsgen_dest = "tecsgen"
+configure = ["-T", "nucleo_f401re_gcc", "-t", "-A", "sample1", "-a", "../sample", "-C", "sample1.cdl", "-c", "sample1.cfg"]
+
+[[case]]
+id = "asp3_nucleo_h563zi_gcc-20260518/sample1"
+package = "asp3_nucleo_h563zi_gcc-20260518"
+source_subdir = "asp3_3.7"
+target = "nucleo_h563zi_gcc"
+tecsgen_dest = "tecsgen"
+configure = ["-T", "nucleo_h563zi_gcc", "-t", "-A", "sample1", "-a", "../sample", "-C", "sample1.cdl", "-c", "sample1.cfg"]
+
+[[case]]
+id = "asp3_nucleo_l552zeq_gcc-20230401/sample1"
+package = "asp3_nucleo_l552zeq_gcc-20230401"
+source_subdir = "asp3"
+target = "nucleo_l552zeq_gcc"
+tecsgen_dest = "tecsgen"
+configure = ["-T", "nucleo_l552zeq_gcc", "-t", "-A", "sample1", "-a", "../sample", "-C", "sample1.cdl", "-c", "sample1.cfg"]
+
+[[case]]
+id = "asp3_posix_gcc-20260518/sample1"
+package = "asp3_posix_gcc-20260518"
+source_subdir = "asp3"
+target = "linux_gcc"
+tecsgen_dest = "tecsgen"
+configure = ["-T", "linux_gcc", "-t", "-A", "sample1", "-a", "../sample", "-C", "sample1.cdl", "-c", "sample1.cfg"]
+
+[[case]]
+id = "asp3_raspberrypi_pico_gcc-20230401/sample1"
+package = "asp3_raspberrypi_pico_gcc-20230401"
+source_subdir = "asp3"
+target = "raspberrypi_pico_gcc"
+tecsgen_dest = "tecsgen"
+configure = ["-T", "raspberrypi_pico_gcc", "-t", "-A", "sample1", "-a", "../sample", "-C", "sample1.cdl", "-c", "sample1.cfg"]
+
+[[case]]
+id = "asp3_rx_ccrx-20240401/sample1"
+package = "asp3_rx_ccrx-20240401"
+enabled = false
+skip_reason = "WSL has no Renesas ccrx.exe preprocessor"
+source_subdir = "asp3"
+target = "hsbrx64mc_ccrx"
+tecsgen_dest = "tecsgen"
+configure = ["-T", "hsbrx64mc_ccrx", "-t", "-A", "sample1", "-a", "../sample", "-C", "sample1.cdl", "-c", "sample1.cfg"]
+
+[[case]]
+id = "asp3_zybo_gcc-20190325/sample1"
+package = "asp3_zybo_gcc-20190325"
+source_subdir = "asp_3.4.0"
+target = "zybo_gcc"
+tecsgen_dest = "tecsgen"
+configure = ["-T", "zybo_gcc", "-t", "-A", "sample1", "-a", "../sample", "-C", "sample1.cdl", "-c", "sample1.cfg"]
+
+[[case]]
+id = "MrubyBridgePluginPackage-130616/Mruby2C"
+package = "MrubyBridgePluginPackage-130616"
+source_subdir = "MrubyBridgePluginPackage"
+target = "posix"
+tecsgen_dest = "tecsgen/tecsgen"
+workdir = "mruby-master/Mruby2C"
+clean = ["gen"]
+tecsgen_args = ["--cpp=gcc -E", "-I../../tecsgen/test/cygwin", "-I../include", "-I../../tecsgen/tecsgen/tecs", "test.cdl"]
+
+[[case]]
+id = "MrubyBridgePluginPackage-130616/MrubyBridge-test"
+package = "MrubyBridgePluginPackage-130616"
+enabled = false
+skip_reason = "legacy cygwin_kernel.cdl gives T1007 with Ruby tecsgen r3304"
+source_subdir = "MrubyBridgePluginPackage"
+target = "posix"
+tecsgen_dest = "tecsgen/tecsgen"
+workdir = "mruby-master/MrubyBridge-test"
+clean = ["gen"]
+tecsgen_args = ["--cpp=gcc -E", "-I../../tecsgen/test/cygwin", "-I../include", "-I../../tecsgen/tecsgen/tecs", "test.cdl"]
+
+[[case]]
+id = "mruby-on-ev3rt+tecs_package-beta2.2.0/sample1"
+package = "mruby-on-ev3rt+tecs_package-beta2.2.0"
+source_subdir = "mruby-on-ev3rt+tecs2.2.0"
+target = "ev3_gcc"
+tecsgen_dest = "hr-tecs/tecsgen/tecsgen"
+workdir = "hr-tecs/workspace/sample1"
+clean = ["gen"]
+
+[[case]]
+id = "atk1+tecs_1.0.0/oaks16_mini_ecc2/sample"
+package = "atk1+tecs_1.0.0"
+source_subdir = "atk1+tecs_1.0.0"
+target = "oaks16_mini_ecc2"
+tecsgen_dest = "tecsgen"
+workdir = "tools/m16c-renesas/oaks16_mini_ecc2"
+clean = ["gen"]
+tecsgen_args = ["-v", "-D", "TECS", "--cpp=gcc -E -D NC30", "-I../../../config/m16c-renesas", "-I../../../config/m16c-renesas/oaks16_mini", "-I../../../include", "-I../../..", "-I../../../syslib", "-I../../../syslib/m16c-renesas/oaks16_mini", "-I.", "sample.cdl"]
