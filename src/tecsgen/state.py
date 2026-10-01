@@ -65,6 +65,11 @@ def reset_model_state() -> None:
         ("tecsgen.plugin.TECSInfoCompoPlugin", "TECSInfoCompoPlugin"),
         ("tecsgen.plugin.CppIfGenCelltypePlugin", "CppIfGenCelltypePlugin"),
         ("tecsgen.plugin.ATK1KernelPlugin", "ATK1KernelPlugin"),
+        ("tecsgen.plugin.HRPPlugin", "HRPPlugin"),
+        ("tecsgen.plugin.HRPSVCBodyCellPlugin", "HRPSVCBodyCellPlugin"),
+        ("tecsgen.plugin.HRPSVCSignaturePlugin", "HRPSVCSignaturePlugin"),
+        ("tecsgen.plugin.HRPKernelObjectPlugin", "HRPKernelObjectPlugin"),
+        ("tecsgen.plugin.HRPKernelObjectManager", "HRPSVCManage"),
         ("tecsgen.plugin.MrubyBridgeSignaturePlugin", "MrubyBridgeSignaturePlugin"),
         ("tecsgen.plugin.MrubyBridgeCellPlugin", "MrubyBridgeCellPlugin"),
     ):

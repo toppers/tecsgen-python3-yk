@@ -61,6 +61,15 @@ def golden_files(case_id: str) -> dict[str, bytes]:
     }
 
 
+def golden_stdout(case_id: str) -> bytes:
+    """正解の標準出力。カーネルのケースは make 経由で採ったので、先頭の make が表示した
+    tecsgen の呼び出し行（"ruby ../tecsgen/tecsgen.rb …"）を除く。tecsgen 自身は出力しない。"""
+    data = (golden_dir(case_id) / "stdout.txt").read_bytes()
+    if case_id.startswith(KERNEL_PREFIX) and data.startswith(b"ruby "):
+        data = data.split(b"\n", 1)[1] if b"\n" in data else b""
+    return data
+
+
 def golden_meta(case_id: str) -> dict[str, Any]:
     return json.loads((golden_dir(case_id) / "meta.json").read_text(encoding="utf-8"))
 
@@ -120,7 +129,7 @@ def run_case(rec: CaseRecord, stdout: Any = None, stderr: Any = None) -> GenResu
         b"",
         written,
         golden,
-        (golden_dir(rec.case_id) / "stdout.txt").read_bytes(),
+        golden_stdout(rec.case_id),
         (golden_dir(rec.case_id) / "stderr.txt").read_bytes(),
         meta["exit_code"],
     )
