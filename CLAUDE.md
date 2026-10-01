@@ -17,6 +17,11 @@ Porting proceeds in phases P1–P5 (messages → parser → model/semantic analy
 5. **WSL での検証は必ず `tools/port/wsl_check.ps1` で行う**（2026-09-28 ユーザー採用）。`wsl.exe -e bash -lc "..."` をその場で手書きしない。このスクリプトは、WSL 用の仮想環境の分離（`~/.venvs/tecsgen-python3`）、`VIRTUAL_ENV` の解除、パス変換、`uv sync`・ruff・ty・pytest の一括実行と結果のまとめ表示を済ませている。各フェーズの計画には「完了時に `pwsh tools/port/wsl_check.ps1` を通す」を検証手順として入れる。スクリプトに無い操作（例: WSL で `tools/port/p4_progress.py` を回す、特定ケースだけ実行する）が必要になったら、手書きで済ませずにスクリプトへオプションとして足してから使い、README の表も更新する。
    - 経緯: P5e〜P5i のセッションで、このスクリプトの存在を見落として WSL コマンドを毎回手書きし、Windows 側と共有の `.venv` を作り直させて1回失敗、さらに場当たりの別の仮想環境（`~/.cache/tecsgen-python3-venv`）まで作った。
 
+## 作業の決まり（常に守る。指示が無くても方針決定・計画立案・作業の実行に取り込む）
+
+- ファイルの書き換えは Write / Edit ツールで行う。Bash の heredoc で Python ソースや置換文字列を渡さない（文字列中の改行エスケープが本物の改行になり、構文エラーになる）。書き換えたら、モジュールを直接 import するか ruff で構文を確かめる（`load_plugin` は例外を握りつぶして `P2003 load failed` としか出さない）。
+- カーネルの P3 記録の再採取（`-KernelGolden … -KernelP3`）は全件で約30分かかる。ケースを足す・直すときは `-PytestArgs '--case','<id>'` で絞り、バックグラウンドで実行する。
+
 ## Commands
 
 ```sh
