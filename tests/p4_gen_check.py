@@ -28,7 +28,8 @@ from tecsgen.host import set_host
 
 WORK_ROOT = "@WORK@/test/"
 KERNEL_PREFIX = "kernel/"
-EXCLUDED = ("*.rbdmp", "tmp_*.h")
+# tecs.timestamp は make のレシピ（touch）が作るもので、tecsgen は書かない
+EXCLUDED = ("*.rbdmp", "tmp_*.h", "tecs.timestamp")
 
 
 def _excluded(path: str) -> bool:
@@ -62,12 +63,22 @@ def golden_files(case_id: str) -> dict[str, bytes]:
 
 
 def golden_stdout(case_id: str) -> bytes:
-    """正解の標準出力。カーネルのケースは make 経由で採ったので、先頭の make が表示した
-    tecsgen の呼び出し行（"ruby ../tecsgen/tecsgen.rb …"）を除く。tecsgen 自身は出力しない。"""
+    """正解の標準出力。カーネルのケースは make 経由で採ったので、make が表示した行を除く。
+
+    先頭の tecsgen の呼び出し行（"ruby ../tecsgen/tecsgen.rb …"。行末が "\\" なら次の行へ続く）と、
+    末尾のレシピ（"touch tecs.timestamp" など）。tecsgen 自身はこれらを出力しない。
+    """
     data = (golden_dir(case_id) / "stdout.txt").read_bytes()
-    if case_id.startswith(KERNEL_PREFIX) and data.startswith(b"ruby "):
-        data = data.split(b"\n", 1)[1] if b"\n" in data else b""
-    return data
+    if not case_id.startswith(KERNEL_PREFIX):
+        return data
+    lines = data.split(b"\n")
+    if lines[0].startswith((b"ruby ", b"/usr/bin/ruby ")):
+        while lines[0].endswith(b"\\"):
+            lines.pop(0)
+        lines.pop(0)
+    if len(lines) > 1 and lines[-1] == b"" and lines[-2].startswith(b"touch "):
+        lines.pop(-2)
+    return b"\n".join(lines)
 
 
 def golden_meta(case_id: str) -> dict[str, Any]:

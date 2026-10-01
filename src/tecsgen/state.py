@@ -70,6 +70,8 @@ def reset_model_state() -> None:
         ("tecsgen.plugin.FMPPlugin", "FMPPlugin"),
         ("tecsgen.plugin.HRMPDomainPlugin", "HRMPDomainPlugin"),
         ("tecsgen.plugin.HRMPClassPlugin", "HRMPClassPlugin"),
+        ("tecsgen.plugin.HRP2KernelObjectPlugin", "HRP2KernelObjectPlugin"),
+        ("tecsgen.plugin.HRP2TaskPlugin", "HRP2TaskPlugin"),
         ("tecsgen.plugin.HRPPlugin", "HRPPlugin"),
         ("tecsgen.plugin.HRPSVCBodyCellPlugin", "HRPSVCBodyCellPlugin"),
         ("tecsgen.plugin.HRPSVCSignaturePlugin", "HRPSVCSignaturePlugin"),
