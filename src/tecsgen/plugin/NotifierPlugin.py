@@ -6,8 +6,8 @@ siHandlerBody の受け口を通知先にする場合は、カーネルからの
 アダプタ関数（tTimeEventHandler.c・.h・_aux.h）も生成する。
 
 ドメイン（HRP・HRMP）・クラス（FMP・HRMP）に関する分岐も Ruby 版どおり移植しているが、
-それらのカーネル依存プラグインは未移植（P5h の判断）なので、どのオラクルケースからも通らない。
-SAC の生成（gen_sac）はドメインプラグインの get_sac_str を呼ぶため PluginNotPorted に留める。
+それらのカーネル依存プラグインは P5l 以降で移植（カーネルのケースから通る）。
+SAC の生成（gen_sac）は、読み込み済みのドメインプラグイン（HRPPlugin・HRMPDomainPlugin）の get_sac_str を呼ぶ。
 """
 
 from __future__ import annotations
@@ -1064,10 +1064,39 @@ class NotifierPlugin(CelltypePlugin):
 
     def gen_sac(self, file: Any, cell: Any, indent: str) -> None:
         """ドメインが指定されている場合に SAC_CYC・SAC_ALM を生成する。"""
-        from tecsgen.core.plugin_module import PluginNotPorted
+        from tecsgen.core.plugin_module import _lookup_loaded_plugin_class
 
         domain_root = cell.get_region().get_domain_root()
         if truthy(domain_root.get_domain_type()):
-            # ドメインプラグイン（HRPPlugin・HRMPDomainPlugin）の get_sac_str を使う。
-            # それらは未移植（正解データが無い。P5h の判断）
-            raise PluginNotPorted("NotifierPlugin#gen_sac (domain plugin get_sac_str)")
+            id_ = to_s(cell.get_attr_initializer(sym("id")))
+            name_array = cell.get_celltype().get_name_array(cell)
+            ct_name = cell.get_celltype().get_name()
+            if ct_name == sym("tCyclicNotifier"):
+                obj_type = "CYC"
+            elif ct_name == sym("tAlarmNotifier"):
+                obj_type = "ALM"
+            else:
+                raise RuntimeError(
+                    f"NotifierPlugin: unknown celltype {to_s(cell.get_celltype().get_name())}"
+                )
+            id_ = cell.get_celltype().subst_name(id_, name_array)
+            domain_type_name = to_s(domain_root.get_domain_type().get_name())
+            # Object.const_defined? : 読み込み済みのプラグインクラスか
+            if (
+                _lookup_loaded_plugin_class(domain_type_name + "DomainPlugin")
+                is not None
+            ):
+                # HRMPDomainPlugin
+                plugin_name = domain_type_name + "DomainPlugin"
+            elif _lookup_loaded_plugin_class(domain_type_name + "Plugin") is not None:
+                # HRPPlugin
+                plugin_name = domain_type_name + "Plugin"
+            else:
+                raise RuntimeError(
+                    f"NotifierPlugin: Unkown Domain Plugin {domain_type_name}"
+                )
+            pl_class = _lookup_loaded_plugin_class(plugin_name)
+            file.print(
+                indent,
+                f"SAC_{obj_type}( {id_}, {pl_class.get_sac_str(cell)} );\n",
+            )
