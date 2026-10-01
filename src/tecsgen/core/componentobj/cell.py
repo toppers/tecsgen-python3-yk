@@ -20,6 +20,7 @@ from tecsgen.ruby_compat import (
     Y,
     dualmethod,
     gsub,
+    no_method,
     rb_integer,
     rb_print,
     rb_puts,
@@ -642,6 +643,9 @@ class Cell(CellTECSInfo, PluginModule, NSBDNode):  # < Nestable
 
         plugin_object = None
         try:
+            if pl_class is None:
+                # Ruby 版はロードに失敗した nil に `new` を送って NoMethodError になる
+                raise no_method("new", None)
             plugin_object = pl_class(self, option)
             plugin_object.set_locale(self._locale)
             self.generate_and_parse(plugin_object)

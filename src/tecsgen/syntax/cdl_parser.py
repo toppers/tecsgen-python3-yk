@@ -97,7 +97,9 @@ class CdlParser(CdlActions, RaccParser):
     def __init__(self, reader: Reader = _read_file) -> None:
         super().__init__()
         self._plugin: Any = None
-        self._b_reuse = False
+        # Ruby 版は initialize で @b_reuse を設定しない。set_reuse されないパーサでは nil のままで、
+        # Generator.is_reuse? も false ではなく nil を返す（Import の W1008 の判定に効く）
+        self._b_reuse: bool | None = None
         self._in_specifier = False
         self._q: deque[tuple[Any, Token] | None] = deque()
         self._reader = reader
@@ -137,14 +139,14 @@ class CdlParser(CdlActions, RaccParser):
         parser = Generator.current_parser()
         return parser.get_plugin() if parser is not None else None
 
-    def set_reuse(self, b_reuse: bool) -> None:
+    def set_reuse(self, b_reuse: bool | None) -> None:
         self._b_reuse = b_reuse
 
-    def is_reuse(self) -> bool:
+    def is_reuse(self) -> bool | None:
         return self._b_reuse
 
     @classmethod
-    def current_is_reuse(cls) -> bool:
+    def current_is_reuse(cls) -> bool | None:
         """Ruby の `Generator.is_reuse?`。"""
         parser = Generator.current_parser()
         return parser.is_reuse() if parser is not None else False
