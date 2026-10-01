@@ -99,6 +99,18 @@ class Host:
         """Ruby の `Dir.mkdir`。"""
         os.mkdir(self._abs(path))
 
+    # --- 利用者プラグイン -----------------------------------------------------
+
+    def resolve_plugin_file(self, directory: str, fname: str) -> str | None:
+        """`-L` のディレクトリ `directory` にある利用者プラグイン `fname` の実ファイルのパス。
+
+        Ruby の `File.exist?( File.expand_path( directory ) + '/' + fname )` に当たる。
+        Python のコードは記録から再生できないので、既定は実ファイルシステムを見る。
+        差分テストの Host は、仮想の作業ディレクトリから実ディレクトリへ対応付けて答える。
+        """
+        path = posixpath.join(self.expand_path(directory), fname)
+        return path if os.path.isfile(path) else None
+
     # --- 外部コマンド ---------------------------------------------------------
 
     def popen_read(self, cmd: str) -> bytes:

@@ -24,6 +24,9 @@ P3_GOLDEN = GOLDEN.parent / "p3"
 # カーネル依存プラグインのケース（tests/golden/kernel/）の記録。ケース ID は "kernel/<ID>"
 KERNEL_PREFIX = "kernel/"
 KERNEL_P3_GOLDEN = GOLDEN.parent / "kernel" / "p3"
+# テストケースに同梱された利用者プラグイン（Ruby 版の test/<ケース>/*.rb）の Python 版。
+# `-L .` で探す。ケースごとのディレクトリに置く（別ケースに同名で内容の違うものがある）
+USER_PLUGINS = GOLDEN.parent.parent / "user_plugins"
 
 
 def raw(s: str) -> bytes:
@@ -199,6 +202,14 @@ class RecordedHost(Host):
         if op == "directory?" and self.expand_path(path) in self._made_dirs:
             return True
         raise HostMiss(f"File.{op}({path!r}) in {self._cwd!r}")
+
+    def resolve_plugin_file(self, directory: str, fname: str) -> str | None:
+        # 利用者プラグインは記録に無い（Ruby 版の .rb しか問い合わせていない）。
+        # 採取時の作業ディレクトリ（`-L .` の `.`）を tests/user_plugins/<ケースID>/ に対応付ける
+        if self.expand_path(directory) != posixpath.normpath(self._rec.cwd):
+            return None
+        path = USER_PLUGINS / self._rec.case_id / fname
+        return str(path) if path.is_file() else None
 
     def exists(self, path: str) -> bool:
         return self._lookup_fs("exist?", path)

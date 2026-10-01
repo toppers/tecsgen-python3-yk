@@ -5,11 +5,14 @@
 
 from __future__ import annotations
 
+import hashlib
 import importlib
+import importlib.util
 import sys
 from typing import TYPE_CHECKING, Any, ClassVar
 
-from tecsgen.context import dbg_print, get_context
+from tecsgen.context import dbg_print, get_context, print_exception
+from tecsgen.host import get_host
 from tecsgen.ruby_compat import (
     RubyError,
     Symbol,
@@ -44,27 +47,81 @@ def is_plugin_kind(obj: Any, plugin_class_name: str) -> bool:
     return isinstance(obj, plugin_class)
 
 
+# `-L` で探した利用者プラグインのクラス（実行回ごと。ロードに失敗したものは None）。
+# 同名で内容の違うプラグインが別ケースにあるので、`sys.modules` ではなくここに持つ。
+_USER_PLUGIN_SUBDIRS = ("", "tecslib/plugin/")
+_user_plugin_classes: dict[str, Any] = {}
+
+
+def reset_user_plugins() -> None:
+    _user_plugin_classes.clear()
+
+
 def _import_plugin_class(name: str) -> Any:
     """`require_tecsgen_lib( "#{name}.rb", false )` + `Object.const_get(name)` に相当。
 
-    `tecsgen.plugin.<name>` モジュールをロードし、同名のクラスを返す。見つからなければ nil。
+    組み込みの `tecsgen.plugin.<name>` を先に探し、無ければ `-L` のディレクトリを
+    先頭から探す（組み込みと同名の利用者プラグインは上書きできない）。見つからなければ nil。
     """
+    if name in _user_plugin_classes:
+        return _user_plugin_classes[name]
     module_name = f"tecsgen.plugin.{name}"
     try:
         module = importlib.import_module(module_name)
     except ModuleNotFoundError as e:
         if e.name != module_name:
             raise
-        return None
+        return _import_user_plugin_class(name)
     return getattr(module, name, None)
+
+
+def _find_user_plugin_file(name: str) -> str | None:
+    host = get_host()
+    for directory in get_context().library_path:
+        for subdir in _USER_PLUGIN_SUBDIRS:
+            found = host.resolve_plugin_file(directory, f"{subdir}{name}.py")
+            if found is not None:
+                return found
+    return None
+
+
+def _import_user_plugin_class(name: str) -> Any:
+    """`-L` のディレクトリにある `<name>.py` を読み、`<name>` クラスを返す。
+
+    ファイルが無ければ nil。ロード中の例外は Ruby の `require` 失敗と同じく
+    `print_exception` して再送出する（`load_plugin` が P2003 にする）。
+    """
+    path = _find_user_plugin_file(name)
+    if path is None:
+        return None
+    module_name = "tecsgen_user_plugin_" + hashlib.sha1(path.encode()).hexdigest()[:12]
+    _user_plugin_classes[name] = None  # 失敗しても読み直さない
+    try:
+        spec = importlib.util.spec_from_file_location(module_name, path)
+        if spec is None or spec.loader is None:
+            raise ImportError(f"cannot load {path}")
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[module_name] = module
+        spec.loader.exec_module(module)
+    except Exception as e:  # Ruby の rescue Exception
+        sys.modules.pop(module_name, None)
+        print_exception(e)
+        raise
+    plugin_class = getattr(module, name, None)
+    if plugin_class is None:
+        raise RubyError(f"uninitialized constant {name}")
+    _user_plugin_classes[name] = plugin_class
+    return plugin_class
 
 
 def _lookup_loaded_plugin_class(name: str) -> Any:
     """`Object.const_get(name)`（require し直さない）に相当。
 
     `load_plugin` は2度目以降、require を試みず定数参照だけを行うので、
-    `sys.modules` に既にあるモジュールからだけクラスを引く（無ければ nil）。
+    ロード済みのクラス（組み込みは `sys.modules`、利用者プラグインはレジストリ）からだけ引く（無ければ nil）。
     """
+    if name in _user_plugin_classes:
+        return _user_plugin_classes[name]
     module = sys.modules.get(f"tecsgen.plugin.{name}")
     if module is None:
         return None
@@ -98,6 +155,7 @@ class PluginModule(_Base):
     @classmethod
     def reset(cls) -> None:
         PluginModule._loaded_plugin_list = {}
+        reset_user_plugins()
 
     def load_plugin(self, plugin_name: Any, superClass: Any) -> Any:
         """プラグインをロードする。
