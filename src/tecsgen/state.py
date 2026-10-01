@@ -67,6 +67,7 @@ def reset_model_state() -> None:
         ("tecsgen.plugin.TECSInfoCompoPlugin", "TECSInfoCompoPlugin"),
         ("tecsgen.plugin.CppIfGenCelltypePlugin", "CppIfGenCelltypePlugin"),
         ("tecsgen.plugin.ATK1KernelPlugin", "ATK1KernelPlugin"),
+        ("tecsgen.plugin.ATK1EventPlugin", "ATK1EventPlugin"),
         ("tecsgen.plugin.FMPPlugin", "FMPPlugin"),
         ("tecsgen.plugin.HRMPDomainPlugin", "HRMPDomainPlugin"),
         ("tecsgen.plugin.HRMPClassPlugin", "HRMPClassPlugin"),

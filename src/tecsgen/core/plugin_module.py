@@ -264,7 +264,9 @@ class PluginModule(_Base):
                 dbg_print(f"PluginModule: {class_name(plClass)}\n")
                 if _get_context().verbose:
                     rb_print(
-                        f"gen_plugin_post_code: {class_name(plClass)}.gen_post_code( file )\n"
+                        # Ruby 版は eval_str = "plClass.name}.gen_post_code( file )"
+                        # （#{ が欠けている）をそのまま表示する
+                        "gen_plugin_post_code: plClass.name}.gen_post_code( file )\n"
                     )
                 try:
                     plClass.gen_post_code(file)

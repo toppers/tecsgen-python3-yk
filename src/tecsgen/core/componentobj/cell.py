@@ -18,7 +18,6 @@ from tecsgen.core.tecsinfo import CellTECSInfo
 from tecsgen.ruby_compat import (
     RubyRuntimeError,
     Y,
-    class_name,
     dualmethod,
     gsub,
     rb_integer,
@@ -637,7 +636,7 @@ class Cell(CellTECSInfo, PluginModule, NSBDNode):  # < Nestable
         pl_class = self.load_plugin(plugin_name, "CellPlugin")
         if get_context().verbose:
             rb_print(
-                f"new cell plugin: plugin_object = {class_name(type(pl_class))}.new( "
+                f"new cell plugin: plugin_object = Class.new( "
                 f"{to_s(self._name)}, {to_s(option)} )\n"
             )
 
