@@ -24,6 +24,7 @@ pwsh tools/port/wsl_check.ps1                      # テスト一式
 pwsh tools/port/wsl_check.ps1 -Oracle <移植元の作業コピー>   # 先に Ruby 版の記録を採り直す
 pwsh tools/port/wsl_check.ps1 -PytestArgs tests/test_p2_parser.py, -x
 pwsh tools/port/wsl_check.ps1 -KernelGolden <移植元の作業コピー>    # テストの代わりに、カーネル依存プラグイン用の正解データ（tests/golden/kernel/）を採取する
+pwsh tools/port/wsl_check.ps1 -KernelGolden <移植元の作業コピー> -KernelP3    # 正解データは採り直さず、P3 オラクルを差し込んで実行し、差分テスト用の記録（tests/golden/kernel/p3/）を採る
 pwsh tools/port/wsl_check.ps1 -PluginCoverage <移植元の作業コピー>  # テストの代わりに、正解データがどのプラグインを実行したかを計測する
 pwsh tools/port/wsl_check.ps1 -PackageInventory  # WSL の展開済みパッケージにある CDL の件数を表示
 & ./tools/port/wsl_check.ps1 -PackageGolden <移植元の作業コピー> -PytestArgs @('--out','/home/ykomi/p5packageplugins/new-capture')  # Plugin 正解データを採集
