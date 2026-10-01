@@ -17,6 +17,7 @@ import sys
 from contextlib import redirect_stderr, redirect_stdout
 from dataclasses import dataclass, field
 from fnmatch import fnmatch
+from pathlib import Path
 from typing import Any
 
 from conftest import GOLDEN
@@ -26,6 +27,7 @@ from tecsgen import cli
 from tecsgen.host import set_host
 
 WORK_ROOT = "@WORK@/test/"
+KERNEL_PREFIX = "kernel/"
 EXCLUDED = ("*.rbdmp", "tmp_*.h")
 
 
@@ -34,8 +36,22 @@ def _excluded(path: str) -> bool:
     return any(fnmatch(name, pat) for pat in EXCLUDED)
 
 
+def golden_dir(case_id: str) -> Path:
+    """ケースの正解データのディレクトリ。カーネルのケースは tests/golden/kernel/cases/ にある。"""
+    if case_id.startswith(KERNEL_PREFIX):
+        return GOLDEN.parent / "kernel" / "cases" / case_id.removeprefix(KERNEL_PREFIX)
+    return GOLDEN / case_id
+
+
+def work_root(rec: CaseRecord) -> str:
+    """生成物のパスの基準。通常は作業ツリーの test/、カーネルは tecsgen を起動した作業ディレクトリ。"""
+    if rec.case_id.startswith(KERNEL_PREFIX):
+        return rec.cwd.rstrip("/") + "/"
+    return WORK_ROOT
+
+
 def golden_files(case_id: str) -> dict[str, bytes]:
-    root = GOLDEN / case_id / "files"
+    root = golden_dir(case_id) / "files"
     if not root.is_dir():
         return {}
     return {
@@ -46,7 +62,7 @@ def golden_files(case_id: str) -> dict[str, bytes]:
 
 
 def golden_meta(case_id: str) -> dict[str, Any]:
-    return json.loads((GOLDEN / case_id / "meta.json").read_text(encoding="utf-8"))
+    return json.loads((golden_dir(case_id) / "meta.json").read_text(encoding="utf-8"))
 
 
 @dataclass
@@ -89,9 +105,10 @@ def run_case(rec: CaseRecord, stdout: Any = None, stderr: Any = None) -> GenResu
         set_host(None)
     written: dict[str, bytes] = {}
     for path, data in host.written_files().items():
-        if not path.startswith(WORK_ROOT):
+        root = work_root(rec)
+        if not path.startswith(root):
             raise AssertionError(f"wrote outside the work tree: {path}")
-        rel = path[len(WORK_ROOT) :]
+        rel = path[len(root) :]
         if not _excluded(rel):
             written[rel] = data
     meta = golden_meta(rec.case_id)
@@ -103,8 +120,8 @@ def run_case(rec: CaseRecord, stdout: Any = None, stderr: Any = None) -> GenResu
         b"",
         written,
         golden,
-        (GOLDEN / rec.case_id / "stdout.txt").read_bytes(),
-        (GOLDEN / rec.case_id / "stderr.txt").read_bytes(),
+        (golden_dir(rec.case_id) / "stdout.txt").read_bytes(),
+        (golden_dir(rec.case_id) / "stderr.txt").read_bytes(),
         meta["exit_code"],
     )
     for k in sorted(set(golden) | set(written)):

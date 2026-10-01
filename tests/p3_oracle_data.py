@@ -21,6 +21,9 @@ from conftest import GOLDEN
 from tecsgen.host import Host
 
 P3_GOLDEN = GOLDEN.parent / "p3"
+# カーネル依存プラグインのケース（tests/golden/kernel/）の記録。ケース ID は "kernel/<ID>"
+KERNEL_PREFIX = "kernel/"
+KERNEL_P3_GOLDEN = GOLDEN.parent / "kernel" / "p3"
 
 
 def raw(s: str) -> bytes:
@@ -75,16 +78,33 @@ class CaseRecord:
         return None
 
 
-def case_ids() -> list[str]:
-    return sorted(
+def case_ids(include_kernel: bool = False) -> list[str]:
+    """記録のあるケース ID。カーネルのケース（"kernel/…"）は指定したときだけ含める。
+
+    カーネルのケースはプラグインが移植されるまで通らないので、既存のテストには入れない。
+    """
+    ids = [
         p.relative_to(P3_GOLDEN).as_posix().removesuffix(".jsonl.gz")
         for p in P3_GOLDEN.rglob("*.jsonl.gz")
-    )
+    ]
+    if include_kernel:
+        ids += [
+            KERNEL_PREFIX
+            + p.relative_to(KERNEL_P3_GOLDEN).as_posix().removesuffix(".jsonl.gz")
+            for p in KERNEL_P3_GOLDEN.rglob("*.jsonl.gz")
+        ]
+    return sorted(ids)
+
+
+def record_path(case_id: str) -> Any:
+    if case_id.startswith(KERNEL_PREFIX):
+        return KERNEL_P3_GOLDEN / f"{case_id.removeprefix(KERNEL_PREFIX)}.jsonl.gz"
+    return P3_GOLDEN / f"{case_id}.jsonl.gz"
 
 
 def load_case(case_id: str) -> CaseRecord:
     rec = CaseRecord(case_id)
-    with gzip.open(P3_GOLDEN / f"{case_id}.jsonl.gz", "rt", encoding="utf-8") as f:
+    with gzip.open(record_path(case_id), "rt", encoding="utf-8") as f:
         for line in f:
             if not line.strip():
                 continue
