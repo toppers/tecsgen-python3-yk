@@ -21,6 +21,12 @@ from conftest import GOLDEN
 from tecsgen.host import Host
 
 P3_GOLDEN = GOLDEN.parent / "p3"
+# カーネル依存プラグインのケース（tests/golden/kernel/）の記録。ケース ID は "kernel/<ID>"
+KERNEL_PREFIX = "kernel/"
+KERNEL_P3_GOLDEN = GOLDEN.parent / "kernel" / "p3"
+# テストケースに同梱された利用者プラグイン（Ruby 版の test/<ケース>/*.rb）の Python 版。
+# `-L .` で探す。ケースごとのディレクトリに置く（別ケースに同名で内容の違うものがある）
+USER_PLUGINS = GOLDEN.parent.parent / "user_plugins"
 
 
 def raw(s: str) -> bytes:
@@ -75,16 +81,33 @@ class CaseRecord:
         return None
 
 
-def case_ids() -> list[str]:
-    return sorted(
+def case_ids(include_kernel: bool = False) -> list[str]:
+    """記録のあるケース ID。カーネルのケース（"kernel/…"）は指定したときだけ含める。
+
+    カーネルのケースはプラグインが移植されるまで通らないので、既存のテストには入れない。
+    """
+    ids = [
         p.relative_to(P3_GOLDEN).as_posix().removesuffix(".jsonl.gz")
         for p in P3_GOLDEN.rglob("*.jsonl.gz")
-    )
+    ]
+    if include_kernel:
+        ids += [
+            KERNEL_PREFIX
+            + p.relative_to(KERNEL_P3_GOLDEN).as_posix().removesuffix(".jsonl.gz")
+            for p in KERNEL_P3_GOLDEN.rglob("*.jsonl.gz")
+        ]
+    return sorted(ids)
+
+
+def record_path(case_id: str) -> Any:
+    if case_id.startswith(KERNEL_PREFIX):
+        return KERNEL_P3_GOLDEN / f"{case_id.removeprefix(KERNEL_PREFIX)}.jsonl.gz"
+    return P3_GOLDEN / f"{case_id}.jsonl.gz"
 
 
 def load_case(case_id: str) -> CaseRecord:
     rec = CaseRecord(case_id)
-    with gzip.open(P3_GOLDEN / f"{case_id}.jsonl.gz", "rt", encoding="utf-8") as f:
+    with gzip.open(record_path(case_id), "rt", encoding="utf-8") as f:
         for line in f:
             if not line.strip():
                 continue
@@ -179,6 +202,14 @@ class RecordedHost(Host):
         if op == "directory?" and self.expand_path(path) in self._made_dirs:
             return True
         raise HostMiss(f"File.{op}({path!r}) in {self._cwd!r}")
+
+    def resolve_plugin_file(self, directory: str, fname: str) -> str | None:
+        # 利用者プラグインは記録に無い（Ruby 版の .rb しか問い合わせていない）。
+        # 採取時の作業ディレクトリ（`-L .` の `.`）を tests/user_plugins/<ケースID>/ に対応付ける
+        if self.expand_path(directory) != posixpath.normpath(self._rec.cwd):
+            return None
+        path = USER_PLUGINS / self._rec.case_id / fname
+        return str(path) if path.is_file() else None
 
     def exists(self, path: str) -> bool:
         return self._lookup_fs("exist?", path)

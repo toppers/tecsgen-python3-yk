@@ -52,7 +52,7 @@ class CelltypePluginModule(_Base):
             return None
         if get_context().verbose:
             rb_print(
-                f"new celltype plugin: plugin_object = {class_name(type(pl_class))}.new( "
+                f"new celltype plugin: plugin_object = Class.new( "
                 f"{to_s(self._name)}, {to_s(option)} )\n"
             )
 

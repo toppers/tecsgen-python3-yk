@@ -37,8 +37,16 @@ module P3Oracle
     attr_accessor :active, :out_bytes
   end
 
+  # P3_ORACLE_LOG があれば、標準エラー出力ではなくそのファイルへ追記する
+  # （make 経由で動かすカーネルのケースで、正解データの stderr.txt を変えないため）
   def self.emit(h)
-    $stderr.write("@@P3 " + JSON.generate(h, max_nesting: false) + "\n")
+    line = "@@P3 " + JSON.generate(h, max_nesting: false) + "\n"
+    log = ENV["P3_ORACLE_LOG"]
+    if log && !log.empty?
+      File.open(log, "ab") { |io| io.write(line) }
+    else
+      $stderr.write(line)
+    end
   end
 
   def self.bytes(s)

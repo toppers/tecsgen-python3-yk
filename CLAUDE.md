@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Port of tecsgen (the TECS component description compiler, Ruby v1.9.1) to Python 3. The acceptance criterion is **byte-for-byte identical output to the Ruby version** for the same input: generated files under `gen/`, stdout, and exit status. The CLI must stay fully compatible with Ruby's. Code comments, docstrings, and docs are written in Japanese; keep that convention.
 
-Porting proceeds in phases P1–P5 (messages → parser → model/semantic analysis → optimize/codegen → plugins). Test files and commit subjects are tagged with the phase (`test_p3_model.py`, `feat: ... (P5i)`). P5 (plugins) is in progress, one plugin family per commit. Status as of 2026-09-30: the standard plugins that have golden data are ported (P5j). Plugin-using cases match 20/35; the rest wait for `-L` user plugins and a few output differences. Golden data for the kernel-dependent plugins (HRP, FMP, HRMP, HRP2, ATK1) is collected under `tests/golden/kernel/` (P5k), but those plugins are **not ported yet**. 19 plugins and 1 helper module (`lib/GenHRP2Marshaler`) have no golden data at all (never loaded by any case), and `ATK1EventPlugin`'s output is empty for its only input; see `tools/golden/README.md` and the progress log in the Vault (`tecsgen-python3移植計画 — P5 進捗ログ`).
+Porting proceeds in phases P1–P5 (messages → parser → model/semantic analysis → optimize/codegen → plugins). Test files and commit subjects are tagged with the phase (`test_p3_model.py`, `feat: ... (P5i)`). P5 (plugins) is in progress, one plugin family per commit. Status as of 2026-10-01: the standard plugins that have golden data are ported (P5j), and so are the kernel-dependent plugins (HRP, FMP, HRMP, HRP2, ATK1Event; P5l–P5p). `uv run python tools/port/p4_progress.py` shows 119/119 (no plugin) and 34/46 (plugin) cases matching, including all 11 kernel cases (`tests/golden/kernel/`); the rest wait for `-L` user plugins and a few output differences. Plugins without golden data (HRP2 kernel objects other than Task/Handler/Object, HRP2/HRP RPC and SVC, `lib/GenHRP2Marshaler`, ...) are not ported; `ATK1EventPlugin`'s output is empty for its only input. See `tools/golden/README.md` and the progress log in the Vault (`tecsgen-python3移植計画 — P5 進捗ログ`).
 
 ## 移植の基本方針
 
@@ -16,6 +16,11 @@ Porting proceeds in phases P1–P5 (messages → parser → model/semantic analy
 4. **仕様書は実装の少し前に書く**。[[tecsgen-python3内部仕様]] は章ごとに、該当フェーズに着手する直前に書く。12章を全部書いてから実装に入る進め方はとらない。
 5. **WSL での検証は必ず `tools/port/wsl_check.ps1` で行う**（2026-09-28 ユーザー採用）。`wsl.exe -e bash -lc "..."` をその場で手書きしない。このスクリプトは、WSL 用の仮想環境の分離（`~/.venvs/tecsgen-python3`）、`VIRTUAL_ENV` の解除、パス変換、`uv sync`・ruff・ty・pytest の一括実行と結果のまとめ表示を済ませている。各フェーズの計画には「完了時に `pwsh tools/port/wsl_check.ps1` を通す」を検証手順として入れる。スクリプトに無い操作（例: WSL で `tools/port/p4_progress.py` を回す、特定ケースだけ実行する）が必要になったら、手書きで済ませずにスクリプトへオプションとして足してから使い、README の表も更新する。
    - 経緯: P5e〜P5i のセッションで、このスクリプトの存在を見落として WSL コマンドを毎回手書きし、Windows 側と共有の `.venv` を作り直させて1回失敗、さらに場当たりの別の仮想環境（`~/.cache/tecsgen-python3-venv`）まで作った。
+
+## 作業の決まり（常に守る。指示が無くても方針決定・計画立案・作業の実行に取り込む）
+
+- ファイルの書き換えは Write / Edit ツールで行う。Bash の heredoc で Python ソースや置換文字列を渡さない（文字列中の改行エスケープが本物の改行になり、構文エラーになる）。書き換えたら、モジュールを直接 import するか ruff で構文を確かめる（`load_plugin` は例外を握りつぶして `P2003 load failed` としか出さない）。
+- カーネルの P3 記録の再採取（`-KernelGolden … -KernelP3`）は全件で約30分かかる。ケースを足す・直すときは `-PytestArgs '--case','<id>'` で絞り、バックグラウンドで実行する。
 
 ## Commands
 
@@ -39,6 +44,7 @@ pwsh tools/port/wsl_check.ps1                          # uv sync, ruff, ruff for
 pwsh tools/port/wsl_check.ps1 -PytestArgs tests/test_p2_parser.py, -x
 pwsh tools/port/wsl_check.ps1 -Oracle <Ruby source working copy>  # re-record Ruby oracle first (needs Ruby)
 pwsh tools/port/wsl_check.ps1 -KernelGolden <Ruby source working copy>    # instead of tests: collect tests/golden/kernel/ (kernel plugins; ~10 min)
+pwsh tools/port/wsl_check.ps1 -KernelGolden <Ruby source working copy> -KernelP3   # instead: re-record tests/golden/kernel/p3/ (Ruby I/O replayed by p4_progress.py; checks the output equals the committed golden data; ~30 min)
 pwsh tools/port/wsl_check.ps1 -PluginCoverage <Ruby source working copy>  # instead of tests: measure which plugins the golden cases run (20-40 min)
 ```
 
@@ -65,7 +71,7 @@ Generated files — regenerate with the tools, don't hand-edit: `messages/*` (`t
 ## Test data
 
 - `tests/golden/cases/<id>/` — Ruby outputs per case (`files/`, stdout, status). Captured in WSL per `tools/golden/README.md`; case list in `tools/golden/cases.toml`. `.gitattributes` marks `tests/golden/**` as `-text`: never let line endings be converted.
-- `tests/golden/kernel/cases/<id>/` — Ruby outputs for the kernel-dependent plugins (HRP: hrp3+tecs, FMP: fmp3+tecs, HRMP: hrmp3+tecs, HRP2: ev3rt+tecs, ATK1: atk1+tecs; 11 cases). Collected by `tools/golden/collect_kernel.py` with `cases_kernel.toml`, using the port-source tecsgen (r3304) in place of each repository's bundled one and `arm-none-eabi-gcc` as the C preprocessor (ATK1 uses host `gcc -E -D NC30`; see the comments in `cases_kernel.toml`). `meta.json` records the tecsgen call in `tecsgen_args`; `environment.json` records the toolchain and revisions. Known limits: hrp2+tecs' own sample1 stops at a G1016 syntax error (old region syntax), and `ATK1EventPlugin` produces empty output because the only input has no event cells. Nothing under `tests/` reads this directory yet.
+- `tests/golden/kernel/cases/<id>/` — Ruby outputs for the kernel-dependent plugins (HRP: hrp3+tecs, FMP: fmp3+tecs, HRMP: hrmp3+tecs, HRP2: ev3rt+tecs, ATK1: atk1+tecs; 11 cases). Collected by `tools/golden/collect_kernel.py` with `cases_kernel.toml`, using the port-source tecsgen (r3304) in place of each repository's bundled one and `arm-none-eabi-gcc` as the C preprocessor (ATK1 uses host `gcc -E -D NC30`; see the comments in `cases_kernel.toml`). `meta.json` records the tecsgen call in `tecsgen_args`; `environment.json` records the toolchain and revisions. Known limits: hrp2+tecs' own sample1 stops at a G1016 syntax error (old region syntax), and `ATK1EventPlugin` produces empty output because the only input has no event cells. `tests/golden/kernel/p3/<id>.jsonl.gz` holds the Ruby I/O recording for each case (case id `kernel/<id>`); `tools/port/p4_progress.py` replays it (`tests/p3_oracle_data.case_ids(include_kernel=True)`), while pytest does not include the kernel cases yet. The golden stdout was captured through `make`, so `tests/p4_gen_check.golden_stdout` drops make's echo of the tecsgen call and the trailing `touch`, and `tecs.timestamp` (made by `touch`) is excluded.
 - `tests/golden/p2/`, `p3/` — Ruby oracle recordings (parser traces; model dumps at three checkpoints plus recorded host I/O) replayed by tests. Re-record with `run_p2_oracle.sh` / `run_p3_oracle.sh` (WSL + Ruby).
 - `*.rbdmp` and `tmp_*.h` are written by Ruby but not stored in golden data, so they are excluded from comparison.
 - `tests/conftest.py` resets context/state/host per test with `LANG=C`. Tests that run the Ruby oracle live are skipped unless `ruby` and `TECSGEN_RUBY_SRC` (Ruby `tecsgen/` dir with `tecslib/`) are available.

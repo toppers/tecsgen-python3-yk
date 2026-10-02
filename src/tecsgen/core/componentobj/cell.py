@@ -18,9 +18,9 @@ from tecsgen.core.tecsinfo import CellTECSInfo
 from tecsgen.ruby_compat import (
     RubyRuntimeError,
     Y,
-    class_name,
     dualmethod,
     gsub,
+    no_method,
     rb_integer,
     rb_print,
     rb_puts,
@@ -637,12 +637,15 @@ class Cell(CellTECSInfo, PluginModule, NSBDNode):  # < Nestable
         pl_class = self.load_plugin(plugin_name, "CellPlugin")
         if get_context().verbose:
             rb_print(
-                f"new cell plugin: plugin_object = {class_name(type(pl_class))}.new( "
+                f"new cell plugin: plugin_object = Class.new( "
                 f"{to_s(self._name)}, {to_s(option)} )\n"
             )
 
         plugin_object = None
         try:
+            if pl_class is None:
+                # Ruby 版はロードに失敗した nil に `new` を送って NoMethodError になる
+                raise no_method("new", None)
             plugin_object = pl_class(self, option)
             plugin_object.set_locale(self._locale)
             self.generate_and_parse(plugin_object)

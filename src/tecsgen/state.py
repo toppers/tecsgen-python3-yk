@@ -24,6 +24,7 @@ def reset_model_state() -> None:
     from tecsgen.core.generator import Generator
     from tecsgen.core.plugin_module import PluginModule
     from tecsgen.core.tecsgen import TECSGEN
+    from tecsgen.core.tool_info import TOOL_INFO
     from tecsgen.syntax.cdecl_parser import CdeclParser
 
     for cls in (
@@ -47,6 +48,7 @@ def reset_model_state() -> None:
         DomainType,
         ClassType,
         PluginModule,
+        TOOL_INFO,
     ):
         cls.reset()
 
@@ -65,6 +67,17 @@ def reset_model_state() -> None:
         ("tecsgen.plugin.TECSInfoCompoPlugin", "TECSInfoCompoPlugin"),
         ("tecsgen.plugin.CppIfGenCelltypePlugin", "CppIfGenCelltypePlugin"),
         ("tecsgen.plugin.ATK1KernelPlugin", "ATK1KernelPlugin"),
+        ("tecsgen.plugin.ATK1EventPlugin", "ATK1EventPlugin"),
+        ("tecsgen.plugin.FMPPlugin", "FMPPlugin"),
+        ("tecsgen.plugin.HRMPDomainPlugin", "HRMPDomainPlugin"),
+        ("tecsgen.plugin.HRMPClassPlugin", "HRMPClassPlugin"),
+        ("tecsgen.plugin.HRP2KernelObjectPlugin", "HRP2KernelObjectPlugin"),
+        ("tecsgen.plugin.HRP2TaskPlugin", "HRP2TaskPlugin"),
+        ("tecsgen.plugin.HRPPlugin", "HRPPlugin"),
+        ("tecsgen.plugin.HRPSVCBodyCellPlugin", "HRPSVCBodyCellPlugin"),
+        ("tecsgen.plugin.HRPSVCSignaturePlugin", "HRPSVCSignaturePlugin"),
+        ("tecsgen.plugin.HRPKernelObjectPlugin", "HRPKernelObjectPlugin"),
+        ("tecsgen.plugin.HRPKernelObjectManager", "HRPSVCManage"),
         ("tecsgen.plugin.MrubyBridgeSignaturePlugin", "MrubyBridgeSignaturePlugin"),
         ("tecsgen.plugin.MrubyBridgeCellPlugin", "MrubyBridgeCellPlugin"),
     ):

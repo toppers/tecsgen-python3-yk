@@ -12,6 +12,7 @@
   pwsh tools/port/wsl_check.ps1 -Oracle E:/Crepo/toppers-tecs-svn/toppers/tecsgen/branches/ykominami_r3033
   pwsh tools/port/wsl_check.ps1 -PytestArgs tests/test_p2_parser.py, -x
   pwsh tools/port/wsl_check.ps1 -PackageInventory
+  pwsh tools/port/wsl_check.ps1 -KernelGolden E:/Crepo/toppers-tecs-svn/toppers/tecsgen/branches/ykominami_r3033 -KernelP3
   & ./tools/port/wsl_check.ps1 -PackageGolden E:/Crepo/toppers-tecs-svn/toppers/tecsgen/branches/ykominami_r3033 -PytestArgs @('--out','/home/ykomi/p5packageplugins/new-capture')
 #>
 param(
@@ -20,6 +21,9 @@ param(
   # 指定すると、テストの代わりにカーネル依存プラグイン用の正解データ（tests/golden/kernel/）を採取する。
   # 値は移植元 tecsgen ブランチの作業コピー
   [string]$KernelGolden = "",
+  # -KernelGolden と併用すると、正解データは採り直さず、P3 オラクルを差し込んで実行し、
+  # 差分テスト用の記録（tests/golden/kernel/p3/）を採る
+  [switch]$KernelP3,
   # 展開済みパッケージの Plugin 正解データを Ruby 版から採取する
   [string]$PackageGolden = "",
   # 指定すると、テストの代わりに、正解データを採る Ruby 版の実行を計測フック付きで走らせ、
@@ -49,6 +53,7 @@ if ($PackageInventory) {
   $argsList += @("--plugin-coverage", (ConvertTo-WslPath $PluginCoverage))
 } elseif ($KernelGolden) {
   $argsList += @("--kernel-golden", (ConvertTo-WslPath $KernelGolden))
+  if ($KernelP3) { $argsList += "--p3-oracle" }
 } elseif ($PackageGolden) {
   $argsList += @("--package-golden", (ConvertTo-WslPath $PackageGolden))
 } elseif ($Oracle) {

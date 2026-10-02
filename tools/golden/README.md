@@ -57,6 +57,7 @@ pwsh tools/port/wsl_check.ps1 -KernelGolden E:/Crepo/toppers-tecs-svn/toppers/te
 
 - 前提: WSL に `gcc-arm-none-eabi`（ターゲットの `CC` は `arm-none-eabi-gcc`）と Ruby の `shell` gem（`gem install --user-install shell`。`configure.rb` が使う）。カーネルの SVN 作業コピーは `~/repo/svn-toppers-TECS-2/svn/toppers/<名前>/trunk`（環境変数 `KERNEL_REPOS_ROOT` で変更）。
 - 作業ディレクトリは `~/p5kernel`（`/tmp` は WSL の再起動で消える）。採取には10分ほどかかります（`/mnt/e` への書き込みが遅い）。
+- `--p3-oracle`（`wsl_check.ps1 -KernelP3`）を付けると、正解データは採り直さず、`tests/ruby/p3_oracle.rb` を差し込んで同じケースを実行し、Ruby 版の外界とのやりとりの記録を `tests/golden/kernel/p3/<ID>.jsonl.gz` に書く。出力がコミット済みの正解データと一致したときだけ記録を置く（フックが出力を変えていない確認）。`tools/port/p4_progress.py` が再生する。全11ケースで30分ほどかかる。
 - 各ケースの `meta.json` の `tecsgen_args` に、`make -n tecs` で得た tecsgen の呼び出しを記録します。
 - カーネルのリポジトリは r3306 で、移植元 tecsgen（r3304）とは版が違います。同梱の tecsgen（r3306）は Ruby 3.x で `Proc.new` のエラーになるため、r3304 に差し替えて実行しています。カーネル側の CDL 自体は r3306 のままです。
 

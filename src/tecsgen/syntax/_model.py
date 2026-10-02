@@ -54,16 +54,8 @@ from tecsgen.core.syntaxobj.namedlist import NamedList
 from tecsgen.core.syntaxobj.paramdecl import ParamDecl
 from tecsgen.core.syntaxobj.paramlist import ParamList
 from tecsgen.core.syntaxobj.typedef import Typedef
+from tecsgen.core.tool_info import TOOL_INFO
 from tecsgen.ruby_compat import Y, gsub, rb_to_f, rb_to_i, sym, truthy
-
-
-class TOOL_INFO:  # noqa: N801  Ruby と同名
-    """tool_info.rb の TOOL_INFO（P5 で移植。使うのはプラグインと、プラグインを使うケースだけ）。"""
-
-    def __init__(self, name: object, val: object) -> None:
-        from tecsgen.ruby_compat import RubyRuntimeError
-
-        raise RubyRuntimeError("__tool_info__ is ported in P5")
 
 
 __all__ = [

@@ -34,7 +34,7 @@ def main(argv: list[str]) -> int:
     n_ok_plugin = 0
     n_total_plugin = 0
     kinds: Counter[str] = Counter()
-    for cid in case_ids():
+    for cid in case_ids(include_kernel=True):
         if prefixes and not any(cid.startswith(p) for p in prefixes):
             continue
         rec = load_case(cid)

@@ -28,6 +28,7 @@ from __future__ import annotations
 
 import argparse
 import fnmatch
+import gzip
 import json
 import os
 import shlex
@@ -49,6 +50,7 @@ from generate_golden import (
 )
 
 HERE = Path(__file__).resolve().parent
+P3_ORACLE = HERE.parent.parent / "tests" / "ruby" / "p3_oracle.rb"
 DEFAULT_MANIFEST = HERE / "cases_kernel.toml"
 DEFAULT_WORK = Path.home() / "p5kernel"
 # make に渡す上書き。無し（ターゲットの Makefile.target が決める CC をそのまま使う）
@@ -95,6 +97,47 @@ def svn_export(src: Path, dest: Path) -> str:
     return info.stdout.strip()
 
 
+def write_p3_record(log: Path, out: Path, case_id: str, normalize: Normalizer) -> None:
+    """P3 オラクルの記録（log）を正規化し、out（.jsonl.gz）に書く。
+
+    make が tecsgen を2回以上呼ぶ構成だと env 行が複数になる。差分テストは1回の実行を前提と
+    するので、その場合は採取を失敗させる。
+    """
+    lines = [
+        ln[len(b"@@P3 ") :]
+        for ln in normalize(log.read_bytes()).splitlines()
+        if ln.startswith(b"@@P3 ")
+    ]
+    n_env = sum(1 for ln in lines if ln.startswith(b'{"ev":"env"'))
+    if n_env != 1:
+        raise RuntimeError(f"{case_id}: P3 record has {n_env} env events (want 1)")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    # mtime=0 で、同じ内容なら同じバイト列になるようにする
+    with out.open("wb") as raw, gzip.GzipFile(fileobj=raw, mode="wb", mtime=0) as gz:
+        gz.write(b"\n".join(lines) + b"\n")
+
+
+def same_as_committed(scratch: Path, committed: Path, case_id: str) -> list[str]:
+    """P3 オラクルを差し込んだ実行の結果が、コミット済みの正解データと同じかを調べる。
+
+    違うものの名前を返す（フックが出力を変えていない確認）。
+    """
+    a, b = scratch / "cases" / case_id, committed / "cases" / case_id
+    names = {
+        p.relative_to(d).as_posix()
+        for d in (a, b)
+        for p in d.rglob("*")
+        if p.is_file() and p.name != "meta.json"
+    }
+    return sorted(
+        n
+        for n in names
+        if not (a / n).is_file()
+        or not (b / n).is_file()
+        or (a / n).read_bytes() != (b / n).read_bytes()
+    )
+
+
 def find_tecsgen_command(make_n_stdout: bytes) -> list[str] | None:
     """`make -n tecs` の出力から、tecsgen の呼び出し行を引数のリストにして返す。
 
@@ -116,7 +159,11 @@ def run_case(
     normalize: Normalizer,
     revisions: dict[str, str],
     timeout: int,
+    p3_log: Path | None = None,
 ) -> dict:
+    """1ケースを実行する。p3_log を渡すと、tecsgen の実行に P3 オラクル（p3_oracle.rb）を
+    差し込み、その記録（"@@P3 " 行）をこのファイルへ書く。configure.rb と `make -n` には差し込まない。
+    """
     if run_root.exists():
         shutil.rmtree(run_root)
     shutil.copytree(pristine / case["repo"], run_root, symlinks=True)
@@ -148,6 +195,13 @@ def run_case(
                 f"{conf_out.decode(errors='replace')}\n{conf_err.decode(errors='replace')}"
             )
 
+    run_env = dict(env)
+    if p3_log is not None:
+        p3_log.parent.mkdir(parents=True, exist_ok=True)
+        p3_log.unlink(missing_ok=True)
+        run_env["RUBYOPT"] = f"{env.get('RUBYOPT', '')} -r{P3_ORACLE}".strip()
+        run_env["P3_ORACLE_LOG"] = str(p3_log)
+
     if "tecsgen_args" in case:
         # Makefile が無い構成（atk1+tecs）: tecsgen の引数を一覧に直接書き、make を使わない。
         # リポジトリにコミットされている古い生成物が混ざらないよう、clean のディレクトリを消す
@@ -157,7 +211,7 @@ def run_case(
             shutil.rmtree(obj / name, ignore_errors=True)
         before = snapshot(obj)
         exit_code, stdout, stderr, timed_out = run(
-            tecsgen_args, cwd=obj, env=env, timeout=timeout
+            tecsgen_args, cwd=obj, env=run_env, timeout=timeout
         )
         make_overrides: list[str] = []
     else:
@@ -167,7 +221,7 @@ def run_case(
         tecsgen_args = find_tecsgen_command(dry_out)
         before = snapshot(obj)
         exit_code, stdout, stderr, timed_out = run(
-            ["make", "tecs", *MAKE_OVERRIDES], cwd=obj, env=env, timeout=timeout
+            ["make", "tecs", *MAKE_OVERRIDES], cwd=obj, env=run_env, timeout=timeout
         )
         make_overrides = MAKE_OVERRIDES
     after = snapshot(obj)
@@ -192,6 +246,10 @@ def run_case(
         dest.write_bytes(normalize(data))
 
     stdout, stderr = normalize(stdout), normalize(stderr)
+    if p3_log is not None:
+        write_p3_record(
+            p3_log, out_dir / "p3" / f"{case['id']}.jsonl.gz", case["id"], normalize
+        )
     (case_dir / "stdout.txt").write_bytes(stdout)
     (case_dir / "stderr.txt").write_bytes(stderr)
 
@@ -244,6 +302,12 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--timeout", type=int, default=600)
     parser.add_argument(
+        "--p3-oracle",
+        action="store_true",
+        help="正解データは採り直さず、P3 オラクルを差し込んで実行し、"
+        "記録を <out>/p3/<id>.jsonl.gz に書く（コミット済みの正解データと同じ出力になることを確かめる）",
+    )
+    parser.add_argument(
         "--case",
         action="append",
         default=[],
@@ -259,11 +323,16 @@ def main(argv: list[str] | None = None) -> int:
         print(f"duplicate case id: {dup}", file=sys.stderr)
         return 2
     out_dir = opts.out.resolve()
+    committed_dir = out_dir
+    if opts.p3_oracle:
+        # 正解データ本体は触らず、作業ディレクトリの下に採る
+        out_dir = (opts.work / "p3-scratch").resolve()
+        shutil.rmtree(out_dir, ignore_errors=True)
     if opts.case:
         cases = [
             c for c in cases if any(fnmatch.fnmatch(c["id"], p) for p in opts.case)
         ]
-    elif (out_dir / "cases").exists():
+    elif not opts.p3_oracle and (out_dir / "cases").exists():
         shutil.rmtree(out_dir / "cases")
 
     work = opts.work.resolve()
@@ -295,7 +364,15 @@ def main(argv: list[str] | None = None) -> int:
             normalize=normalize,
             revisions=revisions,
             timeout=opts.timeout,
+            p3_log=(out_dir / "p3-log" / f"{case['id']}.log")
+            if opts.p3_oracle
+            else None,
         )
+        if opts.p3_oracle:
+            diff = same_as_committed(out_dir, committed_dir, case["id"])
+            if diff:
+                print(f"DIFFERS from committed golden: {case['id']}: {diff}")
+                meta["exit_code"] = meta["exit_code"] or 1
         results.append(meta)
         print(
             f"{'TIMEOUT' if meta['timed_out'] else 'exit=' + str(meta['exit_code']):8} "
@@ -325,6 +402,17 @@ def main(argv: list[str] | None = None) -> int:
     env_path.write_text(
         json.dumps(environment, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
+    if opts.p3_oracle:
+        # 全件が正解データと同じ出力だったときだけ、記録をコミット対象の場所へ置く
+        failed_ids = [m["id"] for m in results if m["exit_code"] != 0]
+        if not failed_ids:
+            dest = committed_dir / "p3"
+            for rec in sorted((out_dir / "p3").rglob("*.jsonl.gz")):
+                target = dest / rec.relative_to(out_dir / "p3")
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(rec, target)
+            print(f"P3 records written to {dest}")
+        return 0 if not failed_ids else 1
     failed = [m["id"] for m in results if m["exit_code"] != 0]
     print(f"\n{len(results)} cases, non-zero exit: {failed or 'none'}")
     return 0

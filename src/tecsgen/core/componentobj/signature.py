@@ -13,7 +13,6 @@ from tecsgen.core.tecsinfo import SignatureTECSInfo
 from tecsgen.ruby_compat import (
     RubyRuntimeError,
     Y,
-    class_name,
     dualmethod,
     rb_downcase,
     rb_print,
@@ -307,7 +306,7 @@ class Signature(
             return
         if get_context().verbose:
             rb_print(
-                f"new through: plugin_object = {class_name(type(pl_class))}.new( "
+                f"new through: plugin_object = Class.new( "
                 f"{to_s(self._name)}, {to_s(option)} )\n"
             )
 

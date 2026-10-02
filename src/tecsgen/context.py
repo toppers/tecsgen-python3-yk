@@ -76,6 +76,9 @@ class TecsgenContext:
     h_suffix: str = "h"  # $h_suffix
     rom: bool = True  # $rom（-r で偽）
     b_cpp_specified: bool = False  # $b_cpp_specified
+    b_force_apply_tool_info: bool = (
+        False  # $b_force_apply_tool_info（どこでも設定されない）
+    )
     cpp: str | None = None  # $cpp（-c、TECS_CPP）
     tecspath: str = ""  # $tecspath（TECSPATH）
     tecsgen_base_path: str = ""  # $tecsgen_base_path（tecsgen.rb のあるディレクトリ）

@@ -17,6 +17,7 @@ import sys
 from contextlib import redirect_stderr, redirect_stdout
 from dataclasses import dataclass, field
 from fnmatch import fnmatch
+from pathlib import Path
 from typing import Any
 
 from conftest import GOLDEN
@@ -26,7 +27,9 @@ from tecsgen import cli
 from tecsgen.host import set_host
 
 WORK_ROOT = "@WORK@/test/"
-EXCLUDED = ("*.rbdmp", "tmp_*.h")
+KERNEL_PREFIX = "kernel/"
+# tecs.timestamp は make のレシピ（touch）が作るもので、tecsgen は書かない
+EXCLUDED = ("*.rbdmp", "tmp_*.h", "tecs.timestamp")
 
 
 def _excluded(path: str) -> bool:
@@ -34,8 +37,22 @@ def _excluded(path: str) -> bool:
     return any(fnmatch(name, pat) for pat in EXCLUDED)
 
 
+def golden_dir(case_id: str) -> Path:
+    """ケースの正解データのディレクトリ。カーネルのケースは tests/golden/kernel/cases/ にある。"""
+    if case_id.startswith(KERNEL_PREFIX):
+        return GOLDEN.parent / "kernel" / "cases" / case_id.removeprefix(KERNEL_PREFIX)
+    return GOLDEN / case_id
+
+
+def work_root(rec: CaseRecord) -> str:
+    """生成物のパスの基準。通常は作業ツリーの test/、カーネルは tecsgen を起動した作業ディレクトリ。"""
+    if rec.case_id.startswith(KERNEL_PREFIX):
+        return rec.cwd.rstrip("/") + "/"
+    return WORK_ROOT
+
+
 def golden_files(case_id: str) -> dict[str, bytes]:
-    root = GOLDEN / case_id / "files"
+    root = golden_dir(case_id) / "files"
     if not root.is_dir():
         return {}
     return {
@@ -45,8 +62,27 @@ def golden_files(case_id: str) -> dict[str, bytes]:
     }
 
 
+def golden_stdout(case_id: str) -> bytes:
+    """正解の標準出力。カーネルのケースは make 経由で採ったので、make が表示した行を除く。
+
+    先頭の tecsgen の呼び出し行（"ruby ../tecsgen/tecsgen.rb …"。行末が "\\" なら次の行へ続く）と、
+    末尾のレシピ（"touch tecs.timestamp" など）。tecsgen 自身はこれらを出力しない。
+    """
+    data = (golden_dir(case_id) / "stdout.txt").read_bytes()
+    if not case_id.startswith(KERNEL_PREFIX):
+        return data
+    lines = data.split(b"\n")
+    if lines[0].startswith((b"ruby ", b"/usr/bin/ruby ")):
+        while lines[0].endswith(b"\\"):
+            lines.pop(0)
+        lines.pop(0)
+    if len(lines) > 1 and lines[-1] == b"" and lines[-2].startswith(b"touch "):
+        lines.pop(-2)
+    return b"\n".join(lines)
+
+
 def golden_meta(case_id: str) -> dict[str, Any]:
-    return json.loads((GOLDEN / case_id / "meta.json").read_text(encoding="utf-8"))
+    return json.loads((golden_dir(case_id) / "meta.json").read_text(encoding="utf-8"))
 
 
 @dataclass
@@ -89,9 +125,10 @@ def run_case(rec: CaseRecord, stdout: Any = None, stderr: Any = None) -> GenResu
         set_host(None)
     written: dict[str, bytes] = {}
     for path, data in host.written_files().items():
-        if not path.startswith(WORK_ROOT):
+        root = work_root(rec)
+        if not path.startswith(root):
             raise AssertionError(f"wrote outside the work tree: {path}")
-        rel = path[len(WORK_ROOT) :]
+        rel = path[len(root) :]
         if not _excluded(rel):
             written[rel] = data
     meta = golden_meta(rec.case_id)
@@ -103,8 +140,8 @@ def run_case(rec: CaseRecord, stdout: Any = None, stderr: Any = None) -> GenResu
         b"",
         written,
         golden,
-        (GOLDEN / rec.case_id / "stdout.txt").read_bytes(),
-        (GOLDEN / rec.case_id / "stderr.txt").read_bytes(),
+        golden_stdout(rec.case_id),
+        (golden_dir(rec.case_id) / "stderr.txt").read_bytes(),
         meta["exit_code"],
     )
     for k in sorted(set(golden) | set(written)):

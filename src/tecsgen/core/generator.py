@@ -118,7 +118,9 @@ class Generator:
         return parser.get_plugin() if parser is not None else None
 
     @classmethod
-    def is_reuse(cls) -> bool:  # Ruby: is_reuse?
+    def is_reuse(
+        cls,
+    ) -> bool | None:  # Ruby: is_reuse?（set_reuse されていないパーサでは nil）
         parser = cls.current_parser()
         return parser.is_reuse() if parser is not None else False
 
