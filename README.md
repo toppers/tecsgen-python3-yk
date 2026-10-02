@@ -13,6 +13,8 @@ uv tool install .          # または: uv build して dist/*.whl を pip / uv 
 tecsgen --version
 ```
 
+`tecsmerge`（テンプレートと保守中のコードのマージ）も同じパッケージのコマンドとして入ります（`tecsmerge [options] files_templ.c src_dir`）。
+
 標準 CDL ライブラリ（Ruby 版の `tecs/`）はパッケージに同梱され、`TECSPATH` 未設定のときはそれを使います。
 
 ## セットアップ
@@ -36,6 +38,7 @@ pwsh tools/port/wsl_check.ps1 -KernelGolden <移植元の作業コピー>    # �
 pwsh tools/port/wsl_check.ps1 -KernelGolden <移植元の作業コピー> -KernelP3    # 正解データは採り直さず、P3 オラクルを差し込んで実行し、差分テスト用の記録（tests/golden/kernel/p3/）を採る
 pwsh tools/port/wsl_check.ps1 -PluginCoverage <移植元の作業コピー>  # テストの代わりに、正解データがどのプラグインを実行したかを計測する
 pwsh tools/port/wsl_check.ps1 -PackageInventory  # WSL の展開済みパッケージにある CDL の件数を表示
+pwsh tools/port/wsl_check.ps1 -TecsmergeGolden <移植元の作業コピー>  # テストの代わりに、tecsmerge の正解データ（tests/golden/tecsmerge/）を Ruby 版から採取する
 & ./tools/port/wsl_check.ps1 -PackageGolden <移植元の作業コピー> -PytestArgs @('--out','/home/ykomi/p5packageplugins/new-capture')  # Plugin 正解データを採集
 ```
 

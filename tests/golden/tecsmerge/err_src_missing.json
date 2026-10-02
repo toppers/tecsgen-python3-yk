@@ -1,0 +1,16 @@
+{
+ "argv": [
+  "nosuch_templ.c",
+  "dst"
+ ],
+ "input": {
+  "dst/.keep": ""
+ },
+ "stdout": "",
+ "stderr": "error: nosuch_templ.c: not found or cannot access\n",
+ "returncode": 1,
+ "tree": {
+  "dst/.keep": ""
+ },
+ "crash_ok": false
+}

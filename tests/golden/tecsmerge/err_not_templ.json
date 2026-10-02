@@ -1,0 +1,18 @@
+{
+ "argv": [
+  "src/a.c",
+  "dst"
+ ],
+ "input": {
+  "dst/.keep": "",
+  "src/a.c": "x"
+ },
+ "stdout": "",
+ "stderr": "error: src/a.c: not end with _templ.c/h\n",
+ "returncode": 1,
+ "tree": {
+  "dst/.keep": "",
+  "src/a.c": "x"
+ },
+ "crash_ok": false
+}

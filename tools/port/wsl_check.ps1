@@ -12,6 +12,7 @@
   pwsh tools/port/wsl_check.ps1 -Oracle E:/Crepo/toppers-tecs-svn/toppers/tecsgen/branches/ykominami_r3033
   pwsh tools/port/wsl_check.ps1 -PytestArgs tests/test_p2_parser.py, -x
   pwsh tools/port/wsl_check.ps1 -PackageInventory
+  pwsh tools/port/wsl_check.ps1 -TecsmergeGolden E:/Crepo/toppers-tecs-svn/toppers/tecsgen/branches/ykominami_r3033
   pwsh tools/port/wsl_check.ps1 -KernelGolden E:/Crepo/toppers-tecs-svn/toppers/tecsgen/branches/ykominami_r3033 -KernelP3
   & ./tools/port/wsl_check.ps1 -PackageGolden E:/Crepo/toppers-tecs-svn/toppers/tecsgen/branches/ykominami_r3033 -PytestArgs @('--out','/home/ykomi/p5packageplugins/new-capture')
 #>
@@ -29,6 +30,9 @@ param(
   # 指定すると、テストの代わりに、正解データを採る Ruby 版の実行を計測フック付きで走らせ、
   # どのプラグインが実行されたかを集計する。値は移植元 tecsgen ブランチの作業コピー
   [string]$PluginCoverage = "",
+  # 指定すると、テストの代わりに tecsmerge の正解データ（tests/golden/tecsmerge/）を Ruby 版から採取する。
+  # 値は移植元 tecsgen ブランチの作業コピー
+  [string]$TecsmergeGolden = "",
   # WSL 上の展開済みパッケージ内にある CDL ファイル数を列挙する
   [switch]$PackageInventory,
   # pytest にそのまま渡す引数
@@ -49,6 +53,8 @@ $repo = ConvertTo-WslPath (Join-Path $PSScriptRoot "../..")
 $argsList = @()
 if ($PackageInventory) {
   $argsList += "--package-inventory"
+} elseif ($TecsmergeGolden) {
+  $argsList += @("--tecsmerge-golden", (ConvertTo-WslPath $TecsmergeGolden))
 } elseif ($PluginCoverage) {
   $argsList += @("--plugin-coverage", (ConvertTo-WslPath $PluginCoverage))
 } elseif ($KernelGolden) {
