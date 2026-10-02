@@ -12,7 +12,7 @@ import re
 from typing import Any, ClassVar
 
 from tecsgen.core.plugin import Plugin
-from tecsgen.ruby_compat import Y, gsub, sym, to_s
+from tecsgen.ruby_compat import Y, gsub, sym, to_s, utf8_literal
 
 
 class ThroughPlugin(Plugin):
@@ -255,8 +255,8 @@ class ThroughPlugin(Plugin):
                 "  if( VALID_IDX( idx ) ){\n"
                 f"    p_cellcb = {to_s(global_ct_name)}_GET_CELLCB(idx);\n"
                 "  }else{\n"
-                "     /* エラー処理コードをここに記述 */\n"
-                "  }\n\n"
+                + utf8_literal("     /* エラー処理コードをここに記述 */\n")
+                + "  }\n\n"
             )
 
         delim = ""

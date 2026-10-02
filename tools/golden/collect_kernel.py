@@ -367,6 +367,7 @@ def main(argv: list[str] | None = None) -> int:
     run_root = work / "run"
     normalize = Normalizer(run_root, tecsgen_src)
     results = []
+    differing: list[str] = []
     for case in cases:
         meta = run_case(
             case,
@@ -384,7 +385,7 @@ def main(argv: list[str] | None = None) -> int:
             diff = same_as_committed(out_dir, committed_dir, case["id"])
             if diff:
                 print(f"DIFFERS from committed golden: {case['id']}: {diff}")
-                meta["exit_code"] = meta["exit_code"] or 1
+                differing.append(case["id"])
         results.append(meta)
         print(
             f"{'TIMEOUT' if meta['timed_out'] else 'exit=' + str(meta['exit_code']):8} "
@@ -416,7 +417,9 @@ def main(argv: list[str] | None = None) -> int:
     )
     if opts.p3_oracle:
         # 全件が正解データと同じ出力だったときだけ、記録をコミット対象の場所へ置く
-        failed_ids = [m["id"] for m in results if m["exit_code"] != 0]
+        # 例外で止まる経路が正解のケース（hrp2/cyclic など）は終了コードが 0 でないので、
+        # 失敗かどうかは正解データとの差だけで決める
+        failed_ids = differing
         if not failed_ids:
             dest = committed_dir / "p3"
             for rec in sorted((out_dir / "p3").rglob("*.jsonl.gz")):
