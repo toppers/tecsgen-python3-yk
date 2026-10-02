@@ -37,6 +37,17 @@ def rb_and(a: Any, b: Any) -> Any:
     return b if truthy(a) else a
 
 
+def utf8_literal(s: str) -> str:
+    """UTF-8 の Ruby ソース内の文字列リテラルを、ファイルへ書いたときのバイト列のまま残す。
+
+    Ruby 版は `-k euc` などのときも、生成ファイルを ASCII-8BIT で開いて書く。CDL から読んだ文字列は
+    元のバイト列（EUC など）のまま、プラグインの UTF-8 のソースに書かれた日本語のリテラルは UTF-8
+    のバイト列のままファイルに出る。`RubyIO` は surrogateescape で符号化するので、UTF-8 のバイトを
+    surrogateescape の文字に直しておけば、どのコーデックでも同じバイト列で書かれる。
+    """
+    return s.encode("utf-8").decode("ascii", errors="surrogateescape")
+
+
 # --- to_s / inspect ---------------------------------------------------------
 
 
