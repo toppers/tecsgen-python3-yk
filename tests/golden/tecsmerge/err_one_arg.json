@@ -1,0 +1,15 @@
+{
+ "argv": [
+  "d"
+ ],
+ "input": {
+  "d/.keep": ""
+ },
+ "stdout": "Usage: tecsmerge [options] files_templ.c   src_dir\n       tecsmerge [options] gen_dir         src_dir\n    -e, --exist-only                 merge if exist in destination directory\n    -p, --port=old_name:new_name     specify entry port name change\n    -f, --func=old_name:new_name     specify entry function name change\n    -s, --show_change_set            show change set. all substitute\n    -o, --old-mode                   old mode (function head not substituted)\n",
+ "stderr": "",
+ "returncode": 1,
+ "tree": {
+  "d/.keep": ""
+ },
+ "crash_ok": false
+}

@@ -1,2 +1,3 @@
 # 正解データはバイト単位で比較するため、改行コードの変換をしない
 tests/golden/** -text
+src/tecsgen/tecs/** -text

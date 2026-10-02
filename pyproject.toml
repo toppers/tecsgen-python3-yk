@@ -11,6 +11,7 @@ dependencies = []
 
 [project.scripts]
 tecsgen = "tecsgen:main"
+tecsmerge = "tecsgen.tecsmerge:main"
 
 [dependency-groups]
 dev = [

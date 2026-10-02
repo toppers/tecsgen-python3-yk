@@ -6,6 +6,17 @@ TECS のコンポーネント記述コンパイラ tecsgen（Ruby 実装、v1.9.
 - CDL と import_C の C ヘッダは、Ruby 版と同じ方法で構文解析します。字句解析器は Ruby 版から移植し、パーサは Ruby 版の racc が生成した LALR 表（`bnf.tab.rb`・`C_parser.tab.rb`）を取り出して、racc の駆動部を移植したもので動かします。構文エラーの位置・件数やエラー回復も Ruby 版と一致します。
 - 同じ入力に対して、Ruby 版と同一の生成物を出力することを受入基準にします（正解データは `tests/golden/`、採取手順は `tools/golden/README.md`）。プラグインを使わないテストケースは、生成物がすべてバイト単位で一致します（`tests/test_p4_gen.py`）。プラグイン機構は移植中です。
 
+## インストール（利用者向け）
+
+```sh
+uv tool install .          # または: uv build して dist/*.whl を pip / uv でインストール
+tecsgen --version
+```
+
+`tecsmerge`（テンプレートと保守中のコードのマージ）も同じパッケージのコマンドとして入ります（`tecsmerge [options] files_templ.c src_dir`）。
+
+標準 CDL ライブラリ（Ruby 版の `tecs/`）はパッケージに同梱され、`TECSPATH` 未設定のときはそれを使います。
+
 ## セットアップ
 
 ```sh
@@ -27,6 +38,7 @@ pwsh tools/port/wsl_check.ps1 -KernelGolden <移植元の作業コピー>    # �
 pwsh tools/port/wsl_check.ps1 -KernelGolden <移植元の作業コピー> -KernelP3    # 正解データは採り直さず、P3 オラクルを差し込んで実行し、差分テスト用の記録（tests/golden/kernel/p3/）を採る
 pwsh tools/port/wsl_check.ps1 -PluginCoverage <移植元の作業コピー>  # テストの代わりに、正解データがどのプラグインを実行したかを計測する
 pwsh tools/port/wsl_check.ps1 -PackageInventory  # WSL の展開済みパッケージにある CDL の件数を表示
+pwsh tools/port/wsl_check.ps1 -TecsmergeGolden <移植元の作業コピー>  # テストの代わりに、tecsmerge の正解データ（tests/golden/tecsmerge/）を Ruby 版から採取する
 & ./tools/port/wsl_check.ps1 -PackageGolden <移植元の作業コピー> -PytestArgs @('--out','/home/ykomi/p5packageplugins/new-capture')  # Plugin 正解データを採集
 ```
 

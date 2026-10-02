@@ -33,3 +33,20 @@ def test_attribute_err_stack_overflow_like_ruby(
     assert status == 1
     assert captured.out == (GOLDEN / case_id / "stdout.txt").read_bytes()
     assert b"stack level too deep (SystemStackError)" in captured.err
+
+
+@pytest.mark.parametrize(
+    ("option", "golden", "stream"),
+    [("--help", "help.txt", "out"), ("--version", "version.txt", "err")],
+)
+def test_help_and_version_match_ruby(
+    fresh_state: TecsgenContext,
+    capsysbinary: pytest.CaptureFixture[bytes],
+    option: str,
+    golden: str,
+    stream: str,
+) -> None:
+    """P6b: `--help`（標準出力）・`--version`（標準エラー出力）は Ruby 版の実行結果（tests/golden/cli/）とバイト一致する。"""
+    assert cli.run([option], {}) == 0
+    captured = capsysbinary.readouterr()
+    assert getattr(captured, stream) == (GOLDEN / "cli" / golden).read_bytes()

@@ -1,0 +1,28 @@
+Usage: tecsgen [options] files
+    -D, --define=def                 define cpp symbol for import_C
+    -G, --generate-region=path       generate region
+    -I, --import-path=path           imoprt/import_C path
+    -L, --library-path=path          path to dir where tecsgen.rb (obsolete, unnecessary to specify -L, those passes are gotten from tecsgen.rb
+    -R, --RAM-initializer            generate RAM initializer. INITIALIZE_TECS() must be called before running any TECS code.
+    -U, --unoptimize                 unoptimize
+        --unoptimize-entry           unoptimize entry port
+    -c, --cpp=cpp_cmd                C pre-processor command used import_C (default: gcc -E -DTECSGEN), you can also specify by environment variable TECS_CPP
+    -d, --dryrun                     dryrun
+    -f, --force-overwrite            force overwrite all files
+    -g, --gen=dir                    generate dir
+    -i, --idx_is_id                  set idx_is_id to all celltypes
+    -k, --kcode=code                 set kanji code: euc|sjis|none|utf8
+    -r, --ram                        RAM only
+    -s, --show-tree                  show parsing tree
+    -t, --generator-debug            generator debug
+    -u, --unique-id                  assign unique id for each cell
+    -v, --verbose                    verbose mode
+    -y, --yydebug                    yydebug
+        --no-banner                  not display banner
+        --version                    print version
+        --unit-test                  unit verification (test tecsgen itself)
+        --generate-all-template      generate all celltypes' templates
+        --generate-no-template       generate no template
+        --no-default-import-path     no default import path
+        --c-suffix=c                 C program suffix (default: c)
+        --h-suffix=h                 C program header suffix (default: h)

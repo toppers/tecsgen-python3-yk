@@ -96,6 +96,11 @@ if [ "${1:-}" = "--package-golden" ]; then
     --out tests/golden/packages "$@"
 fi
 
+if [ "${1:-}" = "--tecsmerge-golden" ]; then
+  TECSGEN_WC=${2:?--tecsmerge-golden requires the Ruby tecsgen working copy}
+  exec python3 tools/golden/collect_tecsmerge.py --tecsgen-wc "$TECSGEN_WC" --out tests/golden/tecsmerge
+fi
+
 ORACLE_WC=""
 if [ "${1:-}" = "--oracle" ]; then
   ORACLE_WC=${2:?--oracle には移植元の作業コピーを指定します}
