@@ -1,0 +1,9 @@
+tecsgen  version 1.9.1  
+In file included from gen/tmp_C_src.c:39:
+../include/tecs_kernel.h:6: warning: "__attribute__" redefined
+    6 | #define __attribute__(n)
+      | 
+gen/tmp_C_src.c:11: note: this is the location of the previous definition
+   11 | #define __attribute__(x)
+      | 
+error occurred while generating. some file can be corrupt in gen

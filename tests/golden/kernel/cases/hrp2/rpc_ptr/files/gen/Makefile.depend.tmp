@@ -1,0 +1,35 @@
+# Celltype: tTask  #_MDEP_#
+$(_TECS_OBJ_DIR)tTask_tecsgen.o : tTask_tecsgen.c  $(GEN_DIR)/tEventflag_tecsgen.h  $(GEN_DIR)/tMessageBuffer_tecsgen.h  $(GEN_DIR)/tRPCDedicatedTaskMain_tecsgen.h  $(GEN_DIR)/tSemaphore_tecsgen.h  $(GEN_DIR)/tServer_tecsgen.h  $(GEN_DIR)/tUnmarshaler_sCallee_tecsgen.h  tEventflag_inline.h  tMessageBuffer_inline.h  tSemaphore_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/siTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+$(_TECS_OBJ_DIR)tTask_templ.o : tTask_templ.c  $(GEN_DIR)/tEventflag_tecsgen.h  $(GEN_DIR)/tMessageBuffer_tecsgen.h  $(GEN_DIR)/tRPCDedicatedTaskMain_tecsgen.h  $(GEN_DIR)/tSemaphore_tecsgen.h  $(GEN_DIR)/tServer_tecsgen.h  $(GEN_DIR)/tUnmarshaler_sCallee_tecsgen.h  tEventflag_inline.h  tMessageBuffer_inline.h  tSemaphore_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/siTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+$(_TECS_OBJ_DIR)tTask.o : tTask.c  $(GEN_DIR)/tEventflag_tecsgen.h  $(GEN_DIR)/tMessageBuffer_tecsgen.h  $(GEN_DIR)/tRPCDedicatedTaskMain_tecsgen.h  $(GEN_DIR)/tSemaphore_tecsgen.h  $(GEN_DIR)/tServer_tecsgen.h  $(GEN_DIR)/tUnmarshaler_sCallee_tecsgen.h  tEventflag_inline.h  tMessageBuffer_inline.h  tSemaphore_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/sTaskExceptionBody_tecsgen.h $(GEN_DIR)/sTask_tecsgen.h $(GEN_DIR)/siTask_tecsgen.h $(GEN_DIR)/tTask_factory.h $(GEN_DIR)/tTask_tecsgen.h tTask_inline.h
+
+# Celltype: tSemaphore  #_MDEP_#
+$(_TECS_OBJ_DIR)tSemaphore_tecsgen.o : tSemaphore_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSemaphore_tecsgen.h $(GEN_DIR)/siSemaphore_tecsgen.h $(GEN_DIR)/tSemaphore_factory.h $(GEN_DIR)/tSemaphore_tecsgen.h tSemaphore_inline.h
+$(_TECS_OBJ_DIR)tSemaphore_templ.o : tSemaphore_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSemaphore_tecsgen.h $(GEN_DIR)/siSemaphore_tecsgen.h $(GEN_DIR)/tSemaphore_factory.h $(GEN_DIR)/tSemaphore_tecsgen.h tSemaphore_inline.h
+$(_TECS_OBJ_DIR)tSemaphore.o : tSemaphore.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sSemaphore_tecsgen.h $(GEN_DIR)/siSemaphore_tecsgen.h $(GEN_DIR)/tSemaphore_factory.h $(GEN_DIR)/tSemaphore_tecsgen.h tSemaphore_inline.h
+
+# Celltype: tEventflag  #_MDEP_#
+$(_TECS_OBJ_DIR)tEventflag_tecsgen.o : tEventflag_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sEventflag_tecsgen.h $(GEN_DIR)/siEventflag_tecsgen.h $(GEN_DIR)/tEventflag_factory.h $(GEN_DIR)/tEventflag_tecsgen.h tEventflag_inline.h
+$(_TECS_OBJ_DIR)tEventflag_templ.o : tEventflag_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sEventflag_tecsgen.h $(GEN_DIR)/siEventflag_tecsgen.h $(GEN_DIR)/tEventflag_factory.h $(GEN_DIR)/tEventflag_tecsgen.h tEventflag_inline.h
+$(_TECS_OBJ_DIR)tEventflag.o : tEventflag.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sEventflag_tecsgen.h $(GEN_DIR)/siEventflag_tecsgen.h $(GEN_DIR)/tEventflag_factory.h $(GEN_DIR)/tEventflag_tecsgen.h tEventflag_inline.h
+
+# Celltype: tMessageBuffer  #_MDEP_#
+$(_TECS_OBJ_DIR)tMessageBuffer_tecsgen.o : tMessageBuffer_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMessageBuffer_tecsgen.h $(GEN_DIR)/tMessageBuffer_factory.h $(GEN_DIR)/tMessageBuffer_tecsgen.h tMessageBuffer_inline.h
+$(_TECS_OBJ_DIR)tMessageBuffer_templ.o : tMessageBuffer_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMessageBuffer_tecsgen.h $(GEN_DIR)/tMessageBuffer_factory.h $(GEN_DIR)/tMessageBuffer_tecsgen.h tMessageBuffer_inline.h
+$(_TECS_OBJ_DIR)tMessageBuffer.o : tMessageBuffer.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sMessageBuffer_tecsgen.h $(GEN_DIR)/tMessageBuffer_factory.h $(GEN_DIR)/tMessageBuffer_tecsgen.h tMessageBuffer_inline.h
+
+# Celltype: tRPCDedicatedTaskMain  #_MDEP_#
+$(_TECS_OBJ_DIR)tRPCDedicatedTaskMain_tecsgen.o : tRPCDedicatedTaskMain_tecsgen.c  $(GEN_DIR)/tEventflag_tecsgen.h  $(GEN_DIR)/tMessageBuffer_tecsgen.h  $(GEN_DIR)/tSemaphore_tecsgen.h  $(GEN_DIR)/tServer_tecsgen.h  $(GEN_DIR)/tUnmarshaler_sCallee_tecsgen.h  tEventflag_inline.h  tMessageBuffer_inline.h  tSemaphore_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tRPCDedicatedTaskMain_factory.h $(GEN_DIR)/tRPCDedicatedTaskMain_tecsgen.h
+$(_TECS_OBJ_DIR)tRPCDedicatedTaskMain_templ.o : tRPCDedicatedTaskMain_templ.c  $(GEN_DIR)/tEventflag_tecsgen.h  $(GEN_DIR)/tMessageBuffer_tecsgen.h  $(GEN_DIR)/tSemaphore_tecsgen.h  $(GEN_DIR)/tServer_tecsgen.h  $(GEN_DIR)/tUnmarshaler_sCallee_tecsgen.h  tEventflag_inline.h  tMessageBuffer_inline.h  tSemaphore_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tRPCDedicatedTaskMain_factory.h $(GEN_DIR)/tRPCDedicatedTaskMain_tecsgen.h
+$(_TECS_OBJ_DIR)tRPCDedicatedTaskMain.o : tRPCDedicatedTaskMain.c  $(GEN_DIR)/tEventflag_tecsgen.h  $(GEN_DIR)/tMessageBuffer_tecsgen.h  $(GEN_DIR)/tSemaphore_tecsgen.h  $(GEN_DIR)/tServer_tecsgen.h  $(GEN_DIR)/tUnmarshaler_sCallee_tecsgen.h  tEventflag_inline.h  tMessageBuffer_inline.h  tSemaphore_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sTaskBody_tecsgen.h $(GEN_DIR)/tRPCDedicatedTaskMain_factory.h $(GEN_DIR)/tRPCDedicatedTaskMain_tecsgen.h
+
+# Celltype: tServer  #_MDEP_#
+$(_TECS_OBJ_DIR)tServer_tecsgen.o : tServer_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCallee_tecsgen.h $(GEN_DIR)/tServer_factory.h $(GEN_DIR)/tServer_tecsgen.h
+$(_TECS_OBJ_DIR)tServer_templ.o : tServer_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCallee_tecsgen.h $(GEN_DIR)/tServer_factory.h $(GEN_DIR)/tServer_tecsgen.h
+$(_TECS_OBJ_DIR)tServer.o : tServer.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCallee_tecsgen.h $(GEN_DIR)/tServer_factory.h $(GEN_DIR)/tServer_tecsgen.h
+
+# Celltype: tClient  #_MDEP_#
+$(_TECS_OBJ_DIR)tClient_tecsgen.o : tClient_tecsgen.c  $(GEN_DIR)/tEventflag_tecsgen.h  $(GEN_DIR)/tMarshaler_sCallee_tecsgen.h  $(GEN_DIR)/tMessageBuffer_tecsgen.h  $(GEN_DIR)/tSemaphore_tecsgen.h  tEventflag_inline.h  tMessageBuffer_inline.h  tSemaphore_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCallee_tecsgen.h $(GEN_DIR)/tClient_factory.h $(GEN_DIR)/tClient_tecsgen.h
+$(_TECS_OBJ_DIR)tClient_templ.o : tClient_templ.c  $(GEN_DIR)/tEventflag_tecsgen.h  $(GEN_DIR)/tMarshaler_sCallee_tecsgen.h  $(GEN_DIR)/tMessageBuffer_tecsgen.h  $(GEN_DIR)/tSemaphore_tecsgen.h  tEventflag_inline.h  tMessageBuffer_inline.h  tSemaphore_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCallee_tecsgen.h $(GEN_DIR)/tClient_factory.h $(GEN_DIR)/tClient_tecsgen.h
+$(_TECS_OBJ_DIR)tClient.o : tClient.c  $(GEN_DIR)/tEventflag_tecsgen.h  $(GEN_DIR)/tMarshaler_sCallee_tecsgen.h  $(GEN_DIR)/tMessageBuffer_tecsgen.h  $(GEN_DIR)/tSemaphore_tecsgen.h  tEventflag_inline.h  tMessageBuffer_inline.h  tSemaphore_inline.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCallee_tecsgen.h $(GEN_DIR)/tClient_factory.h $(GEN_DIR)/tClient_tecsgen.h
+

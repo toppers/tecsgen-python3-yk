@@ -1,0 +1,10 @@
+# Celltype: tAlarmHandler  #_MDEP_#
+$(_TECS_OBJ_DIR)tAlarmHandler_tecsgen.o : tAlarmHandler_tecsgen.c  $(GEN_DIR)/tHandlerBody_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlarm_tecsgen.h $(GEN_DIR)/sReferAlarm_tecsgen.h $(GEN_DIR)/sStartAlarm_tecsgen.h $(GEN_DIR)/sStopAlarm_tecsgen.h $(GEN_DIR)/siAlarm_tecsgen.h $(GEN_DIR)/siHandlerBody_tecsgen.h $(GEN_DIR)/tAlarmHandler_factory.h $(GEN_DIR)/tAlarmHandler_tecsgen.h tAlarmHandler_inline.h
+$(_TECS_OBJ_DIR)tAlarmHandler_templ.o : tAlarmHandler_templ.c  $(GEN_DIR)/tHandlerBody_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlarm_tecsgen.h $(GEN_DIR)/sReferAlarm_tecsgen.h $(GEN_DIR)/sStartAlarm_tecsgen.h $(GEN_DIR)/sStopAlarm_tecsgen.h $(GEN_DIR)/siAlarm_tecsgen.h $(GEN_DIR)/siHandlerBody_tecsgen.h $(GEN_DIR)/tAlarmHandler_factory.h $(GEN_DIR)/tAlarmHandler_tecsgen.h tAlarmHandler_inline.h
+$(_TECS_OBJ_DIR)tAlarmHandler.o : tAlarmHandler.c  $(GEN_DIR)/tHandlerBody_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sAlarm_tecsgen.h $(GEN_DIR)/sReferAlarm_tecsgen.h $(GEN_DIR)/sStartAlarm_tecsgen.h $(GEN_DIR)/sStopAlarm_tecsgen.h $(GEN_DIR)/siAlarm_tecsgen.h $(GEN_DIR)/siHandlerBody_tecsgen.h $(GEN_DIR)/tAlarmHandler_factory.h $(GEN_DIR)/tAlarmHandler_tecsgen.h tAlarmHandler_inline.h
+
+# Celltype: tHandlerBody  #_MDEP_#
+$(_TECS_OBJ_DIR)tHandlerBody_tecsgen.o : tHandlerBody_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/siHandlerBody_tecsgen.h $(GEN_DIR)/tHandlerBody_factory.h $(GEN_DIR)/tHandlerBody_tecsgen.h
+$(_TECS_OBJ_DIR)tHandlerBody_templ.o : tHandlerBody_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/siHandlerBody_tecsgen.h $(GEN_DIR)/tHandlerBody_factory.h $(GEN_DIR)/tHandlerBody_tecsgen.h
+$(_TECS_OBJ_DIR)tHandlerBody.o : tHandlerBody.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/siHandlerBody_tecsgen.h $(GEN_DIR)/tHandlerBody_factory.h $(GEN_DIR)/tHandlerBody_tecsgen.h
+

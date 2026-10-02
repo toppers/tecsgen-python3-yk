@@ -1,0 +1,19 @@
+import( "gen/tHRP2SVCPlugin_sCalleeSVCBody_Service_eCallee.cdl" );
+import( "gen/tHRP2SVCPlugin_sCalleeSVCCaller_Service_eCallee.cdl" );
+import( "gen/tHRP2SVCPlugin_sCalleeSVCBody_Service_eCallee.cdl" );
+import( "gen/tHRP2SVCPlugin_sCalleeSVCCaller_Service_eCallee.cdl" );
+region rUser{
+    //  Client Side Channel
+    cell tHRP2SVCPlugin_sCalleeSVCCaller_Service_eCallee Join_domain_to_through__0SVCCaller{
+    };
+
+};
+
+
+region rKernel{
+
+    //  Server Side Channel
+    cell tHRP2SVCPlugin_sCalleeSVCBody_Service_eCallee Join_domain_to_through__0SVCBody{
+      cCall = ::rKernel::Service.eCallee;
+    };
+};

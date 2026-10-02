@@ -1,3 +1,5 @@
 # 正解データはバイト単位で比較するため、改行コードの変換をしない
 tests/golden/** -text
 src/tecsgen/tecs/** -text
+# 合成入力の CDL は、改行コードを変換しない（正解データの出力にハッシュを記録する）
+tools/golden/inputs/** -text

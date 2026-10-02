@@ -1,0 +1,20 @@
+
+celltype tMarshaler_sCallee {
+  entry sCallee eClientEntry;
+  call sEventflag  cEventflag;
+  call sSemaphore  cSemaphore;
+  call sMessageBuffer cMessageBuffer;
+  //[optional]
+  //  call sSemaphore cLockChannel;  // this port is eliminated by optimize
+};
+celltype tUnmarshaler_sCallee {
+  call sCallee cServerCall;
+  call sEventflag  cEventflag;
+  call sSemaphore  cSemaphore;
+  call sMessageBuffer cMessageBuffer;
+  entry sTaskBody  eUnmarshalAndCallFunction;
+
+  FACTORY{
+    write("$ct$_factory.h", "#include <t_syslog.h>");
+  };
+};

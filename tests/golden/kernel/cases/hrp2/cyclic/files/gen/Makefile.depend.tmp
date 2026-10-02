@@ -1,0 +1,10 @@
+# Celltype: tCyclicHandler  #_MDEP_#
+$(_TECS_OBJ_DIR)tCyclicHandler_tecsgen.o : tCyclicHandler_tecsgen.c  $(GEN_DIR)/tHandlerBody_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCyclic_tecsgen.h $(GEN_DIR)/sReferCyclic_tecsgen.h $(GEN_DIR)/sStartCyclic_tecsgen.h $(GEN_DIR)/sStopCyclic_tecsgen.h $(GEN_DIR)/siHandlerBody_tecsgen.h $(GEN_DIR)/tCyclicHandler_factory.h $(GEN_DIR)/tCyclicHandler_tecsgen.h tCyclicHandler_inline.h
+$(_TECS_OBJ_DIR)tCyclicHandler_templ.o : tCyclicHandler_templ.c  $(GEN_DIR)/tHandlerBody_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCyclic_tecsgen.h $(GEN_DIR)/sReferCyclic_tecsgen.h $(GEN_DIR)/sStartCyclic_tecsgen.h $(GEN_DIR)/sStopCyclic_tecsgen.h $(GEN_DIR)/siHandlerBody_tecsgen.h $(GEN_DIR)/tCyclicHandler_factory.h $(GEN_DIR)/tCyclicHandler_tecsgen.h tCyclicHandler_inline.h
+$(_TECS_OBJ_DIR)tCyclicHandler.o : tCyclicHandler.c  $(GEN_DIR)/tHandlerBody_tecsgen.h $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sCyclic_tecsgen.h $(GEN_DIR)/sReferCyclic_tecsgen.h $(GEN_DIR)/sStartCyclic_tecsgen.h $(GEN_DIR)/sStopCyclic_tecsgen.h $(GEN_DIR)/siHandlerBody_tecsgen.h $(GEN_DIR)/tCyclicHandler_factory.h $(GEN_DIR)/tCyclicHandler_tecsgen.h tCyclicHandler_inline.h
+
+# Celltype: tHandlerBody  #_MDEP_#
+$(_TECS_OBJ_DIR)tHandlerBody_tecsgen.o : tHandlerBody_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/siHandlerBody_tecsgen.h $(GEN_DIR)/tHandlerBody_factory.h $(GEN_DIR)/tHandlerBody_tecsgen.h
+$(_TECS_OBJ_DIR)tHandlerBody_templ.o : tHandlerBody_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/siHandlerBody_tecsgen.h $(GEN_DIR)/tHandlerBody_factory.h $(GEN_DIR)/tHandlerBody_tecsgen.h
+$(_TECS_OBJ_DIR)tHandlerBody.o : tHandlerBody.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/siHandlerBody_tecsgen.h $(GEN_DIR)/tHandlerBody_factory.h $(GEN_DIR)/tHandlerBody_tecsgen.h
+

@@ -1,0 +1,107 @@
+/*
+ * Synthetic application: HRP2 per-object kernel plugins (HRP2SemaphorePlugin etc.)
+ * and HRP2SVCPlugin. See README.md in this directory.
+ * Kept ASCII-only because tecsgen reads it with -k euc.
+ */
+import("kernel.cdl");
+
+signature sCallee {
+	ER		add([in] int32_t a, [in] int32_t b, [out] int32_t *sum);
+	void	notify(void);
+};
+
+/* an ordinary (not kernel object) cell in the kernel domain */
+celltype tService {
+	entry sCallee eCallee;
+};
+
+celltype tUser {
+	call sSignalSemaphore		cSignalSemaphore;
+	call sSetEventflag			cSetEventflag;
+	call sSendDataqueue			cSendDataqueue;
+	call sSendPriorityDataqueue	cSendPriorityDataqueue;
+	call sGetFixedSizeMemoryPool	cGetFixedSizeMemoryPool;
+	call sCallee				cCallee;
+};
+
+/* ---------------- kernel domain (trusted) ---------------- */
+[domain(HRP2, "trusted")]
+region rKernel {
+	cell tService Service { };
+
+	cell tSemaphore SemaphoreK {
+		attribute = C_EXP("TA_NULL");
+		count = 1;
+		max = 4;
+	};
+	cell tEventflag EventflagK {
+		flagPattern = 0;
+	};
+	cell tDataqueue DataqueueK {
+		count = 8;
+	};
+	cell tPriorityDataqueue PriorityDataqueueK {
+		count = 8;
+		maxDataPriority = 15;
+	};
+	cell tFixedSizeMemoryPool FixedSizeMemoryPoolK {
+		blockCount = 4;
+		blockSize = 32;
+	};
+};
+
+/* ---------------- user domain (nontrusted) ---------------- */
+[domain(HRP2, "nontrusted")]
+region rUser {
+	cell tSemaphore SemaphoreU {
+		attribute = C_EXP("TA_TPRI");
+		count = 0;
+		max = 2;
+		accessPattern = { C_EXP("TACP(rUser)"), C_EXP("TACP_KERNEL"), C_EXP("TACP_SHARED"), C_EXP("TACP(rUser)") };
+	};
+	cell tEventflag EventflagU {
+		attribute = C_EXP("TA_WMUL");
+		flagPattern = 0;
+	};
+	cell tDataqueue DataqueueU {
+		count = 4;
+	};
+	cell tPriorityDataqueue PriorityDataqueueU {
+		count = 4;
+		maxDataPriority = 7;
+	};
+	cell tFixedSizeMemoryPool FixedSizeMemoryPoolU {
+		blockCount = 2;
+		blockSize = 16;
+	};
+
+	cell tUser User {
+		cSignalSemaphore		= rUser::SemaphoreU.eSignalSemaphore;
+		cSetEventflag			= rUser::EventflagU.eSetEventflag;
+		cSendDataqueue			= rUser::DataqueueU.eSendDataqueue;
+		cSendPriorityDataqueue	= rUser::PriorityDataqueueU.eSendPriorityDataqueue;
+		cGetFixedSizeMemoryPool	= rUser::FixedSizeMemoryPoolU.eGetFixedSizeMemoryPool;
+		cCallee					= rKernel::Service.eCallee;
+	};
+};
+
+/* ---------------- no domain (OutOfDomain) ---------------- */
+cell tSemaphore SemaphoreO {
+	attribute = C_EXP("TA_NULL");
+	count = 1;
+	max = 1;
+};
+cell tEventflag EventflagO {
+	flagPattern = 0;
+};
+cell tDataqueue DataqueueO {
+	count = 2;
+};
+cell tPriorityDataqueue PriorityDataqueueO {
+	count = 2;
+	maxDataPriority = 3;
+};
+cell tFixedSizeMemoryPool FixedSizeMemoryPoolO {
+	blockCount = 1;
+	blockSize = 8;
+};

@@ -1,0 +1,81 @@
+/*
+ * §≥§Œ•’•°•§•Î§œ tecsgen §À§Ë§Íº´∆∞¿∏¿Æ§µ§Ï§ﬁ§∑§ø
+ * §≥§Œ•’•°•§•Î§Ú ‘Ω∏§∑§∆ª»Õ—§π§Î§≥§»§œ°¢∞’øﬁ§µ§Ï§∆§§§ﬁ§ª§Û
+ */
+/* #[<PREAMBLE>]#
+ * #[<...>]# §´§È #[</...>]# §«∞œ§ﬁ§Ï§ø•≥•·•Û•»§œ ‘Ω∏§∑§ §§§«§Ø§¿§µ§§
+ * tecsmerge §À§Ë§Î•ﬁ°º•∏§Àª»Õ—§µ§Ï§ﬁ§π
+ *
+ * ∏∆§”∏˝¥ÿøÙ #_TCPF_#
+ * call port: cEventflag signature: sEventflag context:task
+ *   ER             cEventflag_set( FLGPTN setPattern );
+ *   ER             cEventflag_clear( FLGPTN clearPattern );
+ *   ER             cEventflag_wait( FLGPTN waitPattern, MODE waitFlagMode, FLGPTN* p_flagPattern );
+ *   ER             cEventflag_waitPolling( FLGPTN waitPattern, MODE waitFlagMode, FLGPTN* p_flagPattern );
+ *   ER             cEventflag_waitTimeout( FLGPTN waitPattern, MODE waitFlagMode, FLGPTN* p_flagPattern, TMO timeout );
+ *   ER             cEventflag_initialize( );
+ *   ER             cEventflag_refer( T_RFLG* pk_eventflagStatus );
+ * call port: cSemaphore signature: sSemaphore context:task
+ *   ER             cSemaphore_signal( );
+ *   ER             cSemaphore_wait( );
+ *   ER             cSemaphore_waitPolling( );
+ *   ER             cSemaphore_waitTimeout( TMO timeout );
+ *   ER             cSemaphore_initialize( );
+ *   ER             cSemaphore_refer( T_RSEM* pk_semaphoreStatus );
+ * call port: cMessageBuffer signature: sMessageBuffer context:task
+ *   ER             cMessageBuffer_send( const uint8_t* message, uint32_t size );
+ *   ER             cMessageBuffer_sendPolling( const uint8_t* message, uint32_t size );
+ *   ER             cMessageBuffer_sendTimeout( const uint8_t* message, uint32_t size, TMO timeout );
+ *   ER_UINT        cMessageBuffer_receive( uint8_t* message );
+ *   ER_UINT        cMessageBuffer_receivePolling( uint8_t* message );
+ *   ER_UINT        cMessageBuffer_receiveTimeout( uint8_t* message, TMO timeout );
+ *   void           cMessageBuffer_initialize( );
+ *   ER             cMessageBuffer_refer( T_RMBF* packet );
+ *
+ * #[</PREAMBLE>]# */
+
+/* •◊•Ì•»•ø•§•◊¿Î∏¿§‰ —øÙ§ŒƒÍµ¡§Ú§≥§≥§ÀΩÒ§≠§ﬁ§π #_PAC_# */
+#include "tMarshaler_sCallee_tecsgen.h"
+
+#ifndef E_OK
+#define	E_OK	0		/* success */
+#define	E_ID	(-18)	/* illegal ID */
+#endif
+
+/* ºı§±∏˝¥ÿøÙ #_TEPF_# */
+/* #[<ENTRY_PORT>]# eClientEntry
+ * entry port: eClientEntry
+ * signature:  sCallee
+ * context:    task
+ * #[</ENTRY_PORT>]# */
+
+/* #[<ENTRY_FUNC>]# eClientEntry_add
+ * name:         eClientEntry_add
+ * global_name:  tMarshaler_sCallee_eClientEntry_add
+ * oneway:       false
+ * #[</ENTRY_FUNC>]# */
+ER
+eClientEntry_add(CELLIDX idx, int32_t a, int32_t b, int32_t* sum)
+{
+    ER  retval_ = E_OK;
+    ER      ercd_;
+    FLGPTN  flgptn;
+    int16_t  func_id_ = 1;    /* id of add: 1 */
+    uint8_t  msg[256];
+    tMarshaler_sCallee_CB *p_cellcb;
+
+    if( VALID_IDX( idx ) ){
+        p_cellcb = GET_CELLCB(idx);
+    }else{
+         return ERCD( E_RPC, E_ID );
+    }
+    ///* Channel Lock */
+    //if( is_cLockChannel_joined() )
+    //  cLockChannel_wait();
+
+    /* Èñ¢Êï∞ id „ÅÆÈÄÅÂá∫ */
+    *((int16_t *)(&msg[0])) = func_id_;
+    /* ÂÖ•ÂäõÂºïÊï∞ÈÄÅÂá∫ */
+    *((int32_t *)(&msg[2])) = a;
+    *((int32_t *)(&msg[6])) = b;
+    *((int32_t* *)(&msg[10])) = sum;

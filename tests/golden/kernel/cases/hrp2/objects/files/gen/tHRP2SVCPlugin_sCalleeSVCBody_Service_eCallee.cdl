@@ -1,0 +1,4 @@
+[active]
+celltype tHRP2SVCPlugin_sCalleeSVCBody_Service_eCallee {
+    call sCallee cCall;
+};

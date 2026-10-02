@@ -1,0 +1,60 @@
+/*
+ * Synthetic application (common part): HRP2RPCPlugin. Imported by hrp2_rpc.cdl and
+ * hrp2_rpc_ptr.cdl. See README.md in this directory.
+ * Kept ASCII-only because tecsgen reads it with -k euc.
+ */
+import("kernel.cdl");
+
+/* HRP2Plugin names this celltype as the RPC channel (channelCelltype=tMessagebufferChannel) */
+composite tMessagebufferChannel {
+	entry sEventflag		eEventflag;
+	entry sSemaphore		eSemaphore;
+	entry sMessageBuffer	eMessageBuffer;
+
+	attr {
+		uint32_t	bufferSize = 256;
+	};
+
+	cell tMessageBuffer Messagebuffer {
+		maxSize = 128;
+		bufferSize = composite.bufferSize;
+	};
+	cell tEventflag Eventflag {
+		flagPattern = 0;
+	};
+	cell tSemaphore Semaphore {
+		attribute = C_EXP("TA_NULL");
+		count = 0;
+		max = 1;
+	};
+
+	composite.eEventflag		=> Eventflag.eEventflag;
+	composite.eSemaphore		=> Semaphore.eSemaphore;
+	composite.eMessageBuffer	=> Messagebuffer.eMessageBuffer;
+};
+
+/* matches the entry (sTaskBody) of the unmarshaler that HRP2RPCPlugin generates */
+celltype tRPCDedicatedTaskMain {
+	entry	sTaskBody	eMain;
+	call	sTaskBody	cMain;
+};
+
+celltype tServer {
+	entry sCallee eCallee;
+};
+
+celltype tClient {
+	call sCallee cCallee;
+};
+
+[domain(HRP2, "nontrusted")]
+region rUser1 {
+	cell tClient Client {
+		cCallee = rUser2::Server.eCallee;
+	};
+};
+
+[domain(HRP2, "nontrusted")]
+region rUser2 {
+	cell tServer Server { };
+};

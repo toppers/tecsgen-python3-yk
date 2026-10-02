@@ -1,0 +1,68 @@
+hrp2_rpc_common.cdl:48:2: warning: W1002 tClient: non-active celltype has no entry port & factory
+HRP2Plugin: initialize: region=::, domainName=HRP2, option=OutOfDomain
+HRP2Plugin: initialize: region=rUser1, domainName=HRP2, option=nontrusted
+HRP2Plugin: initialize: region=rUser2, domainName=HRP2, option=nontrusted
+HRP2Plugin: add_through_plugin: rUser1=>rUser2, Client.cCallee=>Server.eCallee, TO_THROUGH
+=====Join Check Start=====
+caller: Client, callee: Server
+=====Join Check param=====
+nontrusted
+nontrusted
+***** rpc
+HRP2RPCPlugin.new( 'Join_domain_to_through__0', 'channelCelltype=tMessagebufferChannel,noClientSemaphore=true', 'Server', 'eCallee', tServer )
+hrp2_rpc_common.cdl:52:15: warning: W1007 ::rUser1::Client : non-active cell has no entry join and no factory
+===== begin tTask plugin =====
+===== begin check my domain Join_domain_to_through__0Body_Task =====
+TSKID_$id$
+~~~~~ rUser2 is registered!
+"CRE_TSK 1"
+===== end check my domain Join_domain_to_through__0Body_Task =====
+===== begin check regions Join_domain_to_through__0Body_Task =====
+["TACP(rUser2)", "TACP(rUser2)", "TACP(rUser2)", "TACP(rUser2)"]
+===== end check regions Join_domain_to_through__0Body_Task =====
+===== end tTask plugin =====
+check for ATT_MOD : tClient
+
+check for ATT_MOD : tServer
+
+check for ATT_MOD : tMessageBuffer
+check for ATT_MOD : tEventflag
+check for ATT_MOD : tSemaphore
+check for ATT_MOD : tMarshaler_sCallee
+
+check for ATT_MOD : tUnmarshaler_sCallee
+
+check for ATT_MOD : tRPCDedicatedTaskMain
+
+check for ATT_MOD : tTask
+===== begin tSemaphore plugin =====
+***** already checked
+===== begin check my domain Join_domain_to_through__0_Channel_Semaphore =====
+SEMID_$id$
+~~~~~ :: is OutOfDomain
+===== end check my domain Join_domain_to_through__0_Channel_Semaphore =====
+===== begin check regions Join_domain_to_through__0_Channel_Semaphore =====
+["TACP_SHARED", "TACP_SHARED", "TACP_SHARED", "TACP_SHARED"]
+===== end check regions Join_domain_to_through__0_Channel_Semaphore =====
+===== end tSemaphore plugin =====
+===== begin tEventflag plugin =====
+***** already checked
+===== begin check my domain Join_domain_to_through__0_Channel_Eventflag =====
+FLGID_$id$
+~~~~~ :: is OutOfDomain
+===== end check my domain Join_domain_to_through__0_Channel_Eventflag =====
+===== begin check regions Join_domain_to_through__0_Channel_Eventflag =====
+["TACP_SHARED", "TACP_SHARED", "TACP_SHARED", "TACP_SHARED"]
+===== end check regions Join_domain_to_through__0_Channel_Eventflag =====
+===== end tEventflag plugin =====
+===== begin tMessageBuffer plugin =====
+***** already checked
+===== begin check my domain Join_domain_to_through__0_Channel_Messagebuffer =====
+MBFID_$id$
+~~~~~ :: is OutOfDomain
+===== end check my domain Join_domain_to_through__0_Channel_Messagebuffer =====
+===== begin check regions Join_domain_to_through__0_Channel_Messagebuffer =====
+["TACP_SHARED", "TACP_SHARED", "TACP_SHARED", "TACP_SHARED"]
+===== end check regions Join_domain_to_through__0_Channel_Messagebuffer =====
+===== end tMessageBuffer plugin =====
+2 warnings

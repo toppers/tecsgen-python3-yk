@@ -1,0 +1,25 @@
+import( "gen/tRPCPlugin_tTDR_tMessagebufferChannel_sCallee.cdl" );
+// one way channel cell
+cell tMessagebufferChannel Join_domain_to_through__0_Channel {
+};
+
+// RPC channel cell
+region rUser1{
+  cell tRPCPlugin_tTDR_tMessagebufferChannel_sCalleeClient Join_domain_to_through__0 {
+    //cTDR         = Join_domain_to_through__0_Channel.eTDR;
+    cEventflag   = Join_domain_to_through__0_Channel.eEventflag;
+    cSemaphore   = Join_domain_to_through__0_Channel.eSemaphore;
+    cMessageBuffer   = Join_domain_to_through__0_Channel.eMessageBuffer;
+  };
+};
+region rUser2{
+  cell tRPCPlugin_tTDR_tMessagebufferChannel_sCalleeServer Join_domain_to_through__0Body {
+      cCall = ::rUser2::Server.eCallee;
+//      cCall = Server.eCallee;
+    //cTDR         = Join_domain_to_through__0_Channel.eTDR;
+    cEventflag   = Join_domain_to_through__0_Channel.eEventflag;
+    cSemaphore   = Join_domain_to_through__0_Channel.eSemaphore;
+    cMessageBuffer  = Join_domain_to_through__0_Channel.eMessageBuffer;
+    taskPriority = 8;
+  };
+};

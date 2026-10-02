@@ -1,0 +1,15 @@
+/*
+ * Synthetic application: HRP2RPCPlugin, normal path (by-value integer arguments only).
+ * See README.md in this directory.
+ * Kept ASCII-only because tecsgen reads it with -k euc.
+ */
+import("kernel.cdl");
+
+signature sCallee {
+	ER		add([in] int32_t a, [in] int32_t b);
+	int16_t	scale([in] int8_t k, [in] uint16_t v);
+	int64_t	widen([in] uint32_t v);
+	void	notify(void);
+};
+
+import("hrp2_rpc_common.cdl");

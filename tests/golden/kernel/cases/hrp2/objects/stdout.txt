@@ -1,0 +1,142 @@
+hrp2_objects.cdl:25:2: warning: W1002 tUser: non-active celltype has no entry port & factory
+HRP2Plugin: initialize: region=::, domainName=HRP2, option=OutOfDomain
+HRP2Plugin: initialize: region=rKernel, domainName=HRP2, option=trusted
+HRP2Plugin: initialize: region=rUser, domainName=HRP2, option=nontrusted
+HRP2Plugin: add_through_plugin: rUser=>rKernel, User.cCallee=>Service.eCallee, TO_THROUGH
+=====Join Check Start=====
+caller: User, callee: Service
+=====Join Check param=====
+nontrusted
+trusted
+***** svc
+HRP2SVCPlugin.new( 'Join_domain_to_through__0', '', 'Service', 'eCallee', tService )
+%%%% 
+:Service
+:User
+hrp2_objects.cdl:89:17: warning: W1007 ::SemaphoreO : non-active cell has no entry join and no factory
+hrp2_objects.cdl:94:17: warning: W1007 ::EventflagO : non-active cell has no entry join and no factory
+hrp2_objects.cdl:97:17: warning: W1007 ::DataqueueO : non-active cell has no entry join and no factory
+hrp2_objects.cdl:100:25: warning: W1007 ::PriorityDataqueueO : non-active cell has no entry join and no factory
+hrp2_objects.cdl:104:27: warning: W1007 ::FixedSizeMemoryPoolO : non-active cell has no entry join and no factory
+hrp2_objects.cdl:32:18: warning: W1007 ::rKernel::SemaphoreK : non-active cell has no entry join and no factory
+hrp2_objects.cdl:37:18: warning: W1007 ::rKernel::EventflagK : non-active cell has no entry join and no factory
+hrp2_objects.cdl:40:18: warning: W1007 ::rKernel::DataqueueK : non-active cell has no entry join and no factory
+hrp2_objects.cdl:43:26: warning: W1007 ::rKernel::PriorityDataqueueK : non-active cell has no entry join and no factory
+hrp2_objects.cdl:47:28: warning: W1007 ::rKernel::FixedSizeMemoryPoolK : non-active cell has no entry join and no factory
+hrp2_objects.cdl:78:13: warning: W1007 ::rUser::User : non-active cell has no entry join and no factory
+generate ep_func for tHRP2SVCPlugin_sCalleeSVCCaller_Service_eCallee
+21
+generate ep_func for tHRP2SVCPlugin_sCalleeSVCCaller_Service_eCallee
+22
+===== begin tSemaphore plugin =====
+===== begin check my domain SemaphoreK =====
+SEMID_$id$
+~~~~~ rKernel is registered!
+===== end check my domain SemaphoreK =====
+===== begin check regions SemaphoreK =====
+["TACP_KERNEL", "TACP_KERNEL", "TACP_KERNEL", "TACP_KERNEL"]
+===== end check regions SemaphoreK =====
+===== begin check my domain SemaphoreU =====
+SEMID_$id$
+~~~~~ rUser is registered!
+===== end check my domain SemaphoreU =====
+===== begin check regions SemaphoreU =====
+["TACP(rUser)", "TACP_KERNEL", "TACP_SHARED", "TACP(rUser)"]
+===== end check regions SemaphoreU =====
+===== begin check my domain SemaphoreO =====
+SEMID_$id$
+~~~~~ :: is OutOfDomain
+===== end check my domain SemaphoreO =====
+===== begin check regions SemaphoreO =====
+["TACP_SHARED", "TACP_SHARED", "TACP_SHARED", "TACP_SHARED"]
+===== end check regions SemaphoreO =====
+===== end tSemaphore plugin =====
+===== begin tEventflag plugin =====
+***** already checked
+===== begin check my domain EventflagK =====
+FLGID_$id$
+===== end check my domain EventflagK =====
+===== begin check regions EventflagK =====
+["TACP_KERNEL", "TACP_KERNEL", "TACP_KERNEL", "TACP_KERNEL"]
+===== end check regions EventflagK =====
+===== begin check my domain EventflagU =====
+FLGID_$id$
+===== end check my domain EventflagU =====
+===== begin check regions EventflagU =====
+["TACP(rUser)", "TACP(rUser)", "TACP(rUser)", "TACP(rUser)"]
+===== end check regions EventflagU =====
+===== begin check my domain EventflagO =====
+FLGID_$id$
+~~~~~ :: is OutOfDomain
+===== end check my domain EventflagO =====
+===== begin check regions EventflagO =====
+["TACP_SHARED", "TACP_SHARED", "TACP_SHARED", "TACP_SHARED"]
+===== end check regions EventflagO =====
+===== end tEventflag plugin =====
+===== begin tDataqueue plugin =====
+***** already checked
+===== begin check my domain DataqueueK =====
+DTQID_$id$
+===== end check my domain DataqueueK =====
+===== begin check regions DataqueueK =====
+["TACP_KERNEL", "TACP_KERNEL", "TACP_KERNEL", "TACP_KERNEL"]
+===== end check regions DataqueueK =====
+===== begin check my domain DataqueueU =====
+DTQID_$id$
+===== end check my domain DataqueueU =====
+===== begin check regions DataqueueU =====
+["TACP(rUser)", "TACP(rUser)", "TACP(rUser)", "TACP(rUser)"]
+===== end check regions DataqueueU =====
+===== begin check my domain DataqueueO =====
+DTQID_$id$
+~~~~~ :: is OutOfDomain
+===== end check my domain DataqueueO =====
+===== begin check regions DataqueueO =====
+["TACP_SHARED", "TACP_SHARED", "TACP_SHARED", "TACP_SHARED"]
+===== end check regions DataqueueO =====
+===== end tDataqueue plugin =====
+===== begin tPriorityDataqueue plugin =====
+***** already checked
+===== begin check my domain PriorityDataqueueK =====
+PDTQID_$id$
+===== end check my domain PriorityDataqueueK =====
+===== begin check regions PriorityDataqueueK =====
+["TACP_KERNEL", "TACP_KERNEL", "TACP_KERNEL", "TACP_KERNEL"]
+===== end check regions PriorityDataqueueK =====
+===== begin check my domain PriorityDataqueueU =====
+PDTQID_$id$
+===== end check my domain PriorityDataqueueU =====
+===== begin check regions PriorityDataqueueU =====
+["TACP(rUser)", "TACP(rUser)", "TACP(rUser)", "TACP(rUser)"]
+===== end check regions PriorityDataqueueU =====
+===== begin check my domain PriorityDataqueueO =====
+PDTQID_$id$
+~~~~~ :: is OutOfDomain
+===== end check my domain PriorityDataqueueO =====
+===== begin check regions PriorityDataqueueO =====
+["TACP_SHARED", "TACP_SHARED", "TACP_SHARED", "TACP_SHARED"]
+===== end check regions PriorityDataqueueO =====
+===== end tPriorityDataqueue plugin =====
+===== begin tFixedSizeMemoryPool plugin =====
+***** already checked
+===== begin check my domain FixedSizeMemoryPoolK =====
+MPFID_$id$
+===== end check my domain FixedSizeMemoryPoolK =====
+===== begin check regions FixedSizeMemoryPoolK =====
+["TACP_KERNEL", "TACP_KERNEL", "TACP_KERNEL", "TACP_KERNEL"]
+===== end check regions FixedSizeMemoryPoolK =====
+===== begin check my domain FixedSizeMemoryPoolU =====
+MPFID_$id$
+===== end check my domain FixedSizeMemoryPoolU =====
+===== begin check regions FixedSizeMemoryPoolU =====
+["TACP(rUser)", "TACP(rUser)", "TACP(rUser)", "TACP(rUser)"]
+===== end check regions FixedSizeMemoryPoolU =====
+===== begin check my domain FixedSizeMemoryPoolO =====
+MPFID_$id$
+~~~~~ :: is OutOfDomain
+===== end check my domain FixedSizeMemoryPoolO =====
+===== begin check regions FixedSizeMemoryPoolO =====
+["TACP_SHARED", "TACP_SHARED", "TACP_SHARED", "TACP_SHARED"]
+===== end check regions FixedSizeMemoryPoolO =====
+===== end tFixedSizeMemoryPool plugin =====
+12 warnings

@@ -1,0 +1,17 @@
+/*
+ * Synthetic application: HRP2AlarmHandlerPlugin. See README.md in this directory.
+ * Kept ASCII-only because tecsgen reads it with -k euc.
+ */
+import("kernel.cdl");
+
+celltype tHandlerBody {
+	entry siHandlerBody eiBody;
+};
+
+[domain(HRP2, "trusted")]
+region rKernel {
+	cell tHandlerBody Body { };
+	cell tAlarmHandler AlarmK {
+		ciBody = Body.eiBody;
+	};
+};
