@@ -1,0 +1,52 @@
+import( "gen/tMarshaler_sCallee.cdl" );
+
+composite tRPCPlugin_tTDR_tMessagebufferChannel_sCalleeClient {
+  /* Interface */
+  entry sCallee eThroughEntry;
+  //call sTDR       cTDR;
+  call sEventflag cEventflag;
+  call sSemaphore cSemaphore;
+  call sMessageBuffer cMessageBuffer;
+
+  /* Implementation */
+
+  cell tMarshaler_sCallee sCallee_marshaler{
+    //cTDR         => composite.cTDR;
+    cEventflag   => composite.cEventflag;
+    cSemaphore   => composite.cSemaphore;
+    cMessageBuffer => composite.cMessageBuffer;
+  };
+  composite.eThroughEntry => sCallee_marshaler.eClientEntry;
+};
+
+[active]
+composite tRPCPlugin_tTDR_tMessagebufferChannel_sCalleeServer {
+  /* Interface */
+  attr {
+    PRI taskPriority;
+  };
+  call sCallee cCall;
+  //call sTDR       cTDR;
+  call sEventflag cEventflag;
+  call sSemaphore cSemaphore;
+  call sMessageBuffer cMessageBuffer;
+
+  /* Implementation */
+  cell tUnmarshaler_sCallee sCallee_unmarshaler{
+    //cTDR        => composite.cTDR;
+    cEventflag  => composite.cEventflag;
+    cSemaphore  => composite.cSemaphore;
+    cMessageBuffer => composite.cMessageBuffer;
+    cServerCall => composite.cCall;
+  };
+  cell tRPCDedicatedTaskMain RPCTaskMain{
+    cMain = sCallee_unmarshaler.eUnmarshalAndCallFunction;
+  };
+  cell tTask Task {
+    cBody     = RPCTaskMain.eMain;
+    priority  = taskPriority;
+    taskAttribute = C_EXP( "TA_ACT" );  /* mikan : marshaler starts at the beginning */
+    //stackSize     = 4096;
+    userStackSize     = 4096;
+  };
+};

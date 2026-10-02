@@ -1,0 +1,11 @@
+HRP2Plugin: initialize: region=::, domainName=HRP2, option=OutOfDomain
+HRP2Plugin: initialize: region=rKernel, domainName=HRP2, option=trusted
+===== begin tAlarmHandler plugin =====
+===== begin check my domain AlarmK =====
+ALMHDLRID_$id$
+~~~~~ rKernel is registered!
+../include/kernel.cdl:953:2: error: H1002 tecsgen: fatal internal error during post code generation
+*** Begin Ruby exception message ***
+alarm handler ALMHDLRID_tAlarmHandler_rKernel_AlarmK must belong to kernel domain.
+*** End Ruby exception message ***
+1 error

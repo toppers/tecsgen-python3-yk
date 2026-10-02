@@ -52,6 +52,8 @@ from generate_golden import (
 HERE = Path(__file__).resolve().parent
 P3_ORACLE = HERE.parent.parent / "tests" / "ruby" / "p3_oracle.rb"
 DEFAULT_MANIFEST = HERE / "cases_kernel.toml"
+# 合成入力 CDL の置き場。ケースの inputs で選ぶ
+INPUTS_DIR = HERE / "inputs"
 DEFAULT_WORK = Path.home() / "p5kernel"
 # make に渡す上書き。無し（ターゲットの Makefile.target が決める CC をそのまま使う）
 MAKE_OVERRIDES: list[str] = []
@@ -195,6 +197,15 @@ def run_case(
                 f"{conf_out.decode(errors='replace')}\n{conf_err.decode(errors='replace')}"
             )
 
+    # 実プロジェクトの CDL に無い経路を動かす合成入力（tools/golden/inputs/<名前>/*.cdl）を置く。
+    # 実行前から在るファイルとして扱うので、created には数えない
+    input_hashes: dict[str, str] = {}
+    if "inputs" in case:
+        for src in sorted((INPUTS_DIR / case["inputs"]).glob("*.cdl")):
+            data = src.read_bytes()
+            (obj / src.name).write_bytes(data)
+            input_hashes[src.name] = sha256(data)
+
     run_env = dict(env)
     if p3_log is not None:
         p3_log.parent.mkdir(parents=True, exist_ok=True)
@@ -263,6 +274,7 @@ def run_case(
         "configure": case.get("configure"),
         "make_overrides": make_overrides,
         "tecsgen_args": tecsgen_args,
+        "inputs": input_hashes,
         "exit_code": exit_code,
         "timed_out": timed_out,
         "errors": counts[0] if counts else 0,

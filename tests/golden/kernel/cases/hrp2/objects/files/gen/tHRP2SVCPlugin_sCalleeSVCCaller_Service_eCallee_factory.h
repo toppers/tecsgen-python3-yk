@@ -1,0 +1,3 @@
+#ifndef tHRP2SVCPlugin_sCalleeSVCCaller_Service_eCallee_FACTORY_H
+#define tHRP2SVCPlugin_sCalleeSVCCaller_Service_eCallee_FACTORY_H
+#endif /* tHRP2SVCPlugin_sCalleeSVCCaller_Service_eCallee_FACTORY_H */

@@ -110,3 +110,53 @@ workdir = "tools/m16c-renesas/oaks16_mini_ecc2"
 tecsgen_dest = "tecsgen"
 clean = ["gen"]
 tecsgen_args = ["-v", "-U", "-D", "TECS", "--cpp=gcc -E -D NC30", "-I../../../config/m16c-renesas", "-I../../../config/m16c-renesas/oaks16_mini", "-I../../../include", "-I../../..", "-I../../../syslib", "-I../../../syslib/m16c-renesas/oaks16_mini", "-I.", "sample.cdl"]
+
+# ---------------------------------------------------------------- hrp2+tecs / ev3rt+tecs（合成入力）
+# HRP2 の個別カーネルオブジェクトプラグイン（HRP2SemaphorePlugin ほか）・HRP2SVCPlugin・HRP2RPCPlugin・
+# HRP2CyclicHandlerPlugin・HRP2AlarmHandlerPlugin は、実プロジェクトの CDL が一度も使わない。
+#   - hrp2+tecs の sample1 は、region の古い文法（domain(DOMAIN1) など）が現行の tecsgen で構文エラー（G1016）になる
+#   - ev3rt+tecs の kernel.cdl は HRP2ObjectPlugin・HRP2HandlerPlugin を使い、個別プラグインを使わない
+# そのため、カーネルの CDL を import する合成アプリケーション（tools/golden/inputs/hrp2/）を、
+# カーネルのリポジトリ直下の obj-golden/ に置いて実行する（inputs）。tecsgen は現行（r3304）の文法で呼ぶ。
+# 個別プラグインを generate しているのは hrp2+tecs の include/kernel.cdl、tMessageBuffer を持つのは
+# ev3rt+tecs の hr-tecs/include/kernel.cdl なので、RPC だけ ev3rt+tecs を使う。
+# C プリプロセッサは既定の gcc -E（ターゲットの交差コンパイラは不要）。
+[[case]]
+id = "hrp2/objects"
+repo = "hrp2+tecs"
+target = "synthetic"
+inputs = "hrp2"
+tecsgen_args = ["-k", "euc", "-R", "-D", "TECS", "-D", "TECS_CPP", "-I.", "-I./gen", "-I../tecs_kernel", "-I../include", "-I../arch", "-I..", "-I../target/stm32p207_gcc", "-I../arch/arm_m_gcc/stm32f", "-I../arch/arm_m_gcc/common", "hrp2_objects.cdl"]
+
+# 周期ハンドラ・アラームハンドラのプラグインは、領域の古い API でカーネルドメインを判定していて、
+# domain(HRP2, "trusted") の region に置いても必ず例外になる。例外で止まるので1ケースに1種類
+[[case]]
+id = "hrp2/cyclic"
+repo = "hrp2+tecs"
+target = "synthetic"
+inputs = "hrp2"
+tecsgen_args = ["-k", "euc", "-R", "-D", "TECS", "-D", "TECS_CPP", "-I.", "-I./gen", "-I../tecs_kernel", "-I../include", "-I../arch", "-I..", "-I../target/stm32p207_gcc", "-I../arch/arm_m_gcc/stm32f", "-I../arch/arm_m_gcc/common", "hrp2_cyclic.cdl"]
+
+[[case]]
+id = "hrp2/alarm"
+repo = "hrp2+tecs"
+target = "synthetic"
+inputs = "hrp2"
+tecsgen_args = ["-k", "euc", "-R", "-D", "TECS", "-D", "TECS_CPP", "-I.", "-I./gen", "-I../tecs_kernel", "-I../include", "-I../arch", "-I..", "-I../target/stm32p207_gcc", "-I../arch/arm_m_gcc/stm32f", "-I../arch/arm_m_gcc/common", "hrp2_alarm.cdl"]
+
+[[case]]
+id = "hrp2/rpc"
+repo = "ev3rt+tecs"
+target = "synthetic"
+inputs = "hrp2"
+tecsgen_dest = "hr-tecs/tecsgen/tecsgen"
+tecsgen_args = ["-k", "euc", "-R", "-D", "TECS", "-D", "TECS_CPP", "-I.", "-I./gen", "-I../hr-tecs/tecs_kernel", "-I../hr-tecs/include", "-I../hr-tecs/arch", "-I../hr-tecs", "-I../hr-tecs/target/ev3_gcc", "-I../hr-tecs/arch/arm_gcc/am1808", "-I../hr-tecs/arch/arm_gcc/common", "-I../hr-tecs/arch/gcc", "hrp2_rpc.cdl"]
+
+# GenHRP2Marshaler はポインタ引数のビット幅を決められず、例外で止まる
+[[case]]
+id = "hrp2/rpc_ptr"
+repo = "ev3rt+tecs"
+target = "synthetic"
+inputs = "hrp2"
+tecsgen_dest = "hr-tecs/tecsgen/tecsgen"
+tecsgen_args = ["-k", "euc", "-R", "-D", "TECS", "-D", "TECS_CPP", "-I.", "-I./gen", "-I../hr-tecs/tecs_kernel", "-I../hr-tecs/include", "-I../hr-tecs/arch", "-I../hr-tecs", "-I../hr-tecs/target/ev3_gcc", "-I../hr-tecs/arch/arm_gcc/am1808", "-I../hr-tecs/arch/arm_gcc/common", "-I../hr-tecs/arch/gcc", "hrp2_rpc_ptr.cdl"]

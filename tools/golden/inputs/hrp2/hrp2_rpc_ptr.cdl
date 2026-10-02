@@ -1,0 +1,12 @@
+/*
+ * Synthetic application: HRP2RPCPlugin, error path (a pointer argument).
+ * See README.md in this directory.
+ * Kept ASCII-only because tecsgen reads it with -k euc.
+ */
+import("kernel.cdl");
+
+signature sCallee {
+	ER		add([in] int32_t a, [in] int32_t b, [out] int32_t *sum);
+};
+
+import("hrp2_rpc_common.cdl");

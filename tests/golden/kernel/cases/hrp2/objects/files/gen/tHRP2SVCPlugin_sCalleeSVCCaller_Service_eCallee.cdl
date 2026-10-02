@@ -1,0 +1,3 @@
+celltype tHRP2SVCPlugin_sCalleeSVCCaller_Service_eCallee {
+    entry sCallee eThroughEntry;
+};
