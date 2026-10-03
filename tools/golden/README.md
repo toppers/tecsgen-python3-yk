@@ -57,6 +57,8 @@ rm -rf tests/golden && cp -r /tmp/golden-out tests/golden
 | `TransparentMarshalerPlugin` | `cases/transparent_marshaler` | 使用例が無いので合成入力（`inputs/transparent/`） |
 | `Mruby2CBridgePlugin`・`TECS2CBridgePlugin` | `packages/cases/MrubyBridgePluginPackage-130616/Mruby2C`（既存）、`Mruby2C-File` | `Mruby2C` は小さなシグニチャだけ。`Mruby2C-File` は C のファイル I/O（ポインタ・`size_is`・string）を渡し、経路が広い。`-D TECS` が要る（`FILEptr` の定義が `#ifdef TECS`） |
 
+**P3 記録（差分テスト用）**: 上の各ケースの記録も採ってあり、`tools/port/p4_progress.py` で Python 版と比べる。`test/` 系（`cases/mruby/*`・`transparent_marshaler`）は `run_p2_oracle.sh`・`run_p3_oracle.sh` に `--case` を付けた形（全件を採り直す必要は無い）、カーネル系は `-KernelGolden … -KernelP3 -PytestArgs '--case',…`、パッケージ系は `-PackageGolden … -PytestArgs '--p3-oracle','--case','<id>'`（`tests/golden/packages/p3/`。ケース ID は `packages/<id>`）。パッケージ系は `plugin_trace.txt` に P3 フックがロードしたファイルが加わるので、そのファイルだけは正解データと比べない。
+
 `generate_golden.py` の `inputs`（`tools/golden/inputs/<名前>/*.cdl` を `cwd` へ写す）と `{MRUBY_INCLUDE}`、`collect_kernel.py` の `repo_dir`（`<repo>/trunk` 以外）と `patch`（書き出したソースの文字列置換。置換元が1か所でなければ失敗する）が、今回足した仕組み。
 
 **`ATK1EventPlugin` の限界**: atk1+tecs のアプリケーション CDL は `sample.cdl` だけで、イベントを使うセルが無い（inferred）。プラグインは読み込まれて実行されるが、`tmp_ATK1EventPlugin_0.cdl`・`tmp_ATK1EventPlugin_post_code.cdl`・`EVENT_tecsgen.oil` は 0 バイトで、生成ロジックの本体は記録されていない。記録されているのは「イベントが無いとき何も出さない」経路だけ。`ATK1DelayTaskPlugin` は atk1+tecs の CDL に使用箇所が無く、対象外。

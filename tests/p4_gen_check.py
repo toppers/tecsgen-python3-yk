@@ -13,6 +13,7 @@ from __future__ import annotations
 import io
 import json
 import posixpath
+import re
 import sys
 from contextlib import redirect_stderr, redirect_stdout
 from dataclasses import dataclass, field
@@ -28,6 +29,7 @@ from tecsgen.host import set_host
 
 WORK_ROOT = "@WORK@/test/"
 KERNEL_PREFIX = "kernel/"
+PACKAGES_PREFIX = "packages/"
 # tecs.timestamp は make のレシピ（touch）が作るもので、tecsgen は書かない
 EXCLUDED = ("*.rbdmp", "tmp_*.h", "tecs.timestamp")
 
@@ -41,12 +43,16 @@ def golden_dir(case_id: str) -> Path:
     """ケースの正解データのディレクトリ。カーネルのケースは tests/golden/kernel/cases/ にある。"""
     if case_id.startswith(KERNEL_PREFIX):
         return GOLDEN.parent / "kernel" / "cases" / case_id.removeprefix(KERNEL_PREFIX)
+    if case_id.startswith(PACKAGES_PREFIX):
+        return (
+            GOLDEN.parent / "packages" / "cases" / case_id.removeprefix(PACKAGES_PREFIX)
+        )
     return GOLDEN / case_id
 
 
 def work_root(rec: CaseRecord) -> str:
-    """生成物のパスの基準。通常は作業ツリーの test/、カーネルは tecsgen を起動した作業ディレクトリ。"""
-    if rec.case_id.startswith(KERNEL_PREFIX):
+    """生成物のパスの基準。通常は作業ツリーの test/、カーネル・パッケージは tecsgen を起動した作業ディレクトリ。"""
+    if rec.case_id.startswith((KERNEL_PREFIX, PACKAGES_PREFIX)):
         return rec.cwd.rstrip("/") + "/"
     return WORK_ROOT
 
@@ -83,6 +89,22 @@ def golden_stdout(case_id: str) -> bytes:
 
 def golden_meta(case_id: str) -> dict[str, Any]:
     return json.loads((golden_dir(case_id) / "meta.json").read_text(encoding="utf-8"))
+
+
+_MAKE_ERROR_RE = re.compile(rb"^make: \*\*\* \[[^\]]*\] Error (\d+)$", re.MULTILINE)
+
+
+def golden_exit_code(case_id: str, meta: dict[str, Any]) -> int:
+    """正解の終了コード。カーネルのケースは make 経由で採ったので、make が失敗したときの終了コード（2）は
+    tecsgen 自身の終了コードではない。make が標準エラー出力に書く "Error N" が tecsgen の終了コード。
+    """
+    code = meta["exit_code"]
+    if case_id.startswith(KERNEL_PREFIX) and code == 2:
+        stderr = (golden_dir(case_id) / "stderr.txt").read_bytes()
+        m = _MAKE_ERROR_RE.search(stderr)
+        if m is not None:
+            return int(m.group(1))
+    return code  # type: ignore[no-any-return]
 
 
 @dataclass
@@ -142,7 +164,7 @@ def run_case(rec: CaseRecord, stdout: Any = None, stderr: Any = None) -> GenResu
         golden,
         golden_stdout(rec.case_id),
         (golden_dir(rec.case_id) / "stderr.txt").read_bytes(),
-        meta["exit_code"],
+        golden_exit_code(rec.case_id, meta),
     )
     for k in sorted(set(golden) | set(written)):
         if k not in written:

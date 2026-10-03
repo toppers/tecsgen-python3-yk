@@ -119,17 +119,23 @@ def write_p3_record(log: Path, out: Path, case_id: str, normalize: Normalizer) -
         gz.write(b"\n".join(lines) + b"\n")
 
 
-def same_as_committed(scratch: Path, committed: Path, case_id: str) -> list[str]:
+def same_as_committed(
+    scratch: Path,
+    committed: Path,
+    case_id: str,
+    ignore: tuple[str, ...] = ("meta.json",),
+) -> list[str]:
     """P3 オラクルを差し込んだ実行の結果が、コミット済みの正解データと同じかを調べる。
 
-    違うものの名前を返す（フックが出力を変えていない確認）。
+    違うものの名前を返す（フックが出力を変えていない確認）。ignore のファイル名は比べない
+    （パッケージの plugin_trace.txt は、フックがロードしたファイルが加わるので比べない）。
     """
     a, b = scratch / "cases" / case_id, committed / "cases" / case_id
     names = {
         p.relative_to(d).as_posix()
         for d in (a, b)
         for p in d.rglob("*")
-        if p.is_file() and p.name != "meta.json"
+        if p.is_file() and p.name not in ignore
     }
     return sorted(
         n

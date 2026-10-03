@@ -6,7 +6,7 @@ import re
 from typing import Any
 
 from tecsgen.plugin.HRPKernelObjectPlugin import HRPKernelObjectPlugin
-from tecsgen.ruby_compat import sym
+from tecsgen.ruby_compat import sym, to_s
 
 _API: dict[str, list[str]] = {
     "SEMAPHORE": ["SEM", "id", "attribute", "initialCount", "maxCount"],
@@ -52,14 +52,18 @@ class HRPObjectPlugin(HRPKernelObjectPlugin):
             raise RuntimeError(f"{arg} is unknown")
         elif arg != "KERNEL":
             params = _API[arg]
-            if arg == "MUTEX" and _RX_TA_CEILING.search(val[sym("attribute")]) is None:
+            if (
+                arg == "MUTEX"
+                and _RX_TA_CEILING.search(to_s(val.get(sym("attribute")))) is None
+            ):
                 sliced = params[2:-1]  # :ceilingPriority を外す
             else:
                 sliced = params[2:]
-            arg_list = [f"{val[sym(attr)]}" for attr in sliced]
+            # Ruby の Hash は、無いキー（セルタイプに無い属性）に nil を返し、文字列にすると空になる
+            arg_list = [to_s(val.get(sym(attr))) for attr in sliced]
             file.print(tab)
             file.puts(
-                f"CRE_{params[0]}({val[sym('id')]}, {{ {', '.join(arg_list)} }});"
+                f"CRE_{params[0]}({to_s(val.get(sym('id')))}, {{ {', '.join(arg_list)} }});"
             )
 
     def print_cfg_sac(self, file: Any, val: Any, acv: Any) -> None:

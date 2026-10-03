@@ -24,6 +24,9 @@ P3_GOLDEN = GOLDEN.parent / "p3"
 # カーネル依存プラグインのケース（tests/golden/kernel/）の記録。ケース ID は "kernel/<ID>"
 KERNEL_PREFIX = "kernel/"
 KERNEL_P3_GOLDEN = GOLDEN.parent / "kernel" / "p3"
+# 展開済みパッケージのケース（tests/golden/packages/）の記録。ケース ID は "packages/<ID>"
+PACKAGES_PREFIX = "packages/"
+PACKAGES_P3_GOLDEN = GOLDEN.parent / "packages" / "p3"
 # テストケースに同梱された利用者プラグイン（Ruby 版の test/<ケース>/*.rb）の Python 版。
 # `-L .` で探す。ケースごとのディレクトリに置く（別ケースに同名で内容の違うものがある）
 USER_PLUGINS = GOLDEN.parent.parent / "user_plugins"
@@ -96,12 +99,19 @@ def case_ids(include_kernel: bool = False) -> list[str]:
             + p.relative_to(KERNEL_P3_GOLDEN).as_posix().removesuffix(".jsonl.gz")
             for p in KERNEL_P3_GOLDEN.rglob("*.jsonl.gz")
         ]
+        ids += [
+            PACKAGES_PREFIX
+            + p.relative_to(PACKAGES_P3_GOLDEN).as_posix().removesuffix(".jsonl.gz")
+            for p in PACKAGES_P3_GOLDEN.rglob("*.jsonl.gz")
+        ]
     return sorted(ids)
 
 
 def record_path(case_id: str) -> Any:
     if case_id.startswith(KERNEL_PREFIX):
         return KERNEL_P3_GOLDEN / f"{case_id.removeprefix(KERNEL_PREFIX)}.jsonl.gz"
+    if case_id.startswith(PACKAGES_PREFIX):
+        return PACKAGES_P3_GOLDEN / f"{case_id.removeprefix(PACKAGES_PREFIX)}.jsonl.gz"
     return P3_GOLDEN / f"{case_id}.jsonl.gz"
 
 

@@ -13,7 +13,13 @@ import tempfile
 import tomllib
 from pathlib import Path
 
-from collect_kernel import Normalizer, command_version, run_case, svn_export
+from collect_kernel import (
+    Normalizer,
+    command_version,
+    run_case,
+    same_as_committed,
+    svn_export,
+)
 
 DEFAULT_MANIFEST = Path(__file__).with_name("cases_packages.toml")
 
@@ -61,6 +67,12 @@ def main(argv: list[str] | None = None) -> int:
         "--append", action="store_true", help="add only cases absent from output"
     )
     parser.add_argument("--timeout", type=int, default=600)
+    parser.add_argument(
+        "--p3-oracle",
+        action="store_true",
+        help="正解データは採り直さず、P3 オラクルを差し込んで実行し、記録を <out>/p3/<id>.jsonl.gz に書く"
+        "（コミット済みの正解データと同じ出力になることを確かめる）。--case で対象を選ぶ",
+    )
     opts = parser.parse_args(argv)
 
     cases = tomllib.loads(opts.manifest.read_text(encoding="utf-8"))["case"]
@@ -80,8 +92,13 @@ def main(argv: list[str] | None = None) -> int:
 
     root = opts.packages_root.resolve()
     out = opts.out.resolve()
+    committed = out
+    if opts.p3_oracle:
+        # 正解データ本体は触らず、作業ディレクトリの下に採る
+        out = (opts.work / "p3-scratch").resolve()
+        shutil.rmtree(out, ignore_errors=True)
     previous: dict = {}
-    if out.exists() and any(out.iterdir()):
+    if not opts.p3_oracle and out.exists() and any(out.iterdir()):
         if not opts.append or not opts.case:
             parser.error(f"output is not empty: {out}; use --append with --case")
         previous_path = out / "environment.json"
@@ -154,6 +171,9 @@ def main(argv: list[str] | None = None) -> int:
                     normalize=normalizer,
                     revisions=revisions,
                     timeout=opts.timeout,
+                    p3_log=(out / "p3-log" / f"{case['id']}.log")
+                    if opts.p3_oracle
+                    else None,
                 )
             except (RuntimeError, OSError, ValueError) as exc:
                 failed.append(case["id"])
@@ -199,6 +219,25 @@ def main(argv: list[str] | None = None) -> int:
                 f"{'OK' if valid else 'INCOMPLETE'} {case['id']}: exit={meta['exit_code']} plugins={created} files={len(meta['created']) + len(meta['modified'])}"
             )
             results.append(meta)
+
+    if opts.p3_oracle:
+        # 全件が正解データと同じ出力だったときだけ、記録をコミット対象の場所へ置く
+        differing = []
+        for case in cases:
+            diff = same_as_committed(
+                out, committed, case["id"], ignore=("meta.json", "plugin_trace.txt")
+            )
+            if diff:
+                print(f"DIFFERS from committed golden: {case['id']}: {diff}")
+                differing.append(case["id"])
+        if failed or differing:
+            return 1
+        for rec in sorted((out / "p3").rglob("*.jsonl.gz")):
+            target = committed / "p3" / rec.relative_to(out / "p3")
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(rec, target)
+        print(f"P3 records written to {committed / 'p3'}")
+        return 0
 
     previous_failed = set(previous.get("failed", []))
     previous_failed.difference_update(case["id"] for case in cases)

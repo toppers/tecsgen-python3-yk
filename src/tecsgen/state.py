@@ -60,6 +60,8 @@ def reset_model_state() -> None:
     for mod_name, cls_name in (
         ("tecsgen.plugin.ThroughPlugin", "ThroughPlugin"),
         ("tecsgen.plugin.C2TECSBridgePlugin", "C2TECSBridgePlugin"),
+        ("tecsgen.plugin.TECS2CBridgePlugin", "TECS2CBridgePlugin"),
+        ("tecsgen.plugin.Mruby2CBridgePlugin", "Mruby2CBridgePlugin"),
         ("tecsgen.plugin.RepeatCellPlugin", "RepeatCellPlugin"),
         ("tecsgen.plugin.SharedRPCPlugin", "SharedRPCPlugin"),
         ("tecsgen.plugin.SharedOpaqueRPCPlugin", "SharedOpaqueRPCPlugin"),
@@ -81,6 +83,10 @@ def reset_model_state() -> None:
         ("tecsgen.plugin.HRPKernelObjectManager", "HRPSVCManage"),
         ("tecsgen.plugin.MrubyBridgeSignaturePlugin", "MrubyBridgeSignaturePlugin"),
         ("tecsgen.plugin.MrubyBridgeCellPlugin", "MrubyBridgeCellPlugin"),
+        (
+            "tecsgen.plugin.MrubyInfoBridgeSignaturePlugin",
+            "MrubyInfoBridgeSignaturePlugin",
+        ),
     ):
         mod = sys.modules.get(mod_name)
         if mod is not None:
