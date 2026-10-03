@@ -15,7 +15,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, ClassVar
 
-from tecsgen.ruby_compat import Y, gsub, sym, to_s, truthy
+from tecsgen.ruby_compat import Y, gsub, sym, to_s, truthy, utf8_literal
 
 # 型検査のときだけ Node の子として扱う（mixin から cdl_error を呼ぶため）
 if TYPE_CHECKING:
@@ -247,7 +247,9 @@ class GenTransparentMarshaler(_Base):
                 file.print("    }else{\n         return ERCD( E_RPC, E_ID );\n    }\n")
             else:
                 file.print(
-                    "    }else{\n        /* エラー処理コードをここに記述 / */\n    }\n"
+                    utf8_literal(
+                        "    }else{\n        /* エラー処理コードをここに記述 / */\n    }\n"
+                    )
                 )
 
         b_dph = self._b_datapumpholder
@@ -261,16 +263,22 @@ class GenTransparentMarshaler(_Base):
 
         if b_dph is False:
             # SOP を送信
-            file.print("    /* SOPの送出 (GenTransparentMarshler0102) */\n")
+            file.print(
+                utf8_literal("    /* SOPの送出 (GenTransparentMarshler0102) */\n")
+            )
             file.print("    if( ( ercd_ = cTDR_sendSOP( true ) ) != E_OK )\n")
             file.print("      goto error_reset;\n")
         elif func_name == sym("waitForReadDone"):
-            file.print("   /* SOP の送出 (GenTransparentMarshler0102_2) */\n")
+            file.print(
+                utf8_literal("   /* SOP の送出 (GenTransparentMarshler0102_2) */\n")
+            )
             file.print("   if( ( ercd_ = cTDR_putInt16(TDR_SOP_MAGIC1) ) != E_OK )\n")
             file.print("      goto error_reset;\n")
 
         # func_id を送信
-        file.print("    /* 関数 id の送出 (GenTransparentMarshler0103) */\n")
+        file.print(
+            utf8_literal("    /* 関数 id の送出 (GenTransparentMarshler0103) */\n")
+        )
         file.print("    if( ( ercd_ = cTDR_putInt16( func_id_ ) ) != E_OK )\n")
         file.print("        goto error_reset;\n")
 
@@ -278,7 +286,9 @@ class GenTransparentMarshaler(_Base):
         b_marshal = True  # marshal
 
         # in 方向の入出力を出力
-        file.print("    /* 入力引数送出 (GenTransparentMarshler0104) */\n")
+        file.print(
+            utf8_literal("    /* 入力引数送出 (GenTransparentMarshler0104) */\n")
+        )
         self.print_params(
             params, file, 1, b_marshal, b_get, True, func_type.is_oneway()
         )
@@ -292,7 +302,9 @@ class GenTransparentMarshaler(_Base):
             )
 
         file.print(
-            "    /* EOPの送出（パケットの掃きだし）(GenTransparentMarshler0105) */\n"
+            utf8_literal(
+                "    /* EOPの送出（パケットの掃きだし）(GenTransparentMarshler0105) */\n"
+            )
         )
         b_continue = "true" if not func_type.is_oneway() else "false"
         if b_dph is False or func_name == sym("newDataReady"):
@@ -376,30 +388,36 @@ class GenTransparentMarshaler(_Base):
             file.print("    }else{\n        return ERCD( E_RPC, E_ID );\n    }\n")
         else:
             file.print(
-                "    }else{\n        /* エラー処理コードをここに記述 / */\n    }\n"
+                utf8_literal(
+                    "    }else{\n        /* エラー処理コードをここに記述 / */\n    }\n"
+                )
             )
 
         if self._b_datapumpholder is False:
             file.print(
-                "\n"
-                "    /* SOPのチェック (GenTransparentMarshler0202) / */\n"
-                "    if( (ercd_=cTDR_receiveSOP( false )) != E_OK )\n"
-                "        goto error_reset;\n\n"
-                "    /* func_id の取得 / */\n"
-                "    if( (ercd_=cTDR_getInt16( &func_id_ )) != E_OK )\n"
-                "        goto error_reset;\n"
+                utf8_literal(
+                    "\n"
+                    "    /* SOPのチェック (GenTransparentMarshler0202) / */\n"
+                    "    if( (ercd_=cTDR_receiveSOP( false )) != E_OK )\n"
+                    "        goto error_reset;\n\n"
+                    "    /* func_id の取得 / */\n"
+                    "    if( (ercd_=cTDR_getInt16( &func_id_ )) != E_OK )\n"
+                    "        goto error_reset;\n"
+                )
             )
         else:
             file.print(
-                "\n"
-                "    /* func_id 取得 or SOPの受信 (GenTransparentMarshler0203) / */\n"
-                "    if( (ercd_=cTDR_getInt16( &func_id_ )) != E_OK )\n"
-                "        goto error_reset;\n"
-                "    if( func_id_ == TDR_SOP_MAGIC1 ){\n"
-                "      /* SOP の後の func_id の取得 / */\n"
-                "      if( (ercd_=cTDR_getInt16( &func_id_ )) != E_OK )\n"
-                "          goto error_reset;\n"
-                "    }\n"
+                utf8_literal(
+                    "\n"
+                    "    /* func_id 取得 or SOPの受信 (GenTransparentMarshler0203) / */\n"
+                    "    if( (ercd_=cTDR_getInt16( &func_id_ )) != E_OK )\n"
+                    "        goto error_reset;\n"
+                    "    if( func_id_ == TDR_SOP_MAGIC1 ){\n"
+                    "      /* SOP の後の func_id の取得 / */\n"
+                    "      if( (ercd_=cTDR_getInt16( &func_id_ )) != E_OK )\n"
+                    "          goto error_reset;\n"
+                    "    }\n"
+                )
             )
 
         file.print(
@@ -425,7 +443,7 @@ class GenTransparentMarshaler(_Base):
             file.print("        break;\n")
 
         if truthy(self._pp_allocator_size):
-            ppallocator_dealloc_str = (
+            ppallocator_dealloc_str = utf8_literal(
                 "    /* PPAllocator のすべてを解放 */\n    cPPAllocator_dealloc_all();"
             )
         else:
@@ -645,7 +663,9 @@ class GenTransparentMarshaler(_Base):
 
         signature = self._signature  # type: ignore[attr-defined]
         file.print(
-            "/* アンマーシャラ関数のプロトタイプ宣言 (GenTransparentMarshler0301) */\n"
+            utf8_literal(
+                "/* アンマーシャラ関数のプロトタイプ宣言 (GenTransparentMarshler0301) */\n"
+            )
         )
         # signature に含まれる すべての関数について
         for f in signature.get_function_head_array():
@@ -667,7 +687,11 @@ class GenTransparentMarshaler(_Base):
             return
 
         signature = self._signature  # type: ignore[attr-defined]
-        file.print("\n/*** アンマーシャラ関数 (GenTransparentMarshler0401) ***/\n\n")
+        file.print(
+            utf8_literal(
+                "\n/*** アンマーシャラ関数 (GenTransparentMarshler0401) ***/\n\n"
+            )
+        )
         for f in signature.get_function_head_array():
             f_name = f.get_name()
             f_type = f.get_declarator().get_type()
@@ -726,7 +750,11 @@ class GenTransparentMarshaler(_Base):
                 )
 
             # in 方向の入出力を入力
-            file.print("\n        /* 入力引数受取 (GenTransparentMarshler0402) */\n")
+            file.print(
+                utf8_literal(
+                    "\n        /* 入力引数受取 (GenTransparentMarshler0402) */\n"
+                )
+            )
             b_get = True  # unmarshal では get
             b_marshal = False
             self.print_params(
@@ -743,7 +771,9 @@ class GenTransparentMarshaler(_Base):
 
             # パケットの受信完了
             file.print(
-                "        /* パケット終わりをチェック (GenTransparentMarshler0403) */\n"
+                utf8_literal(
+                    "        /* パケット終わりをチェック (GenTransparentMarshler0403) */\n"
+                )
             )
             b_continue = "true" if not f.is_oneway() else "false"
             if self._b_datapumpholder is False or f_name == sym("newDataReady"):
@@ -751,7 +781,11 @@ class GenTransparentMarshaler(_Base):
                 file.print("        goto error_reset;\n\n")
 
             # 対象関数を呼出す
-            file.print("    /* 対象関数の呼出し (GenTransparentMarshler0404) */\n")
+            file.print(
+                utf8_literal(
+                    "    /* 対象関数の呼出し (GenTransparentMarshler0404) */\n"
+                )
+            )
             if b_void:
                 file.print(f"    cServerCall_{to_s(f_name)}(")
             else:
@@ -767,10 +801,12 @@ class GenTransparentMarshaler(_Base):
             # oneway の場合出力、戻り値が無く、受取を待たない（非同期な呼出し）
             if not f.is_oneway():
                 file.print(
-                    "    /* 関数処理の終了を通知 (GenTransparentMarshler0405) / */\n"
-                    "    if( ( ercd_ = cEventflag_set( 0x01 ) ) != E_OK ){\n"
-                    "      goto error_reset;\n"
-                    "    }\n"
+                    utf8_literal(
+                        "    /* 関数処理の終了を通知 (GenTransparentMarshler0405) / */\n"
+                        "    if( ( ercd_ = cEventflag_set( 0x01 ) ) != E_OK ){\n"
+                        "      goto error_reset;\n"
+                        "    }\n"
+                    )
                 )
             file.print("    return E_OK;\nerror_reset:\n    return ercd_;\n}\n\n")
 

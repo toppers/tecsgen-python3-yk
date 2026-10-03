@@ -130,7 +130,17 @@ class LexError(Exception):
     """Ruby 版で走査ループが例外になる箇所（どの正規表現にも当たらない、など）。"""
 
 
+class InvalidByteSequence(LexError):
+    """Windows-31J として不正なバイト列の行（Ruby 版の ArgumentError `invalid byte sequence`）。"""
+
+
 Reader = Callable[[str], bytes]
+
+# Windows-31J として正しい並び（Ruby の `valid_encoding?` は文字の構造だけで判定し、
+# 対応する Unicode が無い符号（81AD など）も正しいとする。Ruby 3.2.3 で全 1・2 バイトを調べて確かめた）
+_WINDOWS_31J_VALID = re.compile(
+    rb"(?:[\x00-\x7f\xa1-\xdf]|[\x81-\x9f\xe0-\xfc][\x40-\x7e\x80-\xfc])*"
+)
 
 
 def _read_file(file: str) -> bytes:
@@ -138,14 +148,22 @@ def _read_file(file: str) -> bytes:
 
 
 def _lines(file: str, reader: Reader) -> Iterator[str]:
-    """ファイルを LF で行に分け、走査用に復号して返す（改行文字を含む）。"""
-    codec = "cp932" if get_context().ruby19_file_encode == "Shift_JIS" else "latin-1"
+    """ファイルを LF で行に分け、走査用に復号して返す（改行文字を含む）。
+
+    Shift_JIS のとき、Windows-31J として不正なバイト列の行に来ると例外にする。Ruby 版は不正な文字列へ
+    正規表現を当てて ArgumentError になり、CDL は G1014、C ヘッダは B1002 になる。
+    """
+    sjis = get_context().ruby19_file_encode == "Shift_JIS"
+    codec = "cp932" if sjis else "latin-1"
     data = reader(file)
     start = 0
     while start < len(data):
         end = data.find(b"\n", start)
         end = len(data) if end < 0 else end + 1
-        yield data[start:end].decode(codec, errors="surrogateescape")
+        chunk = data[start:end]
+        if sjis and not _WINDOWS_31J_VALID.fullmatch(chunk):
+            raise InvalidByteSequence("invalid byte sequence in Windows-31J")
+        yield chunk.decode(codec, errors="surrogateescape")
         start = end
 
 
