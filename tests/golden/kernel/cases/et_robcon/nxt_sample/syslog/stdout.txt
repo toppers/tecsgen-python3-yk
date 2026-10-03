@@ -1,0 +1,7 @@
+/usr/bin/ruby ../../tecsgen/tecsgen/tecsgen.rb -L ../../tecsgen/tecsgen -L../../tecs_lib/mindstorms_nxt -R -D TECS -D TECS_CPP \
+									-I. -I./gen -I../../tecs_kernel_atk1 -I../../tecs_kernel -I../../include -I../../config -I../..  -I../../kernel -I../../config/at91sam7s-gnu/lego_nxt -I../../tecs_lib/mindstorms_nxt -I../../syslib/at91sam7s-gnu/lego_nxt -I../../config/at91sam7s-gnu -I../../kernel/ecc2 tSample.cdl
+../../tecs_lib/mindstorms_nxt/tDisplay_decl.cdl:65:29: warning: W3004 getBuffer pointer type has returned. specify deviate or stop return pointer
+1 warning
+../../include/kernel.cdl:310:10: error: S3003 StarterTask: id number '1' conflict with ConnectBluetoothTask
+../../include/kernel.cdl:522:10: error: S3001 RES_SCHEDULER: id too large 1 (max=1)
+touch tecs.timestamp

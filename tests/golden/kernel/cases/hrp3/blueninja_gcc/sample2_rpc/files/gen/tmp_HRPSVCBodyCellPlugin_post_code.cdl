@@ -1,0 +1,21 @@
+region rKernelDomain{
+  cell tHRPSVCBody_sSysLog SVCBody_SysLog_eSysLog {
+    cCall = SysLog.eSysLog;
+    restrict_acptn_write = C_EXP( "TACP_SHARED" );
+    restrict_acptn_read = C_EXP( "TACP_SHARED" );
+    restrict_acptn_mask = C_EXP( "TACP_SHARED" );
+    restrict_acptn_refer = C_EXP( "TACP_SHARED" );
+    restrict_acptn_flush = C_EXP( "TACP_SHARED" );
+  };
+};
+region rKernelDomain{
+  cell tHRPSVCBody_sSerialPort SVCBody_SerialPort1_eSerialPort {
+    cCall = SerialPort1.eSerialPort;
+    restrict_acptn_open = C_EXP( "TACP_SHARED" );
+    restrict_acptn_close = C_EXP( "TACP_SHARED" );
+    restrict_acptn_read = C_EXP( "TACP_SHARED" );
+    restrict_acptn_write = C_EXP( "TACP_SHARED" );
+    restrict_acptn_control = C_EXP( "TACP_SHARED" );
+    restrict_acptn_refer = C_EXP( "TACP_SHARED" );
+  };
+};

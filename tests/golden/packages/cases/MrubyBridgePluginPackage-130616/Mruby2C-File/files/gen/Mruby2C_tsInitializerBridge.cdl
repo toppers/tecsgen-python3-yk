@@ -1,0 +1,3 @@
+cell nC2TECS::tnMruby_sInitializeBridge C2TECS_tsInitializeBridge{
+    cCall = VM_TECSInitializer.eInitialize;
+};

@@ -1,0 +1,27 @@
+import_C( "t_stdlib.h" );
+
+/* HRPSVC0001 : callee side celltype */
+[active]
+celltype tHRPSVCBody_sSysLog {
+    call sSysLog cCall;
+    attr {
+      ACPTN   restrict_acptn_write;
+      ACPTN   restrict_acptn_read;
+      ACPTN   restrict_acptn_mask;
+      ACPTN   restrict_acptn_refer;
+      ACPTN   restrict_acptn_flush;
+      };
+    FACTORY {
+    write("$ct$_tecsgen.h", "#include \"kernel_cfg.h\"");
+    };
+};
+/* HRPSVC0002 : caller side celltype */
+celltype tHRPSVCCaller_sSysLog {
+    attr {
+      FN  tfn_base;    //  TFN base number
+    };
+    entry sSysLog eEntry;
+    FACTORY {
+      write("$ct$_factory.h", "#include \"tHRPSVCCaller_sSysLog_id.h\"");
+    };
+};

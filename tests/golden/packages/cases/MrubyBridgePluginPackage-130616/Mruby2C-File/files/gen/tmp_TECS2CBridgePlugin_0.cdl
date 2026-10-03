@@ -1,0 +1,7 @@
+namespace nTECS2C{
+  [singleton]
+  celltype tsLowFile {
+    [inline]
+    entry ::sLowFile eEnt;
+  };
+};

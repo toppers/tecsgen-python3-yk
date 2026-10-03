@@ -1,0 +1,90 @@
+/* HRPRPCPlugin:000
+ * caller_cell:::rDomain1::SubTaskBody1
+ * next_cell:::rDomain2::SampleSharedObject2
+ */ 
+import( <./gen/tRPCPlugin_tNBOTDR__sGetSharedObject.cdl> );
+/* HRPRPCPlugin001 */
+//  MessageBuffer client=>server
+cell tMessageBuffer Join_domain_to_through__0ClientBody0{
+    maxMessageSize = 64;      /* This value must be same as MessageBufferCEP's buffer size */
+    bufferSize     = 128;
+    accessPattern1 = C_EXP( "TACP(rDomain1)|TACP(rDomain2)" );
+    accessPattern2 = C_EXP( "TACP(rDomain1)|TACP(rDomain2)" );
+    accessPattern3 = C_EXP( "TACP(rDomain1)|TACP(rDomain2)" );
+    accessPattern4 = C_EXP( "TACP(rDomain1)|TACP(rDomain2)" );
+};
+
+/* HRPRPCPlugin002 */
+//  MessageBuffer server=>client
+cell tMessageBuffer Join_domain_to_through__0ClientBody1{
+    maxMessageSize = 64;      /* This value must be same as MessageBufferCEP's buffer size */
+    bufferSize     = 128;
+    accessPattern1 = C_EXP( "TACP(rDomain1)|TACP(rDomain2)" );
+    accessPattern2 = C_EXP( "TACP(rDomain1)|TACP(rDomain2)" );
+    accessPattern3 = C_EXP( "TACP(rDomain1)|TACP(rDomain2)" );
+    accessPattern4 = C_EXP( "TACP(rDomain1)|TACP(rDomain2)" );
+};
+region rDomain1{
+
+/* HRPRPCPlugin003 */
+    //  Semaphore for Multi-task use ("specify noClientSemaphore" option to delete this)
+    cell tSemaphore Join_domain_to_through__0Server_Semaphore{
+        initialCount = 1;
+    };
+/* HRPRPCPlugin004 */
+    //  Client Side Channel
+    cell tMessageBufferCEP Join_domain_to_through__0Client_CEP{
+        cMessageBuffer0 = Join_domain_to_through__0ClientBody0.eMessageBuffer;
+        cMessageBuffer1 = Join_domain_to_through__0ClientBody1.eMessageBuffer;
+    };
+
+    //  Client Side TDR
+    cell tTDR Join_domain_to_through__0Client_TDR{
+        cChannel = Join_domain_to_through__0Client_CEP.eChannel;
+    };
+
+      //  Marshaler
+/* HRPRPCPlugin005 */
+    cell tOpaqueMarshaler_sGetSharedObject_through Join_domain_to_through__0 {
+        cTDR = Join_domain_to_through__0Client_TDR.eTDR;
+        cLockChannel = Join_domain_to_through__0Server_Semaphore.eSemaphore;
+    };
+};
+
+
+region rDomain2{
+/* HRPRPCPlugin006 */
+    //  Server Side Channel
+    cell tMessageBufferCEP Join_domain_to_through__0Server_CEP{
+        cMessageBuffer0 = Join_domain_to_through__0ClientBody1.eMessageBuffer;
+        cMessageBuffer1 = Join_domain_to_through__0ClientBody0.eMessageBuffer;
+    };
+
+/* HRPRPCPlugin007 */
+    //  Server Side TDR
+    cell tTDR Join_domain_to_through__0Server_TDR{
+        cChannel = Join_domain_to_through__0Server_CEP.eChannel;
+    };
+
+/* HRPRPCPlugin008 */
+    //  Unmarshaler
+    cell tOpaqueUnmarshaler_sGetSharedObject Join_domain_to_through__0Server_Unmarshaler {
+        cTDR        = Join_domain_to_through__0Server_TDR.eTDR;
+        cServerCall = ::rDomain2::SampleSharedObject2.eGetSharedObject;
+    };
+
+/* HRPRPCPlugin009 */
+    //  Unmarshaler Task Main
+    cell tRPCDedicatedTaskMain Join_domain_to_through__0Server_TaskMain {
+        cMain         = Join_domain_to_through__0Server_Unmarshaler.eService;
+    };
+
+/* HRPRPCPlugin010 */
+    //  Unmarshaler Task
+    cell tTask Join_domain_to_through__0Server_Task {
+        cTaskBody = Join_domain_to_through__0Server_TaskMain.eMain;
+        priority  = 9;
+        stackSize = 4096;
+        attribute = C_EXP( "TA_ACT" );  /* mikan : marshaler task starts at beginning */
+    };
+};

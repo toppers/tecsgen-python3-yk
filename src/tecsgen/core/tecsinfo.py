@@ -277,11 +277,12 @@ class RegionTECSInfo:
                 if port.get_port_type() != Y.ENTRY:
                     continue
 
+                # Ruby 版は signatures に登録しないので、同じシグニチャの受け口が続いても
+                # include を毎回出力する（そのまま再現する）
                 if signatures.get(port.get_signature()) is None:
                     f.print(
                         f'#include "{to_s(port.get_signature().get_global_name())}_tecsgen.h"\n'
                     )
-                    signatures[port.get_signature()] = True
 
                 if cell.get_celltype().get_global_name() == sym(
                     "nTECSInfo_tRawEntryDescriptorInfo"

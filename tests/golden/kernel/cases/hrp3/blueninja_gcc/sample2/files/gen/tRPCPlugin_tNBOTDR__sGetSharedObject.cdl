@@ -1,0 +1,21 @@
+/* HRPRPCPlugin:000 */
+import( <rpc.cdl> );
+import( <tMessageBufferCEP.cdl> );
+generate( OpaqueMarshalerPlugin, ::sGetSharedObject, "" );
+
+composite tOpaqueMarshaler_sGetSharedObject_through {
+  entry ::sGetSharedObject eThroughEntry;
+  call sTDR       cTDR;
+  [optional]
+    call sSemaphore cLockChannel;
+  [optional]
+    call sRPCErrorHandler cErrorHandler;
+
+  cell tOpaqueMarshaler_sGetSharedObject Marshaler{
+    cTDR          => composite.cTDR;
+    cLockChannel  => composite.cLockChannel;
+    cErrorHandler => composite.cErrorHandler;
+  };
+  composite.eThroughEntry => Marshaler.eClientEntry;
+};
+

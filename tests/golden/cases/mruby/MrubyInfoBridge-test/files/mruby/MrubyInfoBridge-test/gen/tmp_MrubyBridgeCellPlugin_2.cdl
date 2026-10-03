@@ -1,0 +1,8 @@
+/* MrubyBridgeCellPlugin: generate for cell=TECSInfo */
+
+/* cell.port=TECSInfo.eAccessor */
+generate( MrubyBridgePlugin, ::nTECSInfo::sAccessor, "ignoreUnsigned=false, auto_exclude=true, " );
+/* BridgeCell */
+cell nMruby::tnTECSInfo_sAccessor TECSInfoeAccessorBridge {
+    cTECS = ::TECSInfo.eAccessor;
+};

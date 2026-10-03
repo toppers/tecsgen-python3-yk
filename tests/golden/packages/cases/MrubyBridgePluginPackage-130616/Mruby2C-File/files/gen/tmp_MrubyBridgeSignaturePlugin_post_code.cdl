@@ -1,0 +1,15 @@
+
+  // MrubyBridgeSignaturePlugin: MBP601
+  cell nMruby::tsLowFile_Initializer VM_tsLowFile_Initializer{ };
+  cell nMruby::tsFile_Initializer VM_tsFile_Initializer{ };
+  // MBP602
+  cell nMruby::tCharPointer CtCharPointer { };
+  cell nMruby::tUInt8Pointer CtUInt8Pointer { };
+  // MBP603
+  /* === VM name is 'VM' === (MBP610) */
+  cell nMruby::tTECSInitializer VM_TECSInitializer {
+    cInitialize[] = VM_tsLowFile_Initializer.eInitialize;
+    cInitialize[] = VM_tsFile_Initializer.eInitialize;
+    cInitialize[] = CtCharPointer.eInitialize;
+    cInitialize[] = CtUInt8Pointer.eInitialize;
+  };

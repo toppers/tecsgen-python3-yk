@@ -1,0 +1,5 @@
+tecsgen  version 1.9.1  
+In file included from ./gen/tmp_C_src.c:39:
+../sample/tSample2.h:81:2: error: #error INTNO1 is necessary for this sample program.
+   81 | #error INTNO1 is necessary for this sample program.
+      |  ^~~~~

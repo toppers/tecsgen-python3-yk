@@ -1,0 +1,62 @@
+	ALARM AlarmCallbackButtonCheck {
+		COUNTER = SystemTickCounter;
+		ACTION = ALARMCALLBACK {
+			ALARMCALLBACKNAME = "CyclicHandlerButtonCheck";
+		};
+		AUTOSTART = TRUE {
+			ALARMTIME = 10;
+			CYCLETIME = 10;
+			APPMODE = appmode1;
+		};
+	};
+
+	ALARM Bluetooth_AlarmTimeOut {
+		COUNTER = SystemTickCounter;
+		ACTION = ALARMCALLBACK {
+			ALARMCALLBACKNAME = "AlarmTimeOutBluetooth";
+		};
+		AUTOSTART = FALSE;
+	};
+
+	ALARM DelayConnectBluetoothTask_Alarm {
+		COUNTER = SystemTickCounter;
+		ACTION = SETEVENT {
+			TASK = ConnectBluetoothTask;
+			EVENT = DelayConnectBluetoothTask_Event;
+		};
+		AUTOSTART = FALSE;
+	};
+
+	ALARM AVR_AlarmCallbackAVR {
+		COUNTER = SystemTickCounter;
+		ACTION = ALARMCALLBACK {
+			ALARMCALLBACKNAME = "CyclicHandlerAVR";
+		};
+		AUTOSTART = TRUE {
+			ALARMTIME = 1;
+			CYCLETIME = 1;
+			APPMODE = appmode1;
+		};
+	};
+
+	ALARM Button_AlarmCallbackButtonUpdate {
+		COUNTER = SystemTickCounter;
+		ACTION = ALARMCALLBACK {
+			ALARMCALLBACKNAME = "CyclicHandlerButtonUpdate";
+		};
+		AUTOSTART = TRUE {
+			ALARMTIME = 10;
+			CYCLETIME = 10;
+			APPMODE = appmode1;
+		};
+	};
+
+	ALARM DelayStarterTask_Alarm {
+		COUNTER = SystemTickCounter;
+		ACTION = SETEVENT {
+			TASK = StarterTask;
+			EVENT = DelayStarterTask_Event;
+		};
+		AUTOSTART = FALSE;
+	};
+

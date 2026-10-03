@@ -11,12 +11,13 @@
     "hrmp3+tecs": "3306",
     "ev3rt+tecs": "3306",
     "atk1+tecs": "3306",
-    "hrp2+tecs": "3306"
+    "hrp2+tecs": "3306",
+    "et_robcon+atk1": "3301"
   },
-  "manifest_sha256": "a821246d6adc33fb7b3c43d087a38ce081afd4ea9eae61846e6851cd4a0cb961",
+  "manifest_sha256": "7e8ca6c96cf31d2d66abcee7726e32c579a97688025fec17b51c40681fd016ff",
   "excluded_patterns": [
     "*.rbdmp",
     "tmp_*.h"
   ],
-  "cases": 16
+  "cases": 23
 }

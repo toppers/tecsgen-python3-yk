@@ -1,0 +1,5 @@
+/* MrubyBridgeCellPlugin: generate for cell=VM2Task */
+/* BridgeCell */
+cell nMruby::tsTask VM2TaskeTaskBridge {
+    cTECS = ::VM2Task.eTask;
+};

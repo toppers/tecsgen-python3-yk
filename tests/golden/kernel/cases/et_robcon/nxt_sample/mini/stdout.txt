@@ -1,0 +1,7 @@
+/usr/bin/ruby ../../tecsgen/tecsgen/tecsgen.rb -L ../../tecsgen/tecsgen -k euc -R -D TECS -D TECS_CPP \
+									-I. -I./gen -I../../tecs_kernel_atk1 -I../../tecs_kernel -I../../include -I../../config -I../..  -I../../kernel -I../../config/at91sam7s-gnu/lego_nxt -I../../tecs_lib/mindstorms_nxt -I../../syslib/at91sam7s-gnu/lego_nxt -I../../config/at91sam7s-gnu -I../../kernel/ecc2 tSample.cdl
+../../tecs_lib/mindstorms_nxt/tDisplay_decl.cdl:65:29: warning: W3004 getBuffer pointer type has returned. specify deviate or stop return pointer
+gen/tmp_ATK1KernelPlugin_post_code.cdl:1:16: warning: W1007 ::RES_SCHEDULER : non-active cell has no entry join and no factory
+2 warnings
+../../include/kernel.cdl:522:10: error: S3001 RES_SCHEDULER: id too large 1 (max=1)
+touch tecs.timestamp

@@ -1,0 +1,3 @@
+#ifndef tInfosTaskExceptionBody_Initializer_FACTORY_H
+#define tInfosTaskExceptionBody_Initializer_FACTORY_H
+#endif /* tInfosTaskExceptionBody_Initializer_FACTORY_H */

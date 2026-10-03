@@ -1,0 +1,38 @@
+/*
+ * Synthetic input for TransparentMarshalerPlugin. See README.md in this directory.
+ * Placed in test/rpc by generate_golden.py (case "transparent_marshaler").
+ */
+import_C( "cygwin_tecs.h" );
+
+import( <cygwin_kernel.cdl> );
+import( <tSysLog.cdl> );
+
+import( <rpc.cdl> );
+
+struct stA {
+	int32_t a;
+	int32_t b;
+	[string(len)]
+		char_t   *msg;
+	int32_t	len;
+};
+
+/* pointer, string, struct and oneway arguments: PPAllocator is necessary */
+signature sSample {
+	ER  sayHello( [in]int32_t times );
+	ER  howAreYou( [out,string(len)]char_t *buf, [in]int32_t len );
+	ER  transferStruct( [in,size_is(len)]const struct stA *a, [in]int32_t len );
+	unsigned char  UnsignedTypes( [in]uint8_t in, [in]unsigned short s, [in]uint_t ui, [in]ulong_t ul );
+	char  SignedTypes( [in]int8_t in, [in]short s, [in]int_t ui, [in]long_t ul );
+	[oneway]
+		ER  onewayFunc( [in]int32_t a );
+};
+
+/* by-value arguments only: PPAllocator is unnecessary */
+signature sPlain {
+	ER  add( [in]int32_t a, [in]int32_t b );
+	int64_t  widen( [in]uint16_t v );
+};
+
+generate( TransparentMarshalerPlugin, sSample, "" );
+generate( TransparentMarshalerPlugin, sPlain, "" );

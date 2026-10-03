@@ -1,0 +1,64 @@
+  MrubyBridgePlugin: [pointer]  const int32_t* => [class] TECS::Int32Pointer
+  MrubyBridgePlugin: [struct]   struct tag => [class] TECS::Structtag
+  MrubyBridgePlugin: [pointer]  const char_t* => [class] TECS::CharPointer
+  MrubyBridgePlugin: [pointer]  bool_t* => [class] TECS::BoolPointer
+  MrubyBridgePlugin: [pointer]  int* => [class] TECS::IntPointer
+  MrubyBridgePlugin: [pointer]  short* => [class] TECS::ShortPointer
+  MrubyBridgePlugin: [pointer]  long* => [class] TECS::LongPointer
+  MrubyBridgePlugin: [pointer]  unsigned int* => [class] TECS::UIntPointer
+  MrubyBridgePlugin: [pointer]  unsigned char* => [class] TECS::UCharPointer
+  MrubyBridgePlugin: [pointer]  unsigned short* => [class] TECS::UShortPointer
+  MrubyBridgePlugin: [pointer]  unsigned long* => [class] TECS::ULongPointer
+  MrubyBridgePlugin: [pointer]  schar_t* => [class] TECS::SCharPointer
+  MrubyBridgePlugin: [pointer]  int8_t* => [class] TECS::Int8Pointer
+  MrubyBridgePlugin: [pointer]  int16_t* => [class] TECS::Int16Pointer
+  MrubyBridgePlugin: [pointer]  int64_t* => [class] TECS::Int64Pointer
+  MrubyBridgePlugin: [pointer]  uint8_t* => [class] TECS::UInt8Pointer
+  MrubyBridgePlugin: [pointer]  uint16_t* => [class] TECS::UInt16Pointer
+  MrubyBridgePlugin: [pointer]  uint32_t* => [class] TECS::UInt32Pointer
+  MrubyBridgePlugin: [pointer]  uint64_t* => [class] TECS::UInt64Pointer
+  MrubyBridgePlugin: [pointer]  float32_t* => [class] TECS::Float32Pointer
+  MrubyBridgePlugin: [pointer]  double64_t* => [class] TECS::Double64Pointer
+  MrubyBridgePlugin: [signature] ::sSig => [celltype] nMruby::tsSig => [class] TECS::TsSig
+  MrubyBridgePlugin: join your VM's cInitialize to VM_TECSInitializer.eInitialize
+  MrubyBridgePlugin: join your VM's cInitialize to VM2_TECSInitializer.eInitialize
+  MrubyBridgeCellPlugin: [cell.port] VMTask.eTask => [mruby instance] TECS::TsTask.new( 'VMTaskeTaskBridge' ) 
+  MrubyBridgePlugin: [signature] ::sTask => [celltype] nMruby::tsTask => [class] TECS::TsTask
+  MrubyBridgeCellPlugin: [cell.port] VM2Task.eTask => [mruby instance] TECS::TsTask.new( 'VM2TaskeTaskBridge' ) 
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:286:50: warning: W3003 rawDesc pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:308:6: info: TIF0001 forcely set --unoptimize-entry by TECSInfoPlugin (by importing TECSInfo.cdl)
+  MrubyBridgeCellPlugin: [cell.port] TECSInfo.eAccessor => [mruby instance] TECS::TnTECSInfo_sAccessor.new( 'TECSInfoeAccessorBridge' ) 
+  MrubyBridgePlugin: [signature] ::nTECSInfo::sAccessor => [celltype] nMruby::tnTECSInfo_sAccessor => [class] TECS::TnTECSInfo_sAccessor
+TracePlugin.new( 'TracePlugin__0', '', 'Sig', 'eEnt', tSig )
+TracePlugin.new( 'TracePlugin__1', '', 'Sig2', 'eEnt', tSig )
+TracePlugin.new( 'TracePlugin__2', '', 'Sig3', 'eEnt', tSig )
+@WORK@/tecsgen/tecs/posix/posix.cdl:41:2: warning: W1008 gen/tmp__TECSInfoSub.cdl: reuse designation mismatch with previous import
+  MrubyInfoBridgePlugin: [signature] ::sTaskBody => [class] TECS::InfosTaskBody
+  MrubyInfoBridgePlugin: [signature] ::sTaskExceptionBody => [class] TECS::InfosTaskExceptionBody
+  MrubyInfoBridgePlugin: [signature] ::sTask => [class] TECS::InfosTask
+  MrubyInfoBridgePlugin: [signature] ::sKernel => [class] TECS::InfosKernel
+  MrubyInfoBridgePlugin: [signature] ::siKernel => [class] TECS::InfosiKernel
+gen/tmp_MrubyInfoBridgeCellPlugin_post_code.cdl:7:82: warning: MRW2001 initialize: internally defined. change to initialize_cell in ruby
+  MrubyInfoBridgePlugin: [struct]   T_RSEM => [class] TECS::Structt_rsem
+  MrubyInfoBridgePlugin: [signature] ::sSemaphore => [class] TECS::InfosSemaphore
+  MrubyInfoBridgePlugin: [signature] ::siSemaphore => [class] TECS::InfosiSemaphore
+gen/tmp_MrubyInfoBridgeCellPlugin_post_code.cdl:9:82: warning: MRW2001 initialize: internally defined. change to initialize_cell in ruby
+  MrubyInfoBridgePlugin: [struct]   T_RFLG => [class] TECS::Structt_rflg
+  MrubyInfoBridgePlugin: [signature] ::sEventflag => [class] TECS::InfosEventflag
+  MrubyInfoBridgePlugin: [signature] ::siEventflag => [class] TECS::InfosiEventflag
+gen/tmp_MrubyInfoBridgeCellPlugin_post_code.cdl:11:82: warning: MRW2001 initialize: internally defined. change to initialize_cell in ruby
+  MrubyInfoBridgePlugin: [struct]   T_RDTQ => [class] TECS::Structt_rdtq
+  MrubyInfoBridgePlugin: [signature] ::sDataqueue => [class] TECS::InfosDataqueue
+  MrubyInfoBridgePlugin: [signature] ::siDataqueue => [class] TECS::InfosiDataqueue
+gen/tmp_MrubyInfoBridgeCellPlugin_post_code.cdl:13:79: info: MRI9999 loginfo: type 'intptr_t[6]' not allowed for struct member, 'write' automatcally excluded
+gen/tmp_MrubyInfoBridgeCellPlugin_post_code.cdl:13:79: info: MRI9999 loginfo: type 'intptr_t[6]' not allowed for struct member, 'read' automatcally excluded
+  MrubyInfoBridgePlugin: [struct]   T_SYSLOG_RLOG => [class] TECS::Structt_syslog_rlog
+  MrubyInfoBridgePlugin: [signature] ::sSysLog => [class] TECS::InfosSysLog
+  MrubyInfoBridgePlugin: [struct]   struct tag => [class] TECS::Structtag
+  MrubyInfoBridgePlugin: [signature] ::sSig => [class] TECS::InfosSig
+  MrubyInfoBridgePlugin: [signature] ::sHello => [class] TECS::InfosHello
+gen/tmp_MrubyInfoBridgeCellPlugin_post_code.cdl:18:85: info: MRI9999 argv: type const char** cannot be used in mruby Bridge, main automatcally excluded
+gen/tmp_MrubyInfoBridgeCellPlugin_post_code.cdl:18:85: warning: MRB1012 'sMain' no function remained by exclude
+  MrubyInfoBridgePlugin: [signature] ::nPosix::sMain => [class] TECS::InfonPosix_sMain
+  MrubyInfoBridgePlugin: [signature] ::nTECSInfo::sAccessor => [class] TECS::InfonTECSInfo_sAccessor
+6 warnings

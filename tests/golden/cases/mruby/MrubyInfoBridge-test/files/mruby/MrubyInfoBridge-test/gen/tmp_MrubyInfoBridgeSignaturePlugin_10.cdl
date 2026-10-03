@@ -1,0 +1,47 @@
+ /*
+  * MrubyInfoBridgeSignaturePlugin:
+  *     signature=::siDataqueue
+  *
+  *   => celltype=nMrubyInfo::tInfosiDataqueue
+  *      (bridge cell 's celltype; generated in this file)
+  *      cell nMrubyInfo::tInfosiDataqueue BridgeCellName { cTECS = CellName.eEntry; };
+  *        where eEntry's signature must be ::siDataqueue.
+  *      => class=TECS::InfosiDataqueue
+  *         (mruby’s class; accessible from your script)
+  *          bridge = TECS::InfosiDataqueue.new("BridgeCellName")
+  */
+import( <mruby.cdl> );
+
+/****  Ruby => TECS Bridge Celltype (MBP500) ****/
+namespace nMrubyInfo{
+    // bridge celltype
+    [singleton, idx_is_id,active]   // not actually active, to avoid warning W1002, W1007
+    celltype tInfosiDataqueue {
+        [dynamic,optional]
+            call ::siDataqueue cTECS;
+        call nTECSInfo::sTECSInfo cTECSInfo;
+        [dynamic,optional]
+            call nTECSInfo::sEntryInfo cEntryInfo;
+        [dynamic,optional]
+            call nTECSInfo::sSignatureInfo cSignatureInfo;
+        [dynamic,optional]
+            call nTECSInfo::sRawEntryDescriptorInfo cRawEntryDescriptorInfo;
+        attr {
+            [omit]
+            char_t *VMname = "VM";
+            [omit]
+            char_t *bridgeName = C_EXP( "$cell$" );
+        };
+    };
+    // bridge initializer celltype
+    celltype tInfosiDataqueue_Initializer {
+        entry nMruby::sInitializeTECSBridge eInitialize;
+    };
+};
+
+// Bridge Cell
+cell nMrubyInfo::tInfosiDataqueue MrubyInfoBridge_siDataqueue {
+  // cTECS = Sample.eEnt;
+  cTECSInfo = TECSInfo.eTECSInfo;
+  // bridgeName = "Simple";
+};

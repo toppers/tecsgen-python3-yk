@@ -1,0 +1,54 @@
+{
+  "id": "transparent_marshaler",
+  "source": "tools/golden/inputs/transparent/（rpc/Makefile [tecs] と同じ -I）",
+  "cwd": "rpc",
+  "args": [
+    "-I",
+    "../cygwin3",
+    "tm_test.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 0,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "rpc/gen/Makefile.tecsgen",
+    "rpc/gen/Makefile.templ",
+    "rpc/gen/tMarshaler_sPlain.cdl",
+    "rpc/gen/tMarshaler_sSample.cdl",
+    "rpc/gen/tecsgen.rbdmp",
+    "rpc/gen/tecsgen.timestamp",
+    "rpc/gen/tmp_C_src.c",
+    "rpc/gen/tmp_TransparentMarshalerPlugin_0.cdl",
+    "rpc/gen/tmp_TransparentMarshalerPlugin_1.cdl",
+    "rpc/gen/tmp_TransparentMarshalerPlugin_post_code.cdl",
+    "rpc/gen/tmp_cygwin_tecs.h",
+    "rpc/gen/tmp_t_syslog.h",
+    "rpc/gen/tmp_tecs_rpc.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "rpc/gen/tecsgen.rbdmp": {
+      "sha256": "bc197f59af6ef407f77f0981c9ea6114cf292ab7a6aa0297941eca96f155e42c",
+      "size": 122869
+    },
+    "rpc/gen/tmp_cygwin_tecs.h": {
+      "sha256": "2b66de8be94d327806baed7bee814f0804f7b8ffaccf4761a02e0e7649d9e9b7",
+      "size": 15509
+    },
+    "rpc/gen/tmp_t_syslog.h": {
+      "sha256": "81998c66d8d19d5833d03994dc44230c77eaae39387d8a3aae1fc80bffa90daf",
+      "size": 571
+    },
+    "rpc/gen/tmp_tecs_rpc.h": {
+      "sha256": "7da169769b729227686d7d37c020672336e128693fd80164e4be588170eab116",
+      "size": 9420
+    }
+  }
+}

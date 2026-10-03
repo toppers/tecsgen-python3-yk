@@ -1,0 +1,2 @@
+TransparentMarshalerPlugin: signature=::sSample, PPAllocator=Necessary
+TransparentMarshalerPlugin: signature=::sPlain, PPAllocator=Unnecessary

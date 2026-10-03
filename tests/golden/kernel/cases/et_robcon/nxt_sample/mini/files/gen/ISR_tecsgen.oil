@@ -1,0 +1,18 @@
+	ISR TimerISR {
+		CATEGORY = 2;
+		PRIORITY = 5;
+		ENTRY = 1;
+	};
+
+	ISR AVR_TWI_ISRTWI {
+		CATEGORY = 2;
+		PRIORITY = 6;
+		ENTRY = 9;
+	};
+
+	ISR Display_SPI_SPIISR {
+		CATEGORY = 2;
+		PRIORITY = 4;
+		ENTRY = 5;
+	};
+
