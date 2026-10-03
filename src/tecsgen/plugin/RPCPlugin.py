@@ -20,7 +20,7 @@ from typing import Any, ClassVar
 from tecsgen.plugin.lib.GenParamCopy import GenParamCopy
 from tecsgen.plugin.lib.GenTransparentMarshaler import GenTransparentMarshaler
 from tecsgen.plugin.ThroughPlugin import ThroughPlugin
-from tecsgen.ruby_compat import Symbol, sym, to_s, truthy
+from tecsgen.ruby_compat import Symbol, sym, to_s, truthy, utf8_literal
 
 
 class RPCPlugin(GenParamCopy, GenTransparentMarshaler, ThroughPlugin):
@@ -122,10 +122,11 @@ class RPCPlugin(GenParamCopy, GenTransparentMarshaler, ThroughPlugin):
         )
 
         file.print(
-            f"{indent_str}// 一方向チャンネルセル\n"
-            f"{indent_str}cell {to_s(self._channel_celltype)} {to_s(self._channel_cell_name)} {{\n"
+            f"{indent_str}"
+            + utf8_literal("// 一方向チャンネルセル\n")
+            + f"{indent_str}cell {to_s(self._channel_celltype)} {to_s(self._channel_cell_name)} {{\n"
             f"{indent_str}}};\n\n"
-            f"{indent_str}// RPC チャンネルセル\n"
+            f"{indent_str}" + utf8_literal("// RPC チャンネルセル\n")
         )
 
         # #473 が解決された場合、composite リレーアロケータに変更すべき

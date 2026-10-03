@@ -44,7 +44,14 @@ def utf8_literal(s: str) -> str:
     元のバイト列（EUC など）のまま、プラグインの UTF-8 のソースに書かれた日本語のリテラルは UTF-8
     のバイト列のままファイルに出る。`RubyIO` は surrogateescape で符号化するので、UTF-8 のバイトを
     surrogateescape の文字に直しておけば、どのコーデックでも同じバイト列で書かれる。
+
+    例外は `-k sjis`。Ruby 版は生成ファイルを Shift_JIS 指定で開くので、UTF-8 のリテラルは書き込み時に
+    Shift_JIS へ変換される。このときは変換を `RubyIO` に任せるので、文字列をそのまま返す。
     """
+    from tecsgen.context import get_context
+
+    if get_context().ruby19_file_encode == "Shift_JIS":
+        return s
     return s.encode("utf-8").decode("ascii", errors="surrogateescape")
 
 
@@ -372,6 +379,54 @@ def rb_puts(*objs: Any) -> None:
 
 # --- ファイル出力 -----------------------------------------------------------
 
+# cp932 では表せるが Shift_JIS（JIS X 0208 の厳密な表）には無い文字のうち、Ruby の変換が通すもの
+# （cp932 の 0x80・0xA0・0xFD〜0xFF の対応。Ruby 3.2.3 で cp932 の全文字を変換して確かめた）
+_SHIFT_JIS_PASSTHROUGH = frozenset({0x80, 0xF8F0, 0xF8F1, 0xF8F2, 0xF8F3})
+
+
+def _trail_byte(c: str) -> int | None:
+    """surrogateescape の先頭バイトの次の文字が表す、元のバイト（無ければ None）。"""
+    code = ord(c)
+    if 0xDC80 <= code <= 0xDCFF:
+        return code - 0xDC00
+    try:
+        return c.encode("cp932")[0]
+    except UnicodeEncodeError:
+        return None
+
+
+def check_shift_jis(s: str) -> None:
+    """Shift_JIS 指定で開いたファイルへ書く文字列が、Ruby の変換を通るか調べる。
+
+    Ruby 版は CDL を Windows-31J で読み、Shift_JIS 指定で開いたファイルへ書くときに
+    Windows-31J → UTF-8 → Shift_JIS と変換する。Windows-31J にあって Shift_JIS に無い文字
+    （`～` U+FF5E・`∥`・`－` U+FF0D・丸数字・`㈱` など）があると `Encoding::UndefinedConversionError`
+    になり、tecsgen は H1001 で止まる。
+
+    surrogateescape の文字は、cp932 に対応する Unicode が無い2バイト（`81 AD` など。Windows-31J としては
+    正しい並び）の先頭バイトで、Ruby 版では UTF-8 への変換ができず同じ例外になる。後続バイトは次の文字から戻す。
+    """
+    if s.isascii():
+        return
+    for i, c in enumerate(s):
+        code = ord(c)
+        if 0xDC80 <= code <= 0xDCFF:
+            lead = code - 0xDC00
+            trail = _trail_byte(s[i + 1]) if i + 1 < len(s) else None
+            if trail is not None and 0x81 <= lead <= 0xFC:
+                raise RubyEncodingError(
+                    f'"\\x{lead:02X}\\x{trail:02X}" to UTF-8 in conversion from Windows-31J to UTF-8 to Shift_JIS'
+                )
+            continue
+        if code < 0x80 or code in _SHIFT_JIS_PASSTHROUGH:
+            continue
+        try:
+            c.encode("shift_jis")
+        except UnicodeEncodeError:
+            raise RubyEncodingError(
+                f"U+{code:04X} to Shift_JIS in conversion from Windows-31J to UTF-8 to Shift_JIS"
+            ) from None
+
 
 class RubyIO:
     """Ruby の File オブジェクトのうち、tecsgen が使う出力メソッド（print・puts・printf）を持つ。
@@ -389,6 +444,11 @@ class RubyIO:
         self._codec = codec
 
     def write(self, s: str) -> None:
+        if self._codec == "cp932":
+            from tecsgen.context import get_context
+
+            if get_context().ruby19_file_encode == "Shift_JIS":
+                check_shift_jis(s)
         self._file.write(s.encode(self._codec, errors="surrogateescape"))
 
     def print(self, *strs: Any) -> None:
@@ -529,6 +589,10 @@ class RubyError(Exception):
 
 class RubyRuntimeError(RubyError):
     """`raise "message"`（RuntimeError）。"""
+
+
+class RubyEncodingError(RubyError):
+    """Encoding::UndefinedConversionError。"""
 
 
 class RubyNoMethodError(RubyError):

@@ -6,7 +6,7 @@ import re
 from typing import Any
 
 from tecsgen.plugin.CelltypePlugin import CelltypePlugin
-from tecsgen.ruby_compat import gsub, sym, to_s
+from tecsgen.ruby_compat import gsub, sym, to_s, utf8_literal
 
 _RX_QUOTED = re.compile(r'^"(.*)"$', re.MULTILINE)
 
@@ -63,7 +63,11 @@ class ATK1ISRPlugin(CelltypePlugin):
             if join2 is not None:
                 if to_s(join2.get_rhs()) == "1":
                     f3.print("#if defined( OMIT_ISR1_ENTRY )\n")
-                    f3.print("/* ISR1入り口未生成時は本関数を割込み関数指定する  */\n")
+                    f3.print(
+                        utf8_literal(
+                            "/* ISR1入り口未生成時は本関数を割込み関数指定する  */\n"
+                        )
+                    )
                     f3.print(
                         f"#pragma INTERRUPT  {to_s(cell.get_name())}\n"
                         "#endif  /* OMIT_ISR1_ENTRY  */\n"

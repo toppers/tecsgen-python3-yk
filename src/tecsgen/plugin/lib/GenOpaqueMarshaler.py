@@ -10,7 +10,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any, ClassVar
 
 from tecsgen.core.cdl_types import PtrType
-from tecsgen.ruby_compat import Symbol, Y, sym, to_s, truthy
+from tecsgen.ruby_compat import Symbol, Y, sym, to_s, truthy, utf8_literal
 
 # 型検査のときだけ Node の子として扱う（mixin から cdl_error を呼ぶため）
 if TYPE_CHECKING:
@@ -472,7 +472,11 @@ class GenOpaqueMarshaler(_Base):
             if b_ret_er:
                 file.print("\t}else{\n\t\treturn ERCD( E_RPC, E_ID );\n\t}\n")
             else:
-                file.print("\t}else{\n\t\t/* エラー処理コードをここに記述 */\n\t}\n\n")
+                file.print(
+                    utf8_literal(
+                        "\t}else{\n\t\t/* エラー処理コードをここに記述 */\n\t}\n\n"
+                    )
+                )
 
         if func_type.has_receive():
             file.print("\t/* initialize receive parameters */\n")
@@ -490,16 +494,20 @@ class GenOpaqueMarshaler(_Base):
         )
 
         file.print(
-            "\t/* SOPの送出 (GenOpaqueMarshler0013) */\n"
-            "\tSET_RPC_STATE( state_, RPCSTATE_CLIENT_SEND_SOP );\n"
-            "\tif( ( ercd_ = cTDR_sendSOP( true ) ) != E_OK )\n"
-            "\t\tgoto error_reset;\n"
+            utf8_literal(
+                "\t/* SOPの送出 (GenOpaqueMarshler0013) */\n"
+                "\tSET_RPC_STATE( state_, RPCSTATE_CLIENT_SEND_SOP );\n"
+                "\tif( ( ercd_ = cTDR_sendSOP( true ) ) != E_OK )\n"
+                "\t\tgoto error_reset;\n"
+            )
         )
 
         file.print(
-            "\t/* 関数 id の送出 (GenOpaqueMarshler0014) */\n"
-            "\tif( ( ercd_ = cTDR_putInt16( func_id_ ) ) != E_OK )\n"
-            "\t\tgoto error_reset;\n"
+            utf8_literal(
+                "\t/* 関数 id の送出 (GenOpaqueMarshler0014) */\n"
+                "\tif( ( ercd_ = cTDR_putInt16( func_id_ ) ) != E_OK )\n"
+                "\t\tgoto error_reset;\n"
+            )
         )
 
         b_get = False  # marshal なら put
@@ -507,8 +515,10 @@ class GenOpaqueMarshaler(_Base):
 
         if func_type.has_inward():
             file.print(
-                "\t/* 入力引数送出 (GenOpaqueMarshler0015) */\n"
-                "\tSET_RPC_STATE( state_, RPCSTATE_CLIENT_SEND_BODY );\n"
+                utf8_literal(
+                    "\t/* 入力引数送出 (GenOpaqueMarshler0015) */\n"
+                    "\tSET_RPC_STATE( state_, RPCSTATE_CLIENT_SEND_BODY );\n"
+                )
             )
             self.print_params(
                 params, file, 1, b_marshal, b_get, True, "eClientEntry", func_name
@@ -520,8 +530,10 @@ class GenOpaqueMarshaler(_Base):
 
         b_continue = "false" if func_type.is_oneway() else "true"
         file.print(
-            "\t/* EOPの送出（パケットの掃きだし）(GenOpaqueMarshler0016) */\n"
-            "\tSET_RPC_STATE( state_, RPCSTATE_CLIENT_SEND_EOP );\n"
+            utf8_literal(
+                "\t/* EOPの送出（パケットの掃きだし）(GenOpaqueMarshler0016) */\n"
+            )
+            + "\tSET_RPC_STATE( state_, RPCSTATE_CLIENT_SEND_EOP );\n"
             f"\tif( (ercd_=cTDR_sendEOP({b_continue})) != E_OK )\n"
             "\t\tgoto error_reset;\n\n"
         )
@@ -538,14 +550,18 @@ class GenOpaqueMarshaler(_Base):
 
         if not func_type.is_oneway():
             file.print(
-                "\t/* パケットの始まりをチェック (GenOpaqueMarshler0018) */\n"
-                "\tSET_RPC_STATE( state_, RPCSTATE_CLIENT_RECV_SOP );\n"
-                "\tif( (ercd_=cTDR_receiveSOP( true )) != E_OK )\n"
-                "\t\tgoto error_reset;\n"
+                utf8_literal(
+                    "\t/* パケットの始まりをチェック (GenOpaqueMarshler0018) */\n"
+                    "\tSET_RPC_STATE( state_, RPCSTATE_CLIENT_RECV_SOP );\n"
+                    "\tif( (ercd_=cTDR_receiveSOP( true )) != E_OK )\n"
+                    "\t\tgoto error_reset;\n"
+                )
             )
 
             b_get = True  # marshaler は get
-            file.print("\t/* 戻り値の受け取り (GenOpaqueMarshler0019) */\n")
+            file.print(
+                utf8_literal("\t/* 戻り値の受け取り (GenOpaqueMarshler0019) */\n")
+            )
             self.print_param(
                 "retval_",
                 func_type.get_type(),
@@ -567,8 +583,9 @@ class GenOpaqueMarshaler(_Base):
                 indent = "\t" * indent_level
 
                 file.print(
-                    f"{indent}/* 出力値の受け取り (GenOpaqueMarshler0020) */\n"
-                    f"{indent}SET_RPC_STATE( state_, RPCSTATE_CLIENT_RECV_BODY );\n"
+                    f"{indent}"
+                    + utf8_literal("/* 出力値の受け取り (GenOpaqueMarshler0020) */\n")
+                    + f"{indent}SET_RPC_STATE( state_, RPCSTATE_CLIENT_RECV_BODY );\n"
                 )
                 self.print_params(
                     params,
@@ -595,10 +612,12 @@ class GenOpaqueMarshaler(_Base):
                     file.print("\t}\n")
 
             file.print(
-                "\n\t/* パケットの終わりをチェック (GenOpaqueMarshler0021) */\n"
-                "\tSET_RPC_STATE( state_, RPCSTATE_CLIENT_RECV_EOP );\n"
-                "\tif( (ercd_=cTDR_receiveEOP(false)) != E_OK )\n"
-                "\t\tgoto error_reset;\n"
+                utf8_literal(
+                    "\n\t/* パケットの終わりをチェック (GenOpaqueMarshler0021) */\n"
+                    "\tSET_RPC_STATE( state_, RPCSTATE_CLIENT_RECV_EOP );\n"
+                    "\tif( (ercd_=cTDR_receiveEOP(false)) != E_OK )\n"
+                    "\t\tgoto error_reset;\n"
+                )
             )
 
         file.print(
@@ -683,25 +702,29 @@ class GenOpaqueMarshaler(_Base):
         if b_ret_er:
             file.print("\t}else{\n\t\treturn E_ID;\n\t}\n")
         else:
-            file.print("\t}else{\n\t\t/* エラー処理コードをここに記述 */\n\t}\n")
+            file.print(
+                utf8_literal("\t}else{\n\t\t/* エラー処理コードをここに記述 */\n\t}\n")
+            )
 
         file.print(
-            "\n  /* (GenOpaqueMarshler0102) */\n"
-            "#ifdef RPC_DEBUG\n"
-            '\tsyslog(LOG_INFO, "Entering RPC service loop" );\n'
-            "#endif\n\n"
-            "\t/* SOPのチェック */\n"
-            "\tSET_RPC_STATE( state_, RPCSTATE_SERVER_RECV_SOP );\n"
-            "\tif( (ercd_=cTDR_receiveSOP( false )) != E_OK )\n"
-            "\t\tgoto error_reset;\n"
-            "\t/* func_id の取得 */\n"
-            "\tif( (ercd_=cTDR_getInt16( &func_id_ )) != E_OK )\n"
-            "\t\tgoto error_reset;\n\n"
-            "#ifdef RPC_DEBUG\n"
-            '\tsyslog(LOG_INFO, "unmarshaler task: func_id: %d", func_id_ );\n'
-            "#endif\n"
-            "  /* (GenOpaqueMarshler0103) */\n"
-            "\tswitch( func_id_ ){\n"
+            utf8_literal(
+                "\n  /* (GenOpaqueMarshler0102) */\n"
+                "#ifdef RPC_DEBUG\n"
+                '\tsyslog(LOG_INFO, "Entering RPC service loop" );\n'
+                "#endif\n\n"
+                "\t/* SOPのチェック */\n"
+                "\tSET_RPC_STATE( state_, RPCSTATE_SERVER_RECV_SOP );\n"
+                "\tif( (ercd_=cTDR_receiveSOP( false )) != E_OK )\n"
+                "\t\tgoto error_reset;\n"
+                "\t/* func_id の取得 */\n"
+                "\tif( (ercd_=cTDR_getInt16( &func_id_ )) != E_OK )\n"
+                "\t\tgoto error_reset;\n\n"
+                "#ifdef RPC_DEBUG\n"
+                '\tsyslog(LOG_INFO, "unmarshaler task: func_id: %d", func_id_ );\n'
+                "#endif\n"
+                "  /* (GenOpaqueMarshler0103) */\n"
+                "\tswitch( func_id_ ){\n"
+            )
         )
 
         for f in self._signature.get_function_head_array():  # type: ignore[attr-defined]
@@ -716,7 +739,9 @@ class GenOpaqueMarshaler(_Base):
             )
 
         ppallocator_dealloc_str = (
-            "\t/* PPAllocator のすべてを解放 */\n\tcPPAllocator_dealloc_all();"
+            utf8_literal(
+                "\t/* PPAllocator のすべてを解放 */\n\tcPPAllocator_dealloc_all();"
+            )
             if self._PPAllocatorSize
             else ""
         )
@@ -747,9 +772,11 @@ class GenOpaqueMarshaler(_Base):
             return
 
         file.print(
-            "/* header file (strlen, memset) (GenOpaqueMarshler0201) */\n"
-            "#include\t<string.h>\n\n"
-            "/* アンマーシャラ関数のプロトタイプ宣言 */\n"
+            utf8_literal(
+                "/* header file (strlen, memset) (GenOpaqueMarshler0201) */\n"
+                "#include\t<string.h>\n\n"
+                "/* アンマーシャラ関数のプロトタイプ宣言 */\n"
+            )
         )
 
         for f in self._signature.get_function_head_array():  # type: ignore[attr-defined]
@@ -771,7 +798,9 @@ class GenOpaqueMarshaler(_Base):
         if sym(ct_name) != self._unmarshaler_celltype_name:
             return
 
-        file.print("\n/*** アンマーシャラ関数 (GenOpaqueMarshler0301) ***/\n\n")
+        file.print(
+            utf8_literal("\n/*** アンマーシャラ関数 (GenOpaqueMarshler0301) ***/\n\n")
+        )
         for f in self._signature.get_function_head_array():  # type: ignore[attr-defined]
             f_name = f.get_name()
             f_type = f.get_declarator().get_type()
@@ -842,8 +871,10 @@ class GenOpaqueMarshaler(_Base):
                 )
 
             file.print(
-                "\n\t/* 入力引数受取 (GenOpaqueMarshler0303) */\n"
-                "\tSET_RPC_STATE( *state_, RPCSTATE_SERVER_RECV_BODY );\n"
+                utf8_literal(
+                    "\n\t/* 入力引数受取 (GenOpaqueMarshler0303) */\n"
+                    "\tSET_RPC_STATE( *state_, RPCSTATE_SERVER_RECV_BODY );\n"
+                )
             )
             b_get = True  # unmarshal では get
             b_marshal = False
@@ -856,8 +887,10 @@ class GenOpaqueMarshaler(_Base):
             self.print_out_nullable(params, file, 1, b_marshal)
 
             file.print(
-                "\t/* パケット終わりをチェック (GenOpaqueMarshler0304) */\n"
-                "\tSET_RPC_STATE( *state_, RPCSTATE_SERVER_RECV_EOP );\n"
+                utf8_literal(
+                    "\t/* パケット終わりをチェック (GenOpaqueMarshler0304) */\n"
+                    "\tSET_RPC_STATE( *state_, RPCSTATE_SERVER_RECV_EOP );\n"
+                )
             )
             b_continue = "false" if f_type.is_oneway() else "true"
             file.print(
@@ -870,8 +903,10 @@ class GenOpaqueMarshaler(_Base):
             )
 
             file.print(
-                "\t/* 対象関数の呼出し (GenOpaqueMarshler0305) */\n"
-                "\tSET_RPC_STATE( *state_, RPCSTATE_SERVER_EXEC );\n"
+                utf8_literal(
+                    "\t/* 対象関数の呼出し (GenOpaqueMarshler0305) */\n"
+                    "\tSET_RPC_STATE( *state_, RPCSTATE_SERVER_EXEC );\n"
+                )
             )
             if b_void:
                 file.print(f"\tcServerCall_{to_s(f_name)}(")
@@ -889,15 +924,17 @@ class GenOpaqueMarshaler(_Base):
 
             if not f.is_oneway():
                 file.print(
-                    "\n\t/* SOPの送出 (GenOpaqueMarshler0306) */\n"
-                    "\tSET_RPC_STATE( *state_, RPCSTATE_SERVER_SEND_SOP );\n"
-                    "\tif( ( ercd_ = cTDR_sendSOP( false ) ) != E_OK )\n"
-                    "\t\tgoto error_reset;\n"
+                    utf8_literal(
+                        "\n\t/* SOPの送出 (GenOpaqueMarshler0306) */\n"
+                        "\tSET_RPC_STATE( *state_, RPCSTATE_SERVER_SEND_SOP );\n"
+                        "\tif( ( ercd_ = cTDR_sendSOP( false ) ) != E_OK )\n"
+                        "\t\tgoto error_reset;\n"
+                    )
                 )
 
                 b_get = False  # unmarshaler は put
                 if not b_void:
-                    file.print("\t/* 戻り値の送出 */\n")
+                    file.print(utf8_literal("\t/* 戻り値の送出 */\n"))
                     self.print_param(
                         "retval_",
                         f_type.get_type(),
@@ -919,8 +956,9 @@ class GenOpaqueMarshaler(_Base):
                     indent = "\t" * indent_level
 
                     file.print(
-                        f"{indent}/* 出力値の送出 (GenOpaqueMarshler0307) */\n"
-                        f"{indent}SET_RPC_STATE( *state_, RPCSTATE_SERVER_SEND_BODY );\n"
+                        f"{indent}"
+                        + utf8_literal("/* 出力値の送出 (GenOpaqueMarshler0307) */\n")
+                        + f"{indent}SET_RPC_STATE( *state_, RPCSTATE_SERVER_SEND_BODY );\n"
                     )
                     self.print_params(
                         params,
@@ -957,10 +995,12 @@ class GenOpaqueMarshaler(_Base):
                         file.print("\t}\n")
 
                 file.print(
-                    "\t/* パケットの終わり（掃きだし） (GenOpaqueMarshler0308) */\n"
-                    "\tSET_RPC_STATE( *state_, RPCSTATE_SERVER_SEND_EOP );\n"
-                    "\tif( (ercd_=cTDR_sendEOP(false)) != E_OK )\n"
-                    "\t\tgoto error_reset;\n"
+                    utf8_literal(
+                        "\t/* パケットの終わり（掃きだし） (GenOpaqueMarshler0308) */\n"
+                        "\tSET_RPC_STATE( *state_, RPCSTATE_SERVER_SEND_EOP );\n"
+                        "\tif( (ercd_=cTDR_sendEOP(false)) != E_OK )\n"
+                        "\t\tgoto error_reset;\n"
+                    )
                 )
 
             file.print("\treturn E_OK;\n")

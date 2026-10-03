@@ -16,7 +16,7 @@ import re
 from typing import Any, ClassVar
 
 from tecsgen.plugin.CelltypePlugin import CelltypePlugin
-from tecsgen.ruby_compat import rb_print, sub_first, sym, to_s
+from tecsgen.ruby_compat import rb_print, sub_first, sym, to_s, utf8_literal
 
 
 class DataPumpHolderPlugin(CelltypePlugin):
@@ -245,11 +245,15 @@ class DataPumpHolderPlugin(CelltypePlugin):
         """受け口関数の preamble (C言語)を生成する。"""
         if ct_name == sym(self._sync_adaptor_celltype):
             file.print(
-                "    /* このセルタイプは、waitForReadDone 関数を非 oneway 化するためのもの */\n"
+                utf8_literal(
+                    "    /* このセルタイプは、waitForReadDone 関数を非 oneway 化するためのもの */\n"
+                )
             )
         elif ct_name == sym(self._async_adaptor_celltype):
             file.print(
-                "    /* このセルタイプは、waitForReadDone 関数を oneway 化するためのもの */\n"
+                utf8_literal(
+                    "    /* このセルタイプは、waitForReadDone 関数を oneway 化するためのもの */\n"
+                )
             )
 
     def find_decl(self, var_attr_name: Any) -> Any:
