@@ -47,6 +47,18 @@ rm -rf tests/golden && cp -r /tmp/golden-out tests/golden
 
 **HRP2 の個別プラグインは合成入力で採る**: `HRP2SemaphorePlugin` など7種（Semaphore・Eventflag・Dataqueue・PriorityDataqueue・FixedSizeMemoryPool・AlarmHandler・CyclicHandler）、`HRP2SVCPlugin`、`HRP2RPCPlugin`、`GenHRP2Marshaler` は、実プロジェクトの CDL が使わない。`tools/golden/inputs/hrp2/` の合成アプリケーション（カーネルの CDL を import し、現行の文法で region を書いたもの）を `obj-golden/` へ置いて実行する。ケースは `hrp2/objects`（5種のオブジェクトと SVC）、`hrp2/rpc`（RPC）、`hrp2/cyclic`・`hrp2/alarm`・`hrp2/rpc_ptr`（Ruby 版が例外で止まる経路。例外・終了コード・それまでに作られたファイルが正解）。経緯と各ケースの配置は `tools/golden/inputs/hrp2/README.md`。採取は `& ./tools/port/wsl_check.ps1 -KernelGolden <作業コピー> -PytestArgs '--case','hrp2/*'`（約2分）。`HRP2Cache.rb`（コメントだけ）と `HRP2PostHook.rb`（tecslib のどこからも参照されない）は動かす経路が無く、対象外。`HRPRPCPlugin` は HRP2 ではなく HRP（hr-tecs3）のプラグインで、このケースには含まない。
 
+**残りの未移植プラグインの正解データ（2026-10-03）**:
+
+| プラグイン | 正解データ | 採り方 |
+|---|---|---|
+| `HRPRPCPlugin` | `kernel/cases/hrp3/blueninja_gcc/sample2`（Ruby 版が `S9999` で途中で止まる実プロジェクトのまま）、`sample2_rpc` | hrp3+tecs の `sample/sample2.cdl` は2つのユーザドメイン間の結合を持つ。`sample2_rpc` は、そのままだと通らない箇所を `patch`（`cases_kernel.toml` に理由を書いた）で直したもの。`PPAllocatorSize` の「必要」「不要」の両方の経路を通す。`tSample2` は単一ドメインで通らない |
+| `ATK1DelayTaskPlugin` | `kernel/cases/et_robcon/nxt_sample/{etrobo,et2011,mini,syslog}` | et_robcon の `atk1+tecs/nxt_sample` が `tDelayTask`（`tecs_lib/mindstorms_nxt`）を使う。各 Makefile の `make tecs`。リポジトリは `repo_dir` で `et_robcon/trunk/atk1+tecs` を指す。`ATK1KernelPlugin` が id の重複（S3003・S3001）をエラーにするが、make は成功で終わる（Ruby 版の振る舞い） |
+| `MrubyInfoBridgePlugin`・`MrubyInfoBridgeCellPlugin`・`MrubyInfoBridgeSignaturePlugin` | `cases/mruby/MrubyInfoBridge-SimpleSample`、`cases/mruby/MrubyInfoBridge-test` | 移植元の `test/mruby` の2本。tecsgen の実行に要るのは mruby のヘッダだけなので、`--mruby-include`（既定は `mruby/mruby-master/include`）を `{MRUBY_INCLUDE}` として渡す |
+| `TransparentMarshalerPlugin` | `cases/transparent_marshaler` | 使用例が無いので合成入力（`inputs/transparent/`） |
+| `Mruby2CBridgePlugin`・`TECS2CBridgePlugin` | `packages/cases/MrubyBridgePluginPackage-130616/Mruby2C`（既存）、`Mruby2C-File` | `Mruby2C` は小さなシグニチャだけ。`Mruby2C-File` は C のファイル I/O（ポインタ・`size_is`・string）を渡し、経路が広い。`-D TECS` が要る（`FILEptr` の定義が `#ifdef TECS`） |
+
+`generate_golden.py` の `inputs`（`tools/golden/inputs/<名前>/*.cdl` を `cwd` へ写す）と `{MRUBY_INCLUDE}`、`collect_kernel.py` の `repo_dir`（`<repo>/trunk` 以外）と `patch`（書き出したソースの文字列置換。置換元が1か所でなければ失敗する）が、今回足した仕組み。
+
 **`ATK1EventPlugin` の限界**: atk1+tecs のアプリケーション CDL は `sample.cdl` だけで、イベントを使うセルが無い（inferred）。プラグインは読み込まれて実行されるが、`tmp_ATK1EventPlugin_0.cdl`・`tmp_ATK1EventPlugin_post_code.cdl`・`EVENT_tecsgen.oil` は 0 バイトで、生成ロジックの本体は記録されていない。記録されているのは「イベントが無いとき何も出さない」経路だけ。`ATK1DelayTaskPlugin` は atk1+tecs の CDL に使用箇所が無く、対象外。
 
 一部のケースだけを採るには、`wsl_check.ps1` の `-PytestArgs` に `collect_kernel.py` の引数を配列で渡す。PowerShell のセッションから直接呼ぶ（例: `& ./tools/port/wsl_check.ps1 -KernelGolden <作業コピー> -PytestArgs '--case','atk1/*'`。atk1 の2ケースだけなら約30秒）。`pwsh ...` を子プロセスとして起動して `--case,'atk1/*'` と書くと、1つの文字列として渡されて `unrecognized arguments` になる。`-KernelGolden` の後ろに直接 `--case` を書いても、スクリプトのパラメータに束縛されず届かない（全ケースが再採取される）。

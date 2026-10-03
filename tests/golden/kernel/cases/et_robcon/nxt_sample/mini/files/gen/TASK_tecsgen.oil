@@ -1,0 +1,10 @@
+	TASK SampleTask {
+		AUTOSTART = TRUE {
+			APPMODE = appmode1;
+		};
+		PRIORITY = 6;
+		ACTIVATION = 1;
+		SCHEDULE = FULL;
+		STACKSIZE = 1024;
+	};
+

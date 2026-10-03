@@ -1,0 +1,9 @@
+generate( MrubyBridgePlugin, ::sFile, "silent=true" );
+generate( TECS2CBridgePlugin, ::sFile, "silent=true" );
+
+cell nMruby::tsFile CsFile{
+    cTECS = TECS2C_sFile.eEnt;
+};
+cell nTECS2C::tsFile TECS2C_sFile{};
+
+import( "Mruby2C_tsInitializerBridge.cdl" );

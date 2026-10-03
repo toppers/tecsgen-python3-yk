@@ -197,6 +197,15 @@ def run_case(
                 f"{conf_out.decode(errors='replace')}\n{conf_err.decode(errors='replace')}"
             )
 
+    # 書き出したソースへの置き換え（patch）。実プロジェクトの CDL に手を入れて、通らない経路を通すとき。
+    # find はちょうど1か所に在ること（元が変わったら気付けるように）。改行はそのまま保つ
+    for p in case.get("patch", []):
+        target = run_root / p["file"]
+        text = target.read_bytes().decode("utf-8")
+        if text.count(p["find"]) != 1:
+            raise RuntimeError(f"{case['id']}: patch target not unique in {p['file']}")
+        target.write_bytes(text.replace(p["find"], p["replace"]).encode("utf-8"))
+
     # 実プロジェクトの CDL に無い経路を動かす合成入力（tools/golden/inputs/<名前>/*.cdl）を置く。
     # 実行前から在るファイルとして扱うので、created には数えない
     input_hashes: dict[str, str] = {}
@@ -275,6 +284,7 @@ def run_case(
         "make_overrides": make_overrides,
         "tecsgen_args": tecsgen_args,
         "inputs": input_hashes,
+        "patch": case.get("patch", []),
         "exit_code": exit_code,
         "timed_out": timed_out,
         "errors": counts[0] if counts else 0,
@@ -355,7 +365,11 @@ def main(argv: list[str] | None = None) -> int:
     revisions: dict[str, str] = {}
     for repo in sorted({c["repo"] for c in cases}):
         dest = pristine / repo
-        revisions[repo] = svn_export(opts.repos_root / repo / "trunk", dest)
+        # 既定は <repo>/trunk。et_robcon+atk1 のように trunk がリポジトリ名の下に無いものは repo_dir で指す
+        repo_dir = next(
+            c.get("repo_dir", f"{repo}/trunk") for c in cases if c["repo"] == repo
+        )
+        revisions[repo] = svn_export(opts.repos_root / repo_dir, dest)
         # 同梱の tecsgen（あれば）を移植元のものに差し替える。置き場所はリポジトリごとに違う
         # （既定は tecsgen/。ev3rt+tecs は hr-tecs/tecsgen/tecsgen/）
         rel = next(c.get("tecsgen_dest", "tecsgen") for c in cases if c["repo"] == repo)

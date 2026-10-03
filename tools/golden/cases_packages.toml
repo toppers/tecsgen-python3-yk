@@ -125,6 +125,18 @@ workdir = "mruby-master/Mruby2C"
 clean = ["gen"]
 tecsgen_args = ["--cpp=gcc -E", "-I../../tecsgen/test/cygwin", "-I../include", "-I../../tecsgen/tecsgen/tecs", "test.cdl"]
 
+# Mruby2C は void/int の引数1つだけの小さなシグニチャ。Mruby2C-File は C の低水準・高水準のファイル I/O
+# （ポインタ・size_is・string・FILE*）を渡すので、Mruby2CBridgePlugin・TECS2CBridgePlugin の経路が広い。
+[[case]]
+id = "MrubyBridgePluginPackage-130616/Mruby2C-File"
+package = "MrubyBridgePluginPackage-130616"
+source_subdir = "MrubyBridgePluginPackage"
+target = "posix"
+tecsgen_dest = "tecsgen/tecsgen"
+workdir = "mruby-master/Mruby2C-File"
+clean = ["gen"]
+tecsgen_args = ["--cpp=gcc -E", "-I../../tecsgen/test/cygwin", "-I../include", "-I../../tecsgen/tecsgen/tecs", "-I./src", "-D", "TECS", "test.cdl"]
+
 [[case]]
 id = "MrubyBridgePluginPackage-130616/MrubyBridge-test"
 package = "MrubyBridgePluginPackage-130616"

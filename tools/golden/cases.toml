@@ -678,6 +678,30 @@ args = []
 source = "mruby/*/Makefile"
 skip = "MRUBYPATH・ASP/ASP3 のソースツリーが必要で、この環境には無い"
 
+# test/mruby のうち MrubyInfoBridge の2本は、tecsgen の実行に要るのが mruby のヘッダだけなので採る。
+# Makefile の MRUBYPATH/include の代わりに、{MRUBY_INCLUDE}（--mruby-include）を渡す。
+# （MrubyBridge-* の mruby 系は、MrubyBridgePluginPackage の Mruby2C ケース（packages）が受け持つ）
+[[case]]
+id = "mruby/MrubyInfoBridge-SimpleSample"
+cwd = "mruby/MrubyInfoBridge-SimpleSample"
+args = ["-I", "../../cygwin", "-I", "{MRUBY_INCLUDE}", "SimpleSample.cdl"]
+source = "mruby/MrubyInfoBridge-SimpleSample/Makefile [tecs]（$(MRUBYPATH)/include を {MRUBY_INCLUDE} に）"
+
+[[case]]
+id = "mruby/MrubyInfoBridge-test"
+cwd = "mruby/MrubyInfoBridge-test"
+args = ["-I", "../../cygwin3", "-I", "{TECSPATH}", "-I", "{MRUBY_INCLUDE}", "test.cdl"]
+source = "mruby/MrubyInfoBridge-test/Makefile [tecs]（$(MRUBYPATH)/include を {MRUBY_INCLUDE} に）"
+
+# TransparentMarshalerPlugin は実プロジェクトの CDL にも tecslib にも使用例が無いので、合成入力
+# （tools/golden/inputs/transparent/）を test/rpc へ置いて実行する。
+[[case]]
+id = "transparent_marshaler"
+cwd = "rpc"
+inputs = "transparent"
+args = ["-I", "../cygwin3", "tm_test.cdl"]
+source = "tools/golden/inputs/transparent/（rpc/Makefile [tecs] と同じ -I）"
+
 # ---------------------------------------------------------------- sample（test-normal.sh / test-abnormal.sh）
 
 [[case]]

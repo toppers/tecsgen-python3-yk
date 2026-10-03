@@ -31,6 +31,10 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 DEFAULT_MANIFEST = HERE / "cases.toml"
 DEFAULT_WORK = Path("/tmp/tecsgen-golden-work")
+# mruby のヘッダ。collect_kernel.py のカーネルのリポジトリと同じ作業コピー群にある
+DEFAULT_MRUBY_INCLUDE = (
+    Path.home() / "repo/svn-toppers-TECS-2/svn/toppers/mruby/mruby-master/include"
+)
 
 # 保存しないファイル（ハッシュとサイズだけを meta.json に記録する）
 #   *.rbdmp  : Ruby の Marshal 形式の内部モデルダンプ。Python 版では再現しない
@@ -79,14 +83,38 @@ def command_version(cmd: list[str]) -> str:
     return out.decode(errors="replace").splitlines()[0].strip() if out else ""
 
 
-def prepare_pristine(source: Path, pristine: Path) -> None:
-    """テストツリーと tecsgen/tecs を、移植元と同じ相対配置で作業ディレクトリへ写す。"""
+def prepare_pristine(
+    source: Path, pristine: Path, mruby_include: Path | None = None
+) -> None:
+    """テストツリーと tecsgen/tecs を、移植元と同じ相対配置で作業ディレクトリへ写す。
+
+    mruby_include があれば、mruby のヘッダを ext/mruby/include へ写す（ケースの引数の
+    {MRUBY_INCLUDE}）。移植元の test/mruby は MRUBYPATH の mruby 本体を前提にしているが、
+    tecsgen の実行に要るのはヘッダだけ。
+    """
     if pristine.exists():
         shutil.rmtree(pristine)
     shutil.copytree(source / "test", pristine / "test", symlinks=True)
     shutil.copytree(
         source / "tecsgen" / "tecs", pristine / "tecsgen" / "tecs", symlinks=True
     )
+    if mruby_include is not None:
+        shutil.copytree(
+            mruby_include, pristine / "ext" / "mruby" / "include", symlinks=True
+        )
+
+
+def place_inputs(cases: list[dict], pristine: Path) -> None:
+    """ケースの inputs（tools/golden/inputs/<名前>/ の *.cdl）を、cwd へ写す。
+
+    実プロジェクトのテストに無い経路を動かす合成入力。実行前から在るファイルとして扱う
+    （pristine に置くので、生成物には数えない）。
+    """
+    for case in cases:
+        if "inputs" not in case:
+            continue
+        for src in sorted((HERE / "inputs" / case["inputs"]).glob("*.cdl")):
+            shutil.copyfile(src, pristine / "test" / case["cwd"] / src.name)
 
 
 class Normalizer:
@@ -121,7 +149,13 @@ def run_case(
     shutil.copytree(pristine, run_root, symlinks=True)
 
     tecspath = run_root / "tecsgen" / "tecs"
-    args = [a.replace("{TECSPATH}", str(tecspath)) for a in case["args"]]
+    mruby_include = run_root / "ext" / "mruby" / "include"
+    args = [
+        a.replace("{TECSPATH}", str(tecspath)).replace(
+            "{MRUBY_INCLUDE}", str(mruby_include)
+        )
+        for a in case["args"]
+    ]
     env = dict(os.environ)
     env.update(defaults.get("env", {}))
     env.update(case.get("env", {}))
@@ -215,6 +249,13 @@ def main(argv: list[str] | None = None) -> int:
         default="",
         help="ソースの出所（SVN リビジョンなど）。environment.json に記録する",
     )
+    parser.add_argument(
+        "--mruby-include",
+        type=Path,
+        default=DEFAULT_MRUBY_INCLUDE,
+        help="mruby のヘッダのディレクトリ（ケースの引数の {MRUBY_INCLUDE}）。"
+        "既に在れば作業ディレクトリへ写す",
+    )
     parser.add_argument("--ruby", default="ruby")
     parser.add_argument(
         "--timeout", type=int, default=300, help="1ケースあたりの制限時間（秒）"
@@ -248,7 +289,14 @@ def main(argv: list[str] | None = None) -> int:
         shutil.rmtree(out_dir / "cases")
 
     pristine = work / "pristine"
-    prepare_pristine(source, pristine)
+    needs_mruby = any("{MRUBY_INCLUDE}" in a for c in cases for a in c["args"])
+    if needs_mruby and not opts.mruby_include.is_dir():
+        print(f"mruby include not found: {opts.mruby_include}", file=sys.stderr)
+        return 2
+    prepare_pristine(
+        source, pristine, opts.mruby_include if opts.mruby_include.is_dir() else None
+    )
+    place_inputs(cases, pristine)
     pristine_hashes = snapshot(pristine / "test")
     normalize = Normalizer(work / "run", source)
 

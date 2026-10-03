@@ -1,0 +1,8 @@
+/* MrubyBridgeCellPlugin: generate for cell=VMTask */
+
+/* cell.port=VMTask.eTask */
+generate( MrubyBridgePlugin, ::sTask, "ignoreUnsigned=false, auto_exclude=true, " );
+/* BridgeCell */
+cell nMruby::tsTask VMTaskeTaskBridge {
+    cTECS = ::VMTask.eTask;
+};

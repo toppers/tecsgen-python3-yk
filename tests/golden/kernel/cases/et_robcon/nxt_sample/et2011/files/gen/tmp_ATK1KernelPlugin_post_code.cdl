@@ -1,0 +1,3 @@
+cell tResource RES_SCHEDULER {
+	property = "STANDARD";
+};

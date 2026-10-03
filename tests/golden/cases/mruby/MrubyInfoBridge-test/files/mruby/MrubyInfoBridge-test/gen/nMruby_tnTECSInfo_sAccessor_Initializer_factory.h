@@ -1,0 +1,3 @@
+#ifndef tnTECSInfo_sAccessor_Initializer_FACTORY_H
+#define tnTECSInfo_sAccessor_Initializer_FACTORY_H
+#endif /* tnTECSInfo_sAccessor_Initializer_FACTORY_H */

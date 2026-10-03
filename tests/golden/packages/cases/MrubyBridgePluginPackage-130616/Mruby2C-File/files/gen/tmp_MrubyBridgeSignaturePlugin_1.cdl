@@ -1,0 +1,32 @@
+/*
+ * MrubyBridgeSignaturePlugin:
+ *     signature=::sFile
+ *
+ *   => celltype=nMruby::tsFile
+ *      (bridge cell's celltype; generated in this file)
+ *      cell nMruby::tsFile BridgeCellName { cTECS = CellName.eEntry; };
+ *        where eEntry's signature must be ::sFile.
+ *      => class=TECS::TsFile
+ *         (mruby's class; accessible from your script)
+ *          bridge = TECS::TsFile.new("BridgeCellName")
+ */
+import( <mruby.cdl> );
+
+/****  Ruby => TECS Bridge Celltype (MBP500) ****/
+namespace nMruby{
+    // bridge celltype
+    [idx_is_id,active]   // not actually active, to avoid warning W1002, W1007
+    celltype tsFile {
+        call ::sFile cTECS;
+        attr {
+            [omit]
+            char_t *VMname = "VM";
+            [omit]
+            char_t *bridgeName = C_EXP( "$cell$" );
+        };
+    };
+    // bridge initializer celltype
+    celltype tsFile_Initializer {
+        entry sInitializeTECSBridge eInitialize;
+    };
+};

@@ -1,0 +1,7 @@
+#include "implementation.oil"
+
+CPU mini {
+
+#include "KernelObjects_tecsgen.oil"
+
+};

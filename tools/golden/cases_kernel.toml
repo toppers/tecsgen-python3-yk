@@ -160,3 +160,79 @@ target = "synthetic"
 inputs = "hrp2"
 tecsgen_dest = "hr-tecs/tecsgen/tecsgen"
 tecsgen_args = ["-k", "euc", "-R", "-D", "TECS", "-D", "TECS_CPP", "-I.", "-I./gen", "-I../hr-tecs/tecs_kernel", "-I../hr-tecs/include", "-I../hr-tecs/arch", "-I../hr-tecs", "-I../hr-tecs/target/ev3_gcc", "-I../hr-tecs/arch/arm_gcc/am1808", "-I../hr-tecs/arch/arm_gcc/common", "-I../hr-tecs/arch/gcc", "hrp2_rpc_ptr.cdl"]
+
+# ---------------------------------------------------------------- hrp3+tecs sample2（HRPRPCPlugin）
+# sample2.cdl は SubTaskBody1（rDomain1）から rDomain2 のセル（SampleSharedObject2・Dataqueue1）を呼ぶ。
+# 別のユーザドメイン間の結合なので、HRPPlugin が HRPRPCPlugin（"noClientSemaphore=false,PPAllocatorSize=256"）を挿入する。
+# 既存の hrp3 ケース（sample1）は単一ドメインで、この経路を通らない。
+[[case]]
+id = "hrp3/blueninja_gcc/sample2"
+repo = "hrp3+tecs"
+target = "blueninja_gcc"
+configure = ["-T", "blueninja_gcc", "-t", "-A", "sample2", "-a", "../sample", "-C", "sample2.cdl", "-c", "sample2.cfg"]
+
+[[case]]
+id = "hrp3/blueninja_gcc/tSample2"
+repo = "hrp3+tecs"
+target = "blueninja_gcc"
+configure = ["-T", "blueninja_gcc", "-t", "-A", "tSample2", "-a", "../sample", "-C", "tSample2.cdl", "-c", "tSample2.cfg"]
+
+# ---------------------------------------------------------------- et_robcon atk1+tecs（ATK1DelayTaskPlugin）
+# nxt_sample の tSample.cdl が tecs_lib/mindstorms_nxt/target_lib_decl.cdl の tDelayTask（ATK1DelayTaskPlugin を
+# generate している）を使う。各サンプルの Makefile の `make tecs` を再現する。
+# 同梱の tecsgen は無いので、移植元（r3304）を tecsgen/tecsgen に置く。
+# ATK1KernelPlugin 側が id の重複（S3003・S3001）をエラーにするが、make は続けて成功で終わる（Ruby 版の振る舞い）。
+[[case]]
+id = "et_robcon/nxt_sample/etrobo"
+repo = "et_robcon+atk1"
+repo_dir = "et_robcon/trunk/atk1+tecs"
+target = "lego_nxt"
+workdir = "nxt_sample/ATK1+TECS_sample_etrobo"
+tecsgen_dest = "tecsgen/tecsgen"
+
+[[case]]
+id = "et_robcon/nxt_sample/et2011"
+repo = "et_robcon+atk1"
+repo_dir = "et_robcon/trunk/atk1+tecs"
+target = "lego_nxt"
+workdir = "nxt_sample/ATK1+TECS_sample_et2011"
+tecsgen_dest = "tecsgen/tecsgen"
+
+[[case]]
+id = "et_robcon/nxt_sample/mini"
+repo = "et_robcon+atk1"
+repo_dir = "et_robcon/trunk/atk1+tecs"
+target = "lego_nxt"
+workdir = "nxt_sample/ATK1+TECS_sample_mini"
+tecsgen_dest = "tecsgen/tecsgen"
+
+[[case]]
+id = "et_robcon/nxt_sample/syslog"
+repo = "et_robcon+atk1"
+repo_dir = "et_robcon/trunk/atk1+tecs"
+target = "lego_nxt"
+workdir = "nxt_sample/ATK1+TECS_sample_syslog"
+tecsgen_dest = "tecsgen/tecsgen"
+
+# 上の sample2 は Ruby 版が S9999（rDomain2 not found or not region）で途中で止まる。
+# SerialPort1 の restrict が、後ろで宣言される rDomain1・rDomain2 を名前で参照するため。
+# その2つの region を kernel の region より前に（空で）宣言して、最後まで通す
+# （region の指定 [domain(...)] は最初の宣言だけに置けるので、後ろの宣言からは外す）。
+# HRPRPCPlugin の出力まで採れるのは、こちら。
+[[case]]
+id = "hrp3/blueninja_gcc/sample2_rpc"
+repo = "hrp3+tecs"
+target = "blueninja_gcc"
+configure = ["-T", "blueninja_gcc", "-t", "-A", "sample2", "-a", "../sample", "-C", "sample2.cdl", "-c", "sample2.cfg"]
+patch = [
+  { file = "sample/sample2.cdl", find = "[domain(HRP, \"user\")]\nregion rDomain1{\n    cell tTask Task1;", replace = "region rDomain1{\n    cell tTask Task1;" },
+  { file = "sample/sample2.cdl", find = "[domain(HRP, \"user\")]\nregion rDomain2{\n    cell tSampleSharedObject", replace = "region rDomain2{\n    cell tSampleSharedObject" },
+  # rDomain2 の Dataqueue1 は rDomain1 から結合されるカーネルオブジェクトなので、HRPPlugin が
+  # 「複数のユーザドメインから結合されるカーネルオブジェクトはドメインの外に置け」とエラーにする。無所属にする
+  { file = "sample/sample2.cdl", find = "cDataqueue = rDomain2::Dataqueue1.eDataqueue;", replace = "cDataqueue = Dataqueue1.eDataqueue;" },
+  # oneway で [in] のポインタ引数を持つ関数を足し、HRPRPCPlugin の「PPAllocator が必要」の経路も通す
+  # （元の sGetSharedObject・sSetSharedObject は値渡しだけで、PPAllocatorSize を指定すると警告になる）
+  { file = "sample/sample2.cdl", find = "    uint32_t getTaskLoop(void);\n};", replace = "    uint32_t getTaskLoop(void);\n    [oneway]\n    void putBuffer([in,size_is(len)] const uint8_t *buf, [in] int32_t len);\n};" },
+  { file = "sample/sample2.cdl", find = "    cell tDataqueue Dataqueue1 {\n    };\n};", replace = "};\n\ncell tDataqueue Dataqueue1 {\n};" },
+  { file = "sample/sample2.cdl", find = "region rKernelDomain {\n/*\n *  システムログ機能の組上げ記述", replace = "[domain(HRP, \"user\")]\nregion rDomain1{\n};\n\n[domain(HRP, \"user\")]\nregion rDomain2{\n};\n\nregion rKernelDomain {\n/*\n *  システムログ機能の組上げ記述" },
+]

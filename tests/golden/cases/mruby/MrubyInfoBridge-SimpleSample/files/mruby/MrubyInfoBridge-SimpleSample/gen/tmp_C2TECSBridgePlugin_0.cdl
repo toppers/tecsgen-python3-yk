@@ -1,0 +1,6 @@
+namespace nC2TECS{
+  [singleton, active]    // this celltype is not active actually. 'active' is specified to prevent W1002.
+  celltype tnPosix_sMain {
+    call ::nPosix::sMain cCall;
+  };
+};

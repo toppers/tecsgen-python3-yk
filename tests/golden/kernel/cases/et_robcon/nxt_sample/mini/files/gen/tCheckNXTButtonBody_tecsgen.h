@@ -1,0 +1,218 @@
+/*
+ * このファイルは tecsgen により自動生成されました
+ * このファイルを編集して使用することは、意図されていません
+ */
+#ifndef tCheckNXTButtonBody_TECSGEN_H
+#define tCheckNXTButtonBody_TECSGEN_H
+
+/*
+ * celltype          :  tCheckNXTButtonBody
+ * global name       :  tCheckNXTButtonBody
+ * multi-domain      :  no
+ * idx_is_id(actual) :  no(no)
+ * singleton         :  yes
+ * has_CB            :  no
+ * has_INIB          :  no
+ * rom               :  yes
+ * CB initializer    :  yes
+ */
+
+/* グローバルヘッダ #_IGH_# */
+#include "global_tecsgen.h"
+
+/* シグニチャヘッダ #_ISH_# */
+#include "sKernelAlarmCallback_tecsgen.h"
+#include "sHandlerBody_tecsgen.h"
+#include "sButton_tecsgen.h"
+#include "sFlash_tecsgen.h"
+
+#ifndef TOPPERS_MACRO_ONLY
+
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+/* セル CB (ダミー)型宣言 #_CCDP_# */
+typedef struct tag_tCheckNXTButtonBody_CB {
+    int  dummy;
+} tCheckNXTButtonBody_CB;
+/* シングルトンセル CB プロトタイプ宣言 #_SCP_# */
+
+
+/* セルタイプのIDX型 #_CTIX_# */
+typedef int   tCheckNXTButtonBody_IDX;
+
+/* 受け口関数プロトタイプ宣言 #_EPP_# */
+/* sHandlerBody */
+void         tCheckNXTButtonBody_eiBody_main();
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
+#endif /* TOPPERS_MACRO_ONLY */
+
+/* 最適化のため参照するセルタイプの CB 型の定義を取込む #_ICT_# */
+#ifndef  TOPPERS_CB_TYPE_ONLY
+#define  tCheckNXTButtonBody_CB_TYPE_ONLY
+#define TOPPERS_CB_TYPE_ONLY
+#endif  /* TOPPERS_CB_TYPE_ONLY */
+#include "tKernel_tecsgen.h"
+#include "tButtonBody_tecsgen.h"
+#ifdef  tCheckNXTButtonBody_CB_TYPE_ONLY
+#undef TOPPERS_CB_TYPE_ONLY
+#endif /* tCheckNXTButtonBody_CB_TYPE_ONLY */
+#ifndef TOPPERS_CB_TYPE_ONLY
+
+/* optional 呼び口をテストするマクロ #_TOCP_# */
+#define tCheckNXTButtonBody_is_cFlash_joined() \
+	  (0)    /* not joined */
+
+/* セルCBを得るマクロ #_GCB_# */
+#define tCheckNXTButtonBody_GET_CELLCB(idx) ((void *)0)
+#ifndef TECSFLOW
+ /* 呼び口関数マクロ #_CPM_# */
+#define tCheckNXTButtonBody__require_call_port_tKernel_eKernelAlarmCallback_resumeAllInterrupts( ) \
+	  tKernel_eKernelAlarmCallback_resumeAllInterrupts( \
+	    )
+#define tCheckNXTButtonBody__require_call_port_tKernel_eKernelAlarmCallback_suspendAllInterrupts( ) \
+	  tKernel_eKernelAlarmCallback_suspendAllInterrupts( \
+	    )
+#define tCheckNXTButtonBody_cButton_isENTERButton( ) \
+	  tButtonBody_eButton_isENTERButton( \
+	    )
+#define tCheckNXTButtonBody_cButton_isRUNButton( ) \
+	  tButtonBody_eButton_isRUNButton( \
+	    )
+#define tCheckNXTButtonBody_cButton_isSTOPButton( ) \
+	  tButtonBody_eButton_isSTOPButton( \
+	    )
+#define tCheckNXTButtonBody_cButton_isEXITButton( ) \
+	  tButtonBody_eButton_isEXITButton( \
+	    )
+#define tCheckNXTButtonBody_cButton_isENTERButtonOnly( ) \
+	  tButtonBody_eButton_isENTERButtonOnly( \
+	    )
+#define tCheckNXTButtonBody_cButton_isRUNButtonOnly( ) \
+	  tButtonBody_eButton_isRUNButtonOnly( \
+	    )
+#define tCheckNXTButtonBody_cButton_isSTOPButtonOnly( ) \
+	  tButtonBody_eButton_isSTOPButtonOnly( \
+	    )
+#define tCheckNXTButtonBody_cButton_isEXITButtonOnly( ) \
+	  tButtonBody_eButton_isEXITButtonOnly( \
+	    )
+#define tCheckNXTButtonBody_cFlash_rewriteBios( ) \
+	  ((void (*)())0)()
+	  /* optional no entry port joined */
+
+#else  /* TECSFLOW */
+#define tCheckNXTButtonBody__require_call_port_tKernel_eKernelAlarmCallback_resumeAllInterrupts( ) \
+	  (p_that)->_require_call_port_tKernel_eKernelAlarmCallback.resumeAllInterrupts__T( \
+ )
+#define tCheckNXTButtonBody__require_call_port_tKernel_eKernelAlarmCallback_suspendAllInterrupts( ) \
+	  (p_that)->_require_call_port_tKernel_eKernelAlarmCallback.suspendAllInterrupts__T( \
+ )
+#define tCheckNXTButtonBody_cButton_isENTERButton( ) \
+	  (p_that)->cButton.isENTERButton__T( \
+ )
+#define tCheckNXTButtonBody_cButton_isRUNButton( ) \
+	  (p_that)->cButton.isRUNButton__T( \
+ )
+#define tCheckNXTButtonBody_cButton_isSTOPButton( ) \
+	  (p_that)->cButton.isSTOPButton__T( \
+ )
+#define tCheckNXTButtonBody_cButton_isEXITButton( ) \
+	  (p_that)->cButton.isEXITButton__T( \
+ )
+#define tCheckNXTButtonBody_cButton_isENTERButtonOnly( ) \
+	  (p_that)->cButton.isENTERButtonOnly__T( \
+ )
+#define tCheckNXTButtonBody_cButton_isRUNButtonOnly( ) \
+	  (p_that)->cButton.isRUNButtonOnly__T( \
+ )
+#define tCheckNXTButtonBody_cButton_isSTOPButtonOnly( ) \
+	  (p_that)->cButton.isSTOPButtonOnly__T( \
+ )
+#define tCheckNXTButtonBody_cButton_isEXITButtonOnly( ) \
+	  (p_that)->cButton.isEXITButtonOnly__T( \
+ )
+#define tCheckNXTButtonBody_cFlash_rewriteBios( ) \
+	  (p_that)->cFlash.rewriteBios__T( \
+ )
+
+#endif /* TECSFLOW */
+#endif /* TOPPERS_CB_TYPE_ONLY */
+
+#ifndef TOPPERS_MACRO_ONLY
+
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
+/* 受け口スケルトン関数プロトタイプ宣言（VMT不要最適化により参照するもの） #_EPSP_# */
+/* eiBody */
+void           tCheckNXTButtonBody_eiBody_main_skel( const struct tag_sHandlerBody_VDES *epd);
+
+#ifndef TOPPERS_CB_TYPE_ONLY
+
+#endif /* TOPPERS_CB_TYPE_ONLY */
+
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
+#endif /* TOPPERS_MACRO_ONLY */
+
+#ifndef TOPPERS_CB_TYPE_ONLY
+
+
+/* セルCBを得るマクロ(短縮形) #_GCBA_# */
+#define GET_CELLCB(idx)  tCheckNXTButtonBody_GET_CELLCB(idx)
+
+/* CELLCB 型(短縮形) #_CCT_# */
+#define CELLCB	tCheckNXTButtonBody_CB
+
+/* セルタイプのIDX型(短縮形) #_CTIXA_# */
+#define CELLIDX	tCheckNXTButtonBody_IDX
+
+/* 呼び口関数マクロ（短縮形）#_CPMA_# */
+#define resumeAllInterrupts( ) \
+          tCheckNXTButtonBody__require_call_port_tKernel_eKernelAlarmCallback_resumeAllInterrupts( )
+#define suspendAllInterrupts( ) \
+          tCheckNXTButtonBody__require_call_port_tKernel_eKernelAlarmCallback_suspendAllInterrupts( )
+#define cButton_isENTERButton( ) \
+          tCheckNXTButtonBody_cButton_isENTERButton( )
+#define cButton_isRUNButton( ) \
+          tCheckNXTButtonBody_cButton_isRUNButton( )
+#define cButton_isSTOPButton( ) \
+          tCheckNXTButtonBody_cButton_isSTOPButton( )
+#define cButton_isEXITButton( ) \
+          tCheckNXTButtonBody_cButton_isEXITButton( )
+#define cButton_isENTERButtonOnly( ) \
+          tCheckNXTButtonBody_cButton_isENTERButtonOnly( )
+#define cButton_isRUNButtonOnly( ) \
+          tCheckNXTButtonBody_cButton_isRUNButtonOnly( )
+#define cButton_isSTOPButtonOnly( ) \
+          tCheckNXTButtonBody_cButton_isSTOPButtonOnly( )
+#define cButton_isEXITButtonOnly( ) \
+          tCheckNXTButtonBody_cButton_isEXITButtonOnly( )
+#define cFlash_rewriteBios( ) \
+          tCheckNXTButtonBody_cFlash_rewriteBios( )
+
+
+
+/* optional 呼び口をテストするマクロ（短縮形） #_TOCPA_# */
+#define is_cFlash_joined()\
+		tCheckNXTButtonBody_is_cFlash_joined()
+
+/* 受け口関数マクロ（短縮形） #_EPM_# */
+#define eiBody_main      tCheckNXTButtonBody_eiBody_main
+
+/* CB 初期化マクロ #_CIM_# */
+#define INITIALIZE_CB()
+#define SET_CB_INIB_POINTER(i,p_that)\
+	/* empty */
+#endif /* TOPPERS_CB_TYPE_ONLY */
+
+#ifndef TOPPERS_MACRO_ONLY
+
+#endif /* TOPPERS_MACRO_ONLY */
+
+#endif /* tCheckNXTButtonBody_TECSGENH */

@@ -1,0 +1,13 @@
+ruby ../tecsgen/tecsgen.rb ../sample/sample2.cdl -R -I. -I../include  -I../target/blueninja_gcc -I../arch -I../target/blueninja_gcc/device/RTE -I../target/blueninja_gcc/device/RTE/Device/TZ1001MBG -I../target/blueninja_gcc/device/TOSHIBA.TZ10xx_DFP/Device/Include -I../target/blueninja_gcc/device/TOSHIBA.TZ10xx_DFP/RTE_Driver -I../target/blueninja_gcc/device/ARM.CMSIS/CMSIS/Include -I../target/blueninja_gcc/device/ARM.CMSIS/CMSIS/Driver/Include -I../arch/arm_m_gcc/common -I../arch/gcc -I.. -I../sample -I./gen -I../tecs_kernel -I../tecsgen/tecs -I../tecsgen/tecs/rpc --cpp "arm-none-eabi-gcc  -DTOPPERS_CORTEX_M4 -D__TARGET_ARCH_THUMB=4  -I. -I../include  -I../target/blueninja_gcc -I../arch -I../target/blueninja_gcc/device/RTE -I../target/blueninja_gcc/device/RTE/Device/TZ1001MBG -I../target/blueninja_gcc/device/TOSHIBA.TZ10xx_DFP/Device/Include -I../target/blueninja_gcc/device/TOSHIBA.TZ10xx_DFP/RTE_Driver -I../target/blueninja_gcc/device/ARM.CMSIS/CMSIS/Include -I../target/blueninja_gcc/device/ARM.CMSIS/CMSIS/Driver/Include -I../arch/arm_m_gcc/common -I../arch/gcc -I.. -I../sample -I./gen -I../tecs_kernel -I../tecsgen/tecs -I../tecsgen/tecs/rpc  -DTOPPERS_SVC_CALL -D TECSGEN -E" -g ./gen
+../sample/sample2.cdl:117:30: error: S9999 rDomain2 not found or not region
+../sample/sample2.cdl:117:30: error: S9999 rDomain1 not found or not region
+HRPSVCThroughPlugin.new( 'Join_domain_in_through__0', '', 'SysLog', 'eSysLog', tSysLog )
+./gen/tmp_HRPSVCThroughPlugin_0.cdl:8:49: info: HSI0001 sSysLog.write.p_syslog.logpar member type 'intptr_t' not checked by plugin
+./gen/tmp_HRPSVCThroughPlugin_0.cdl:8:49: info: HSI0001 sSysLog.read.p_syslog.logpar member type 'intptr_t' not checked by plugin
+HRPSVCThroughPlugin.new( 'Join_domain_in_through__1', '', 'SerialPort1', 'eSerialPort', tSerialPort )
+../sample/sample2.cdl:117:18: info: I9999 SerialPort1: restrict calling domain to rKernelDomain, which is same domain as the cell locates
+HRPRPCPlugin.new( 'Join_domain_to_through__0', 'noClientSemaphore=false,PPAllocatorSize=256', 'SampleSharedObject2', 'eGetSharedObject', tSampleSharedObject )
+../tecsgen/tecs/rpc/sRPCErrorHandler.cdl:65:2: warning: HRP9999 PPAllocatorSize speicified in spite of PPAllocator unnecessary
+HRPRPCPlugin.new( 'Join_domain_to_through__1', 'noClientSemaphore=false,PPAllocatorSize=256', 'SampleSharedObject2', 'eSetSharedObject', tSampleSharedObject )
+./gen/tOpaqueMarshaler_sGetSharedObject.cdl:16:2: warning: HRP9999 PPAllocatorSize speicified in spite of PPAllocator unnecessary
+2 errors  2 warnings

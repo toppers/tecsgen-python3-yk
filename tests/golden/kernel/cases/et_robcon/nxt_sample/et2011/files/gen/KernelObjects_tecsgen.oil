@@ -1,0 +1,30 @@
+	#include "Kernel_tecsgen.oil"
+
+	APPMODE appmode1 {};
+
+	#include "TASK_tecsgen.oil"
+
+	#include "ISR_tecsgen.oil"
+
+	COUNTER SystemTickCounter {
+		MINCYCLE = 1;
+		MAXALLOWEDVALUE = 2000;
+		TICKSPERBASE = 1;
+	};
+
+	#include "ALARM_tecsgen.oil"
+
+	EVENT BluetoothEvent {
+		MASK = AUTO;
+	};
+
+	EVENT DelayConnectBluetoothTask_Event {
+		MASK = AUTO;
+	};
+
+	EVENT DelayStarterTask_Event {
+		MASK = AUTO;
+	};
+
+	#include "RESOURCE_tecsgen.oil"
+

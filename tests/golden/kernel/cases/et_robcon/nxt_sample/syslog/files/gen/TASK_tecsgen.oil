@@ -1,0 +1,24 @@
+	TASK ConnectBluetoothTask {
+		AUTOSTART = TRUE {
+			APPMODE = appmode1;
+		};
+		PRIORITY = 6;
+		ACTIVATION = 1;
+		SCHEDULE = FULL;
+		EVENT = BluetoothEvent;
+		EVENT = DelayConnectBluetoothTask_Event;
+		STACKSIZE = 512;
+	};
+
+	TASK StarterTask {
+		AUTOSTART = TRUE {
+			APPMODE = appmode1;
+		};
+		PRIORITY = 3;
+		ACTIVATION = 1;
+		SCHEDULE = FULL;
+		EVENT = BluetoothEvent;
+		EVENT = DelayStarterTask_Event;
+		STACKSIZE = 1024;
+	};
+

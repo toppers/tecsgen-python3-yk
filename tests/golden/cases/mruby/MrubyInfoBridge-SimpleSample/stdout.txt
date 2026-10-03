@@ -1,0 +1,44 @@
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:286:50: warning: W3003 rawDesc pointer level mismatch. This warning can be eliminated by specifying [deviate] to signature
+@WORK@/tecsgen/tecs/TECSInfo/TECSInfo.cdl:308:6: info: TIF0001 forcely set --unoptimize-entry by TECSInfoPlugin (by importing TECSInfo.cdl)
+  MrubyBridgeCellPlugin: [cell.port] TECSInfo.eAccessor => [mruby instance] TECS::TnTECSInfo_sAccessor.new( 'TECSInfoeAccessorBridge' ) 
+  MrubyBridgePlugin: [pointer]  const char_t* => [class] TECS::CharPointer
+  MrubyBridgePlugin: [pointer]  int_t* => [class] TECS::IntPointer
+  MrubyBridgePlugin: [pointer]  bool_t* => [class] TECS::BoolPointer
+  MrubyBridgePlugin: [pointer]  uint32_t* => [class] TECS::UInt32Pointer
+  MrubyBridgePlugin: [pointer]  int8_t* => [class] TECS::Int8Pointer
+  MrubyBridgePlugin: [signature] ::nTECSInfo::sAccessor => [celltype] nMruby::tnTECSInfo_sAccessor => [class] TECS::TnTECSInfo_sAccessor
+  MrubyBridgePlugin: join your VM's cInitialize to VM_TECSInitializer.eInitialize
+  C2TECSBridgePlugin: [celltype] C2TECS::tnPosix_sMain. Create cell then join the call port 'cCall' to the target cell
+@WORK@/tecsgen/tecs/posix/posix.cdl:41:2: warning: W1008 gen/tmp__TECSInfoSub.cdl: reuse designation mismatch with previous import
+gen/tmp_MrubyInfoBridgeCellPlugin_post_code.cdl:2:79: info: MRI9999 loginfo: type 'intptr_t[6]' not allowed for struct member, 'write' automatcally excluded
+gen/tmp_MrubyInfoBridgeCellPlugin_post_code.cdl:2:79: info: MRI9999 loginfo: type 'intptr_t[6]' not allowed for struct member, 'read' automatcally excluded
+  MrubyInfoBridgePlugin: [struct]   T_SYSLOG_RLOG => [class] TECS::Structt_syslog_rlog
+  MrubyInfoBridgePlugin: [signature] ::sSysLog => [class] TECS::InfosSysLog
+  MrubyInfoBridgePlugin: [signature] ::sTaskBody => [class] TECS::InfosTaskBody
+  MrubyInfoBridgePlugin: [signature] ::sTaskExceptionBody => [class] TECS::InfosTaskExceptionBody
+  MrubyInfoBridgePlugin: [signature] ::sTask => [class] TECS::InfosTask
+  MrubyInfoBridgePlugin: [pointer]  SYSTIM* => [class] TECS::ULongPointer
+  MrubyInfoBridgePlugin: [signature] ::sKernel => [class] TECS::InfosKernel
+  MrubyInfoBridgePlugin: [signature] ::siKernel => [class] TECS::InfosiKernel
+gen/tmp_MrubyInfoBridgeCellPlugin_post_code.cdl:8:82: warning: MRW2001 initialize: internally defined. change to initialize_cell in ruby
+  MrubyInfoBridgePlugin: [struct]   T_RSEM => [class] TECS::Structt_rsem
+  MrubyInfoBridgePlugin: [signature] ::sSemaphore => [class] TECS::InfosSemaphore
+  MrubyInfoBridgePlugin: [signature] ::siSemaphore => [class] TECS::InfosiSemaphore
+gen/tmp_MrubyInfoBridgeCellPlugin_post_code.cdl:10:82: warning: MRW2001 initialize: internally defined. change to initialize_cell in ruby
+  MrubyInfoBridgePlugin: [pointer]  FLGPTN* => [class] TECS::UIntPointer
+  MrubyInfoBridgePlugin: [struct]   T_RFLG => [class] TECS::Structt_rflg
+  MrubyInfoBridgePlugin: [signature] ::sEventflag => [class] TECS::InfosEventflag
+  MrubyInfoBridgePlugin: [signature] ::siEventflag => [class] TECS::InfosiEventflag
+gen/tmp_MrubyInfoBridgeCellPlugin_post_code.cdl:12:82: warning: MRW2001 initialize: internally defined. change to initialize_cell in ruby
+  MrubyInfoBridgePlugin: [pointer]  intptr_t* => [class] TECS::LongPointer
+  MrubyInfoBridgePlugin: [struct]   T_RDTQ => [class] TECS::Structt_rdtq
+  MrubyInfoBridgePlugin: [signature] ::sDataqueue => [class] TECS::InfosDataqueue
+  MrubyInfoBridgePlugin: [signature] ::siDataqueue => [class] TECS::InfosiDataqueue
+  MrubyInfoBridgePlugin: [signature] ::sSample => [class] TECS::InfosSample
+  MrubyInfoBridgePlugin: [signature] ::nTECSInfo::sAccessor => [class] TECS::InfonTECSInfo_sAccessor
+gen/tmp_MrubyInfoBridgeCellPlugin_post_code.cdl:31:85: info: MRI9999 argv: type const char** cannot be used in mruby Bridge, main automatcally excluded
+gen/tmp_MrubyInfoBridgeCellPlugin_post_code.cdl:31:85: warning: MRB1012 'sMain' no function remained by exclude
+  MrubyInfoBridgePlugin: [signature] ::nPosix::sMain => [class] TECS::InfonPosix_sMain
+SimpleSample.cdl:31:14: warning: W1007 ::SysLog : non-active cell has no entry join and no factory
+SimpleSample.cdl:49:14: warning: W1007 ::Sample : non-active cell has no entry join and no factory
+8 warnings

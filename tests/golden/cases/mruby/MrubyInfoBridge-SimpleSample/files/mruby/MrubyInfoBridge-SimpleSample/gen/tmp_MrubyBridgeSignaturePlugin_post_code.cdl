@@ -1,0 +1,63 @@
+
+  // MrubyBridgeSignaturePlugin: MBP601
+  cell nMruby::tnTECSInfo_sAccessor_Initializer VM_tnTECSInfo_sAccessor_Initializer{ };
+  cell nMrubyInfo::tInfosSysLog_Initializer VM_tInfosSysLog_Initializer{ };
+  cell nMrubyInfo::tInfosTaskBody_Initializer VM_tInfosTaskBody_Initializer{ };
+  cell nMrubyInfo::tInfosTaskExceptionBody_Initializer VM_tInfosTaskExceptionBody_Initializer{ };
+  cell nMrubyInfo::tInfosTask_Initializer VM_tInfosTask_Initializer{ };
+  cell nMrubyInfo::tInfosKernel_Initializer VM_tInfosKernel_Initializer{ };
+  cell nMrubyInfo::tInfosiKernel_Initializer VM_tInfosiKernel_Initializer{ };
+  cell nMrubyInfo::tInfosSemaphore_Initializer VM_tInfosSemaphore_Initializer{ };
+  cell nMrubyInfo::tInfosiSemaphore_Initializer VM_tInfosiSemaphore_Initializer{ };
+  cell nMrubyInfo::tInfosEventflag_Initializer VM_tInfosEventflag_Initializer{ };
+  cell nMrubyInfo::tInfosiEventflag_Initializer VM_tInfosiEventflag_Initializer{ };
+  cell nMrubyInfo::tInfosDataqueue_Initializer VM_tInfosDataqueue_Initializer{ };
+  cell nMrubyInfo::tInfosiDataqueue_Initializer VM_tInfosiDataqueue_Initializer{ };
+  cell nMrubyInfo::tInfosSample_Initializer VM_tInfosSample_Initializer{ };
+  cell nMrubyInfo::tInfonTECSInfo_sAccessor_Initializer VM_tInfonTECSInfo_sAccessor_Initializer{ };
+  cell nMrubyInfo::tInfonPosix_sMain_Initializer VM_tInfonPosix_sMain_Initializer{ };
+  // MBP602
+  cell nMruby::tCharPointer CtCharPointer { };
+  cell nMruby::tIntPointer CtIntPointer { };
+  cell nMruby::tBoolPointer CtBoolPointer { };
+  cell nMruby::tUInt32Pointer CtUInt32Pointer { };
+  cell nMruby::tInt8Pointer CtInt8Pointer { };
+  cell nMruby::tULongPointer CtULongPointer { };
+  cell nMruby::tUIntPointer CtUIntPointer { };
+  cell nMruby::tLongPointer CtLongPointer { };
+  // MBP603
+  cell nMruby::t_syslog_rlog Ct_syslog_rlog { };
+  cell nMruby::t_rsem Ct_rsem { };
+  cell nMruby::t_rflg Ct_rflg { };
+  cell nMruby::t_rdtq Ct_rdtq { };
+  /* === VM name is 'VM' === (MBP610) */
+  cell nMruby::tTECSInitializer VM_TECSInitializer {
+    cInitialize[] = VM_tnTECSInfo_sAccessor_Initializer.eInitialize;
+    cInitialize[] = VM_tInfosSysLog_Initializer.eInitialize;
+    cInitialize[] = VM_tInfosTaskBody_Initializer.eInitialize;
+    cInitialize[] = VM_tInfosTaskExceptionBody_Initializer.eInitialize;
+    cInitialize[] = VM_tInfosTask_Initializer.eInitialize;
+    cInitialize[] = VM_tInfosKernel_Initializer.eInitialize;
+    cInitialize[] = VM_tInfosiKernel_Initializer.eInitialize;
+    cInitialize[] = VM_tInfosSemaphore_Initializer.eInitialize;
+    cInitialize[] = VM_tInfosiSemaphore_Initializer.eInitialize;
+    cInitialize[] = VM_tInfosEventflag_Initializer.eInitialize;
+    cInitialize[] = VM_tInfosiEventflag_Initializer.eInitialize;
+    cInitialize[] = VM_tInfosDataqueue_Initializer.eInitialize;
+    cInitialize[] = VM_tInfosiDataqueue_Initializer.eInitialize;
+    cInitialize[] = VM_tInfosSample_Initializer.eInitialize;
+    cInitialize[] = VM_tInfonTECSInfo_sAccessor_Initializer.eInitialize;
+    cInitialize[] = VM_tInfonPosix_sMain_Initializer.eInitialize;
+    cInitialize[] = CtCharPointer.eInitialize;
+    cInitialize[] = CtIntPointer.eInitialize;
+    cInitialize[] = CtBoolPointer.eInitialize;
+    cInitialize[] = CtUInt32Pointer.eInitialize;
+    cInitialize[] = CtInt8Pointer.eInitialize;
+    cInitialize[] = CtULongPointer.eInitialize;
+    cInitialize[] = CtUIntPointer.eInitialize;
+    cInitialize[] = CtLongPointer.eInitialize;
+    cInitialize[] = Ct_syslog_rlog.eInitialize;
+    cInitialize[] = Ct_rsem.eInitialize;
+    cInitialize[] = Ct_rflg.eInitialize;
+    cInitialize[] = Ct_rdtq.eInitialize;
+  };

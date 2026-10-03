@@ -1,0 +1,47 @@
+	TASK ConnectBluetoothTask {
+		AUTOSTART = TRUE {
+			APPMODE = appmode1;
+		};
+		PRIORITY = 6;
+		ACTIVATION = 1;
+		SCHEDULE = FULL;
+		EVENT = BluetoothEvent;
+		EVENT = DelayConnectBluetoothTask_Event;
+		STACKSIZE = 512;
+	};
+
+	TASK StarterTask {
+		AUTOSTART = TRUE {
+			APPMODE = appmode1;
+		};
+		PRIORITY = 7;
+		ACTIVATION = 1;
+		SCHEDULE = FULL;
+		EVENT = DelayStarterTask_Event;
+		STACKSIZE = 4096;
+	};
+
+	TASK TailControllerTask_Task {
+		AUTOSTART = FALSE;
+		PRIORITY = 8;
+		ACTIVATION = 1;
+		SCHEDULE = FULL;
+		STACKSIZE = 4096;
+	};
+
+	TASK BalancerTask_Task {
+		AUTOSTART = FALSE;
+		PRIORITY = 10;
+		ACTIVATION = 1;
+		SCHEDULE = FULL;
+		STACKSIZE = 4096;
+	};
+
+	TASK LinetracerTask_Task {
+		AUTOSTART = FALSE;
+		PRIORITY = 9;
+		ACTIVATION = 1;
+		SCHEDULE = FULL;
+		STACKSIZE = 4096;
+	};
+

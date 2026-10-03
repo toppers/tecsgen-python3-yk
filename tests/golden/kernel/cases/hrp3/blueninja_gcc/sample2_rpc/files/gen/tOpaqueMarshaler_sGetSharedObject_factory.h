@@ -1,0 +1,3 @@
+#ifndef tOpaqueMarshaler_sGetSharedObject_FACTORY_H
+#define tOpaqueMarshaler_sGetSharedObject_FACTORY_H
+#endif /* tOpaqueMarshaler_sGetSharedObject_FACTORY_H */

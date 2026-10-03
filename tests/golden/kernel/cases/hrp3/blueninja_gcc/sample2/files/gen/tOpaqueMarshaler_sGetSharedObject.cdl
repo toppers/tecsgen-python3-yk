@@ -1,0 +1,16 @@
+// GenOpaqueMarshler0001
+celltype tOpaqueMarshaler_sGetSharedObject {
+  entry ::sGetSharedObject eClientEntry;
+  call sTDR       cTDR;
+  [optional]
+    call sSemaphore cLockChannel;
+  [optional]
+    call sRPCErrorHandler cErrorHandler;
+};
+celltype tOpaqueUnmarshaler_sGetSharedObject {
+  call ::sGetSharedObject cServerCall;
+  call  sTDR       cTDR;
+  [optional]
+    call sRPCErrorHandler cErrorHandler;
+  entry sUnmarshalerMain  eService;
+};
