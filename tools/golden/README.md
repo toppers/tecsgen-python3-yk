@@ -45,7 +45,7 @@ rm -rf tests/golden && cp -r /tmp/golden-out tests/golden
 | ev3rt+tecs | HRP2（`HRP2Plugin`・`HRP2TaskPlugin` ほか） | `configure` を使わず、`hr-tecs/workspace/<名前>/` で `make tecs`（ケースの `workdir`） |
 | atk1+tecs | ATK1（`ATK1KernelPlugin`・`ATK1TaskPlugin`・`ATK1AlarmPlugin`・`ATK1ISRPlugin`・`ATK1ResourcePlugin`・`ATK1EventPlugin`） | Makefile が無いので、tecsgen の引数をケースの `tecsgen_args` に直接書く（`.tmk` の呼び出しを r3304 向けに置き換えたもの。経緯は `cases_kernel.toml` のコメント）。`-U` の有無で2ケース |
 
-**HRP2 の個別プラグインは合成入力で採る**: `HRP2SemaphorePlugin` など7種（Semaphore・Eventflag・Dataqueue・PriorityDataqueue・FixedSizeMemoryPool・AlarmHandler・CyclicHandler）、`HRP2SVCPlugin`、`HRP2RPCPlugin`、`GenHRP2Marshaler` は、実プロジェクトの CDL が使わない。`tools/golden/inputs/hrp2/` の合成アプリケーション（カーネルの CDL を import し、現行の文法で region を書いたもの）を `obj-golden/` へ置いて実行する。ケースは `hrp2/objects`（5種のオブジェクトと SVC）、`hrp2/rpc`（RPC）、`hrp2/cyclic`・`hrp2/alarm`・`hrp2/rpc_ptr`（Ruby 版が例外で止まる経路。例外・終了コード・それまでに作られたファイルが正解）。経緯と各ケースの配置は `tools/golden/inputs/hrp2/README.md`。採取は `& ./tools/port/wsl_check.ps1 -KernelGolden <作業コピー> -PytestArgs '--case','hrp2/*'`（約2分）。`HRP2Cache.rb`（コメントだけ）と `HRP2PostHook.rb`（tecslib のどこからも参照されない）は動かす経路が無く、対象外。`HRPRPCPlugin` は HRP2 ではなく HRP（hr-tecs3）のプラグインで、このケースには含まない。
+**HRP2 の個別プラグインは合成入力で採る**: `HRP2SemaphorePlugin` など7種（Semaphore・Eventflag・Dataqueue・PriorityDataqueue・FixedSizeMemoryPool・AlarmHandler・CyclicHandler）、`HRP2SVCPlugin`、`HRP2RPCPlugin`、`GenHRP2Marshaler` は、実プロジェクトの CDL が使わない。`tools/golden/inputs/hrp2/` の合成アプリケーション（カーネルの CDL を import し、現行の文法で region を書いたもの）を `obj-golden/` へ置いて実行する。ケースは `hrp2/objects`（5種のオブジェクトと SVC）、`hrp2/rpc`（RPC）、`hrp2/cyclic`・`hrp2/alarm`・`hrp2/rpc_ptr`（Ruby 版が例外で止まる経路。例外・終了コード・それまでに作られたファイルが正解）。経緯と各ケースの配置は `tools/golden/inputs/hrp2/README.md`。採取は `sh tools/port/wsl_check.sh --kernel-golden <作業コピー> --case 'hrp2/*'`（約2分）。`HRP2Cache.rb`（コメントだけ）と `HRP2PostHook.rb`（tecslib のどこからも参照されない）は動かす経路が無く、対象外。`HRPRPCPlugin` は HRP2 ではなく HRP（hr-tecs3）のプラグインで、このケースには含まない。
 
 **残りの未移植プラグインの正解データ（2026-10-03）**:
 
@@ -57,23 +57,23 @@ rm -rf tests/golden && cp -r /tmp/golden-out tests/golden
 | `TransparentMarshalerPlugin` | `cases/transparent_marshaler` | 使用例が無いので合成入力（`inputs/transparent/`） |
 | `Mruby2CBridgePlugin`・`TECS2CBridgePlugin` | `packages/cases/MrubyBridgePluginPackage-130616/Mruby2C`（既存）、`Mruby2C-File` | `Mruby2C` は小さなシグニチャだけ。`Mruby2C-File` は C のファイル I/O（ポインタ・`size_is`・string）を渡し、経路が広い。`-D TECS` が要る（`FILEptr` の定義が `#ifdef TECS`） |
 
-**P3 記録（差分テスト用）**: 上の各ケースの記録も採ってあり、`tools/port/p4_progress.py` で Python 版と比べる。`test/` 系（`cases/mruby/*`・`transparent_marshaler`）は `run_p2_oracle.sh`・`run_p3_oracle.sh` に `--case` を付けた形（全件を採り直す必要は無い）、カーネル系は `-KernelGolden … -KernelP3 -PytestArgs '--case',…`、パッケージ系は `-PackageGolden … -PytestArgs '--p3-oracle','--case','<id>'`（`tests/golden/packages/p3/`。ケース ID は `packages/<id>`）。パッケージ系は `plugin_trace.txt` に P3 フックがロードしたファイルが加わるので、そのファイルだけは正解データと比べない。
+**P3 記録（差分テスト用）**: 上の各ケースの記録も採ってあり、`tools/port/p4_progress.py` で Python 版と比べる。`test/` 系（`cases/mruby/*`・`transparent_marshaler`）は `run_p2_oracle.sh`・`run_p3_oracle.sh` に `--case` を付けた形（全件を採り直す必要は無い）、カーネル系は `--kernel-golden … --p3-oracle --case …`、パッケージ系は `--package-golden … --p3-oracle --case '<id>'`（`tests/golden/packages/p3/`。ケース ID は `packages/<id>`）。パッケージ系は `plugin_trace.txt` に P3 フックがロードしたファイルが加わるので、そのファイルだけは正解データと比べない。
 
 `generate_golden.py` の `inputs`（`tools/golden/inputs/<名前>/*.cdl` を `cwd` へ写す）と `{MRUBY_INCLUDE}`、`collect_kernel.py` の `repo_dir`（`<repo>/trunk` 以外）と `patch`（書き出したソースの文字列置換。置換元が1か所でなければ失敗する）が、今回足した仕組み。
 
 **`ATK1EventPlugin` の限界**: atk1+tecs のアプリケーション CDL は `sample.cdl` だけで、イベントを使うセルが無い（inferred）。プラグインは読み込まれて実行されるが、`tmp_ATK1EventPlugin_0.cdl`・`tmp_ATK1EventPlugin_post_code.cdl`・`EVENT_tecsgen.oil` は 0 バイトで、生成ロジックの本体は記録されていない。記録されているのは「イベントが無いとき何も出さない」経路だけ。`ATK1DelayTaskPlugin` は atk1+tecs の CDL に使用箇所が無く、対象外。
 
-一部のケースだけを採るには、`wsl_check.ps1` の `-PytestArgs` に `collect_kernel.py` の引数を配列で渡す。PowerShell のセッションから直接呼ぶ（例: `& ./tools/port/wsl_check.ps1 -KernelGolden <作業コピー> -PytestArgs '--case','atk1/*'`。atk1 の2ケースだけなら約30秒）。`pwsh ...` を子プロセスとして起動して `--case,'atk1/*'` と書くと、1つの文字列として渡されて `unrecognized arguments` になる。`-KernelGolden` の後ろに直接 `--case` を書いても、スクリプトのパラメータに束縛されず届かない（全ケースが再採取される）。
+一部のケースだけを採るには、`--kernel-golden <作業コピー>` の後ろに `collect_kernel.py` の引数をそのまま付ける（例: `sh tools/port/wsl_check.sh --kernel-golden <作業コピー> --case 'atk1/*'`。atk1 の2ケースだけなら約30秒）。
 
 HRP2 は hrp2+tecs 自体の sample1 では採れません。`region` の古い文法（`[domain(DOMAIN1), out_through(), in_through()]`）が現行の tecsgen で構文エラー（G1016）になり、プラグインまで進まないためです。HRP2 ベースの ev3rt+tecs（`hr-tecs`）を使っています。
 
 ```sh
-pwsh tools/port/wsl_check.ps1 -KernelGolden E:/Crepo/toppers-tecs-svn/toppers/tecsgen/branches/ykominami_r3033
+sh tools/port/wsl_check.sh --kernel-golden /mnt/e/Crepo/toppers-tecs-svn/toppers/tecsgen/branches/ykominami_r3033
 ```
 
 - 前提: WSL に `gcc-arm-none-eabi`（ターゲットの `CC` は `arm-none-eabi-gcc`）と Ruby の `shell` gem（`gem install --user-install shell`。`configure.rb` が使う）。カーネルの SVN 作業コピーは `~/repo/svn-toppers-TECS-2/svn/toppers/<名前>/trunk`（環境変数 `KERNEL_REPOS_ROOT` で変更）。
 - 作業ディレクトリは `~/p5kernel`（`/tmp` は WSL の再起動で消える）。採取には10分ほどかかります（`/mnt/e` への書き込みが遅い）。
-- `--p3-oracle`（`wsl_check.ps1 -KernelP3`）を付けると、正解データは採り直さず、`tests/ruby/p3_oracle.rb` を差し込んで同じケースを実行し、Ruby 版の外界とのやりとりの記録を `tests/golden/kernel/p3/<ID>.jsonl.gz` に書く。出力がコミット済みの正解データと一致したときだけ記録を置く（フックが出力を変えていない確認）。`tools/port/p4_progress.py` が再生する。全11ケースで30分ほどかかる。
+- `--p3-oracle`（`wsl_check.sh --kernel-golden <作業コピー> --p3-oracle`）を付けると、正解データは採り直さず、`tests/ruby/p3_oracle.rb` を差し込んで同じケースを実行し、Ruby 版の外界とのやりとりの記録を `tests/golden/kernel/p3/<ID>.jsonl.gz` に書く。出力がコミット済みの正解データと一致したときだけ記録を置く（フックが出力を変えていない確認）。`tools/port/p4_progress.py` が再生する。全11ケースで30分ほどかかる。
 - 各ケースの `meta.json` の `tecsgen_args` に、`make -n tecs` で得た tecsgen の呼び出しを記録します。
 - カーネルのリポジトリは r3306 で、移植元 tecsgen（r3304）とは版が違います。同梱の tecsgen（r3306）は Ruby 3.x で `Proc.new` のエラーになるため、r3304 に差し替えて実行しています。カーネル側の CDL 自体は r3306 のままです。
 
@@ -82,7 +82,7 @@ pwsh tools/port/wsl_check.ps1 -KernelGolden E:/Crepo/toppers-tecs-svn/toppers/te
 正解データが TECS のどのプラグインを実際に実行したかを、`plugin_trace.rb` で計測します。プラグイン名を出力から検索する方法は、名前が出力に現れない経路（`OpaqueMarshalerPlugin` など）を見落とすので使いません。
 
 ```sh
-pwsh tools/port/wsl_check.ps1 -PluginCoverage E:/Crepo/toppers-tecs-svn/toppers/tecsgen/branches/ykominami_r3033
+sh tools/port/wsl_check.sh --plugin-coverage /mnt/e/Crepo/toppers-tecs-svn/toppers/tecsgen/branches/ykominami_r3033
 ```
 
 - `run_plugin_coverage.sh` が、`test/` の155ケース（`generate_golden.py`）とカーネルのケース（`collect_kernel.py`）を、`RUBYOPT=-r plugin_trace.rb` 付きで実行します。採取結果は `~/p5kernel/cov/` に捨て、`tests/golden/` には何も書きません。20〜40分かかります。
@@ -110,13 +110,13 @@ pwsh tools/port/wsl_check.ps1 -PluginCoverage E:/Crepo/toppers-tecs-svn/toppers/
 
 Vault の `work/active/tecsgen-python3/tecsgen-python3.md` の Context にある `~/Ccur/TECS-WG-DL/` の21パッケージは、すべて `.cdl` を含みます。採集対象と除外理由は `tests/golden/packages/package_inventory.json` に記録します。パッケージに同梱された古い tecsgen は実行せず、移植元の Ruby 版（r3304）を作業コピーに差し替えます。元の展開済みパッケージは変更しません。
 
-```powershell
-& ./tools/port/wsl_check.ps1 -PackageInventory
-& ./tools/port/wsl_check.ps1 -PackageGolden E:/Crepo/toppers-tecs-svn/toppers/tecsgen/branches/ykominami_r3033 -PytestArgs @('--out','/home/ykomi/p5packageplugins/new-capture')
+```sh
+sh tools/port/wsl_check.sh --package-inventory
+sh tools/port/wsl_check.sh --package-golden /mnt/e/Crepo/toppers-tecs-svn/toppers/tecsgen/branches/ykominami_r3033 --out /home/ykomi/p5packageplugins/new-capture
 ```
 
-`tools/golden/cases_packages.toml` が採集ケースです。`-PackageGolden` は `collect_packages.py` を呼び、成功したケースだけを `cases/<id>/` に保存します。既存の出力先は上書きせず、追加入力時は `--append --case <id>` を指定します。終了コード0、エラー0、タイムアウトなし、Plugin のインスタンス生成と生成ファイルあり、を正解ケースの条件とします。失敗した試行は `diagnostics/<id>/` に分離します。各 `meta.json` には元パッケージの CDL の SHA-256、実行引数、Plugin のロード・生成記録があり、`plugin_trace.txt` に生ログを保存します。
+`tools/golden/cases_packages.toml` が採集ケースです。`--package-golden` は `collect_packages.py` を呼び、成功したケースだけを `cases/<id>/` に保存します。既存の出力先は上書きせず、追加入力時は `--append --case <id>` を指定します。終了コード0、エラー0、タイムアウトなし、Plugin のインスタンス生成と生成ファイルあり、を正解ケースの条件とします。失敗した試行は `diagnostics/<id>/` に分離します。各 `meta.json` には元パッケージの CDL の SHA-256、実行引数、Plugin のロード・生成記録があり、`plugin_trace.txt` に生ログを保存します。
 
-`-PackageInventory -PytestArgs @('refs')` は CDL 内の `generate()` 指定、`@('targets')` は ASP3 ターゲット一覧を表示します。`@('layout','<package>')`、`@('file','<package>','<relative-path>')`、`@('locate','<package>','<filename>')` はパッケージの調査に使います。既知の失敗2ケースは manifest で `enabled = false` とし、診断の再実行時だけ `--include-disabled --case <id>` を渡します。
+`--package-inventory refs` は CDL 内の `generate()` 指定、`targets` は ASP3 ターゲット一覧を表示します。`layout <package>`、`file <package> <relative-path>`、`locate <package> <filename>` はパッケージの調査に使います。既知の失敗2ケースは manifest で `enabled = false` とし、診断の再実行時だけ `--include-disabled --case <id>` を渡します。
 
 採集済みは16ケースです。ASP3 系13パッケージの `NotifierPlugin`、`atk1+tecs` の ATK1 系、`MrubyBridgePluginPackage` の `Mruby2C`／C ブリッジ系、`mruby-on-ev3rt+tecs` の HRP2・mruby 系を含みます。RX 用の `ccrx.exe` は WSL に無く、旧 `MrubyBridge-test` は `cygwin_kernel.cdl` が r3304 で T1007 となるため、両試行は診断記録に留めています。`mruby-on-asp+tecs` と GR-PEACH の Plugin 使用は採集済み系統と重複し、`stm32primer2_tecs_edu` と `tecscde-MinGW` の製品 CDL には `generate()` の指定がありません。

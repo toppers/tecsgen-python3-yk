@@ -14,13 +14,13 @@ Porting proceeds in phases P1–P5 (messages → parser → model/semantic analy
 2. **差分テストを先に作る**。Ruby 4.0.6 はローカルで動く（2026-09-26 確認）。`test/` のケース（一覧は157ケース、採取できたのは155ケース。採取しなかった2件は `import_C/z` と `mruby`）を Ruby 版で実行し、ゴールデン出力として固定してから移植を始める。TOPPERS カーネルの CDL を使うカーネル依存プラグインのケースは、別に `tests/golden/kernel/` に11ケースを採取している。
 3. **フェーズごとに内部状態を比べる**。生成物の一致だけを見ると、どのフェーズでずれたかが分からない。Ruby 側に小さな JSON ダンプ用フックを足し、パース後・意味解析後・最適化後のモデルを Python 側と比べる。
 4. **仕様書は実装の少し前に書く**。[[tecsgen-python3内部仕様]] は章ごとに、該当フェーズに着手する直前に書く。12章を全部書いてから実装に入る進め方はとらない。
-5. **WSL での検証は必ず `tools/port/wsl_check.ps1` で行う**（2026-09-28 ユーザー採用）。`wsl.exe -e bash -lc "..."` をその場で手書きしない。このスクリプトは、WSL 用の仮想環境の分離（`~/.venvs/tecsgen-python3`）、`VIRTUAL_ENV` の解除、パス変換、`uv sync`・ruff・ty・pytest の一括実行と結果のまとめ表示を済ませている。各フェーズの計画には「完了時に `pwsh tools/port/wsl_check.ps1` を通す」を検証手順として入れる。スクリプトに無い操作（例: WSL で `tools/port/p4_progress.py` を回す、特定ケースだけ実行する）が必要になったら、手書きで済ませずにスクリプトへオプションとして足してから使い、README の表も更新する。
+5. **WSL での検証は必ず `tools/port/wsl_check.sh` で行う**（2026-09-28 ユーザー採用。2026-10-04 に PowerShell ラッパー `wsl_check.ps1` を廃止して bash に一本化）。Windows からは `wsl.exe -e bash -lc 'cd /mnt/e/Ccur/python3/tecsgen-python3 && sh tools/port/wsl_check.sh ...'` の形で呼び（PowerShell ツールから。Git Bash は `/` で始まるパスが MSYS のパス変換で壊れる）、それ以外のコマンドをその場で手書きしない。このスクリプトは、WSL 用の仮想環境の分離（`~/.venvs/tecsgen-python3`）、`VIRTUAL_ENV` の解除、`uv sync`・ruff・ty・pytest の一括実行と結果のまとめ表示を済ませている。作業コピーのパスは WSL のパス（`/mnt/e/...`）で渡す。各フェーズの計画には「完了時に `sh tools/port/wsl_check.sh` を通す」を検証手順として入れる。スクリプトに無い操作（例: WSL で `tools/port/p4_progress.py` を回す、特定ケースだけ実行する）が必要になったら、手書きで済ませずにスクリプトへオプションとして足してから使い、README の表も更新する。
    - 経緯: P5e〜P5i のセッションで、このスクリプトの存在を見落として WSL コマンドを毎回手書きし、Windows 側と共有の `.venv` を作り直させて1回失敗、さらに場当たりの別の仮想環境（`~/.cache/tecsgen-python3-venv`）まで作った。
 
 ## 作業の決まり（常に守る。指示が無くても方針決定・計画立案・作業の実行に取り込む）
 
 - ファイルの書き換えは Write / Edit ツールで行う。Bash の heredoc で Python ソースや置換文字列を渡さない（文字列中の改行エスケープが本物の改行になり、構文エラーになる）。書き換えたら、モジュールを直接 import するか ruff で構文を確かめる（`load_plugin` は例外を握りつぶして `P2003 load failed` としか出さない）。
-- カーネルの P3 記録の再採取（`-KernelGolden … -KernelP3`）は全件で約30分かかる。ケースを足す・直すときは `-PytestArgs '--case','<id>'` で絞り、バックグラウンドで実行する。
+- カーネルの P3 記録の再採取（`--kernel-golden … --p3-oracle`）は全件で約30分かかる。ケースを足す・直すときは `--case '<id>'` で絞り、バックグラウンドで実行する。
 
 ## Commands
 
@@ -39,16 +39,18 @@ uv run python tools/port/p4_progress.py [case-id-prefix...] [-v]
 
 Golden data was captured on Linux, so the authoritative full check runs in WSL with a separate venv (`~/.venvs/tecsgen-python3`; never let WSL rebuild the Windows `.venv`):
 
-```powershell
-pwsh tools/port/wsl_check.ps1                          # uv sync, ruff, ruff format --check, ty, pytest
-pwsh tools/port/wsl_check.ps1 -PytestArgs tests/test_p2_parser.py, -x
-pwsh tools/port/wsl_check.ps1 -Oracle <Ruby source working copy>  # re-record Ruby oracle first (needs Ruby)
-pwsh tools/port/wsl_check.ps1 -KernelGolden <Ruby source working copy>    # instead of tests: collect tests/golden/kernel/ (kernel plugins; ~10 min)
-pwsh tools/port/wsl_check.ps1 -KernelGolden <Ruby source working copy> -KernelP3   # instead: re-record tests/golden/kernel/p3/ (Ruby I/O replayed by p4_progress.py; checks the output equals the committed golden data; ~30 min)
-pwsh tools/port/wsl_check.ps1 -PluginCoverage <Ruby source working copy>  # instead of tests: measure which plugins the golden cases run (20-40 min)
+```sh
+# run inside WSL at the repo root; from Windows wrap as: wsl.exe -e bash -lc 'cd /mnt/e/Ccur/python3/tecsgen-python3 && <command>'
+# working-copy paths are WSL paths (/mnt/e/...)
+sh tools/port/wsl_check.sh                          # uv sync, ruff, ruff format --check, ty, pytest
+sh tools/port/wsl_check.sh tests/test_p2_parser.py -x
+sh tools/port/wsl_check.sh --oracle <Ruby source working copy>  # re-record Ruby oracle first (needs Ruby)
+sh tools/port/wsl_check.sh --kernel-golden <Ruby source working copy>    # instead of tests: collect tests/golden/kernel/ (kernel plugins; ~10 min)
+sh tools/port/wsl_check.sh --kernel-golden <Ruby source working copy> --p3-oracle   # instead: re-record tests/golden/kernel/p3/ (Ruby I/O replayed by p4_progress.py; checks the output equals the committed golden data; ~30 min)
+sh tools/port/wsl_check.sh --plugin-coverage <Ruby source working copy>  # instead of tests: measure which plugins the golden cases run (20-40 min)
 ```
 
-To collect only some kernel cases, pass the arguments as an array through `-PytestArgs`, calling the script from a PowerShell session (`& ./tools/port/wsl_check.ps1 -KernelGolden <wc> -PytestArgs '--case','atk1/*'`). Writing `--case` directly after `-KernelGolden` never reaches `collect_kernel.py`, so every case is recollected; a child `pwsh` with `--case,'x'` passes it as one string and fails.
+To collect only some kernel cases, append `collect_kernel.py` arguments after `--kernel-golden <wc>` (`sh tools/port/wsl_check.sh --kernel-golden <wc> --case 'atk1/*'`).
 
 Pass/skip counts differ slightly between Windows and WSL; commit messages report both.
 

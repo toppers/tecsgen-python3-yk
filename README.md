@@ -30,19 +30,23 @@ uv run pytest
 
 Windows から一式（lint・型検査・pytest）を WSL で実行するには:
 
-```powershell
-pwsh tools/port/wsl_check.ps1                      # テスト一式
-pwsh tools/port/wsl_check.ps1 -Oracle <移植元の作業コピー>   # 先に Ruby 版の記録を採り直す
-pwsh tools/port/wsl_check.ps1 -PytestArgs tests/test_p2_parser.py, -x
-pwsh tools/port/wsl_check.ps1 -KernelGolden <移植元の作業コピー>    # テストの代わりに、カーネル依存プラグイン用の正解データ（tests/golden/kernel/）を採取する
-pwsh tools/port/wsl_check.ps1 -KernelGolden <移植元の作業コピー> -KernelP3    # 正解データは採り直さず、P3 オラクルを差し込んで実行し、差分テスト用の記録（tests/golden/kernel/p3/）を採る
-pwsh tools/port/wsl_check.ps1 -PluginCoverage <移植元の作業コピー>  # テストの代わりに、正解データがどのプラグインを実行したかを計測する
-pwsh tools/port/wsl_check.ps1 -PackageInventory  # WSL の展開済みパッケージにある CDL の件数を表示
-pwsh tools/port/wsl_check.ps1 -TecsmergeGolden <移植元の作業コピー>  # テストの代わりに、tecsmerge の正解データ（tests/golden/tecsmerge/）を Ruby 版から採取する
-& ./tools/port/wsl_check.ps1 -PackageGolden <移植元の作業コピー> -PytestArgs @('--out','/home/ykomi/p5packageplugins/new-capture')  # Plugin 正解データを採集
+WSL 内（リポジトリのルート）で実行します。作業コピーのパスは WSL のパス（`/mnt/e/...`）で渡します。
+
+```sh
+sh tools/port/wsl_check.sh                      # テスト一式
+sh tools/port/wsl_check.sh --oracle <移植元の作業コピー>   # 先に Ruby 版の記録を採り直す
+sh tools/port/wsl_check.sh tests/test_p2_parser.py -x
+sh tools/port/wsl_check.sh --kernel-golden <移植元の作業コピー>    # テストの代わりに、カーネル依存プラグイン用の正解データ（tests/golden/kernel/）を採取する
+sh tools/port/wsl_check.sh --kernel-golden <移植元の作業コピー> --p3-oracle    # 正解データは採り直さず、P3 オラクルを差し込んで実行し、差分テスト用の記録（tests/golden/kernel/p3/）を採る
+sh tools/port/wsl_check.sh --plugin-coverage <移植元の作業コピー>  # テストの代わりに、正解データがどのプラグインを実行したかを計測する
+sh tools/port/wsl_check.sh --package-inventory  # WSL の展開済みパッケージにある CDL の件数を表示
+sh tools/port/wsl_check.sh --tecsmerge-golden <移植元の作業コピー>  # テストの代わりに、tecsmerge の正解データ（tests/golden/tecsmerge/）を Ruby 版から採取する
+sh tools/port/wsl_check.sh --package-golden <移植元の作業コピー> --out /home/ykomi/p5packageplugins/new-capture  # Plugin 正解データを採集
 ```
 
-`-KernelGolden` の採取を一部のケースに絞るには、`-PytestArgs` で `collect_kernel.py` の引数を配列で渡します（PowerShell のセッションから直接呼ぶ。例: `& ./tools/port/wsl_check.ps1 -KernelGolden <作業コピー> -PytestArgs '--case','atk1/*'`）。詳しくは `tools/golden/README.md` です。
+Windows の PowerShell からは `wsl.exe -e bash -lc 'cd /mnt/e/Ccur/python3/tecsgen-python3 && sh tools/port/wsl_check.sh ...'` で呼びます（Git Bash から `/` で始まるパスを `wsl.exe` に渡すと MSYS のパス変換で壊れます）。
+
+`--kernel-golden` の採取を一部のケースに絞るには、`collect_kernel.py` の引数をそのまま後ろに付けます（例: `sh tools/port/wsl_check.sh --kernel-golden <作業コピー> --case 'atk1/*'`）。詳しくは `tools/golden/README.md` です。
 
 WSL の中で直接実行する場合は `sh tools/port/wsl_check.sh` です。手で実行するときは、次のように仮想環境の場所を指定します。
 
@@ -61,7 +65,7 @@ uv run pytest
 | `gen_messages.py` | メッセージ表 `src/tecsgen/messages/` を生成する |
 | `gen_racc_tables.py` | LALR 表 `src/tecsgen/syntax/cdl_tables.py`・`cdecl_tables.py` を生成する |
 | `gen_action_stubs.py` | 文法アクションの骨格 `cdl_actions.py`・`cdecl_actions.py` を生成する（一度だけ。本体は手で移植する） |
-| `wsl_check.ps1`・`wsl_check.sh` | WSL で uv sync・ruff・ty・pytest を実行する（仮想環境は `~/.venvs/tecsgen-python3`）。`-Oracle` で記録の採り直し、`-KernelGolden` でカーネル用、`-PackageGolden` で展開済みパッケージの Plugin 正解データを採集する。`-PackageInventory` は CDL のあるパッケージを調べ、`-PluginCoverage` はプラグイン網羅状況を計測する |
+| `wsl_check.sh` | WSL で uv sync・ruff・ty・pytest を実行する（仮想環境は `~/.venvs/tecsgen-python3`）。`--oracle` で記録の採り直し、`--kernel-golden` でカーネル用、`--package-golden` で展開済みパッケージの Plugin 正解データを採集する。`--package-inventory` は CDL のあるパッケージを調べ、`--plugin-coverage` はプラグイン網羅状況を計測する |
 | `collect_packages.py`・`cases_packages.toml` | Vault Context にある展開済みパッケージから Ruby 版 Plugin の生成物・実行ログ・Plugin trace を `tests/golden/packages/` に採集する。詳細は `tools/golden/README.md` |
 | `run_p2_oracle.sh` | 構文解析の差分テスト用に、Ruby 版の経過を記録し直す（WSL で実行。`tests/golden/p2/`） |
 | `run_p3_oracle.sh` | モデルの差分テスト用に、Ruby 版のモデル（パース直後・意味解析1回目の後・2回目の後）と、ファイル存在判定・cpp 出力を記録し直す（WSL で実行。`tests/golden/p3/`）。pytest はこの記録を再生するので、Windows でも Ruby なしで動く |
