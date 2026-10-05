@@ -17,6 +17,12 @@ tecsgen --version
 
 標準 CDL ライブラリ（Ruby 版の `tecs/`）はパッケージに同梱され、`TECSPATH` 未設定のときはそれを使います。
 
+`tecsgen-path` は、その `tecs/` を直下に持つディレクトリ（Ruby 版の「tecsgen のディレクトリ」に当たる）を、`/` 区切りの1行で標準出力へ書きます。CMake などの呼び出し側が、標準 CDL ライブラリ・C ヘッダの場所（`<出力>/tecs`）を知るために使います（`tecsgen` コマンド自体には、Ruby 版に無いオプションを足さない方針のため、別のコマンドにしてあります）。
+
+```sh
+tecsgen-path       # 例: /home/user/.local/share/uv/tools/tecsgen-python3/lib/python3.13/site-packages/tecsgen
+```
+
 ## セットアップ
 
 ```sh
