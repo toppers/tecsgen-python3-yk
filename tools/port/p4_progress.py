@@ -24,6 +24,16 @@ sys.path[:0] = [str(ROOT / "tests"), str(ROOT / "src")]
 from p3_oracle_data import case_ids, load_case  # ty: ignore[unresolved-import]
 from p4_gen_check import run_case_captured  # ty: ignore[unresolved-import]
 
+# 正解データの基準を tecsgen-rb に切り替えたが、tecsgen-rb では再採取できないケース（ケース ID → 理由）。
+# 正解データ・記録は r3304 で採ったものを残してあり、現在の Python 版とは比べない（集計にも入れない）。
+BASELINE_EXCEPTIONS = {
+    "transparent_marshaler": (
+        "tecsgen-rb に TransparentMarshalerPlugin.rb が無く再採取できない。正解データと記録は"
+        " r3304 のまま（記録に CMakeLists.tecsgen.cmake の問い合わせが無いので、現在の Python 版"
+        "とは比べられない）"
+    ),
+}
+
 
 def main(argv: list[str]) -> int:
     verbose = "-v" in argv
@@ -36,6 +46,9 @@ def main(argv: list[str]) -> int:
     kinds: Counter[str] = Counter()
     for cid in case_ids(include_kernel=True):
         if prefixes and not any(cid.startswith(p) for p in prefixes):
+            continue
+        if cid in BASELINE_EXCEPTIONS:
+            print(f"SKIP {cid}: {BASELINE_EXCEPTIONS[cid]}")
             continue
         rec = load_case(cid)
         if rec.exit_error == "SystemStackError":

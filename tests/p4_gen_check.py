@@ -69,13 +69,13 @@ def golden_files(case_id: str) -> dict[str, bytes]:
 
 
 def golden_stdout(case_id: str) -> bytes:
-    """正解の標準出力。カーネルのケースは make 経由で採ったので、make が表示した行を除く。
+    """正解の標準出力。カーネル・パッケージのケースは make 経由で採ったので、make が表示した行を除く。
 
     先頭の tecsgen の呼び出し行（"ruby ../tecsgen/tecsgen.rb …"。行末が "\\" なら次の行へ続く）と、
     末尾のレシピ（"touch tecs.timestamp" など）。tecsgen 自身はこれらを出力しない。
     """
     data = (golden_dir(case_id) / "stdout.txt").read_bytes()
-    if not case_id.startswith(KERNEL_PREFIX):
+    if not case_id.startswith((KERNEL_PREFIX, PACKAGES_PREFIX)):
         return data
     lines = data.split(b"\n")
     if lines[0].startswith((b"ruby ", b"/usr/bin/ruby ")):
