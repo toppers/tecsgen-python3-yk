@@ -266,6 +266,13 @@ def main(argv: list[str] | None = None) -> int:
         default=[],
         help="対象ケースの id（glob 可、複数指定可）",
     )
+    parser.add_argument(
+        "--exclude",
+        action="append",
+        default=[],
+        help="採取しないケースの id（glob 可、複数指定可）。出力先にある既存の正解データは消さずに残す"
+        "（移植元に無いプラグインを使うため再採取できないケース用）",
+    )
     opts = parser.parse_args(argv)
 
     source = opts.source.resolve()
@@ -285,8 +292,19 @@ def main(argv: list[str] | None = None) -> int:
         cases = [
             c for c in cases if any(fnmatch.fnmatch(c["id"], p) for p in opts.case)
         ]
-    elif (out_dir / "cases").exists():
-        shutil.rmtree(out_dir / "cases")
+    if opts.exclude:
+        cases = [
+            c
+            for c in cases
+            if not any(fnmatch.fnmatch(c["id"], p) for p in opts.exclude)
+        ]
+    if not opts.case and (out_dir / "cases").exists():
+        if opts.exclude:
+            # 除外したケースの既存の正解データを残すため、採取するケースだけを消す
+            for c in cases:
+                shutil.rmtree(out_dir / "cases" / c["id"], ignore_errors=True)
+        else:
+            shutil.rmtree(out_dir / "cases")
 
     pristine = work / "pristine"
     needs_mruby = any("{MRUBY_INCLUDE}" in a for c in cases for a in c["args"])

@@ -71,6 +71,26 @@ def run(cmd: list[str], *, cwd: Path, env: dict[str, str], timeout: int):
         return None, exc.stdout or b"", exc.stderr or b"", True
 
 
+def prepare_tecsgen(wc: Path | None, src: Path | None, label: str, dest: Path) -> str:
+    """移植元の tecsgen/ を dest に用意し、出所（リビジョンまたは label）を返す。
+
+    wc（svn 作業コピー。tecsgen/ を含む）か src（書き出し済みの tecsgen/ ディレクトリ。
+    svn 以外の移植元、例えば git の tecsgen-rb 用）のどちらか一方を指定する。
+    """
+    if (wc is None) == (src is None):
+        raise SystemExit(
+            "--tecsgen-wc と --tecsgen-src のどちらか一方を指定してください"
+        )
+    if src is not None:
+        if dest.exists():
+            shutil.rmtree(dest)
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(src, dest, symlinks=True)
+        return label or f"tecsgen-src:{src}"
+    assert wc is not None  # 上で、どちらか一方だけが指定されていると確かめてある
+    return svn_export(wc / "tecsgen", dest)
+
+
 def svn_export(src: Path, dest: Path) -> str:
     """作業コピーの BASE を LF で書き出し、そのリビジョン番号を返す。"""
     if dest.exists():
@@ -317,8 +337,19 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--tecsgen-wc",
         type=Path,
-        required=True,
-        help="移植元 tecsgen のブランチ（tecsgen/ を含む作業コピー）",
+        default=None,
+        help="移植元 tecsgen のブランチ（tecsgen/ を含む svn 作業コピー）。--tecsgen-src と排他",
+    )
+    parser.add_argument(
+        "--tecsgen-src",
+        type=Path,
+        default=None,
+        help="書き出し済みの tecsgen/ ディレクトリ（svn 以外の移植元用）。--tecsgen-wc と排他",
+    )
+    parser.add_argument(
+        "--tecsgen-label",
+        default="",
+        help="--tecsgen-src の出所（git のコミットなど）。environment.json に記録する",
     )
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
@@ -365,7 +396,9 @@ def main(argv: list[str] | None = None) -> int:
 
     work = opts.work.resolve()
     tecsgen_src = work / "tecsgen-src"
-    tecsgen_rev = svn_export(opts.tecsgen_wc / "tecsgen", tecsgen_src)
+    tecsgen_rev = prepare_tecsgen(
+        opts.tecsgen_wc, opts.tecsgen_src, opts.tecsgen_label, tecsgen_src
+    )
 
     pristine = work / "pristine"
     revisions: dict[str, str] = {}

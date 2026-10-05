@@ -16,9 +16,9 @@ from pathlib import Path
 from collect_kernel import (
     Normalizer,
     command_version,
+    prepare_tecsgen,
     run_case,
     same_as_committed,
-    svn_export,
 )
 
 DEFAULT_MANIFEST = Path(__file__).with_name("cases_packages.toml")
@@ -55,7 +55,9 @@ def trace_plugins(path: Path) -> tuple[list[str], list[str]]:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--packages-root", type=Path, required=True)
-    parser.add_argument("--tecsgen-wc", type=Path, required=True)
+    parser.add_argument("--tecsgen-wc", type=Path, default=None)
+    parser.add_argument("--tecsgen-src", type=Path, default=None)
+    parser.add_argument("--tecsgen-label", default="")
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--work", type=Path, default=Path.home() / "p5packageplugins")
@@ -118,7 +120,9 @@ def main(argv: list[str] | None = None) -> int:
     with tempfile.TemporaryDirectory(prefix="package-golden-", dir=opts.work) as tmp:
         temporary = Path(tmp)
         tecsgen_src = temporary / "tecsgen-src"
-        tecsgen_revision = svn_export(opts.tecsgen_wc / "tecsgen", tecsgen_src)
+        tecsgen_revision = prepare_tecsgen(
+            opts.tecsgen_wc, opts.tecsgen_src, opts.tecsgen_label, tecsgen_src
+        )
         pristine = temporary / "pristine"
         pristine.mkdir()
         revisions: dict[str, str] = {}

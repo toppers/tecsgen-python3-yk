@@ -20,11 +20,19 @@ mkdir -p "$W"
 : > "$W/trace_main.log"
 : > "$W/trace_kernel.log"
 
-echo "==> export test/ and tecsgen/ (svn export -r BASE --native-eol LF)"
 rm -rf "$W/src" && mkdir -p "$W/src"
-for d in tecsgen test; do
-  svn export -q -r BASE --native-eol LF "$WC/$d" "$W/src/$d" || exit 1
-done
+if [ -n "${TECS_SRC_TREE:-}" ]; then
+  # 書き出し済みの木（tecsgen/ と test/）を使う（wsl_check.sh の --src-tree）
+  echo "==> copy $TECS_SRC_TREE"
+  cp -r "$TECS_SRC_TREE/." "$W/src/" || exit 1
+  TECSGEN_SOURCE="--tecsgen-src $W/src/tecsgen"
+else
+  echo "==> export test/ and tecsgen/ (svn export -r BASE --native-eol LF)"
+  for d in tecsgen test; do
+    svn export -q -r BASE --native-eol LF "$WC/$d" "$W/src/$d" || exit 1
+  done
+  TECSGEN_SOURCE="--tecsgen-wc $WC"
+fi
 
 export RUBYOPT="-r$HERE/plugin_trace.rb"
 
@@ -35,7 +43,7 @@ echo "    exit=$?  ($(tail -1 "$W/main.out"))"
 
 echo "==> kernel cases"
 TECS_PLUGIN_LOG="$W/trace_kernel.log" python3 "$HERE/collect_kernel.py" \
-  --repos-root "$REPOS" --tecsgen-wc "$WC" \
+  --repos-root "$REPOS" $TECSGEN_SOURCE \
   --out "$W/out-kernel" --work "$W/work-kernel" > "$W/kernel.out" 2>&1
 echo "    exit=$?  ($(tail -1 "$W/kernel.out"))"
 

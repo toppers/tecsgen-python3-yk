@@ -4,7 +4,12 @@
 #   sh tools/port/wsl_check.sh [--oracle <移植元 tecsgen ブランチの作業コピー>] [pytest の引数]...
 #   --package-inventory [refs|targets|layout|file|locate] と --package-golden も PowerShell から使用する。
 #
-# Windows からは tools/port/wsl_check.ps1 で呼ぶ（パスの変換を任せられる）。
+#   移植元を svn 以外（git の tecsgen-rb など）にするときは、先頭に次を置く:
+#     --build-src-tree <svn 作業コピー> <git リポジトリ> <tecsgen の相対ディレクトリ> <出力先>   木を作る
+#     --src-tree <木> [--exclude <case-id>]... --cases-golden | --oracle - | --kernel-golden - | --package-golden - | --plugin-coverage -
+#
+# Windows からは `wsl.exe -e bash -lc 'cd /mnt/e/Ccur/python3/tecsgen-python3 && sh tools/port/wsl_check.sh ...'` の形で呼ぶ
+# （PowerShell ツールから。CLAUDE.md の「作業の決まり」を参照。wsl_check.ps1 は廃止）。
 #
 # - 仮想環境は $HOME/.venvs/tecsgen-python3 に作る（UV_PROJECT_ENVIRONMENT）。
 #   指定しないと、リポジトリの .venv（Windows 用）が Linux 用に作り直されてしまう。
@@ -22,6 +27,47 @@ case "$(uname -s)" in
   *) echo "wsl_check.sh: WSL（Linux）で実行してください。Windows からは tools/port/wsl_check.ps1 を使います" >&2
      exit 2 ;;
 esac
+
+# 移植元の差し替え（先頭に置く共通オプション）
+#   --src-tree <dir>     書き出し済みの木（tecsgen/ と test/ を含む）を移植元にする。
+#                        svn 作業コピーの代わりになる（その引数は無視されるので - でよい）。
+#                        --oracle・--kernel-golden・--package-golden・--plugin-coverage・--cases-golden で使える
+#   --exclude <case-id>  採取しないケース（glob 可、繰り返し可）。既存の正解データを残す
+SRC_TREE=""
+SRC_LABEL=""
+EXCLUDES=""
+while [ "${1:-}" = "--src-tree" ] || [ "${1:-}" = "--exclude" ]; do
+  case "$1" in
+    --src-tree) SRC_TREE=${2:?--src-tree にはディレクトリを指定します}; shift 2 ;;
+    --exclude) EXCLUDES="$EXCLUDES ${2:?--exclude にはケースの id を指定します}"; shift 2 ;;
+  esac
+done
+if [ -n "$SRC_TREE" ]; then
+  [ -d "$SRC_TREE/tecsgen" ] && [ -d "$SRC_TREE/test" ] || {
+    echo "--src-tree には tecsgen/ と test/ を含むディレクトリを指定します: $SRC_TREE" >&2
+    exit 2
+  }
+  export TECS_SRC_TREE="$SRC_TREE"
+  [ -f "$SRC_TREE/.source-label" ] && SRC_LABEL=$(cat "$SRC_TREE/.source-label")
+fi
+[ -z "$EXCLUDES" ] || export GOLDEN_EXCLUDE="${EXCLUDES# }"
+
+# --build-src-tree <svn 作業コピー（test/ を使う）> <git リポジトリ> <tecsgen の相対ディレクトリ> <出力先>
+#   --src-tree 用の木を作って終わる。test/ は作業コピーから svn export（LF）、
+#   tecsgen/ は git リポジトリの <相対ディレクトリ> を git archive（LF）で取り出す。
+#   出力先は $HOME 配下に置く（/tmp は WSL の再起動で消える）。出所は <出力先>/.source-label に書く
+if [ "${1:-}" = "--build-src-tree" ]; then
+  WC=${2:?svn 作業コピー}; GITREPO=${3:?git リポジトリ}; SUBDIR=${4:?tecsgen の相対ディレクトリ}; OUT=${5:?出力先}
+  rm -rf "$OUT" && mkdir -p "$OUT/_x" || exit 1
+  svn export -q -r BASE --native-eol LF "$WC/test" "$OUT/test" || exit 1
+  git -C "$GITREPO" archive HEAD "$SUBDIR" | tar -x -C "$OUT/_x" || exit 1
+  mv "$OUT/_x/$SUBDIR" "$OUT/tecsgen" && rmdir "$OUT/_x" || exit 1
+  rev=$(git -C "$GITREPO" rev-parse --short HEAD)
+  printf '%s %s %s (git archive); test/ from svn %s r%s\n' \
+    "$(basename "$GITREPO")" "$SUBDIR" "$rev" "$(basename "$WC")" "$(svn info --show-item revision "$WC")" > "$OUT/.source-label"
+  echo "built: $OUT ($(cat "$OUT/.source-label"))"
+  exit 0
+fi
 
 if [ "${1:-}" = "--package-inventory" ]; then
   root="$HOME/Ccur/TECS-WG-DL"
@@ -90,9 +136,13 @@ fi
 if [ "${1:-}" = "--package-golden" ]; then
   TECSGEN_WC=${2:?--package-golden requires the Ruby tecsgen working copy}
   shift 2
+  if [ -n "$SRC_TREE" ]; then
+    set -- --tecsgen-src "$SRC_TREE/tecsgen" --tecsgen-label "$SRC_LABEL" "$@"
+  else
+    set -- --tecsgen-wc "$TECSGEN_WC" "$@"
+  fi
   exec python3 tools/golden/collect_packages.py \
     --packages-root "$HOME/Ccur/TECS-WG-DL" \
-    --tecsgen-wc "$TECSGEN_WC" \
     --out tests/golden/packages "$@"
 fi
 
@@ -113,10 +163,27 @@ fi
 if [ "${1:-}" = "--kernel-golden" ]; then
   TECSGEN_WC=${2:?--kernel-golden には移植元 tecsgen ブランチの作業コピーを指定します}
   shift 2
+  if [ -n "$SRC_TREE" ]; then
+    set -- --tecsgen-src "$SRC_TREE/tecsgen" --tecsgen-label "$SRC_LABEL" "$@"
+  else
+    set -- --tecsgen-wc "$TECSGEN_WC" "$@"
+  fi
   exec python3 tools/golden/collect_kernel.py \
     --repos-root "${KERNEL_REPOS_ROOT:-$HOME/repo/svn-toppers-TECS-2/svn/toppers}" \
-    --tecsgen-wc "$TECSGEN_WC" \
     --out tests/golden/kernel "$@"
+fi
+
+# --cases-golden [generate_golden.py の引数]...   （--src-tree が必須）
+#   tests/golden/cases/（テストケース test/ の正解データ）を採取して終わる。テストは走らせない。
+#   --exclude を付けたケースは採取せず、既存の正解データを残す
+if [ "${1:-}" = "--cases-golden" ]; then
+  [ -n "$SRC_TREE" ] || { echo "--cases-golden には --src-tree が必要です" >&2; exit 2; }
+  shift
+  EXCL=""
+  set -f
+  for g in ${GOLDEN_EXCLUDE:-}; do EXCL="$EXCL --exclude $g"; done
+  exec python3 tools/golden/generate_golden.py --source "$SRC_TREE" \
+    --source-label "$SRC_LABEL" --out tests/golden $EXCL "$@"
 fi
 
 # --plugin-coverage <移植元 tecsgen ブランチの作業コピー>
