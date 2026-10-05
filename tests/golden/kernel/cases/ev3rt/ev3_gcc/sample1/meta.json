@@ -80,12 +80,15 @@
     "-I../sample1",
     "tEV3Sample.cdl"
   ],
+  "inputs": {},
+  "patch": [],
   "exit_code": 0,
   "timed_out": false,
   "errors": 0,
   "warnings": 0,
   "created": [
     "gen/BridgeKernelInitializer.cdl",
+    "gen/CMakeLists.tecsgen.cmake",
     "gen/Makefile.depend",
     "gen/Makefile.tecsgen",
     "gen/Makefile.templ",

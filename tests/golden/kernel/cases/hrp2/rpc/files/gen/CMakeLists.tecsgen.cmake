@@ -1,0 +1,72 @@
+# generated automatically by tecsgen.
+# included by cmake/Asp3Tecs.cmake (TECS_GEN_DIR must be set).
+
+set(TECS_IMPORT_CDLS
+    "hrp2_rpc.cdl"
+    "../hr-tecs/include/kernel.cdl"
+    "hrp2_rpc_common.cdl"
+    "gen/tRPCPlugin_tTDR_tMessagebufferChannel_sCallee.cdl"
+    "gen/tMarshaler_sCallee.cdl"
+    "gen/tmp_HRP2Plugin_post_code.cdl"
+    "gen/tmp_HRP2RPCPlugin_post_code.cdl"
+    "gen/tmp_HRP2TaskPlugin_post_code.cdl"
+    "gen/tmp_HRP2HandlerPlugin_post_code.cdl"
+    "gen/tmp_HRP2ObjectPlugin_post_code.cdl"
+)
+
+set(TECS_TECSGEN_SOURCES
+    "${TECS_GEN_DIR}/tTask_rUser2_tecsgen.c"
+    "${TECS_GEN_DIR}/tRPCDedicatedTaskMain_rUser2_tecsgen.c"
+    "${TECS_GEN_DIR}/tServer_rUser2_tecsgen.c"
+    "${TECS_GEN_DIR}/tSemaphore_tecsgen.c"
+    "${TECS_GEN_DIR}/tEventflag_tecsgen.c"
+    "${TECS_GEN_DIR}/tMessageBuffer_tecsgen.c"
+    "${TECS_GEN_DIR}/tClient_rUser1_tecsgen.c"
+)
+
+set(TECS_PLUGIN_TECSGEN_SOURCES
+    "${TECS_GEN_DIR}/tUnmarshaler_sCallee_rUser2_tecsgen.c"
+    "${TECS_GEN_DIR}/tMarshaler_sCallee_rUser1_tecsgen.c"
+)
+
+set(TECS_PLUGIN_CELLTYPE_SOURCES
+    "tUnmarshaler_sCallee.c"
+    "tMarshaler_sCallee.c"
+)
+
+set(TECS_CELLTYPE_SOURCES
+    "tTask.c"
+    "tRPCDedicatedTaskMain.c"
+    "tServer.c"
+    "tClient.c"
+)
+
+set(TECS_PLUGIN_EXTRA_SOURCES
+)
+
+set(TECS_INCLUDE_DIRS
+    "${ASP3_SRCDIR}"
+    "${ASP3_SRCDIR}/./gen"
+    "${ASP3_SRCDIR}/../hr-tecs/tecs_kernel"
+    "${ASP3_SRCDIR}/../hr-tecs/include"
+    "${ASP3_SRCDIR}/../hr-tecs/arch"
+    "${ASP3_SRCDIR}/../hr-tecs"
+    "${ASP3_SRCDIR}/../hr-tecs/target/ev3_gcc"
+    "${ASP3_SRCDIR}/../hr-tecs/arch/arm_gcc/am1808"
+    "${ASP3_SRCDIR}/../hr-tecs/arch/arm_gcc/common"
+    "${ASP3_SRCDIR}/../hr-tecs/arch/gcc"
+    "${ASP3_TECSGEN_DIR}/tecs"
+    "${ASP3_TECSGEN_DIR}/tecs/mruby"
+    "${ASP3_TECSGEN_DIR}/tecs/rpc"
+    "${ASP3_TECSGEN_DIR}/tecs/TLSFMalloc"
+    "${ASP3_TECSGEN_DIR}/tecs/DataPumpHolder"
+    "${ASP3_TECSGEN_DIR}/tecs/posix"
+    "${ASP3_TECSGEN_DIR}/tecs/TECSInfo"
+    "${TECS_GEN_DIR}"
+)
+
+set(TECS_COMPILE_DEFINITIONS
+    "TECS"
+    "TECS_CPP"
+)
+
