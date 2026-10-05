@@ -21,6 +21,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "SWIGBridge/gen/CMakeLists.tecsgen.cmake",
     "SWIGBridge/gen/CsTest.cxx",
     "SWIGBridge/gen/CsTest.hxx",
     "SWIGBridge/gen/Makefile.depend",

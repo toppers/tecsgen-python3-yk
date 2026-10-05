@@ -26,6 +26,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "attribute/gen.ROM/CMakeLists.tecsgen.cmake",
     "attribute/gen.ROM/Makefile.depend",
     "attribute/gen.ROM/Makefile.tecsgen",
     "attribute/gen.ROM/Makefile.templ",

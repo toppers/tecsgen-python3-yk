@@ -20,6 +20,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "recursive_composite/gen_rec_comp/CMakeLists.tecsgen.cmake",
     "recursive_composite/gen_rec_comp/Makefile.depend",
     "recursive_composite/gen_rec_comp/Makefile.tecsgen",
     "recursive_composite/gen_rec_comp/Makefile.templ",

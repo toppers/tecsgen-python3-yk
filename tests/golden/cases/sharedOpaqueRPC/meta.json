@@ -24,8 +24,10 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "sharedOpaqueRPC/gen/CMakeLists.tecsgen.cmake",
     "sharedOpaqueRPC/gen/Makefile.tecsgen",
     "sharedOpaqueRPC/gen/Makefile.templ",
+    "sharedOpaqueRPC/gen/rClient/CMakeLists.tecsgen.cmake",
     "sharedOpaqueRPC/gen/rClient/Makefile.depend",
     "sharedOpaqueRPC/gen/rClient/Makefile.tecsgen",
     "sharedOpaqueRPC/gen/rClient/Makefile.templ",
@@ -134,6 +136,7 @@
     "sharedOpaqueRPC/gen/rClient/tTracePlugin_sTask_tecsgen.c",
     "sharedOpaqueRPC/gen/rClient/tTracePlugin_sTask_tecsgen.h",
     "sharedOpaqueRPC/gen/rClient/tecsgen.rbdmp",
+    "sharedOpaqueRPC/gen/rServer/CMakeLists.tecsgen.cmake",
     "sharedOpaqueRPC/gen/rServer/Makefile.depend",
     "sharedOpaqueRPC/gen/rServer/Makefile.tecsgen",
     "sharedOpaqueRPC/gen/rServer/Makefile.templ",

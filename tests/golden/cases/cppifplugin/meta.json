@@ -19,6 +19,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "cppifplugin/gen/CMakeLists.tecsgen.cmake",
     "cppifplugin/gen/Makefile.depend",
     "cppifplugin/gen/Makefile.tecsgen",
     "cppifplugin/gen/Makefile.templ",

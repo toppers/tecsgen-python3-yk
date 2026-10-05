@@ -17,8 +17,10 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "opaqueRPC/gen/CMakeLists.tecsgen.cmake",
     "opaqueRPC/gen/Makefile.tecsgen",
     "opaqueRPC/gen/Makefile.templ",
+    "opaqueRPC/gen/rClient/CMakeLists.tecsgen.cmake",
     "opaqueRPC/gen/rClient/Makefile.depend",
     "opaqueRPC/gen/rClient/Makefile.tecsgen",
     "opaqueRPC/gen/rClient/Makefile.templ",
@@ -163,6 +165,7 @@
     "opaqueRPC/gen/rClient/tTracePlugin_sSimple_tecsgen.c",
     "opaqueRPC/gen/rClient/tTracePlugin_sSimple_tecsgen.h",
     "opaqueRPC/gen/rClient/tecsgen.rbdmp",
+    "opaqueRPC/gen/rServer/CMakeLists.tecsgen.cmake",
     "opaqueRPC/gen/rServer/Makefile.depend",
     "opaqueRPC/gen/rServer/Makefile.tecsgen",
     "opaqueRPC/gen/rServer/Makefile.templ",

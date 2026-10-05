@@ -19,6 +19,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "CPPBridge/gen/CMakeLists.tecsgen.cmake",
     "CPPBridge/gen/CsSig.cpp",
     "CPPBridge/gen/CsSig.hpp",
     "CPPBridge/gen/Makefile.depend",

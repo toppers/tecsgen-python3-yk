@@ -17,6 +17,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "sharedRPC/gen/CMakeLists.tecsgen.cmake",
     "sharedRPC/gen/Makefile.depend",
     "sharedRPC/gen/Makefile.tecsgen",
     "sharedRPC/gen/Makefile.templ",

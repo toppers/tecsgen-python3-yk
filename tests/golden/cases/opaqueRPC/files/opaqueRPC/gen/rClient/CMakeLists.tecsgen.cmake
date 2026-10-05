@@ -1,0 +1,121 @@
+# generated automatically by tecsgen.
+# included by cmake/Asp3Tecs.cmake (TECS_GEN_DIR must be set).
+
+set(TECS_IMPORT_CDLS
+    "opaqueRPC.cdl"
+    "../cygwin3/tSysLog.cdl"
+    "../cygwin3/cygwin_kernel.cdl"
+    "${ASP3_TECSGEN_DIR}/tecs/rpc/rpc.cdl"
+    "${ASP3_TECSGEN_DIR}/tecs/rpc/sChannel.cdl"
+    "${ASP3_TECSGEN_DIR}/tecs/rpc/TDR.cdl"
+    "${ASP3_TECSGEN_DIR}/tecs/rpc/RPCTask.cdl"
+    "${ASP3_TECSGEN_DIR}/tecs/rpc/PPAllocator.cdl"
+    "${ASP3_TECSGEN_DIR}/tecs/rpc/sRPCErrorHandler.cdl"
+    "${ASP3_TECSGEN_DIR}/tecs/rpc/tSocketChannel.cdl"
+    "tAlloc.cdl"
+    "sSimple.cdl"
+    "${ASP3_TECSGEN_DIR}/tecs/TECSInfo/TECSInfo.cdl"
+    "gen/tmp_rClient_TECSInfoSub.cdl"
+    "gen/tmp_rServer_TECSInfoSub.cdl"
+    "gen/tTracePlugin_sSimple.cdl"
+    "gen/tOpaqueRPCPlugin_tNBOTDR_tSocketClient_sSimple.cdl"
+    "gen/tOpaqueMarshaler_sSimple.cdl"
+    "gen/tOpaqueRPCPlugin_tNBOTDR_tSocketServer_sSimple.cdl"
+    "gen/tmp_TracePlugin_post_code.cdl"
+    "gen/tmp_OpaqueRPCPlugin_post_code.cdl"
+    "gen/tmp_TECSInfoPlugin_post_code.cdl"
+)
+
+set(TECS_TECSGEN_SOURCES
+    "${TECS_GEN_DIR}/tSysLog_tecsgen.c"
+    "${TECS_GEN_DIR}/tTask_tecsgen.c"
+    "${TECS_GEN_DIR}/tKernel_tecsgen.c"
+    "${TECS_GEN_DIR}/tSemaphore_tecsgen.c"
+    "${TECS_GEN_DIR}/tNBOTDR_tecsgen.c"
+    "${TECS_GEN_DIR}/tSocketClient_tecsgen.c"
+    "${TECS_GEN_DIR}/tAlloc_tecsgen.c"
+    "${TECS_GEN_DIR}/tSimpleClient_tecsgen.c"
+    "${TECS_GEN_DIR}/tClientRPCErrorHandler_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tTECSInfo_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tTECSInfoSub_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tNamespaceInfo_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tSignatureInfo_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tFunctionInfo_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tParamInfo_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tCelltypeInfo_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tCallInfo_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tEntryInfo_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tVarDeclInfo_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tRegionInfo_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tCellInfo_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tRawEntryDescriptorInfo_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tVoidTypeInfo_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tBoolTypeInfo_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tIntTypeInfo_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tFloatTypeInfo_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tStructTypeInfo_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tPtrTypeInfo_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tArrayTypeInfo_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tDefinedTypeInfo_tecsgen.c"
+    "${TECS_GEN_DIR}/nTECSInfo_tDescriptorTypeInfo_tecsgen.c"
+)
+
+set(TECS_PLUGIN_TECSGEN_SOURCES
+    "${TECS_GEN_DIR}/tTracePlugin_sSimple_tecsgen.c"
+    "${TECS_GEN_DIR}/tOpaqueMarshaler_sSimple_tecsgen.c"
+)
+
+set(TECS_PLUGIN_CELLTYPE_SOURCES
+    "tTracePlugin_sSimple.c"
+    "tOpaqueMarshaler_sSimple.c"
+)
+
+set(TECS_CELLTYPE_SOURCES
+    "tSysLog.c"
+    "tTask.c"
+    "tSocketClient.c"
+    "tAlloc.c"
+    "tSimpleClient.c"
+    "tClientRPCErrorHandler.c"
+    "nTECSInfo_tTECSInfoSub.c"
+    "nTECSInfo_tNamespaceInfo.c"
+    "nTECSInfo_tSignatureInfo.c"
+    "nTECSInfo_tFunctionInfo.c"
+    "nTECSInfo_tParamInfo.c"
+    "nTECSInfo_tCelltypeInfo.c"
+    "nTECSInfo_tCallInfo.c"
+    "nTECSInfo_tEntryInfo.c"
+    "nTECSInfo_tVarDeclInfo.c"
+    "nTECSInfo_tRegionInfo.c"
+    "nTECSInfo_tCellInfo.c"
+    "nTECSInfo_tRawEntryDescriptorInfo.c"
+    "nTECSInfo_tVoidTypeInfo.c"
+    "nTECSInfo_tBoolTypeInfo.c"
+    "nTECSInfo_tIntTypeInfo.c"
+    "nTECSInfo_tFloatTypeInfo.c"
+    "nTECSInfo_tStructTypeInfo.c"
+    "nTECSInfo_tPtrTypeInfo.c"
+    "nTECSInfo_tArrayTypeInfo.c"
+    "nTECSInfo_tDefinedTypeInfo.c"
+    "nTECSInfo_tDescriptorTypeInfo.c"
+)
+
+set(TECS_PLUGIN_EXTRA_SOURCES
+)
+
+set(TECS_INCLUDE_DIRS
+    "${ASP3_SRCDIR}"
+    "${ASP3_SRCDIR}/../cygwin3"
+    "${ASP3_TECSGEN_DIR}/tecs"
+    "${ASP3_TECSGEN_DIR}/tecs/mruby"
+    "${ASP3_TECSGEN_DIR}/tecs/rpc"
+    "${ASP3_TECSGEN_DIR}/tecs/TLSFMalloc"
+    "${ASP3_TECSGEN_DIR}/tecs/DataPumpHolder"
+    "${ASP3_TECSGEN_DIR}/tecs/posix"
+    "${ASP3_TECSGEN_DIR}/tecs/TECSInfo"
+    "${TECS_GEN_DIR}"
+)
+
+set(TECS_COMPILE_DEFINITIONS
+)
+

@@ -17,6 +17,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "bool/gen/CMakeLists.tecsgen.cmake",
     "bool/gen/Makefile.depend",
     "bool/gen/Makefile.tecsgen",
     "bool/gen/Makefile.templ",

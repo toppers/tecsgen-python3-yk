@@ -24,6 +24,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "romram/gen-r/CMakeLists.tecsgen.cmake",
     "romram/gen-r/Makefile.depend",
     "romram/gen-r/Makefile.tecsgen",
     "romram/gen-r/Makefile.templ",

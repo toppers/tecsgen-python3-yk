@@ -17,6 +17,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "multiplugin/gen/CMakeLists.tecsgen.cmake",
     "multiplugin/gen/Makefile.depend",
     "multiplugin/gen/Makefile.tecsgen",
     "multiplugin/gen/Makefile.templ",

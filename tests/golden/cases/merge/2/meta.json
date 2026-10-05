@@ -23,6 +23,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "merge/gen-2/CMakeLists.tecsgen.cmake",
     "merge/gen-2/Makefile.depend",
     "merge/gen-2/Makefile.tecsgen",
     "merge/gen-2/Makefile.templ",

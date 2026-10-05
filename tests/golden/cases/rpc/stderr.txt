@@ -1,2 +1,1 @@
 tecsgen  version 1.9.1  
-tecsgen: Fail to load TransparentRPCSignaturePlugin.rb. Check $RUBYLIB environment variable or -L option

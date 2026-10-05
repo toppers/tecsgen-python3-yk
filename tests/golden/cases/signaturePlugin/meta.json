@@ -21,6 +21,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "signaturePlugin/gen/CMakeLists.tecsgen.cmake",
     "signaturePlugin/gen/Makefile.depend",
     "signaturePlugin/gen/Makefile.tecsgen",
     "signaturePlugin/gen/Makefile.templ",

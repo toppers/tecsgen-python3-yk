@@ -20,6 +20,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "foreach/gen/CMakeLists.tecsgen.cmake",
     "foreach/gen/Makefile.depend",
     "foreach/gen/Makefile.tecsgen",
     "foreach/gen/Makefile.templ",

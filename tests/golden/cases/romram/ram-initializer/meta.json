@@ -24,6 +24,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "romram/gen-ram-initializer/CMakeLists.tecsgen.cmake",
     "romram/gen-ram-initializer/Makefile.depend",
     "romram/gen-ram-initializer/Makefile.tecsgen",
     "romram/gen-ram-initializer/Makefile.templ",

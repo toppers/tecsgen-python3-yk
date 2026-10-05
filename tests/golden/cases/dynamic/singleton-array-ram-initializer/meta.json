@@ -20,6 +20,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "dynamic/gen-single-array-ram-initializer/CMakeLists.tecsgen.cmake",
     "dynamic/gen-single-array-ram-initializer/Makefile.depend",
     "dynamic/gen-single-array-ram-initializer/Makefile.tecsgen",
     "dynamic/gen-single-array-ram-initializer/Makefile.templ",
