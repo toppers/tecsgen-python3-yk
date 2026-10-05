@@ -20,6 +20,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "dynamic/gen-r/CMakeLists.tecsgen.cmake",
     "dynamic/gen-r/Makefile.depend",
     "dynamic/gen-r/Makefile.tecsgen",
     "dynamic/gen-r/Makefile.templ",

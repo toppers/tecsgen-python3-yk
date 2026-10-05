@@ -19,6 +19,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "reverse_require/gen/CMakeLists.tecsgen.cmake",
     "reverse_require/gen/Makefile.depend",
     "reverse_require/gen/Makefile.tecsgen",
     "reverse_require/gen/Makefile.templ",

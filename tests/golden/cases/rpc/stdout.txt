@@ -5,21 +5,10 @@ TracePlugin.new( 'TracePlugin__0', '', 'Sample', 'eEnt', tSample )
 RPCPlugin.new( 'RPCPlugin__0', 'PPAllocatorSize=1024', 'TracePlugin__0', 'eThroughEntry', tSample )
 TracePlugin.new( 'TracePlugin__1', '', 'Simple', 'eSimple', tSimple )
 RPCPlugin.new( 'RPCPlugin__1', 'PPAllocatorSize=1024', 'TracePlugin__1', 'eThroughEntry', tSimple )
-SimpleSample.cdl:39:11: error: P2001 TransparentRPCSignaturePlugin.rb : fail to load plugin
-gen/tmp_RPCPlugin_1.cdl:3:39: error: S1148 gen/tMarshaler_sSimple.cdl not found in search path
-gen/tmp_RPCPlugin_1.cdl:10:44: error: S1148 gen/tRPCPlugin_tTDR_sSimple.cdl not found in search path
-gen/tmp_RPCPlugin_1.cdl:18:32: error: S1027 'tRPCPlugin_tTDR_sSimple' celltype not found
-SimpleSample.cdl:21:11: error: P2003 TransparentRPCSignaturePlugin: load failed
-gen/tmp_RPCPlugin_0.cdl:3:39: error: S1148 gen/tMarshaler_sSample.cdl not found in search path
-gen/tmp_RPCPlugin_0.cdl:10:44: error: S1148 gen/tRPCPlugin_tTDR_sSample.cdl not found in search path
-gen/tmp_RPCPlugin_0.cdl:21:32: error: S1027 'tRPCPlugin_tTDR_sSample' celltype not found
-@WORK@/tecsgen/tecs/rpc/sRPCErrorHandler.cdl:65:2: info: I9999 TECSInfoPlugin does not generate TECSInfo code because of early error
-gen/tmp_TracePlugin_0.cdl:3:29: warning: W1007 ::rTransparent::TracePlugin__0 : non-active cell has no entry join and no factory
-gen/tmp_TracePlugin_1.cdl:3:29: warning: W1007 ::rTransparent::TracePlugin__1 : non-active cell has no entry join and no factory
-gen/tmp_RPCPlugin_1.cdl:14:28: warning: W1007 ::rTransparent::RPCPlugin__1_Channel : non-active cell has no entry join and no factory
-gen/tmp_RPCPlugin_0.cdl:14:28: warning: W1007 ::rTransparent::RPCPlugin__0_Channel : non-active cell has no entry join and no factory
-gen/tmp_RPCPlugin_1.cdl:14:28: warning: W1007 ::rTransparent::RPCPlugin__1_Channel_TDR : non-active cell has no entry join and no factory
-gen/tmp_RPCPlugin_1.cdl:14:28: warning: W1007 ::rTransparent::RPCPlugin__1_Channel_Dataqueue_Peer : non-active cell has no entry join and no factory
-gen/tmp_RPCPlugin_0.cdl:14:28: warning: W1007 ::rTransparent::RPCPlugin__0_Channel_TDR : non-active cell has no entry join and no factory
-gen/tmp_RPCPlugin_0.cdl:14:28: warning: W1007 ::rTransparent::RPCPlugin__0_Channel_Dataqueue_Peer : non-active cell has no entry join and no factory
-8 errors  10 warnings
+[TransparentRPCSignaturePlugin]
+           create celltype tRPCPlugin_tTDR_sSimple
+                        in gen/tRPCPlugin_tTDR_sSimple.cdl
+[TransparentRPCSignaturePlugin]
+           create celltype tRPCPlugin_tTDR_sSample
+                        in gen/tRPCPlugin_tTDR_sSample.cdl
+2 warnings

@@ -9,7 +9,7 @@ tecsgen  version 1.9.1
 	from @SOURCE@/tecsgen/tecslib/core/expression.rb:119:in `eval_const2'
 	from @SOURCE@/tecsgen/tecslib/core/expression.rb:421:in `elements_eval_const'
 	 ... 5949 levels...
-	from @SOURCE@/tecsgen/tecslib/core/tecsgen.rb:232:in `each'
-	from @SOURCE@/tecsgen/tecslib/core/tecsgen.rb:232:in `syntax_analisys'
+	from @SOURCE@/tecsgen/tecslib/core/tecsgen.rb:301:in `each'
+	from @SOURCE@/tecsgen/tecslib/core/tecsgen.rb:301:in `syntax_analisys'
 	from @SOURCE@/tecsgen/tecsgen.rb:243:in `run1'
 	from @SOURCE@/tecsgen/tecsgen.rb:597:in `<main>'

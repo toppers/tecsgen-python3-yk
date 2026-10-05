@@ -27,6 +27,28 @@ python3 tools/golden/generate_golden.py \
 rm -rf tests/golden && cp -r /tmp/golden-out tests/golden
 ```
 
+### 移植元が svn でないとき（tecsgen-rb）
+
+正解データの基準は、2026-10-05 から tecsgen-rb（git リポジトリ `asp3_stm32cube_TECS` の `tecsgen-rb`。cmake 対応を含む）です。tecsgen-rb には `test/` が無いので、`test/` は svn の作業コピーから、`tecsgen/` は git から取り出した木を作り、`wsl_check.sh` の共通オプションで指定します（手書きの WSL コマンドは使いません）。
+
+```sh
+# 木を作る（出力先は $HOME 配下。/tmp は WSL の再起動で消える）
+sh tools/port/wsl_check.sh --build-src-tree "$WC" /mnt/e/Ccur/python3/asp3_stm32cube_TECS tecsgen-rb "$HOME/p2work/tecsgen-rb-src"
+
+T=$HOME/p2work/tecsgen-rb-src
+# tests/golden/cases（test/ 配下の全ケース）。--exclude したケースは再採取せず、既存の正解を残す
+sh tools/port/wsl_check.sh --src-tree "$T" --exclude transparent_marshaler --cases-golden
+# p2・p3 の記録（Ruby 版の外界とのやりとり）
+sh tools/port/wsl_check.sh --src-tree "$T" --exclude transparent_marshaler --oracle -
+# カーネル依存プラグイン（メモリを抑えるなら --case 'atk1/*' のように系統ごとに分ける。--p3-oracle で記録も採る）
+sh tools/port/wsl_check.sh --src-tree "$T" --kernel-golden - [--p3-oracle] [--case '<id>']
+# 展開済みパッケージ（既存の出力先は上書きされないので、別ディレクトリへ採って cases/ へ写す。--p3-oracle で記録も採る）
+sh tools/port/wsl_check.sh --src-tree "$T" --package-golden - --out "$HOME/p5packageplugins/rb-capture"
+sh tools/port/wsl_check.sh --src-tree "$T" --package-golden - --p3-oracle --out tests/golden/packages
+```
+
+`transparent_marshaler` は、tecsgen-rb に `TransparentMarshalerPlugin.rb` が無いため再採取できず、r3304 で採った正解データ・記録を残しています（`tools/port/p4_progress.py` の `BASELINE_EXCEPTIONS`。比較の対象外）。
+
 `--case <id>` を付けると、そのケースだけを採取し直します（glob 可、複数指定可）。
 
 ## ケース一覧

@@ -19,12 +19,14 @@
     "test.cdl"
   ],
   "inputs": {},
+  "patch": [],
   "exit_code": 0,
   "timed_out": false,
   "errors": 0,
   "warnings": 0,
   "created": [
     "gen/C2TECS_nMruby_sInitializeBridge.h",
+    "gen/CMakeLists.tecsgen.cmake",
     "gen/CsLowFileInitializer.cdl",
     "gen/Makefile.depend",
     "gen/Makefile.tecsgen",
@@ -97,7 +99,7 @@
   "deleted": [],
   "excluded": {
     "gen/tecsgen.rbdmp": {
-      "sha256": "4feacb3fb40cb2ee62bf16001eda012775892c1db44204500737a1590181f24c",
+      "sha256": "1f78e8b7c5c6f10d4311ef82fc326afeaf38b68cb31152b96d4af24cb108c142",
       "size": 113512
     },
     "gen/tmp_my_headers.h": {
@@ -109,7 +111,7 @@
       "size": 8659
     },
     "gen/tmp_tecs_mruby.h": {
-      "sha256": "e990b702548b3086389c4e8b5285d8e269aa9c4572068e7149a6a82ff38869da",
+      "sha256": "0b0a0b758ab5cb6bddbd7f97bdc9bf381d75be212c7fc8d0b32dc1fe03b8e328",
       "size": 88506
     }
   },

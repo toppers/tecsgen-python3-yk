@@ -17,6 +17,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "var/gen/CMakeLists.tecsgen.cmake",
     "var/gen/Makefile.depend",
     "var/gen/Makefile.tecsgen",
     "var/gen/Makefile.templ",

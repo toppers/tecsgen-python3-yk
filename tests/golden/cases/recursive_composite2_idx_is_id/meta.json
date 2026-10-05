@@ -19,6 +19,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "recursive_composite2_idx_is_id/gen_rec_comp/CMakeLists.tecsgen.cmake",
     "recursive_composite2_idx_is_id/gen_rec_comp/Makefile.depend",
     "recursive_composite2_idx_is_id/gen_rec_comp/Makefile.tecsgen",
     "recursive_composite2_idx_is_id/gen_rec_comp/Makefile.templ",

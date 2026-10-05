@@ -20,6 +20,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "dynamic/gen-ram-initializer/CMakeLists.tecsgen.cmake",
     "dynamic/gen-ram-initializer/Makefile.depend",
     "dynamic/gen-ram-initializer/Makefile.tecsgen",
     "dynamic/gen-ram-initializer/Makefile.templ",

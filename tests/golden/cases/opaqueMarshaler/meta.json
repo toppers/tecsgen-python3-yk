@@ -17,8 +17,10 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "opaqueMarshaler/gen/CMakeLists.tecsgen.cmake",
     "opaqueMarshaler/gen/Makefile.tecsgen",
     "opaqueMarshaler/gen/Makefile.templ",
+    "opaqueMarshaler/gen/rClient/CMakeLists.tecsgen.cmake",
     "opaqueMarshaler/gen/rClient/Makefile.depend",
     "opaqueMarshaler/gen/rClient/Makefile.tecsgen",
     "opaqueMarshaler/gen/rClient/Makefile.templ",
@@ -71,6 +73,7 @@
     "opaqueMarshaler/gen/rClient/tTask_tecsgen.c",
     "opaqueMarshaler/gen/rClient/tTask_tecsgen.h",
     "opaqueMarshaler/gen/rClient/tecsgen.rbdmp",
+    "opaqueMarshaler/gen/rServer/CMakeLists.tecsgen.cmake",
     "opaqueMarshaler/gen/rServer/Makefile.depend",
     "opaqueMarshaler/gen/rServer/Makefile.tecsgen",
     "opaqueMarshaler/gen/rServer/Makefile.templ",

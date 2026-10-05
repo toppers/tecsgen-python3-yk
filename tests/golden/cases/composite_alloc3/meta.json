@@ -19,6 +19,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "composite_alloc3/gen/CMakeLists.tecsgen.cmake",
     "composite_alloc3/gen/Makefile.depend",
     "composite_alloc3/gen/Makefile.tecsgen",
     "composite_alloc3/gen/Makefile.templ",

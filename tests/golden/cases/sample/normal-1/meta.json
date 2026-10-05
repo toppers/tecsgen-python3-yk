@@ -15,6 +15,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "sample/data-normal/gen/CMakeLists.tecsgen.cmake",
     "sample/data-normal/gen/Makefile.tecsgen",
     "sample/data-normal/gen/Makefile.templ",
     "sample/data-normal/gen/tecsgen.rbdmp",

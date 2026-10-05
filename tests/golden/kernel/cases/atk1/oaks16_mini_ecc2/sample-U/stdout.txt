@@ -105,6 +105,8 @@ gen/Makefile.templ changed
 renaming 'gen/Makefile.templ.tmp' => 'gen/Makefile.templ'
 gen/Makefile.tecsgen changed
 renaming 'gen/Makefile.tecsgen.tmp' => 'gen/Makefile.tecsgen'
+gen/CMakeLists.tecsgen.cmake changed
+renaming 'gen/CMakeLists.tecsgen.cmake.tmp' => 'gen/CMakeLists.tecsgen.cmake'
 gen/global_tecsgen.h changed
 renaming 'gen/global_tecsgen.h.tmp' => 'gen/global_tecsgen.h'
 gen/sHookBody_tecsgen.h changed

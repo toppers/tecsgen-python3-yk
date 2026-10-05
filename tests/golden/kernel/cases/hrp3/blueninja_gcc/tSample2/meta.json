@@ -53,6 +53,7 @@
   "errors": 0,
   "warnings": 1,
   "created": [
+    "gen/CMakeLists.tecsgen.cmake",
     "gen/Makefile.depend",
     "gen/Makefile.tecsgen",
     "gen/Makefile.templ",

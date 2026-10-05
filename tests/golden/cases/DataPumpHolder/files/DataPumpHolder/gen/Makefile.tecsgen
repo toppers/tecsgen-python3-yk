@@ -1,0 +1,260 @@
+# generated automatically by tecsgen.
+# This file is not intended to modify.
+#
+# Makefile variables below are defined.
+#  TECS_IMPORT_CDLS          .cdl files improted by import statement
+#  SIGNATURE_HEADERS         .h files of signature
+#  CELLTYPE_TECSGEN_HEADERS  .h files of celltype
+#  CELLTYPE_FACTORY_HEADERS  .h files of celltype's factory
+#  TECS_HEADERS              summary of .h files above
+#  TECS_INLINE_HEADERS       .h files of celltype inline header
+#  PLUGIN_INLINE_HEADERS     .h files of plugin generated inline header
+#
+#  TECS_COBJS                .o files of TECS
+#                            = $(TECSGEN_COBJS)+$(PLUGIN_COBJS)+$(CELLTYPE_COBJS)
+#                            = $(TECS_KERNEL_COBJS)+$(TECS_USER_COBJS)+$(TECS_OUTOFDOMAIN_COBJS)
+#                            = $(TECSGEN_domain_COBJS)+$(PLUGIN_domain_COBJS)+$(CELLTYPE_domain_COBJS) for each domain
+#
+#  TECSGEN_COBJS             .o files of celltype_tecsgen.c
+#  CELLTYPE_COBJS            .o files of celltype.c (celltype code)
+#  PLUGIN_COBJS              .o files of plugin generated .c files
+#
+#  TECSGEN_SRCS              .c files of celltype_tecsgen.c
+#  CELLTYPE_SRCS             .c files of celltype.c (celltype code)
+#  PLUGIN_SRCS               .c files of plugin generated
+#  PLUGIN_CELLTYPE_SRCS      .c files of plugin generated celltype.c (celltype code)
+#  PLUGIN_TECSGEN_SRCS       .c files of plugin generated celltype_tecsgen.c
+#
+# Variables for domain (These are defined if domain is specified)
+#  TECS_DOMAINS             domain names
+#  TECS_KERNEL_COBJS        .o files of kernel domain (tecsgen, celltype, plugin)
+#  TECS_USER_COBJS          .o files of user domain (tecsgen, celltype, plugin)
+#  TECS_OUTOFDOMAIN_COBJS   .o files of OutOfDomain (tecsgen, celltype, plugin)
+#  TECSGEN_domain_COBJS     .o files of celltype_tecsgen.c files for each domain
+#  PLUGIN_domain_COBJS      .o files of plugin generated .c files for each domain
+#  CELLTYPE_domain_COBJS    .o files of celltype.c files for each domain
+#  TECSGEN_domain_SRCS      .c files of celltype_domain_tecsgen.c
+#  PLUGIN_domain_SRCS       .c files of plugin generated .c files for each domain
+#  CELLTYPE_domain_SRCS     .c files of celltype.c files for each domain
+
+TECS_IMPORT_CDLS = DataPumpHolderTest.cdl ../cygwin3//cygwin_kernel.cdl ../cygwin3//tSysLog.cdl $(TECSPATH)/DataPumpHolder/DataPumpHolder.cdl $(TECSPATH)/rpc/rpc.cdl $(TECSPATH)/rpc/sChannel.cdl $(TECSPATH)/rpc/TDR.cdl $(TECSPATH)/rpc/RPCTask.cdl $(TECSPATH)/rpc/PPAllocator.cdl $(TECSPATH)/rpc/sRPCErrorHandler.cdl kernel.cdl gen/tPersonalData_signature.cdl gen/tPersonalData_celltype.cdl gen/tRPCPluginDPH_tTDR_sPersonalDataSetSignatureAsync.cdl gen/tMarshalerDPH_sPersonalDataSetSignatureAsync.cdl $(TECSPATH)/rpc/tDataqueueOWChannel.cdl gen/tRPCPlugin_tTDR_sPersonalDataSetSignatureAsync.cdl gen/tMarshaler_sPersonalDataSetSignatureAsync.cdl gen/tRPCPlugin_tTDR_sPersonalDataSetSignature.cdl gen/tMarshaler_sPersonalDataSetSignature.cdl gen/tmp_DataPumpHolderPlugin_post_code.cdl gen/tmp_TransparentRPCSignaturePlugin_post_code.cdl
+TECS_IMPORT_HEADERS = $(TECSPATH)/tecs.h ../cygwin3//cygwin_tecs.h ../cygwin3//t_syslog.h $(TECSPATH)/rpc/tecs_rpc.h
+TECS_IMPORTS = $(TECS_IMPORT_CDLS) $(TECS_IMPORT_HEADERS)
+
+SIGNATURE_HEADERS = \
+	$(GEN_DIR)/sTaskBody_tecsgen.h \
+	$(GEN_DIR)/sTaskExceptionBody_tecsgen.h \
+	$(GEN_DIR)/sTask_tecsgen.h \
+	$(GEN_DIR)/sKernel_tecsgen.h \
+	$(GEN_DIR)/siKernel_tecsgen.h \
+	$(GEN_DIR)/sSemaphore_tecsgen.h \
+	$(GEN_DIR)/siSemaphore_tecsgen.h \
+	$(GEN_DIR)/sEventflag_tecsgen.h \
+	$(GEN_DIR)/siEventflag_tecsgen.h \
+	$(GEN_DIR)/sDataqueue_tecsgen.h \
+	$(GEN_DIR)/siDataqueue_tecsgen.h \
+	$(GEN_DIR)/sSysLog_tecsgen.h \
+	$(GEN_DIR)/sServerChannelOpener_tecsgen.h \
+	$(GEN_DIR)/sChannel_tecsgen.h \
+	$(GEN_DIR)/sTDR_tecsgen.h \
+	$(GEN_DIR)/sUnmarshalerMain_tecsgen.h \
+	$(GEN_DIR)/sPPAllocator_tecsgen.h \
+	$(GEN_DIR)/sRPCErrorHandler_tecsgen.h \
+	$(GEN_DIR)/sPumpMain_tecsgen.h \
+	$(GEN_DIR)/sPersonalDataGetSignature_tecsgen.h \
+	$(GEN_DIR)/sPersonalDataSetSignature_tecsgen.h \
+	$(GEN_DIR)/sPersonalDataSetSignatureAsync_tecsgen.h \
+	$(GEN_DIR)/sMain_tecsgen.h \
+# SIGNATURE_HEADERS terminator
+
+CELLTYPE_TECSGEN_HEADERS = \
+ 	$(GEN_DIR)/tTDR_tecsgen.h \
+ 	$(GEN_DIR)/tRPCDedicatedTaskMain_tecsgen.h \
+ 	$(GEN_DIR)/tPPAllocator_tecsgen.h \
+ 	$(GEN_DIR)/tPumpMainConverter_tecsgen.h \
+ 	$(GEN_DIR)/tPersonalDataDataPump_tecsgen.h \
+ 	$(GEN_DIR)/tPersonalDataDataHolder_tecsgen.h \
+ 	$(GEN_DIR)/tPersonalDataSyncAdaptor_tecsgen.h \
+ 	$(GEN_DIR)/tPersonalDataAsyncAdaptor_tecsgen.h \
+ 	$(GEN_DIR)/tMarshalerDPH_sPersonalDataSetSignatureAsync_tecsgen.h \
+ 	$(GEN_DIR)/tUnmarshalerDPH_sPersonalDataSetSignatureAsync_tecsgen.h \
+ 	$(GEN_DIR)/tDataqueueAdaptor_tecsgen.h \
+ 	$(GEN_DIR)/tTask_tecsgen.h \
+ 	$(GEN_DIR)/tKernel_tecsgen.h \
+ 	$(GEN_DIR)/tSemaphore_tecsgen.h \
+ 	$(GEN_DIR)/tEventflag_tecsgen.h \
+ 	$(GEN_DIR)/tDataqueuePeer_tecsgen.h \
+ 	$(GEN_DIR)/tSysLog_tecsgen.h \
+ 	$(GEN_DIR)/tPersonalDataSub_tecsgen.h \
+ 	$(GEN_DIR)/tPersonalDataPub_tecsgen.h \
+ 	$(GEN_DIR)/tTaskMain_tecsgen.h \
+ 	$(GEN_DIR)/tMainMain_tecsgen.h \
+ 	$(GEN_DIR)/tLoopMain_tecsgen.h \
+# CELLTYPE_TECSGEN_HEADERS terminator
+
+CELLTYPE_FACTORY_HEADERS = \
+ 	$(GEN_DIR)/tTDR_factory.h \
+ 	$(GEN_DIR)/tRPCDedicatedTaskMain_factory.h \
+ 	$(GEN_DIR)/tPPAllocator_factory.h \
+ 	$(GEN_DIR)/tPumpMainConverter_factory.h \
+ 	$(GEN_DIR)/tPersonalDataDataPump_factory.h \
+ 	$(GEN_DIR)/tPersonalDataDataHolder_factory.h \
+ 	$(GEN_DIR)/tPersonalDataSyncAdaptor_factory.h \
+ 	$(GEN_DIR)/tPersonalDataAsyncAdaptor_factory.h \
+ 	$(GEN_DIR)/tMarshalerDPH_sPersonalDataSetSignatureAsync_factory.h \
+ 	$(GEN_DIR)/tUnmarshalerDPH_sPersonalDataSetSignatureAsync_factory.h \
+ 	$(GEN_DIR)/tDataqueueAdaptor_factory.h \
+ 	$(GEN_DIR)/tTask_factory.h \
+ 	$(GEN_DIR)/tKernel_factory.h \
+ 	$(GEN_DIR)/tSemaphore_factory.h \
+ 	$(GEN_DIR)/tEventflag_factory.h \
+ 	$(GEN_DIR)/tDataqueuePeer_factory.h \
+ 	$(GEN_DIR)/tSysLog_factory.h \
+ 	$(GEN_DIR)/tPersonalDataSub_factory.h \
+ 	$(GEN_DIR)/tPersonalDataPub_factory.h \
+ 	$(GEN_DIR)/tTaskMain_factory.h \
+ 	$(GEN_DIR)/tMainMain_factory.h \
+ 	$(GEN_DIR)/tLoopMain_factory.h \
+# CELLTYPE_FACTORY_HEADERS terminator
+
+# TECS_HEADERS:  headers generated by tecsgen
+TECS_HEADERS = $(SIGNATURE_HEADERS) $(CELLTYPE_TECSGEN_HEADERS) $(CELLTYPE_FACTORY_HEADERS)
+
+TECS_INLINE_HEADERS = \
+ 	tTask_tecsgen.h \
+ 	tKernel_tecsgen.h \
+ 	tSemaphore_tecsgen.h \
+ 	tEventflag_tecsgen.h \
+ 	tDataqueuePeer_tecsgen.h \
+ 	tSysLog_tecsgen.h \
+ 	tPersonalDataSub_tecsgen.h \
+ 	tPersonalDataPub_tecsgen.h \
+ 	tTaskMain_tecsgen.h \
+ 	tMainMain_tecsgen.h \
+ 	tLoopMain_tecsgen.h \
+# TECS_INLINE_HEADERS terminator
+
+PLUGIN_INLINE_HEADERS = \
+ 	tTDR_tecsgen.h \
+ 	tRPCDedicatedTaskMain_tecsgen.h \
+ 	tPPAllocator_tecsgen.h \
+ 	tPumpMainConverter_tecsgen.h \
+ 	tPersonalDataDataPump_tecsgen.h \
+ 	tPersonalDataDataHolder_tecsgen.h \
+ 	tPersonalDataSyncAdaptor_tecsgen.h \
+ 	tPersonalDataAsyncAdaptor_tecsgen.h \
+ 	tMarshalerDPH_sPersonalDataSetSignatureAsync_tecsgen.h \
+ 	tUnmarshalerDPH_sPersonalDataSetSignatureAsync_tecsgen.h \
+ 	tDataqueueAdaptor_tecsgen.h \
+# PLUGIN_INLINE_HEADERS terminator
+
+# TECS_COBJS: all objects of TECS, include both user written code and tecsgen automatically generated code
+TECS_COBJS = $(TECSGEN_COBJS) $(PLUGIN_COBJS) $(CELLTYPE_COBJS)
+
+# TECSGEN_COBJS: objects from sources which are automatically generated by tecsgen
+TECSGEN_COBJS = \
+ 	$(_TECS_OBJ_DIR)tTask_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tKernel_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tSemaphore_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tEventflag_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tDataqueuePeer_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tSysLog_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tPersonalDataSub_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tPersonalDataPub_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tTaskMain_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tMainMain_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tLoopMain_tecsgen.o \
+# TECSGEN_COBJS terminator
+
+# PLUGIN_COBJS: objects from sources which are automatically generated by plugin(s)
+PLUGIN_COBJS = \
+ 	$(_TECS_OBJ_DIR)tTDR_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tRPCDedicatedTaskMain_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tPPAllocator_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tPumpMainConverter_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tPersonalDataDataPump_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tPersonalDataDataHolder_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tPersonalDataSyncAdaptor_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tPersonalDataAsyncAdaptor_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tMarshalerDPH_sPersonalDataSetSignatureAsync_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tUnmarshalerDPH_sPersonalDataSetSignatureAsync_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tDataqueueAdaptor_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tRPCDedicatedTaskMain.o \
+ 	$(_TECS_OBJ_DIR)tPPAllocator.o \
+ 	$(_TECS_OBJ_DIR)tPersonalDataDataPump.o \
+ 	$(_TECS_OBJ_DIR)tPersonalDataDataHolder.o \
+ 	$(_TECS_OBJ_DIR)tMarshalerDPH_sPersonalDataSetSignatureAsync.o \
+ 	$(_TECS_OBJ_DIR)tUnmarshalerDPH_sPersonalDataSetSignatureAsync.o \
+# PLUGIN_COBJS terminator
+
+# CELLTYPE_COBJS: objects of celltype code written by user
+CELLTYPE_COBJS = \
+ 	$(_TECS_OBJ_DIR)tTask.o \
+ 	$(_TECS_OBJ_DIR)tEventflag.o \
+ 	$(_TECS_OBJ_DIR)tSysLog.o \
+ 	$(_TECS_OBJ_DIR)tPersonalDataSub.o \
+ 	$(_TECS_OBJ_DIR)tPersonalDataPub.o \
+ 	$(_TECS_OBJ_DIR)tTaskMain.o \
+ 	$(_TECS_OBJ_DIR)tMainMain.o \
+# CELLTYPE_COBJS terminator
+
+# TECSGEN_SRCS: sources automatically generated by tecsgen
+TECSGEN_SRCS = \
+ 	$(GEN_DIR)/tTask_tecsgen.c \
+ 	$(GEN_DIR)/tKernel_tecsgen.c \
+ 	$(GEN_DIR)/tSemaphore_tecsgen.c \
+ 	$(GEN_DIR)/tEventflag_tecsgen.c \
+ 	$(GEN_DIR)/tDataqueuePeer_tecsgen.c \
+ 	$(GEN_DIR)/tSysLog_tecsgen.c \
+ 	$(GEN_DIR)/tPersonalDataSub_tecsgen.c \
+ 	$(GEN_DIR)/tPersonalDataPub_tecsgen.c \
+ 	$(GEN_DIR)/tTaskMain_tecsgen.c \
+ 	$(GEN_DIR)/tMainMain_tecsgen.c \
+ 	$(GEN_DIR)/tLoopMain_tecsgen.c \
+# TECSGEN_SRCS terminator
+
+# PLUGIN_SRCS: sources automatically generated by plugin
+PLUGIN_CELLTYPE_SRCS = \
+  $(PLUGIN_CELLTYPE_SRCS)\
+# PLUGIN_CELLTYPE_SRCS terminator
+
+PLUGIN_TECSGEN_SRCS = \
+  $(PLUGIN_TECSGEN_SRCS)\
+# PLUGIN_TECSGEN_SRCS terminator
+
+PLUGIN_SRCS = $(PLUGIN_CELLTYPE_SRCS) $(PLUGIN_TECSGEN_SRCS)
+
+PLUGIN_CELLTYPE_SRCS = \
+ tRPCDedicatedTaskMain.c \
+ tPPAllocator.c \
+ tPersonalDataDataPump.c \
+ tPersonalDataDataHolder.c \
+ tMarshalerDPH_sPersonalDataSetSignatureAsync.c \
+ tUnmarshalerDPH_sPersonalDataSetSignatureAsync.c \
+# PLUGIN_CELLTYPE_SRCS terminator
+
+PLUGIN_TECSGEN_SRCS = \
+ tTDR_tecsgen.c \
+ tRPCDedicatedTaskMain_tecsgen.c \
+ tPPAllocator_tecsgen.c \
+ tPumpMainConverter_tecsgen.c \
+ tPersonalDataDataPump_tecsgen.c \
+ tPersonalDataDataHolder_tecsgen.c \
+ tPersonalDataSyncAdaptor_tecsgen.c \
+ tPersonalDataAsyncAdaptor_tecsgen.c \
+ tMarshalerDPH_sPersonalDataSetSignatureAsync_tecsgen.c \
+ tUnmarshalerDPH_sPersonalDataSetSignatureAsync_tecsgen.c \
+ tDataqueueAdaptor_tecsgen.c \
+# PLUGIN_TECSGEN_SRCS terminator
+
+# CELLTYPE_SRCS: sources of celltype code written by user
+CELLTYPE_SRCS = \
+ 	tTask.c \
+ 	tEventflag.c \
+ 	tSysLog.c \
+ 	tPersonalDataSub.c \
+ 	tPersonalDataPub.c \
+ 	tTaskMain.c \
+ 	tMainMain.c \
+# CELLTYPE_SRCS terminator
+

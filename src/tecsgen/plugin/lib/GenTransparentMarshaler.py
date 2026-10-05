@@ -5,10 +5,12 @@
 @channelCellName:: str
 @PPAllocatorSize:: int | None
 
-`RPCPlugin` を使うケース（`rpc`・`class`・`DataPumpHolder`）は、いずれも
-`TransparentRPCSignaturePlugin` が存在しないため Ruby 版自身もコード生成の前に失敗する
+`RPCPlugin` を使うケース（`rpc`・`class`・`DataPumpHolder`）は、r3304 では
+`TransparentRPCSignaturePlugin` が存在せず Ruby 版自身もコード生成の前に失敗していた
 （[[tecsgen内部仕様 - 09 プラグイン機構#9.7.1]] の既知の問題）。コード生成部分は `SharedRPCPlugin`
-（`sharedRPC` ケース、Ruby 版で成功する）が使うため P5j で全量移植した。
+（`sharedRPC` ケース、Ruby 版で成功する）が使うため P5j で全量移植した。tecsgen-rb で
+`TransparentRPCSignaturePlugin` が追加され、これらのケースも成功するようになった
+（`plugin/TransparentRPCSignaturePlugin.py`）。
 """
 
 from __future__ import annotations

@@ -3,7 +3,7 @@
   "gcc": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
   "tecsgen": "tecsgen  version 1.9.1",
   "platform": "Linux 6.18.40.1-microsoft-standard-WSL2 x86_64",
-  "source": "toppers tecsgen branches/ykominami_r3033 r3304 (svn export -r BASE --native-eol LF)",
+  "source": "asp3_stm32cube_TECS tecsgen-rb 7ea7851 (git archive); test/ from svn ykominami_r3033 r3306",
   "manifest_sha256": "e9687335f436bd768af47abb6fbf11ea89494537bb3c805c3ca076ed65a7fe40",
   "excluded_patterns": [
     "*.rbdmp",

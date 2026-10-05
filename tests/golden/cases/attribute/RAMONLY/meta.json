@@ -26,6 +26,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "attribute/gen.RAMONLY/CMakeLists.tecsgen.cmake",
     "attribute/gen.RAMONLY/Makefile.depend",
     "attribute/gen.RAMONLY/Makefile.tecsgen",
     "attribute/gen.RAMONLY/Makefile.templ",

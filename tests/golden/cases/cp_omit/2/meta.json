@@ -20,6 +20,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "cp_omit/gen2/CMakeLists.tecsgen.cmake",
     "cp_omit/gen2/Makefile.depend",
     "cp_omit/gen2/Makefile.tecsgen",
     "cp_omit/gen2/Makefile.templ",

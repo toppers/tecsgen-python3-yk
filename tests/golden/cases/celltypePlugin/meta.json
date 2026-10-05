@@ -20,6 +20,7 @@
   "expect_matched": null,
   "created": [
     "celltypePlugin/gen/ALARM_tecsgen.oil",
+    "celltypePlugin/gen/CMakeLists.tecsgen.cmake",
     "celltypePlugin/gen/CPU_tecsgen.oil",
     "celltypePlugin/gen/ISR_tecsgen.oil",
     "celltypePlugin/gen/Kernel_tecsgen.oil",

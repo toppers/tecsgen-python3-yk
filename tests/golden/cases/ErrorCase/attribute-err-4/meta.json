@@ -20,6 +20,7 @@
   ],
   "expect_matched": true,
   "created": [
+    "ErrorCase/gen/CMakeLists.tecsgen.cmake",
     "ErrorCase/gen/Makefile.depend",
     "ErrorCase/gen/Makefile.tecsgen",
     "ErrorCase/gen/Makefile.templ",

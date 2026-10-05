@@ -22,12 +22,15 @@
     "-I.",
     "sample.cdl"
   ],
+  "inputs": {},
+  "patch": [],
   "exit_code": 0,
   "timed_out": false,
   "errors": 0,
   "warnings": 0,
   "created": [
     "gen/ALARM_tecsgen.oil",
+    "gen/CMakeLists.tecsgen.cmake",
     "gen/EVENT_tecsgen.oil",
     "gen/ISR_tecsgen.oil",
     "gen/KernelObjects_tecsgen.oil",

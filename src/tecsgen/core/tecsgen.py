@@ -30,6 +30,7 @@ class TECSGEN:
         cls._b_post_coded = False
         cls._current_tecsgen = None
         Makefile.reset()
+        CMake.reset()
 
     # --- tecsgen.rb（トップ） --------------------------------------------------
 
@@ -133,6 +134,7 @@ class TECSGEN:
     def set_default_config() -> None:
         """tecsgen のデフォルトを設定する。"""
         Makefile.set_default_config()
+        CMake.set_default_config()
 
     @staticmethod
     def get_argv() -> list[str]:
@@ -552,6 +554,85 @@ class Makefile:
         )
 
 
+class CMake:
+    """CMakeLists.tecsgen.cmake の出力内容を追加、変更するための操作（TECSGEN::CMake）。
+
+    Ruby 版 tecslib/core/tecsgen.rb の module CMake に対応する（tecsgen-rb で追加された）。
+    プラグインから add_* で追加した内容は、gen_cmake_tecsgen（core/generate.py）が出力する。
+    """
+
+    RUBY_NAME = "TECSGEN::CMake"
+
+    _sources: ClassVar[list[str]] = []
+    _includes: ClassVar[list[str]] = []
+    _defines: ClassVar[list[str]] = []
+    _link_options: ClassVar[list[str]] = []
+    _custom_commands: ClassVar[list[str]] = []
+    _lines: ClassVar[list[str]] = []
+
+    @classmethod
+    def reset(cls) -> None:
+        cls._sources = []
+        cls._includes = []
+        cls._defines = []
+        cls._link_options = []
+        cls._custom_commands = []
+        cls._lines = []
+
+    @classmethod
+    def set_default_config(cls) -> None:
+        """Ruby の self.set_default_config（すべて空に戻す）。"""
+        cls.reset()
+
+    @classmethod
+    def add_source(cls, src: Any) -> None:
+        cls._sources.append(to_s(src))
+
+    @classmethod
+    def add_include(cls, path: Any) -> None:
+        cls._includes.append(to_s(path))
+
+    @classmethod
+    def add_define(cls, define: Any) -> None:
+        cls._defines.append(to_s(define))
+
+    @classmethod
+    def add_link_option(cls, opt: Any) -> None:
+        cls._link_options.append(to_s(opt))
+
+    @classmethod
+    def add_custom_command(cls, cmd: Any) -> None:
+        cls._custom_commands.append(to_s(cmd))
+
+    @classmethod
+    def add_line(cls, line: Any) -> None:
+        cls._lines.append(to_s(line))
+
+    @classmethod
+    def get_sources(cls) -> list[str]:
+        return _uniq(cls._sources)
+
+    @classmethod
+    def get_includes(cls) -> list[str]:
+        return _uniq(cls._includes)
+
+    @classmethod
+    def get_defines(cls) -> list[str]:
+        return _uniq(cls._defines)
+
+    @classmethod
+    def get_link_options(cls) -> list[str]:
+        return _uniq(cls._link_options)
+
+    @classmethod
+    def get_custom_commands(cls) -> list[str]:
+        return _uniq(cls._custom_commands)
+
+    @classmethod
+    def get_lines(cls) -> list[str]:
+        return _uniq(cls._lines)
+
+
 def _uniq(items: list[Any]) -> list[Any]:
     """Ruby の Array#uniq（最初に出たものを残す）。"""
     out: list[Any] = []
@@ -562,3 +643,4 @@ def _uniq(items: list[Any]) -> list[Any]:
 
 
 Makefile.reset()
+CMake.reset()

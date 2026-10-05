@@ -26,6 +26,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "composite/gen_comp/CMakeLists.tecsgen.cmake",
     "composite/gen_comp/Makefile.depend",
     "composite/gen_comp/Makefile.tecsgen",
     "composite/gen_comp/Makefile.templ",

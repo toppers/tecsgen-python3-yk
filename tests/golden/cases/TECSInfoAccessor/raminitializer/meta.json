@@ -20,6 +20,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "TECSInfoAccessor/gen-raminitializer/CMakeLists.tecsgen.cmake",
     "TECSInfoAccessor/gen-raminitializer/Makefile.depend",
     "TECSInfoAccessor/gen-raminitializer/Makefile.tecsgen",
     "TECSInfoAccessor/gen-raminitializer/Makefile.templ",

@@ -20,6 +20,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "TECSInfoAccessor/gen-ramonly/CMakeLists.tecsgen.cmake",
     "TECSInfoAccessor/gen-ramonly/Makefile.depend",
     "TECSInfoAccessor/gen-ramonly/Makefile.tecsgen",
     "TECSInfoAccessor/gen-ramonly/Makefile.templ",

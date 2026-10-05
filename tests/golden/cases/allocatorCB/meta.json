@@ -19,6 +19,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "allocatorCB/gen/CMakeLists.tecsgen.cmake",
     "allocatorCB/gen/Makefile.depend",
     "allocatorCB/gen/Makefile.tecsgen",
     "allocatorCB/gen/Makefile.templ",

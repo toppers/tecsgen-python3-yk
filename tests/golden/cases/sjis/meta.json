@@ -26,6 +26,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "sjis/gen/CMakeLists.tecsgen.cmake",
     "sjis/gen/Makefile.depend",
     "sjis/gen/Makefile.tecsgen",
     "sjis/gen/Makefile.templ",

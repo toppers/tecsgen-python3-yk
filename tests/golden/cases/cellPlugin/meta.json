@@ -21,6 +21,7 @@
   "expect": null,
   "expect_matched": null,
   "created": [
+    "cellPlugin/gen/CMakeLists.tecsgen.cmake",
     "cellPlugin/gen/Makefile.depend",
     "cellPlugin/gen/Makefile.tecsgen",
     "cellPlugin/gen/Makefile.templ",
