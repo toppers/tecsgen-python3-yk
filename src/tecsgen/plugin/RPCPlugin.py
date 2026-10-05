@@ -6,11 +6,11 @@ mikan through plugin: namespace が考慮されていない
   呼び元、呼び先のエンディアン、char, short, int_t, long_t, intptr_t のサイズが同じ
   有符号、無符号でサイズが同じ
 
-**既知の問題（内部仕様9.7.1）**: このプラグインが `gen_marshaler_celltype_` で生成する CDL の
-`generate(TransparentRPCSignaturePlugin, ...)` が参照するクラスは、移植元のリポジトリ全体を
-検索しても存在しない。実行すると Ruby 版・この移植のどちらも `P2001 TransparentRPCSignaturePlugin.rb
-: fail to load plugin` で失敗する（正解データで確認済み）。そのため `GenTransparentMarshaler` の
-実際のマーシャラ生成コードは、この移植ではまだ実行されない範囲として未移植のまま残している。
+**既知の問題だった点（内部仕様9.7.1）**: このプラグインが `gen_marshaler_celltype_` で生成する CDL の
+`generate(TransparentRPCSignaturePlugin, ...)` が参照するクラスは、r3304 には存在しなかった。
+実行すると Ruby 版・この移植のどちらも `P2001 TransparentRPCSignaturePlugin.rb : fail to load plugin`
+で失敗していた。tecsgen-rb で `TransparentRPCSignaturePlugin.rb` が追加されたため、この移植でも
+`plugin/TransparentRPCSignaturePlugin.py` を移植し、`rpc`・`class`・`DataPumpHolder` が成功するようになった。
 """
 
 from __future__ import annotations

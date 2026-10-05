@@ -4,10 +4,10 @@
 授受するためのセルタイプ（データポンプ・データホルダ）と、シグニチャ（Get・Set）を生成する。
 
 `DataPumpHolder` オラクルケースでは、生成した CDL が参照する `TransparentRPCSignaturePlugin` が
-存在しないため Ruby 版自身もコード生成の前に失敗する（[[tecsgen内部仕様 - 09 プラグイン機構#9.7.1]]
-の既知の問題）。そのため、実行される CDL の生成までを移植し、コード生成段階でだけ呼ばれる
-`gen_ep_func_body`（Ruby 約230行）は `PluginNotPorted` を送出するに留める（GenTransparentMarshaler の
-P5d と同じ判断）。
+r3304 には存在せず、Ruby 版自身もコード生成の前に失敗していた（[[tecsgen内部仕様 - 09 プラグイン機構#9.7.1]]
+の既知の問題）ため、コード生成段階でだけ呼ばれる `gen_ep_func_body`（Ruby 約230行）は未移植だった。
+tecsgen-rb で `TransparentRPCSignaturePlugin` が追加され（`plugin/TransparentRPCSignaturePlugin.py`）、
+このケースが成功するようになったため、`gen_ep_func_body` も移植した。
 """
 
 from __future__ import annotations
@@ -234,10 +234,237 @@ class DataPumpHolderPlugin(CelltypePlugin):
         func_type: Any,
         params: list[Any],
     ) -> None:
-        """受け口関数の中身を生成する（P5 未移植。9.7.1 によりどのオラクルケースからも呼ばれない）。"""
-        from tecsgen.core.plugin_module import PluginNotPorted
+        """受け口関数の中身を生成する。
 
-        raise PluginNotPorted("DataPumpHolderPlugin#gen_ep_func_body")
+        r3304 では、このプラグインが生成する CDL の `TransparentRPCSignaturePlugin` が存在せず、
+        コード生成に進まなかったので未移植だった。tecsgen-rb で `TransparentRPCSignaturePlugin` が
+        追加されたため、ここが実行されるようになった。
+        """
+        from tecsgen.context import get_context
+        from tecsgen.core.cdl_types import PtrType
+
+        ct = to_s(ct_name)
+        ep = to_s(ep_name)
+        fn = to_s(func_name)
+        debug = (
+            "#ifdef DATAPUMPHOLDER_DEBUG\n"
+            f'    syslog( LOG_INFO, "DataPumpHolderPlugin {ct}.{ep}.{fn}" );\n'
+            "#endif\n"
+        )
+
+        if ct_name == sym(self._datapump_celltype):
+            #### DataPump セルタイプ ####
+            file.print(
+                "    ER      ercd = E_OK;                      // DataPumpHolderPlugin 0\n"
+                "    CELLCB  *p_cellcb = GET_CELLCB(idx);\n"
+                f"    //  variables from data definition in celltype {to_s(self._celltype.get_name())}\n"
+                + debug
+            )
+
+            for decl in self._data_decls():
+                type_ = decl.get_type().get_original_type()
+                if isinstance(type_, PtrType):
+                    type_ = type_.get_type()  # ポインタの参照している型
+                if decl.get_size_is():
+                    size = f"[{to_s(decl.get_size_is())}]"
+                    size_note = "    // note: if size of array is too large, stack overflow might happen here or later"
+                else:
+                    size = ""
+                    size_note = ""
+                file.print(
+                    f"    {type_.get_type_str()}\t{to_s(decl.get_identifier())}"
+                    f"{type_.get_type_str_post()}{size};{size_note}\n"
+                )
+
+            file.print(
+                "\n"
+                "    // mikan: need error check\n"
+                "    cPubSide_waitForNewData();    // wait for PubSide\n"
+                "    cSubSide_waitForReadDone();   // wait for SubSuide\n"
+            )
+            for decl in self._data_decls():
+                # Ruby 版は ptr_level != 0 のとき ref が nil（空文字列）になる
+                ref = "&" if decl.get_ptr_level() == 0 else ""
+                ident = to_s(decl.get_identifier())
+                file.print(
+                    "\n"
+                    f"    // data: {ident} get & set\n"
+                    f"    cPubSide_get_{ident}( {ref}{ident} );\n"
+                    f"    cSubSide_set_{ident}( {ident} );\n"
+                )
+            file.print(
+                "\n"
+                "    /// mikan: need error check\n"
+                "    cPubSide_dataReadDone();\n"
+                "    cSubSide_newDataReady();\n"
+                "\n"
+                "    return ercd;\n"
+            )
+        elif ct_name == sym(self._dataholder_celltype):
+            #### DataHolder セルタイプ ####
+            if ep_name == sym("eSubSide"):
+                ### eSubSide 受け口 ####
+                if func_name == sym("waitForNewData"):
+                    file.print(
+                        "    // wait For PubSide New Data\n"
+                        "    CELLCB   *p_cellcb = GET_CELLCB(idx);\n"
+                        "    ER       ercd = E_OK;\n"
+                        "    FLGPTN   flgptn;\n"
+                        "\n" + debug + "    if( is_cEventflag_joined() ){\n"
+                        "      if( VAR_status != DATAHOLDER_STAT_READING ){\n"
+                        "        ercd = cEventflag_wait( DATAHOLDER_EVFLAG_NEW_DATA, TWF_ANDW, &flgptn );\n"
+                        "        (void)flgptn;\n"
+                        "        if( ercd == E_OK ){\n"
+                        "          VAR_status = DATAHOLDER_STAT_READING;\n"
+                        "        }\n"
+                        "      } else{\n"
+                        "       ercd = E_PAR;\n"
+                        "      }\n"
+                        "    }\n"
+                        "    return ercd;\n"
+                    )
+                elif func_name == sym("dataReadDone"):
+                    file.print(
+                        "    // data Read Done\n"
+                        "    CELLCB   *p_cellcb = GET_CELLCB(idx);\n"
+                        "    ER       ercd = E_OK;\n"
+                        "\n" + debug + "    if( is_cEventflag_joined() ){\n"
+                        "      if( VAR_status == DATAHOLDER_STAT_READING ){\n"
+                        + utf8_literal(
+                            "        VAR_status = DATAHOLDER_STAT_READ_DONE;  // フラグを操作する前に変更\n"
+                        )
+                        + "        ercd = cEventflag_clear( ~DATAHOLDER_EVFLAG_NEW_DATA );\n"
+                        + utf8_literal(
+                            "        ercd = cEventflag_set( DATAHOLDER_EVFLAG_READ_DONE ); // ここで PubSide 動作開始可能\n"
+                        )
+                        + "      } else {\n"
+                        "        ercd = E_PAR;\n"
+                        "      }\n"
+                        "    }\n"
+                        "    return ercd;\n"
+                    )
+                else:
+                    # データ
+                    file.print(f"/* {ep}.{fn} */\n")
+                    dat_name = sym(sub_first(r"get_", "", fn))
+                    file.print(f"/* {ep}.{fn} var_name: {to_s(dat_name)}*/\n")
+
+                    decla = self.find_decl(dat_name)
+                    if decla.get_ptr_level() == 0:
+                        file.print(
+                            "    CELLCB   *p_cellcb = GET_CELLCB(idx);\n"
+                            f"    *{to_s(dat_name)} = VAR_{to_s(dat_name)};\n"
+                            "    return E_OK;\n"
+                        )
+                    elif decla.get_ptr_level() == 1:
+                        spec = (
+                            f"*{to_s(decla.get_size_is())}"
+                            if decla.get_size_is()
+                            else ""
+                        )
+                        file.print(
+                            "    CELLCB   *p_cellcb = GET_CELLCB(idx);\n"
+                            f"    memcpy( {to_s(dat_name)}, VAR_{to_s(dat_name)}, "
+                            f"sizeof(*{to_s(dat_name)}){spec} );\n"
+                            "    return E_OK;\n"
+                        )
+            elif ep_name == sym("ePubSide"):
+                ### DataHolder ePubSide 受け口 ####
+                if func_name == sym("waitForReadDone"):
+                    file.print(
+                        "    // Wait For SubSide Read-Done\n"
+                        "    CELLCB   *p_cellcb = GET_CELLCB(idx);\n"
+                        "    ER       ercd = E_OK;\n"
+                        "    FLGPTN   flgptn;\n"
+                        "\n"
+                        + debug
+                        + "    if( is_cEventflag_joined() ){\n"
+                        + utf8_literal(
+                            "      // cygwin_kernel.cdl の環境では、Eventflag の初期値が設定されないため\n"
+                            "      // ここで設定する (この設定は、正規の環境で残っても問題ない)\n"
+                        )
+                        + "      if( VAR_status == DATAHOLDER_STAT_NONE ){\n"
+                        "        VAR_status= DATAHOLDER_STAT_READ_DONE;\n"
+                        "        cEventflag_set( DATAHOLDER_EVFLAG_READ_DONE );\n"
+                        "      }\n"
+                        "      if( VAR_status != DATAHOLDER_STAT_WRITING ){\n"
+                        "        ercd = cEventflag_wait( DATAHOLDER_EVFLAG_READ_DONE, TWF_ANDW, &flgptn );\n"
+                        "        (void)flgptn;\n"
+                        "        if( ercd == E_OK ){\n"
+                        "          VAR_status = DATAHOLDER_STAT_WRITING;\n"
+                        "        }\n"
+                        "      } else{\n"
+                        "        ercd = E_PAR;\n"
+                        "      }\n"
+                        "    }\n"
+                        "    return ercd;\n"
+                    )
+                elif func_name == sym("newDataReady"):
+                    file.print(
+                        "    // New Data Ready\n"
+                        "    CELLCB   *p_cellcb = GET_CELLCB(idx);\n"
+                        "    ER       ercd = E_OK;\n"
+                        "\n" + debug + "    if( is_cEventflag_joined() ){\n"
+                        "      if( VAR_status == DATAHOLDER_STAT_WRITING ){\n"
+                        + utf8_literal(
+                            "        VAR_status = DATAHOLDER_STAT_WRITE_DONE;  // フラグを操作する前に変更\n"
+                        )
+                        + "        ercd = cEventflag_clear( ~DATAHOLDER_EVFLAG_READ_DONE );\n"
+                        + utf8_literal(
+                            "        ercd = cEventflag_set( DATAHOLDER_EVFLAG_NEW_DATA ); // ここで SubSide 動作開始可能\n"
+                        )
+                        + "      } else{\n"
+                        "       ercd = E_PAR;\n"
+                        "      }\n"
+                        "    }\n"
+                        "    return ercd;\n"
+                    )
+                else:
+                    # データ
+                    dat_name = sym(sub_first(r"set_", "", fn))
+                    file.print(f"/* {ep}.{fn} var_name: {to_s(dat_name)}*/\n")
+
+                    decla = self.find_decl(dat_name)
+                    if decla.get_ptr_level() == 0:
+                        file.print(
+                            "    CELLCB   *p_cellcb = GET_CELLCB(idx);\n"
+                            f"    VAR_{to_s(dat_name)} = {to_s(dat_name)};\n"
+                            "    return E_OK;\n"
+                        )
+                    elif decla.get_ptr_level() == 1:
+                        spec = (
+                            f"*{to_s(decla.get_size_is())}"
+                            if decla.get_size_is()
+                            else ""
+                        )
+                        file.print(
+                            "    CELLCB   *p_cellcb = GET_CELLCB(idx);\n"
+                            f"    memcpy( VAR_{to_s(dat_name)}, {to_s(dat_name)}, "
+                            f"sizeof(*{to_s(dat_name)}){spec} );\n"
+                            "    return E_OK;\n"
+                        )
+            else:
+                raise RuntimeError(
+                    f"DataPumpHolderPlugin: Unknown celentryltype {ct}.{ep}"
+                )
+        elif ct_name == sym(self._sync_adaptor_celltype) or ct_name == sym(
+            self._async_adaptor_celltype
+        ):
+            file.print("    CELLCB  *p_cellcb = GET_CELLCB(idx);\n")
+            if not func_type.get_type().is_void():
+                file.print("    return ")
+            else:
+                file.print("  ")
+            file.print(f"cOut_{fn}(")
+            delim = ""
+            for param in params:
+                file.print(f"{delim}{to_s(param.get_name())}")
+                delim = ", "
+            file.print(");\n")
+        else:
+            if not get_context().generate_all_template:
+                # --generate-all-template オプション指定時は無視する
+                raise RuntimeError(f"DataPumpHolderPlugin: Unknown celltyep {ct}")
 
     def gen_preamble(
         self, file: Any, b_singleton: bool, ct_name: Any, global_ct_name: Any

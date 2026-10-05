@@ -9,6 +9,7 @@ Celltype の部分は大きいので `generate_celltype*.py` に分けた。
 
 from __future__ import annotations
 
+import re
 from typing import Any, ClassVar
 
 from tecsgen.context import dbg_print, get_context, print_exception
@@ -164,6 +165,7 @@ class NamespaceGenerate:
             if self._name == "::":
                 self.gen_makefile_template()
                 self.gen_makefile_tecsgen()
+                self.gen_cmake_tecsgen()
                 if ctx.generating_region.get_n_cells() == 0:
                     dbg_print(f"only makefile_template {to_s(self._name)}\n")
                     return
@@ -329,13 +331,14 @@ class NamespaceGenerate:
         f.close()
 
     def gen_makefile(self) -> None:
-        """Makefile.tecsgen, Makefile.templ の出力。
+        """Makefile.tecsgen, Makefile.templ, CMakeLists.tecsgen.cmake の出力。
 
         全セルタイプ名を出力する部分を出力（本メソッドは root namespace に対して呼出す）。
         個々のセルタイプのメークルールは Celltype クラスで出力。
         """
         self.gen_makefile_template()
         self.gen_makefile_tecsgen()
+        self.gen_cmake_tecsgen()
 
     def gen_makefile_template(self) -> None:
         from tecsgen.core.componentobj.namespace import Namespace
@@ -779,6 +782,144 @@ OTHER_OBJS ={objs_add}                      # Add objects out of tecs care.
         f.print("# CELLTYPE_SRCS terminator\n\n")
         f.close()
 
+    # --- CMakeLists.tecsgen.cmake（tecsgen-rb で追加。内部仕様8章） ---------------
+
+    def cmake_normalize_path(self, path: Any) -> str:
+        """Make 変数を CMake 変数に置き換え、絶対パスの区切りを / にそろえる。"""
+        from tecsgen.core.tecsgen import TECSGEN
+
+        # Ruby: path.to_s.strip.gsub(/\s*\\\s*$/, '')
+        p = to_s(path).strip(" \t\n\v\f\r\0")
+        p = re.sub(r"[ \t\r\n\f\v]*\\[ \t\r\n\f\v]*$", "", p, flags=re.MULTILINE)
+        #  Make 変数は is_absolute_path?（先頭 '$'）より先に CMake 変数へ置換する
+        p = (
+            p.replace("$(GEN_DIR)/", "${TECS_GEN_DIR}/")
+            .replace("$(GEN_DIR)", "${TECS_GEN_DIR}")
+            .replace("$(TECSPATH)", "${ASP3_TECSGEN_DIR}/tecs")
+        )
+        if p.startswith("${"):
+            return p
+        if TECSGEN.is_absolute_path(p):
+            return to_s(TECSGEN.subst_tecspath(p)).replace("\\", "/")
+        return p
+
+    def cmake_write_list(self, f: Any, varname: str, items: list[Any]) -> None:
+        f.print(f"set({varname}\n")
+        for item in dict.fromkeys(items):  # Ruby の Array#uniq（順序を保つ）
+            f.print(f'    "{self.cmake_normalize_path(item)}"\n')
+        f.print(")\n\n")
+
+    def gen_cmake_tecsgen(self) -> None:
+        """CMakeLists.tecsgen.cmake（ソース一覧のマニフェスト）の出力。
+
+        Makefile.tecsgen の代わりに CMake から include される。root namespace に対して呼び出す。
+        """
+        from tecsgen.core.componentobj.celltype import Celltype
+        from tecsgen.core.componentobj.import_cdl import Import
+        from tecsgen.core.tecsgen import TECSGEN, CMake, Makefile
+
+        ctx = get_context()
+        f = AppFile.open(f"{ctx.gen}/CMakeLists.tecsgen.cmake")
+
+        f.print(
+            "# generated automatically by tecsgen.\n"
+            "# included by cmake/Asp3Tecs.cmake (TECS_GEN_DIR must be set).\n"
+            "\n"
+        )
+
+        tecsgen_srcs: list[str] = []
+        plugin_tecsgen_srcs: list[str] = []
+        plugin_celltype_srcs: list[str] = []
+        celltype_srcs: list[str] = []
+
+        domain_regions: list[Any] = list(Celltype.get_domain_class_roots_total().keys())
+        domain_type = None
+
+        for r in domain_regions:
+            self.collect_celltype_names_domain(
+                tecsgen_srcs,
+                "$(GEN_DIR)/",
+                f"_tecsgen.{ctx.c_suffix}",
+                domain_type,
+                r,
+                False,
+            )
+            self.collect_celltype_names_domain(
+                plugin_tecsgen_srcs,
+                "$(GEN_DIR)/",
+                f"_tecsgen.{ctx.c_suffix}",
+                domain_type,
+                r,
+                True,
+            )
+            self.collect_celltype_names_domain2(
+                plugin_celltype_srcs,
+                "",
+                f".{ctx.c_suffix}",
+                domain_type,
+                r,
+                True,
+                False,
+            )
+            self.collect_celltype_names_domain2(
+                celltype_srcs, "", f".{ctx.c_suffix}", domain_type, r, False, False
+            )
+
+        import_cdls: list[str] = []
+        for imp in Import.get_list().values():
+            path = imp.get_cdl_path()
+            if TECSGEN.is_absolute_path(path):
+                path = TECSGEN.subst_tecspath(path)
+            import_cdls.append(path)
+
+        search_path = ctx.import_path + Makefile.get_search_path()
+        include_dirs: list[str] = []
+        for path in search_path:
+            if TECSGEN.is_absolute_path(path):
+                include_dirs.append(
+                    self.cmake_normalize_path(TECSGEN.subst_tecspath(path))
+                )
+            elif path == ".":
+                include_dirs.append("${ASP3_SRCDIR}")
+            else:
+                include_dirs.append(
+                    self.cmake_normalize_path(f"$(BASE_DIR)/{to_s(path)}").replace(
+                        "$(BASE_DIR)", "${ASP3_SRCDIR}"
+                    )
+                )
+        include_dirs.append("${TECS_GEN_DIR}")
+        include_dirs += [self.cmake_normalize_path(p) for p in CMake.get_includes()]
+
+        plugin_sources = CMake.get_sources()
+
+        self.cmake_write_list(f, "TECS_IMPORT_CDLS", import_cdls)
+        self.cmake_write_list(f, "TECS_TECSGEN_SOURCES", tecsgen_srcs)
+        self.cmake_write_list(f, "TECS_PLUGIN_TECSGEN_SOURCES", plugin_tecsgen_srcs)
+        self.cmake_write_list(f, "TECS_PLUGIN_CELLTYPE_SOURCES", plugin_celltype_srcs)
+        self.cmake_write_list(f, "TECS_CELLTYPE_SOURCES", celltype_srcs)
+        self.cmake_write_list(f, "TECS_PLUGIN_EXTRA_SOURCES", plugin_sources)
+        self.cmake_write_list(f, "TECS_INCLUDE_DIRS", include_dirs)
+
+        defines = [to_s(d) for d in ctx.define] + CMake.get_defines()
+        self.cmake_write_list(f, "TECS_COMPILE_DEFINITIONS", defines)
+
+        link_options = CMake.get_link_options()
+        if len(link_options) > 0:
+            self.cmake_write_list(f, "TECS_LINK_OPTIONS", link_options)
+
+        custom_commands = CMake.get_custom_commands()
+        if len(custom_commands) > 0:
+            self.cmake_write_list(f, "TECS_CUSTOM_COMMANDS", custom_commands)
+
+        lines = CMake.get_lines()
+        if len(lines) > 0:
+            f.print("# plugin additional cmake lines\n")
+            for line in lines:
+                f.print(f"{line}\n")
+            f.print("\n")
+
+        f.close()
+
     def gen_celltype_names(
         self,
         f: Any,
@@ -811,6 +952,114 @@ OTHER_OBJS ={objs_add}                      # Add objects out of tecs care.
                 f.print(f" {prepend}{to_s(ct.get_global_name())}{append}")
         for ns in self._namespace_list:
             ns.gen_celltype_names(f, prepend, append, b_plugin, b_inline_only_or_proc)
+
+    def collect_celltype_names(
+        self,
+        result: list[str],
+        prepend: str,
+        append: str,
+        b_plugin: bool,
+        b_inline_only_or_proc: Any = True,
+    ) -> None:
+        """すべてのセルタイプの名前を result に集める（gen_celltype_names のリスト版。tecsgen-rb で追加）。"""
+        for ct in self._celltype_list:
+            if not ct.need_generate():
+                continue
+            if (
+                b_inline_only_or_proc is False
+                and ct.is_all_entry_inline()
+                and not truthy(ct.is_active())
+            ):
+                continue
+            if callable(b_inline_only_or_proc) and (b_inline_only_or_proc(ct) is False):
+                continue
+            if (b_plugin and truthy(ct.get_plugin())) or (
+                not b_plugin and not truthy(ct.get_plugin())
+            ):
+                result.append(f"{prepend}{to_s(ct.get_global_name())}{append}")
+        for ns in self._namespace_list:
+            ns.collect_celltype_names(
+                result, prepend, append, b_plugin, b_inline_only_or_proc
+            )
+
+    def collect_celltype_names_domain(
+        self,
+        result: list[str],
+        prepend: str,
+        append: str,
+        domain_type: Any,
+        region: Any,
+        b_plugin: bool,
+        b_inline_only: bool = True,
+    ) -> None:
+        """gen_celltype_names_domain のリスト版（tecsgen-rb で追加）。"""
+        for ct in self._celltype_list:
+            if not ct.need_generate():
+                continue
+            if (
+                b_inline_only is False
+                and ct.is_all_entry_inline()
+                and not truthy(ct.is_active())
+            ):
+                continue
+            if (b_plugin and truthy(ct.get_plugin())) or (
+                not b_plugin and not truthy(ct.get_plugin())
+            ):
+                regions = list(ct.get_domain_class_roots2().keys())
+                rdr = region  # rdr = domain or class root, sub region
+                if any(r is rdr for r in regions):
+                    if rdr.is_root():
+                        nsp = ""
+                    else:
+                        nsp = f"_{to_s(region.get_namespace_path().get_global_name())}"
+                    result.append(f"{prepend}{to_s(ct.get_global_name())}{nsp}{append}")
+                elif rdr.is_link_root():
+                    # the case of domain_roots >= 2 && no cell in root region
+                    if len(regions) > 1:
+                        result.append(
+                            f"{prepend}{to_s(ct.get_global_name())}{rdr.get_up_global_name()}{append}"
+                        )
+        for ns in self._namespace_list:
+            ns.collect_celltype_names_domain(
+                result, prepend, append, domain_type, region, b_plugin, b_inline_only
+            )
+
+    def collect_celltype_names_domain2(
+        self,
+        result: list[str],
+        prepend: str,
+        append: str,
+        domain_type: Any,
+        region: Any,
+        b_plugin: bool,
+        b_inline_only: bool = True,
+    ) -> None:
+        """gen_celltype_names_domain2 のリスト版（tecsgen-rb で追加）。"""
+        for ct in self._celltype_list:
+            if not ct.need_generate():
+                continue
+            if (
+                b_inline_only is False
+                and ct.is_all_entry_inline()
+                and not truthy(ct.is_active())
+            ):
+                continue
+            if (b_plugin and truthy(ct.get_plugin())) or (
+                not b_plugin and not truthy(ct.get_plugin())
+            ):
+                regions = ct.get_domain_class_roots2()
+                rdr = region
+                if rdr in regions and len(regions) == 1:
+                    result.append(f"{prepend}{to_s(ct.get_global_name())}{append}")
+                elif rdr.is_link_root() and len(regions) > 1:
+                    # the case of domain_roots >= 2 && no cell in root region
+                    result.append(
+                        f"{prepend}{to_s(ct.get_global_name())}{rdr.get_up_global_name()}{append}"
+                    )
+        for ns in self._namespace_list:
+            ns.collect_celltype_names_domain2(
+                result, prepend, append, domain_type, region, b_plugin, b_inline_only
+            )
 
     def get_up_global_name(self) -> str:
         """underscore prepended global name"""

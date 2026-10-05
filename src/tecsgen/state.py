@@ -79,6 +79,10 @@ def reset_model_state() -> None:
         ("tecsgen.plugin.HRPPlugin", "HRPPlugin"),
         ("tecsgen.plugin.HRPSVCBodyCellPlugin", "HRPSVCBodyCellPlugin"),
         ("tecsgen.plugin.HRPSVCSignaturePlugin", "HRPSVCSignaturePlugin"),
+        (
+            "tecsgen.plugin.TransparentRPCSignaturePlugin",
+            "TransparentRPCSignaturePlugin",
+        ),
         ("tecsgen.plugin.HRPKernelObjectPlugin", "HRPKernelObjectPlugin"),
         ("tecsgen.plugin.HRPKernelObjectManager", "HRPSVCManage"),
         ("tecsgen.plugin.MrubyBridgeSignaturePlugin", "MrubyBridgeSignaturePlugin"),
