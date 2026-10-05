@@ -1,0 +1,84 @@
+# generated automatically by tecsgen.
+# included by cmake/Asp3Tecs.cmake (TECS_GEN_DIR must be set).
+
+set(TECS_IMPORT_CDLS
+    "../sample/sample1.cdl"
+    "../tecs_kernel/kernel.cdl"
+    "../syssvc/tSerialPort.cdl"
+    "../syssvc/tSerialAdapter.cdl"
+    "../syssvc/tSysLog.cdl"
+    "../syssvc/tSysLogAdapter.cdl"
+    "../syssvc/tLogTask.cdl"
+    "../syssvc/tBanner.cdl"
+    "../target/ct11mpcore_gcc/target.cdl"
+    "../syssvc/tPutLogSIOPort.cdl"
+    "../target/ct11mpcore_gcc/tSIOPortCT11MPCore.cdl"
+    "../arch/arm_gcc/common/tUartPL011.cdl"
+    "./gen/tmp_NotifierPlugin_post_code.cdl"
+)
+
+set(TECS_TECSGEN_SOURCES
+    "${TECS_GEN_DIR}/tTask_tecsgen.c"
+    "${TECS_GEN_DIR}/tSemaphore_tecsgen.c"
+    "${TECS_GEN_DIR}/tInterruptRequest_tecsgen.c"
+    "${TECS_GEN_DIR}/tISR_tecsgen.c"
+    "${TECS_GEN_DIR}/tInitializeRoutine_tecsgen.c"
+    "${TECS_GEN_DIR}/tTerminateRoutine_tecsgen.c"
+    "${TECS_GEN_DIR}/tSerialPortMain_tecsgen.c"
+    "${TECS_GEN_DIR}/tSerialAdapter_tecsgen.c"
+    "${TECS_GEN_DIR}/tSysLog_tecsgen.c"
+    "${TECS_GEN_DIR}/tSysLogAdapter_tecsgen.c"
+    "${TECS_GEN_DIR}/tLogTaskMain_tecsgen.c"
+    "${TECS_GEN_DIR}/tBannerMain_tecsgen.c"
+    "${TECS_GEN_DIR}/tPutLogSIOPort_tecsgen.c"
+    "${TECS_GEN_DIR}/tUartPL011_tecsgen.c"
+    "${TECS_GEN_DIR}/tSIOPortCT11MPCoreMain_tecsgen.c"
+)
+
+set(TECS_PLUGIN_TECSGEN_SOURCES
+)
+
+set(TECS_PLUGIN_CELLTYPE_SOURCES
+)
+
+set(TECS_CELLTYPE_SOURCES
+    "tTask.c"
+    "tISR.c"
+    "tInitializeRoutine.c"
+    "tTerminateRoutine.c"
+    "tSerialPortMain.c"
+    "tSerialAdapter.c"
+    "tSysLog.c"
+    "tSysLogAdapter.c"
+    "tLogTaskMain.c"
+    "tBannerMain.c"
+    "tPutLogSIOPort.c"
+    "tUartPL011.c"
+)
+
+set(TECS_PLUGIN_EXTRA_SOURCES
+)
+
+set(TECS_INCLUDE_DIRS
+    "${ASP3_SRCDIR}"
+    "${ASP3_SRCDIR}/../include"
+    "${ASP3_SRCDIR}/../target/ct11mpcore_gcc"
+    "${ASP3_SRCDIR}/../arch/arm_gcc/common"
+    "${ASP3_SRCDIR}/../arch/gcc"
+    "${ASP3_SRCDIR}/.."
+    "${ASP3_SRCDIR}/../sample"
+    "${ASP3_SRCDIR}/./gen"
+    "${ASP3_SRCDIR}/../tecs_kernel"
+    "${ASP3_TECSGEN_DIR}/tecs"
+    "${ASP3_TECSGEN_DIR}/tecs/mruby"
+    "${ASP3_TECSGEN_DIR}/tecs/rpc"
+    "${ASP3_TECSGEN_DIR}/tecs/TLSFMalloc"
+    "${ASP3_TECSGEN_DIR}/tecs/DataPumpHolder"
+    "${ASP3_TECSGEN_DIR}/tecs/posix"
+    "${ASP3_TECSGEN_DIR}/tecs/TECSInfo"
+    "${TECS_GEN_DIR}"
+)
+
+set(TECS_COMPILE_DEFINITIONS
+)
+

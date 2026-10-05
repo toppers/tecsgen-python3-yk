@@ -42,11 +42,14 @@
     "-g",
     "./gen"
   ],
+  "inputs": {},
+  "patch": [],
   "exit_code": 0,
   "timed_out": false,
   "errors": 0,
   "warnings": 0,
   "created": [
+    "gen/CMakeLists.tecsgen.cmake",
     "gen/Makefile.depend",
     "gen/Makefile.tecsgen",
     "gen/Makefile.templ",
@@ -292,5 +295,6 @@
   ],
   "plugins_instantiated": [
     "NotifierPlugin"
-  ]
+  ],
+  "golden_valid": true
 }
