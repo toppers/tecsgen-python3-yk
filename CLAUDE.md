@@ -1,12 +1,15 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+このファイルは、このリポジトリ内のコードを扱う際、Claude Code (claude.ai/code) に指針を提供するものです。
 
 ## Project
 
-Port of tecsgen (the TECS component description compiler, Ruby v1.9.1) to Python 3. The acceptance criterion is **byte-for-byte identical output to the Ruby version** for the same input: generated files under `gen/`, stdout, and exit status. The CLI must stay fully compatible with Ruby's. Code comments, docstrings, and docs are written in Japanese; keep that convention.
+このプロジェクトは、AIコーディングエージェントを用い、Rubyスクリプトを、Pythonスクリプトに移植する実験プロジェクトである。
+移植に伴う、技術的課題を明確にすることを目的とする。
 
-Porting proceeds in phases P1–P5 (messages → parser → model/semantic analysis → optimize/codegen → plugins). Test files and commit subjects are tagged with the phase (`test_p3_model.py`, `feat: ... (P5i)`). P5 (plugins) is in progress, one plugin family per commit. Status as of 2026-10-01: the standard plugins that have golden data are ported (P5j), and so are the kernel-dependent plugins (HRP, FMP, HRMP, HRP2, ATK1Event; P5l–P5p). `uv run python tools/port/p4_progress.py` shows 119/119 (no plugin) and 34/46 (plugin) cases matching, including all 11 kernel cases (`tests/golden/kernel/`); the rest wait for `-L` user plugins and a few output differences. Plugins without golden data (HRP2 kernel objects other than Task/Handler/Object, HRP2/HRP RPC and SVC, `lib/GenHRP2Marshaler`, ...) are not ported; `ATK1EventPlugin`'s output is empty for its only input. See `tools/golden/README.md` and the progress log in the Vault (`tecsgen-python3移植計画 — P5 進捗ログ`).
+tecsgen（TECSコンポーネント記述コンパイラ、Ruby v1.9.1版）をPython 3へ移植します。合格基準は、同一の入力に対して**Ruby版とバイト単位で完全に一致する出力**（`gen/`配下に生成されるファイル、標準出力、終了ステータス）が得られることです。CLIはRuby版と完全な互換性を維持する必要があります。コードのコメント、docstring、ドキュメントは日本語で記述されているため、その慣例を踏襲してください。
+
+移植作業はP1からP5の段階（メッセージ → パーサー → モデル/意味解析 → 最適化/コード生成 → プラグイン）に沿って進められています。テストファイルやコミットの件名には、該当する段階を示すタグが付与されています（例: `test_p3_model.py`、`feat: ... (P5i)`）。現在P5（プラグイン）の段階にあり、1コミットにつき1つのプラグインファミリーを対象としています。2026年10月1日時点での状況は以下の通りです。ゴールデンデータ（期待値データ）が存在する標準プラグイン（P5j）およびカーネル依存プラグイン（HRP、FMP、HRMP、HRP2、ATK1Event；P5l–P5p）の移植は完了しています。`uv run python tools/port/p4_progress.py` を実行すると、カーネル関連の全11ケース（`tests/golden/kernel/`）を含め、プラグインなしのケースでは119/119、プラグインありのケースでは34/46が一致していることが確認できます。残りのケースについては、`-L`オプションで指定するユーザープラグインへの対応待ち、あるいは出力の軽微な差異が理由となっています。ゴールデンデータを持たないプラグイン（Task/Handler/Object以外のHRP2カーネルオブジェクト、HRP2/HRPのRPCおよびSVC、`lib/GenHRP2Marshaler`など）は移植されていません。また、`ATK1EventPlugin`については、唯一の入力に対する出力が空の状態となっています。詳細は `tools/golden/README.md` および Vault 内の進捗ログ（`tecsgen-python3移植計画 — P5 進捗ログ`）を参照してください。
 
 ## 移植の基本方針
 
@@ -14,7 +17,7 @@ Porting proceeds in phases P1–P5 (messages → parser → model/semantic analy
 2. **差分テストを先に作る**。Ruby 4.0.6 はローカルで動く（2026-09-26 確認）。`test/` のケース（一覧は157ケース、採取できたのは155ケース。採取しなかった2件は `import_C/z` と `mruby`）を Ruby 版で実行し、ゴールデン出力として固定してから移植を始める。TOPPERS カーネルの CDL を使うカーネル依存プラグインのケースは、別に `tests/golden/kernel/` に11ケースを採取している。
 3. **フェーズごとに内部状態を比べる**。生成物の一致だけを見ると、どのフェーズでずれたかが分からない。Ruby 側に小さな JSON ダンプ用フックを足し、パース後・意味解析後・最適化後のモデルを Python 側と比べる。
 4. **仕様書は実装の少し前に書く**。[[tecsgen-python3内部仕様]] は章ごとに、該当フェーズに着手する直前に書く。12章を全部書いてから実装に入る進め方はとらない。
-5. **WSL での検証は必ず `tools/port/wsl_check.sh` で行う**（2026-09-28 ユーザー採用。2026-10-04 に PowerShell ラッパー `wsl_check.ps1` を廃止して bash に一本化）。Windows からは `wsl.exe -e bash -lc 'cd /mnt/e/Ccur/python3/tecsgen-python3 && sh tools/port/wsl_check.sh ...'` の形で呼び（PowerShell ツールから。Git Bash は `/` で始まるパスが MSYS のパス変換で壊れる）、それ以外のコマンドをその場で手書きしない。このスクリプトは、WSL 用の仮想環境の分離（`~/.venvs/tecsgen-python3`）、`VIRTUAL_ENV` の解除、`uv sync`・ruff・ty・pytest の一括実行と結果のまとめ表示を済ませている。作業コピーのパスは WSL のパス（`/mnt/e/...`）で渡す。各フェーズの計画には「完了時に `sh tools/port/wsl_check.sh` を通す」を検証手順として入れる。スクリプトに無い操作（例: WSL で `tools/port/p4_progress.py` を回す、特定ケースだけ実行する）が必要になったら、手書きで済ませずにスクリプトへオプションとして足してから使い、README の表も更新する。
+5. **WSL での検証は必ず `tools/port/wsl_check.sh` で行う**（2026-09-28 ユーザー採用。2026-10-04 に PowerShell ラッパー `wsl_check.ps1` を廃止して bash に一本化。ただし `tools/port/wsl_check.ps1` と、それを参照する `tools/golden/run_plugin_coverage.sh` のコメントはまだ残っているので、使わない）。Windows からは `wsl.exe -e bash -lc 'cd /mnt/e/Ccur/python3/tecsgen-python3 && sh tools/port/wsl_check.sh ...'` の形で呼び（PowerShell ツールから。Git Bash は `/` で始まるパスが MSYS のパス変換で壊れる）、それ以外のコマンドをその場で手書きしない。このスクリプトは、WSL 用の仮想環境の分離（`~/.venvs/tecsgen-python3`）、`VIRTUAL_ENV` の解除、`uv sync`・ruff・ty・pytest の一括実行と結果のまとめ表示を済ませている。作業コピーのパスは WSL のパス（`/mnt/e/...`）で渡す。各フェーズの計画には「完了時に `sh tools/port/wsl_check.sh` を通す」を検証手順として入れる。スクリプトに無い操作（例: WSL で `tools/port/p4_progress.py` を回す、特定ケースだけ実行する）が必要になったら、手書きで済ませずにスクリプトへオプションとして足してから使い、README の表も更新する。
    - 経緯: P5e〜P5i のセッションで、このスクリプトの存在を見落として WSL コマンドを毎回手書きし、Windows 側と共有の `.venv` を作り直させて1回失敗、さらに場当たりの別の仮想環境（`~/.cache/tecsgen-python3-venv`）まで作った。
 
 ## 作業の決まり（常に守る。指示が無くても方針決定・計画立案・作業の実行に取り込む）
@@ -31,13 +34,13 @@ uv run pytest "tests/test_p4_gen.py::test_generated_files_match_ruby[ErrorCase/a
 uv run ruff check . && uv run ruff format --check .
 uv run ty check                                 # type checker (not mypy)
 
-# Per-case match status for non-plugin AND plugin cases (Ruby not needed; replays P3 records)
+# プラグインおよびプラグインの各ケースにおけるマッチ状況（Ruby不要、P3レコードをリプレイ）
 uv run python tools/port/p4_progress.py [case-id-prefix...] [-v]
 ```
 
-`tests/test_p4_gen.py` skips cases that use plugins, so **plugin work is verified with `p4_progress.py`** (e.g. `p4_progress.py multiplugin/ -v` shows differing files and stdout diffs).
+`tests/test_p4_gen.py` ではプラグインを使用するケースがスキップされるため、**プラグイン関連の動作確認は `p4_progress.py` で行います**（例: `p4_progress.py multiplugin/ -v` を実行すると、差異のあるファイルや標準出力の差分が表示されます）。
 
-Golden data was captured on Linux, so the authoritative full check runs in WSL with a separate venv (`~/.venvs/tecsgen-python3`; never let WSL rebuild the Windows `.venv`):
+ゴールデンデータはLinux上で取得されたため、信頼できる完全なチェックは、別のvenv（`~/.venvs/tecsgen-python3`）を使用してWSL上で実行します（WSLにWindows側の`.venv`を再構築させてはいけません）。
 
 ```sh
 # run inside WSL at the repo root; from Windows wrap as: wsl.exe -e bash -lc 'cd /mnt/e/Ccur/python3/tecsgen-python3 && <command>'
@@ -50,30 +53,35 @@ sh tools/port/wsl_check.sh --kernel-golden <Ruby source working copy> --p3-oracl
 sh tools/port/wsl_check.sh --plugin-coverage <Ruby source working copy>  # instead of tests: measure which plugins the golden cases run (20-40 min)
 ```
 
-To collect only some kernel cases, append `collect_kernel.py` arguments after `--kernel-golden <wc>` (`sh tools/port/wsl_check.sh --kernel-golden <wc> --case 'atk1/*'`).
+特定のカーネルケースのみを収集するには、`--kernel-golden <wc>` の後に `collect_kernel.py` の引数を追加します（例：`sh tools/port/wsl_check.sh --kernel-golden <wc> --case 'atk1/*'`）。
 
-Pass/skip counts differ slightly between Windows and WSL; commit messages report both.
+Pass/skipのカウントはWindowsとWSLで若干異なりますが、コミットメッセージにはその両方が記録されます。
 
 ## Architecture
 
-**Porting fidelity is the design principle.** Python modules mirror Ruby files (`core/tecsgen.py` ← `core/tecsgen.rb`, `plugin/RPCPlugin.py` ← `RPCPlugin.rb`), keeping Ruby names (plugin modules are CamelCase, hence the `N999` ruff ignore). Module docstrings cite the Ruby source and the internal spec chapter (「内部仕様N章」). When porting, reproduce Ruby semantics exactly rather than idiomatic Python.
+**移植における忠実さ**が設計原則です。PythonモジュールはRubyファイルと対応関係にあり（例：`core/tecsgen.py` ← `core/tecsgen.rb`、`plugin/RPCPlugin.py` ← `RPCPlugin.rb`）、Ruby側の命名を維持しています（プラグインモジュールはCamelCaseであるため、ruffで`N999`の警告を無視しています）。モジュールのドキュメンテーション文字列（docstring）には、対応するRubyのソースコードおよび内部仕様書の該当章（「内部仕様N章」）が記載されています。移植の際は、Pythonらしい慣用的な書き方（イディオム）を採用するのではなく、Rubyのセマンティクス（動作仕様）を正確に再現するようにしてください。
 
-- `ruby_compat.py` — Ruby builtins needed for byte-identical output: `truthy` (only nil/false are falsy), `to_s`, `sub_first`/`gsub` (Ruby replacement-string rules), `Symbol`/`sym` (distinct from `str` as hash keys), `rb_print`/`rb_puts` (write bytes, always LF), numeric conversion. Use these instead of plain Python truthiness/str/re.
-- `context.py` — Ruby global variables (`$force_overwrite`, `$KCONV_CDL`, …) collected into `TecsgenContext`, accessed via `get_context()`. Attribute name = Ruby variable name in snake_case. Add new globals here when a phase needs them.
-- `host.py` — all filesystem / cwd / subprocess access (`File.exist?`, `Dir.chdir`, `IO.popen` for cpp) goes through `get_host()`. Paths are POSIX strings; the process cwd is never changed. Tests swap in `RecordedHost` (`tests/p3_oracle_data.py`), which replays Ruby's recorded I/O, so tests run on Windows without Ruby, the source tree, or gcc. **Never touch the filesystem directly** — it will pass locally but break replay.
-- `state.py` — `reset_model_state()` resets Ruby class variables (`@@...`) so many tecsgen runs can share one process (tests). Any new class with class-level state needs a `reset()` registered here; plugins are reset only if already imported (they must not be force-imported, or model comparisons see extra loaded classes). Ruby's load-time side effects of `require`-ing a plugin go in a per-run `on_load()`.
-- `cli.py` → `core/tecsgen.py` (`TECSGEN.run1`: parse + semantic analysis; `run2`/`finalize`: optimize + codegen). `ruby_optparse.py` reproduces Ruby OptionParser behavior/messages.
-- `syntax/` — lexers ported from Ruby; parsers are driven by LALR tables **extracted from Ruby's racc output** (`cdl_tables.py`, `cdecl_tables.py`, generated) through a port of the racc runtime (`racc_runtime.py`), so syntax-error positions, counts, and recovery match Ruby. Grammar actions are hand-ported in `cdl_actions.py` / `cdecl_actions.py`.
-- `core/` — type system, expressions, `syntaxobj/` (declaration nodes), `componentobj/` (Celltype, Cell, Signature, Namespace, Join, Import/Import_C, …), and code generation (`generate_celltype*.py`, templates embedded as in Ruby).
-- `core/plugin_module.py` — plugin loading: Ruby's `require` + `const_get` becomes `importlib.import_module("tecsgen.plugin.<Name>")` and the same-named class. Unported plugins raise `PluginNotPorted`.
-- `plugin/` — ported plugins; `plugin/lib/` holds their helper modules.
+- `ruby_compat.py` — バイト単位で完全に一致する出力を得るために必要なRubyの組み込み機能相当のものです。具体的には、`truthy`（`nil`と`false`のみが偽とみなされる）、`to_s`、`sub_first`/`gsub`（Rubyの置換文字列ルール）、`Symbol`/`sym`（ハッシュのキーとして`str`とは区別される）、`rb_print`/`rb_puts`（バイト書き込み、改行は常にLF）、数値変換などが含まれます。これらは、Python標準の真偽値判定、`str`、`re`の代わりに使用してください。
+- `context.py` — Rubyのグローバル変数（`$force_overwrite`、`$KCONV_CDL`など）を`TecsgenContext`に集約し、`get_context()`経由でアクセスできるようにしたもの。属性名は、対応するRubyの変数名をスネークケースにしたものとする。あるフェーズで新たなグローバル変数が必要になった場合は、ここに追加すること。
+- `host.py` — ファイルシステム、カレントワーキングディレクトリ（cwd）、サブプロセスへのアクセス（`File.exist?`、`Dir.chdir`、C++用の `IO.popen` など）はすべて `get_host()` を経由して行われます。パスはPOSIX形式の文字列として扱われ、プロセスのカレントワーキングディレクトリが変更されることはありません。テスト実行時には `RecordedHost` (`tests/p3_oracle_data.py`) が使用され、Rubyによる記録済みのI/Oが再生されます。そのため、Ruby、ソースツリー、gccがインストールされていないWindows環境でもテストを実行可能です。**ファイルシステムには決して直接アクセスしないでください**。直接アクセスするとローカル環境では動作しても、記録の再生（リプレイ）が失敗する原因となります。
+- `host.py` — ファイルシステム、カレントワーキングディレクトリ（cwd）、サブプロセスへのアクセス（`File.exist?`、`Dir.chdir`、C++用の `IO.popen` など）はすべて `get_host()` を経由して行われます。パスはPOSIX形式の文字列として扱われ、プロセスのカレントワーキングディレクトリが変更されることはありません。テスト実行時には `RecordedHost` (`tests/p3_oracle_data.py`) が使用され、Rubyによる記録済みのI/Oが再生されます。そのため、Ruby、ソースツリー、gccがインストールされていないWindows環境でもテストを実行可能です。**ファイルシステムには決して直接アクセスしないでください**。直接アクセスするとローカル環境では動作しても、記録の再生（リプレイ）が失敗する原因となります。
+- `state.py` — `reset_model_state()` は Ruby のクラス変数（`@@...`）をリセットします。これにより、1つのプロセス内で tecsgen を複数回実行（テストなど）することが可能になります。クラスレベルの状態を持つ新しいクラスは、ここで `reset()` を登録する必要があります。プラグインは、すでにインポートされている場合にのみリセットされます（強制的にインポートしてはなりません。そうしないと、モデル比較時に余分なクラスが読み込まれているとみなされてしまうためです）。プラグインを `require` する際に生じる Ruby のロード時の副作用は、実行ごとの `on_load()` 内で処理されます。
+- `cli.py` は `core/tecsgen.py` に対応します（`TECSGEN.run1` が構文解析と意味解析を、`run2`/`finalize` が最適化とコード生成を担います）。`ruby_optparse.py` は Ruby の OptionParser の挙動やメッセージを再現しています。その他のコンソールスクリプト（`pyproject.toml` 定義）には、`tecsmerge`（`tecsmerge.py`：`tecsmerge.rb` の移植版であり、出力結果の照合テストも実施済み）や `tecsgen-path`（`libpath.py`：CMake から呼び出す際に、同梱されている `tecs/` CDL ライブラリを含むディレクトリを出力するコマンド。`tecsgen` 本体に Ruby 版には存在しないオプションを追加しないようにするため、別コマンドとして実装されています）があります。`tecsgen-rb` から移植された CMake サポート機能は、`gen/CMakeLists.tecsgen.cmake` を生成し、プラグインに対して `CMake` API を提供します。
+- `syntax/` — Rubyから移植された字句解析器（lexer）が含まれます。構文解析器（parser）は、Rubyの`racc`の出力から抽出されたLALRテーブル（自動生成される`cdl_tables.py`および`cdecl_tables.py`）と、`racc`ランタイムの移植版（`racc_runtime.py`）を用いて動作します。そのため、構文エラーの位置、個数、およびリカバリの挙動はRubyと一致します。文法アクションは、`cdl_actions.py`および`cdecl_actions.py`にて手作業で移植されています。
+- `core/` — 型システム、式、`syntaxobj/`（宣言ノード）、`componentobj/`（Celltype、Cell、Signature、Namespace、Join、Import/Import_Cなど）、およびコード生成（`generate_celltype*.py`、Rubyのように埋め込まれたテンプレート）。
+- `core/plugin_module.py` — プラグインの読み込み: Rubyの `require` + `const_get` は、`importlib.import_module("tecsgen.plugin.<Name>")` および同名のクラスを使用する形に置き換えられます。移植されていないプラグインは `PluginNotPorted` を発生させます。
+- `plugin/` — 移植されたプラグイン。`plugin/lib/` にはそれらのヘルパーモジュールが格納されています。
 
-Generated files — regenerate with the tools, don't hand-edit: `messages/*` (`tools/port/gen_messages.py`), `syntax/*_tables.py` (`tools/port/gen_racc_tables.py`). These tools need Ruby and the Ruby source.
+生成されるファイル（手動編集せず、ツールで再生成してください）: `messages/*` (`tools/port/gen_messages.py`)、`syntax/*_tables.py` (`tools/port/gen_racc_tables.py`)。これらのツールには Ruby および Ruby のソースコードが必要です。
 
 ## Test data
 
-- `tests/golden/cases/<id>/` — Ruby outputs per case (`files/`, stdout, status). Captured in WSL per `tools/golden/README.md`; case list in `tools/golden/cases.toml`. `.gitattributes` marks `tests/golden/**` as `-text`: never let line endings be converted.
-- `tests/golden/kernel/cases/<id>/` — Ruby outputs for the kernel-dependent plugins (HRP: hrp3+tecs, FMP: fmp3+tecs, HRMP: hrmp3+tecs, HRP2: ev3rt+tecs, ATK1: atk1+tecs; 11 cases). Collected by `tools/golden/collect_kernel.py` with `cases_kernel.toml`, using the port-source tecsgen (r3304) in place of each repository's bundled one and `arm-none-eabi-gcc` as the C preprocessor (ATK1 uses host `gcc -E -D NC30`; see the comments in `cases_kernel.toml`). `meta.json` records the tecsgen call in `tecsgen_args`; `environment.json` records the toolchain and revisions. Known limits: hrp2+tecs' own sample1 stops at a G1016 syntax error (old region syntax), and `ATK1EventPlugin` produces empty output because the only input has no event cells. `tests/golden/kernel/p3/<id>.jsonl.gz` holds the Ruby I/O recording for each case (case id `kernel/<id>`); `tools/port/p4_progress.py` replays it (`tests/p3_oracle_data.case_ids(include_kernel=True)`), while pytest does not include the kernel cases yet. The golden stdout was captured through `make`, so `tests/p4_gen_check.golden_stdout` drops make's echo of the tecsgen call and the trailing `touch`, and `tecs.timestamp` (made by `touch`) is excluded.
-- `tests/golden/p2/`, `p3/` — Ruby oracle recordings (parser traces; model dumps at three checkpoints plus recorded host I/O) replayed by tests. Re-record with `run_p2_oracle.sh` / `run_p3_oracle.sh` (WSL + Ruby).
-- `*.rbdmp` and `tmp_*.h` are written by Ruby but not stored in golden data, so they are excluded from comparison.
-- `tests/conftest.py` resets context/state/host per test with `LANG=C`. Tests that run the Ruby oracle live are skipped unless `ruby` and `TECSGEN_RUBY_SRC` (Ruby `tecsgen/` dir with `tecslib/`) are available.
+- `tests/golden/cases/<id>/` — ケースごとのRubyの出力（`files/`、標準出力、終了ステータス）。`tools/golden/README.md` に従いWSL環境で取得されたものです。ケース一覧は `tools/golden/cases.toml` に記載されています。`.gitattributes` で `tests/golden/**` が `-text` に設定されており、改行コードの変換が行われないようになっています。
+
+- `tests/golden/kernel/cases/<id>/` — カーネル依存プラグイン（HRP: hrp3+tecs, FMP: fmp3+tecs, HRMP: hrmp3+tecs, HRP2: ev3rt+tecs, ATK1: atk1+tecs; 全11ケース）に関するRubyの出力結果です。これらは `cases_kernel.toml` を用いて `tools/golden/collect_kernel.py` により収集されました。その際、各リポジトリに同梱されているtecsgenの代わりに port-source 版 tecsgen (r3304) が使用され（なお、メインのゴールデン・ベースラインはその後 tecsgen-rb に移行しています。`CHANGELOG.md` を参照してください）、Cプリプロセッサとしては `arm-none-eabi-gcc` が使用されています（ATK1ではホスト環境の `gcc -E -D NC30` が使用されます。`cases_kernel.toml` 内のコメントを参照してください）。`meta.json` には tecsgen の呼び出し内容が `tecsgen_args` として記録され、`environment.json` にはツールチェーンやリビジョン情報が記録されています。既知の制限事項として、hrp2+tecs の sample1 は G1016 構文エラー（古い region 構文）で停止します。また、`ATK1EventPlugin` は、入力データにイベントセルが含まれていないため、空の出力を生成します。`tests/golden/kernel/p3/<id>.jsonl.gz` には、各ケース（ケースID: `kernel/<id>`）の Ruby I/O 記録が格納されています。`tools/port/p4_progress.py` はこれを再生（リプレイ）しますが（`tests/p3_oracle_data.case_ids(include_kernel=True)`）、pytest のテストスイートには、現時点ではカーネル関連のケースは含まれていません。ゴールデンデータの標準出力（stdout）は `make` を介して取得されたため、`tests/p4_gen_check.golden_stdout` では、make による tecsgen 呼び出しコマンドのエコー表示や末尾の `touch` コマンドの出力が除外されており、`touch` によって生成された `tecs.timestamp` も対象外となっています。
+
+`tests/golden/p2/`, `p3/` — Ruby製オラクルによる記録（パーサーのトレース、3つのチェックポイントでのモデルのダンプ、および記録されたホストI/O）。テスト実行時にこれらが再生されます。再記録を行うには `run_p2_oracle.sh` / `run_p3_oracle.sh` を使用してください（WSL + Ruby環境）。
+
+- `*.rbdmp` および `tmp_*.h` は Ruby によって生成されますが、ゴールデンデータには保存されないため、比較対象から除外されます。
+
+- `tests/conftest.py` は、各テストの実行前に `LANG=C` を設定し、コンテキスト、状態、およびホスト環境をリセットします。Ruby Oracle を実際に実行するテストは、`ruby` および `TECSGEN_RUBY_SRC`（`tecslib/` を含む Ruby 版 `tecsgen/` ディレクトリ）が利用可能な場合を除き、スキップされます。
