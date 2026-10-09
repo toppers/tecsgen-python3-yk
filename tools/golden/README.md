@@ -47,6 +47,15 @@ sh tools/port/wsl_check.sh --src-tree "$T" --package-golden - --out "$HOME/p5pac
 sh tools/port/wsl_check.sh --src-tree "$T" --package-golden - --p3-oracle --out tests/golden/packages
 ```
 
+記録（p2・p3）を `--case` で絞って採るには、先頭の共通オプションに `--case <id>` を置く（`--exclude` と同じ位置。glob 可、繰り返し可）。テスト一式も続けて走る。
+
+```sh
+sh tools/port/wsl_check.sh --src-tree "$T" --cases-golden --case cmake_add     # 正解データ（--case は末尾）
+sh tools/port/wsl_check.sh --src-tree "$T" --case cmake_add --oracle -         # p2・p3 の記録
+```
+
+**`cmake_add`（2026-10-09）**: `TECSGEN::CMake.add_*` を呼ぶプラグインは、標準付属プラグインにも `asp3_stm32cube_TECS` にも無いので、利用者プラグイン（`-L .`）の合成入力（`tools/golden/inputs/cmake_add/`。CDL と Ruby 版プラグイン）で動かす。Python 版プラグインは `tests/user_plugins/cmake_add/MyCMakePlugin.py`。`gen_cmake_tecsgen` は生成の最初に走るので、`gen_factory` から足したものが出力に反映されないこと（Ruby 版と同じ）も正解データに含む。`generate_golden.py` の `place_inputs` は、`inputs` の `*.cdl` に加えて `*.rb` も写し、`cwd` が `test/` に無ければ作る。
+
 `transparent_marshaler` は、tecsgen-rb に `TransparentMarshalerPlugin.rb` が無いため再採取できず、r3304 で採った正解データ・記録を残しています（`tools/port/p4_progress.py` の `BASELINE_EXCEPTIONS`。比較の対象外）。
 
 `--case <id>` を付けると、そのケースだけを採取し直します（glob 可、複数指定可）。

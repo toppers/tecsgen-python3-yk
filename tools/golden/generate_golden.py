@@ -105,16 +105,20 @@ def prepare_pristine(
 
 
 def place_inputs(cases: list[dict], pristine: Path) -> None:
-    """ケースの inputs（tools/golden/inputs/<名前>/ の *.cdl）を、cwd へ写す。
+    """ケースの inputs（tools/golden/inputs/<名前>/ の *.cdl・*.rb）を、cwd へ写す。
 
     実プロジェクトのテストに無い経路を動かす合成入力。実行前から在るファイルとして扱う
-    （pristine に置くので、生成物には数えない）。
+    （pristine に置くので、生成物には数えない）。*.rb は `-L .` で読ませる利用者プラグイン。
+    cwd が test/ に無ければ作る。
     """
     for case in cases:
         if "inputs" not in case:
             continue
-        for src in sorted((HERE / "inputs" / case["inputs"]).glob("*.cdl")):
-            shutil.copyfile(src, pristine / "test" / case["cwd"] / src.name)
+        dest = pristine / "test" / case["cwd"]
+        dest.mkdir(parents=True, exist_ok=True)
+        src_dir = HERE / "inputs" / case["inputs"]
+        for src in sorted([*src_dir.glob("*.cdl"), *src_dir.glob("*.rb")]):
+            shutil.copyfile(src, dest / src.name)
 
 
 class Normalizer:

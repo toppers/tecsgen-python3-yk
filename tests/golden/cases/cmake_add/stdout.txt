@@ -1,0 +1,2 @@
+hello.cdl:11:13: warning: W1007 ::Hello : non-active cell has no entry join and no factory
+1 warning

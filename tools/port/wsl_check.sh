@@ -36,10 +36,14 @@ esac
 SRC_TREE=""
 SRC_LABEL=""
 EXCLUDES=""
-while [ "${1:-}" = "--src-tree" ] || [ "${1:-}" = "--exclude" ]; do
+#   --case <case-id>     --oracle で記録を採るケースを絞る（glob 可、繰り返し可）。run_p2_oracle.sh・run_p3_oracle.sh
+#                        の generate_golden.py に --case として渡る。--cases-golden では、末尾に --case を直接書く
+CASES=""
+while [ "${1:-}" = "--src-tree" ] || [ "${1:-}" = "--exclude" ] || [ "${1:-}" = "--case" ]; do
   case "$1" in
     --src-tree) SRC_TREE=${2:?--src-tree にはディレクトリを指定します}; shift 2 ;;
     --exclude) EXCLUDES="$EXCLUDES ${2:?--exclude にはケースの id を指定します}"; shift 2 ;;
+    --case) CASES="$CASES ${2:?--case にはケースの id を指定します}"; shift 2 ;;
   esac
 done
 if [ -n "$SRC_TREE" ]; then
@@ -51,6 +55,7 @@ if [ -n "$SRC_TREE" ]; then
   [ -f "$SRC_TREE/.source-label" ] && SRC_LABEL=$(cat "$SRC_TREE/.source-label")
 fi
 [ -z "$EXCLUDES" ] || export GOLDEN_EXCLUDE="${EXCLUDES# }"
+[ -z "$CASES" ] || export GOLDEN_CASE="${CASES# }"
 
 # --build-src-tree <svn 作業コピー（test/ を使う）> <git リポジトリ> <tecsgen の相対ディレクトリ> <出力先>
 #   --src-tree 用の木を作って終わる。test/ は作業コピーから svn export（LF）、

@@ -1,0 +1,43 @@
+{
+  "id": "cmake_add",
+  "source": "tools/golden/inputs/cmake_add/（利用者プラグインから CMake.add_* を呼ぶ）",
+  "cwd": "cmake_add",
+  "args": [
+    "-L",
+    ".",
+    "hello.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 1,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "cmake_add/gen/CMakeLists.tecsgen.cmake",
+    "cmake_add/gen/Makefile.depend",
+    "cmake_add/gen/Makefile.tecsgen",
+    "cmake_add/gen/Makefile.templ",
+    "cmake_add/gen/global_tecsgen.h",
+    "cmake_add/gen/sHello_tecsgen.h",
+    "cmake_add/gen/tHello_factory.h",
+    "cmake_add/gen/tHello_tecsgen.c",
+    "cmake_add/gen/tHello_tecsgen.h",
+    "cmake_add/gen/tHello_templ.c",
+    "cmake_add/gen/tecsgen.rbdmp",
+    "cmake_add/gen/tecsgen.timestamp",
+    "cmake_add/gen/tmp_MyCMakePlugin_0.cdl",
+    "cmake_add/gen/tmp_MyCMakePlugin_post_code.cdl"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "cmake_add/gen/tecsgen.rbdmp": {
+      "sha256": "da61812b16ce2c71891afc28fd3614030643e19950871e29644fa361f1a32ea3",
+      "size": 3314
+    }
+  }
+}
