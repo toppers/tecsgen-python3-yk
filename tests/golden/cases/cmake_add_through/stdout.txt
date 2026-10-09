@@ -1,0 +1,13 @@
+ep_through: plugin_name=ThroughPlugin
+ThroughPlugin.new( 'ThroughPlugin__0', '', 'server', 'eEntry', tServer )
+TracePlugin.new( 'TracePlugin__0', 'maxArrayDisplay=256', 'ThroughPlugin__0', 'eThroughEntry', tServer )
+Plugin2.new( 'Plugin2__0', '', 'TracePlugin__0', 'eThroughEntry', tServer )
+Plugin1.new( 'Plugin1__0', '', 'Plugin2__0', 'eThroughEntry', tServer )
+ep_through: plugin_name=ThroughPlugin
+ThroughPlugin.new( 'ThroughPlugin__1', '', 'server', 'eEntry', tServer )
+TracePlugin.new( 'TracePlugin__1', 'maxArrayDisplay=128', 'ThroughPlugin__1', 'eThroughEntry', tServer )
+TracePlugin.new( 'TracePlugin__2', 'maxArrayDisplay=64', 'TracePlugin__1', 'eThroughEntry', tServer )
+Plugin2.new( 'Plugin2__1', '', 'TracePlugin__2', 'eThroughEntry', tServer )
+Plugin1.new( 'Plugin1__1', '', 'Plugin2__1', 'eThroughEntry', tServer )
+ep_through: plugin_name=ThroughPlugin
+ThroughPlugin.new( 'ThroughPlugin__2', '', 'server', 'eEntry', tServer )

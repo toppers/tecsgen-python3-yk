@@ -1,0 +1,43 @@
+{
+  "id": "cmake_add_cell",
+  "source": "tools/golden/inputs/cmake_add_cell/（CellPlugin から CMake.add_* を呼ぶ）",
+  "cwd": "cmake_add_cell",
+  "args": [
+    "-L",
+    ".",
+    "cell.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 1,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "cmake_add_cell/gen/CMakeLists.tecsgen.cmake",
+    "cmake_add_cell/gen/Makefile.depend",
+    "cmake_add_cell/gen/Makefile.tecsgen",
+    "cmake_add_cell/gen/Makefile.templ",
+    "cmake_add_cell/gen/global_tecsgen.h",
+    "cmake_add_cell/gen/sHello_tecsgen.h",
+    "cmake_add_cell/gen/tHello_factory.h",
+    "cmake_add_cell/gen/tHello_tecsgen.c",
+    "cmake_add_cell/gen/tHello_tecsgen.h",
+    "cmake_add_cell/gen/tHello_templ.c",
+    "cmake_add_cell/gen/tecsgen.rbdmp",
+    "cmake_add_cell/gen/tecsgen.timestamp",
+    "cmake_add_cell/gen/tmp_MyCellPlugin_0.cdl",
+    "cmake_add_cell/gen/tmp_MyCellPlugin_post_code.cdl"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "cmake_add_cell/gen/tecsgen.rbdmp": {
+      "sha256": "e82b0d55f3866d19b2901051547e934ee626497375cab0e6d80b73aa08a31cbb",
+      "size": 3313
+    }
+  }
+}

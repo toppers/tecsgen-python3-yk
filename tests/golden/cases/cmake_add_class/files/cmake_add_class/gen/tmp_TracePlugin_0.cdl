@@ -1,0 +1,8 @@
+import( "gen/tTracePlugin_sSimple.cdl" );
+region rClass1{
+  cell tTracePlugin_sSimple Join_class_out_through__0 {
+    cCall = ::Sample1.eSample;
+    probeName_str = ": ";
+    from_str = "Simple";
+  };
+};

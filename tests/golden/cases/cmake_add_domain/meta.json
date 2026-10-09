@@ -1,0 +1,87 @@
+{
+  "id": "cmake_add_domain",
+  "source": "restrict/Makefile [tecs]（MyDomainPlugin.rb に CMake.add_* を足した変種）",
+  "cwd": "cmake_add_domain",
+  "args": [
+    "-L",
+    ".",
+    "-I",
+    "../cygwin3",
+    "restrict.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 1,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "cmake_add_domain/gen/CMakeLists.tecsgen.cmake",
+    "cmake_add_domain/gen/Makefile.depend",
+    "cmake_add_domain/gen/Makefile.tecsgen",
+    "cmake_add_domain/gen/Makefile.templ",
+    "cmake_add_domain/gen/global_tecsgen.h",
+    "cmake_add_domain/gen/sDataqueue_tecsgen.h",
+    "cmake_add_domain/gen/sEventflag_tecsgen.h",
+    "cmake_add_domain/gen/sKernel_tecsgen.h",
+    "cmake_add_domain/gen/sSemaphore_tecsgen.h",
+    "cmake_add_domain/gen/sSig_tecsgen.h",
+    "cmake_add_domain/gen/sSysLog_tecsgen.h",
+    "cmake_add_domain/gen/sTaskBody_tecsgen.h",
+    "cmake_add_domain/gen/sTaskExceptionBody_tecsgen.h",
+    "cmake_add_domain/gen/sTask_tecsgen.h",
+    "cmake_add_domain/gen/siDataqueue_tecsgen.h",
+    "cmake_add_domain/gen/siEventflag_tecsgen.h",
+    "cmake_add_domain/gen/siKernel_tecsgen.h",
+    "cmake_add_domain/gen/siSemaphore_tecsgen.h",
+    "cmake_add_domain/gen/tCelltypeClient_factory.h",
+    "cmake_add_domain/gen/tCelltypeClient_rRegionSrc_tecsgen.c",
+    "cmake_add_domain/gen/tCelltypeClient_tecsgen.h",
+    "cmake_add_domain/gen/tCelltypeClient_templ.c",
+    "cmake_add_domain/gen/tCelltype_factory.h",
+    "cmake_add_domain/gen/tCelltype_rRegionDst_tecsgen.c",
+    "cmake_add_domain/gen/tCelltype_tecsgen.h",
+    "cmake_add_domain/gen/tCelltype_templ.c",
+    "cmake_add_domain/gen/tKernel_factory.h",
+    "cmake_add_domain/gen/tKernel_tecsgen.c",
+    "cmake_add_domain/gen/tKernel_tecsgen.h",
+    "cmake_add_domain/gen/tMyTracePlugin_sSig.c",
+    "cmake_add_domain/gen/tMyTracePlugin_sSig.cdl",
+    "cmake_add_domain/gen/tMyTracePlugin_sSig_factory.h",
+    "cmake_add_domain/gen/tMyTracePlugin_sSig_rRegionSrc_tecsgen.c",
+    "cmake_add_domain/gen/tMyTracePlugin_sSig_tecsgen.h",
+    "cmake_add_domain/gen/tSysLog_factory.h",
+    "cmake_add_domain/gen/tSysLog_tecsgen.c",
+    "cmake_add_domain/gen/tSysLog_tecsgen.h",
+    "cmake_add_domain/gen/tTask_factory.h",
+    "cmake_add_domain/gen/tTask_rRegionSrc_tecsgen.c",
+    "cmake_add_domain/gen/tTask_tecsgen.h",
+    "cmake_add_domain/gen/tecsgen.rbdmp",
+    "cmake_add_domain/gen/tecsgen.timestamp",
+    "cmake_add_domain/gen/tmp_C_src.c",
+    "cmake_add_domain/gen/tmp_MyDomainPlugin_post_code.cdl",
+    "cmake_add_domain/gen/tmp_MyTracePlugin_0.cdl",
+    "cmake_add_domain/gen/tmp_MyTracePlugin_post_code.cdl",
+    "cmake_add_domain/gen/tmp_cygwin_tecs.h",
+    "cmake_add_domain/gen/tmp_t_syslog.h"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "cmake_add_domain/gen/tecsgen.rbdmp": {
+      "sha256": "f2528744f431c26728557c89724161cc362b99070db9760a5f9c62576c82d0d3",
+      "size": 72559
+    },
+    "cmake_add_domain/gen/tmp_cygwin_tecs.h": {
+      "sha256": "4e3b975cdc2f9adc9500c8f3ffdf8a0c267ffada81e2337742aad65d3fb277fb",
+      "size": 15511
+    },
+    "cmake_add_domain/gen/tmp_t_syslog.h": {
+      "sha256": "81998c66d8d19d5833d03994dc44230c77eaae39387d8a3aae1fc80bffa90daf",
+      "size": 571
+    }
+  }
+}

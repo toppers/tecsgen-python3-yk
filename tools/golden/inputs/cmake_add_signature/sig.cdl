@@ -1,0 +1,12 @@
+signature sHello {
+    void hello( void );
+};
+
+celltype tHello {
+    entry sHello eHello;
+};
+
+generate( MySigPlugin, sHello, "" );
+
+cell tHello Hello {
+};

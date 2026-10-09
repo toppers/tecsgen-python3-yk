@@ -712,6 +712,62 @@ inputs = "cmake_add"
 args = ["-L", ".", "hello.cdl"]
 source = "tools/golden/inputs/cmake_add/（利用者プラグインから CMake.add_* を呼ぶ）"
 
+# CMake.add_* を、セルタイプ以外の種類のプラグインのコンストラクタから呼ぶ（tools/golden/inputs/cmake_add_<種類>/）。
+# signature・cell・composite・multi は合成入力。through・domain・class は、既存ケースの利用者プラグイン
+# に add_* を足した変種で、base のディレクトリ（test/<base>）を cwd へ写してから差し替える。
+# multi は、MultiPlugin#get_plugin が返すクラスを MultiPlugin と同じファイルに書く（ファイル名と違う名前のクラス）。
+[[case]]
+id = "cmake_add_signature"
+cwd = "cmake_add_signature"
+inputs = "cmake_add_signature"
+args = ["-L", ".", "sig.cdl"]
+source = "tools/golden/inputs/cmake_add_signature/（SignaturePlugin から CMake.add_* を呼ぶ）"
+
+[[case]]
+id = "cmake_add_cell"
+cwd = "cmake_add_cell"
+inputs = "cmake_add_cell"
+args = ["-L", ".", "cell.cdl"]
+source = "tools/golden/inputs/cmake_add_cell/（CellPlugin から CMake.add_* を呼ぶ）"
+
+[[case]]
+id = "cmake_add_composite"
+cwd = "cmake_add_composite"
+inputs = "cmake_add_composite"
+args = ["-L", ".", "comp.cdl"]
+source = "tools/golden/inputs/cmake_add_composite/（CompositePlugin から CMake.add_* を呼ぶ）"
+
+[[case]]
+id = "cmake_add_multi"
+cwd = "cmake_add_multi"
+inputs = "cmake_add_multi"
+args = ["-L", ".", "multi.cdl"]
+source = "tools/golden/inputs/cmake_add_multi/（MultiPlugin が返すクラスから CMake.add_* を呼ぶ）"
+
+[[case]]
+id = "cmake_add_through"
+base = "through"
+cwd = "cmake_add_through"
+inputs = "cmake_add_through"
+args = ["-L", ".", "-I", "../cygwin", "-I", "../../tecs", "-I", "src", "through.cdl"]
+source = "through/Makefile [tecs]（Plugin1.rb に CMake.add_* を足した変種）"
+
+[[case]]
+id = "cmake_add_domain"
+base = "restrict"
+cwd = "cmake_add_domain"
+inputs = "cmake_add_domain"
+args = ["-L", ".", "-I", "../cygwin3", "restrict.cdl"]
+source = "restrict/Makefile [tecs]（MyDomainPlugin.rb に CMake.add_* を足した変種）"
+
+[[case]]
+id = "cmake_add_class"
+base = "class"
+cwd = "cmake_add_class"
+inputs = "cmake_add_class"
+args = ["-L", ".", "-I", "../cygwin3", "class.cdl"]
+source = "class/Makefile [tecs]（MyClassPlugin.rb に CMake.add_* を足した変種）"
+
 # ---------------------------------------------------------------- sample（test-normal.sh / test-abnormal.sh）
 
 [[case]]

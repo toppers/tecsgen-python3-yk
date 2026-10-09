@@ -1,0 +1,43 @@
+{
+  "id": "cmake_add_signature",
+  "source": "tools/golden/inputs/cmake_add_signature/（SignaturePlugin から CMake.add_* を呼ぶ）",
+  "cwd": "cmake_add_signature",
+  "args": [
+    "-L",
+    ".",
+    "sig.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 1,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "cmake_add_signature/gen/CMakeLists.tecsgen.cmake",
+    "cmake_add_signature/gen/Makefile.depend",
+    "cmake_add_signature/gen/Makefile.tecsgen",
+    "cmake_add_signature/gen/Makefile.templ",
+    "cmake_add_signature/gen/global_tecsgen.h",
+    "cmake_add_signature/gen/sHello_tecsgen.h",
+    "cmake_add_signature/gen/tHello_factory.h",
+    "cmake_add_signature/gen/tHello_tecsgen.c",
+    "cmake_add_signature/gen/tHello_tecsgen.h",
+    "cmake_add_signature/gen/tHello_templ.c",
+    "cmake_add_signature/gen/tecsgen.rbdmp",
+    "cmake_add_signature/gen/tecsgen.timestamp",
+    "cmake_add_signature/gen/tmp_MySigPlugin_0.cdl",
+    "cmake_add_signature/gen/tmp_MySigPlugin_post_code.cdl"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "cmake_add_signature/gen/tecsgen.rbdmp": {
+      "sha256": "30e0f1f708f4ed02c606ab3e4b534c05de2118920cf1b92e5a10369187fc4009",
+      "size": 3905
+    }
+  }
+}

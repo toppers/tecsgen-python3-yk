@@ -1,0 +1,43 @@
+{
+  "id": "cmake_add_multi",
+  "source": "tools/golden/inputs/cmake_add_multi/（MultiPlugin が返すクラスから CMake.add_* を呼ぶ）",
+  "cwd": "cmake_add_multi",
+  "args": [
+    "-L",
+    ".",
+    "multi.cdl"
+  ],
+  "env": {
+    "LANG": "C"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "errors": 0,
+  "warnings": 1,
+  "expect": null,
+  "expect_matched": null,
+  "created": [
+    "cmake_add_multi/gen/CMakeLists.tecsgen.cmake",
+    "cmake_add_multi/gen/Makefile.depend",
+    "cmake_add_multi/gen/Makefile.tecsgen",
+    "cmake_add_multi/gen/Makefile.templ",
+    "cmake_add_multi/gen/global_tecsgen.h",
+    "cmake_add_multi/gen/sHello_tecsgen.h",
+    "cmake_add_multi/gen/tHello_factory.h",
+    "cmake_add_multi/gen/tHello_tecsgen.c",
+    "cmake_add_multi/gen/tHello_tecsgen.h",
+    "cmake_add_multi/gen/tHello_templ.c",
+    "cmake_add_multi/gen/tecsgen.rbdmp",
+    "cmake_add_multi/gen/tecsgen.timestamp",
+    "cmake_add_multi/gen/tmp_MyMultiCelltypePlugin_0.cdl",
+    "cmake_add_multi/gen/tmp_MyMultiCelltypePlugin_post_code.cdl"
+  ],
+  "modified": [],
+  "deleted": [],
+  "excluded": {
+    "cmake_add_multi/gen/tecsgen.rbdmp": {
+      "sha256": "874f487ac4dee07fcccb29064fc517c9f2907f47ec933b49109c7d5dad93f14b",
+      "size": 3314
+    }
+  }
+}

@@ -109,12 +109,16 @@ def place_inputs(cases: list[dict], pristine: Path) -> None:
 
     実プロジェクトのテストに無い経路を動かす合成入力。実行前から在るファイルとして扱う
     （pristine に置くので、生成物には数えない）。*.rb は `-L .` で読ませる利用者プラグイン。
-    cwd が test/ に無ければ作る。
+    cwd が test/ に無ければ作る。base があれば、先に test/<base> を cwd へ丸ごと写してから重ねる
+    （既存ケースのプラグインを差し替えた変種。pristine は全ケースで共有するので、test/<base>
+    そのものを上書きすると元のケースが変わってしまう）。
     """
     for case in cases:
         if "inputs" not in case:
             continue
         dest = pristine / "test" / case["cwd"]
+        if "base" in case:
+            shutil.copytree(pristine / "test" / case["base"], dest, symlinks=True)
         dest.mkdir(parents=True, exist_ok=True)
         src_dir = HERE / "inputs" / case["inputs"]
         for src in sorted([*src_dir.glob("*.cdl"), *src_dir.glob("*.rb")]):

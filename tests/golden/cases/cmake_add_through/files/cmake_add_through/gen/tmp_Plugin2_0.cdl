@@ -1,0 +1,4 @@
+import( "gen/tPlugin2_sSignature.cdl" );
+cell tPlugin2_sSignature Plugin2__0 {
+  cCall = ::TracePlugin__0.eThroughEntry;
+};
