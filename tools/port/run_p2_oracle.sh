@@ -10,6 +10,7 @@
 #   TECS_SRC_TREE   書き出し済みの木（tecsgen/ と test/ を含む）。指定すると svn export の代わりに
 #                   これを ~/p2work/tecs-src へ写して使う（作業コピーの引数は無視する）
 #   GOLDEN_EXCLUDE  採取しないケースの id（空白区切り）。generate_golden.py の --exclude へ渡す
+#   GOLDEN_CASE     採取するケースの id（空白区切り、wsl_check.sh の --case）。generate_golden.py の --case へ渡す
 set -e
 WC=${1:?usage: run_p2_oracle.sh <tecsgen branch working copy>}
 R=$(cd "$(dirname "$0")/../.." && pwd)
@@ -25,6 +26,7 @@ fi
 EXCL=""
 set -f
 for g in ${GOLDEN_EXCLUDE:-}; do EXCL="$EXCL --exclude $g"; done
+for g in ${GOLDEN_CASE:-}; do EXCL="$EXCL --case $g"; done
 cp "$R/tests/ruby/ruby-p2-oracle" "$R/tests/ruby/p2_oracle.rb" "$B/"
 chmod +x "$B/ruby-p2-oracle"
 rm -rf "$B/oracle-out"

@@ -1,0 +1,12 @@
+signature sHello {
+    void hello( void );
+};
+
+celltype tHello {
+    entry sHello eHello;
+};
+
+generate( MyCMakePlugin, tHello, "" );
+
+cell tHello Hello {
+};

@@ -20,6 +20,7 @@ fi
 EXCL=""
 set -f
 for g in ${GOLDEN_EXCLUDE:-}; do EXCL="$EXCL --exclude $g"; done
+for g in ${GOLDEN_CASE:-}; do EXCL="$EXCL --case $g"; done
 cp "$R/tests/ruby/ruby-p3-oracle" "$R/tests/ruby/p3_oracle.rb" "$B/"
 chmod +x "$B/ruby-p3-oracle"
 rm -rf "$B/oracle-out-p3"

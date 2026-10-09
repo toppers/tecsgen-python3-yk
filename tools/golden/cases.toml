@@ -702,6 +702,16 @@ inputs = "transparent"
 args = ["-I", "../cygwin3", "tm_test.cdl"]
 source = "tools/golden/inputs/transparent/（rpc/Makefile [tecs] と同じ -I）"
 
+# TECSGEN::CMake.add_*（tecsgen-rb で追加）は、標準付属プラグインにも asp3_stm32cube_TECS にも
+# 呼ぶ箇所が無いので、利用者プラグイン（-L .）の合成入力（tools/golden/inputs/cmake_add/）で動かす。
+# cwd の cmake_add は test/ に無く、generate_golden.py が作る。
+[[case]]
+id = "cmake_add"
+cwd = "cmake_add"
+inputs = "cmake_add"
+args = ["-L", ".", "hello.cdl"]
+source = "tools/golden/inputs/cmake_add/（利用者プラグインから CMake.add_* を呼ぶ）"
+
 # ---------------------------------------------------------------- sample（test-normal.sh / test-abnormal.sh）
 
 [[case]]
