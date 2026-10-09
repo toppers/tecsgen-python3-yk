@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-このファイルは、このリポジトリ内のコードを扱う際、Claude Code (claude.ai/code) に指針を提供するものです。
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project
 
@@ -17,7 +17,7 @@ tecsgen（TECSコンポーネント記述コンパイラ、Ruby v1.9.1版）をP
 2. **差分テストを先に作る**。Ruby 4.0.6 はローカルで動く（2026-09-26 確認）。`test/` のケース（一覧は157ケース、採取できたのは155ケース。採取しなかった2件は `import_C/z` と `mruby`）を Ruby 版で実行し、ゴールデン出力として固定してから移植を始める。TOPPERS カーネルの CDL を使うカーネル依存プラグインのケースは、別に `tests/golden/kernel/` に11ケースを採取している。
 3. **フェーズごとに内部状態を比べる**。生成物の一致だけを見ると、どのフェーズでずれたかが分からない。Ruby 側に小さな JSON ダンプ用フックを足し、パース後・意味解析後・最適化後のモデルを Python 側と比べる。
 4. **仕様書は実装の少し前に書く**。[[tecsgen-python3内部仕様]] は章ごとに、該当フェーズに着手する直前に書く。12章を全部書いてから実装に入る進め方はとらない。
-5. **WSL での検証は必ず `tools/port/wsl_check.sh` で行う**（2026-09-28 ユーザー採用。2026-10-04 に PowerShell ラッパー `wsl_check.ps1` を廃止して bash に一本化。ただし `tools/port/wsl_check.ps1` と、それを参照する `tools/golden/run_plugin_coverage.sh` のコメントはまだ残っているので、使わない）。Windows からは `wsl.exe -e bash -lc 'cd /mnt/e/Ccur/python3/tecsgen-python3 && sh tools/port/wsl_check.sh ...'` の形で呼び（PowerShell ツールから。Git Bash は `/` で始まるパスが MSYS のパス変換で壊れる）、それ以外のコマンドをその場で手書きしない。このスクリプトは、WSL 用の仮想環境の分離（`~/.venvs/tecsgen-python3`）、`VIRTUAL_ENV` の解除、`uv sync`・ruff・ty・pytest の一括実行と結果のまとめ表示を済ませている。作業コピーのパスは WSL のパス（`/mnt/e/...`）で渡す。各フェーズの計画には「完了時に `sh tools/port/wsl_check.sh` を通す」を検証手順として入れる。スクリプトに無い操作（例: WSL で `tools/port/p4_progress.py` を回す、特定ケースだけ実行する）が必要になったら、手書きで済ませずにスクリプトへオプションとして足してから使い、README の表も更新する。
+5. **WSL での検証は必ず `tools/port/wsl_check.sh` で行う**（2026-09-28 ユーザー採用。2026-10-04 に PowerShell ラッパー `wsl_check.ps1` を廃止して bash に一本化。ただし `tools/port/wsl_check.ps1` と、それを参照する `tools/golden/run_plugin_coverage.sh` のコメントはまだ残っているので、使わない）。Windows からは `wsl.exe -e bash -lc 'cd /mnt/e/Ccur/python3/tecsgen-python3-yk && sh tools/port/wsl_check.sh ...'` の形で呼び（PowerShell ツールから。Git Bash は `/` で始まるパスが MSYS のパス変換で壊れる）、それ以外のコマンドをその場で手書きしない。このスクリプトは、WSL 用の仮想環境の分離（`~/.venvs/tecsgen-python3`）、`VIRTUAL_ENV` の解除、`uv sync`・ruff・ty・pytest の一括実行と結果のまとめ表示を済ませている。作業コピーのパスは WSL のパス（`/mnt/e/...`）で渡す。各フェーズの計画には「完了時に `sh tools/port/wsl_check.sh` を通す」を検証手順として入れる。スクリプトに無い操作（例: WSL で `tools/port/p4_progress.py` を回す、特定ケースだけ実行する）が必要になったら、手書きで済ませずにスクリプトへオプションとして足してから使い、README の表も更新する。
    - 経緯: P5e〜P5i のセッションで、このスクリプトの存在を見落として WSL コマンドを毎回手書きし、Windows 側と共有の `.venv` を作り直させて1回失敗、さらに場当たりの別の仮想環境（`~/.cache/tecsgen-python3-venv`）まで作った。
 
 ## 作業の決まり（常に守る。指示が無くても方針決定・計画立案・作業の実行に取り込む）
@@ -43,7 +43,7 @@ uv run python tools/port/p4_progress.py [case-id-prefix...] [-v]
 ゴールデンデータはLinux上で取得されたため、信頼できる完全なチェックは、別のvenv（`~/.venvs/tecsgen-python3`）を使用してWSL上で実行します（WSLにWindows側の`.venv`を再構築させてはいけません）。
 
 ```sh
-# run inside WSL at the repo root; from Windows wrap as: wsl.exe -e bash -lc 'cd /mnt/e/Ccur/python3/tecsgen-python3 && <command>'
+# run inside WSL at the repo root; from Windows wrap as: wsl.exe -e bash -lc 'cd /mnt/e/Ccur/python3/tecsgen-python3-yk && <command>'
 # working-copy paths are WSL paths (/mnt/e/...)
 sh tools/port/wsl_check.sh                          # uv sync, ruff, ruff format --check, ty, pytest
 sh tools/port/wsl_check.sh tests/test_p2_parser.py -x
@@ -63,7 +63,6 @@ Pass/skipのカウントはWindowsとWSLで若干異なりますが、コミッ�
 
 - `ruby_compat.py` — バイト単位で完全に一致する出力を得るために必要なRubyの組み込み機能相当のものです。具体的には、`truthy`（`nil`と`false`のみが偽とみなされる）、`to_s`、`sub_first`/`gsub`（Rubyの置換文字列ルール）、`Symbol`/`sym`（ハッシュのキーとして`str`とは区別される）、`rb_print`/`rb_puts`（バイト書き込み、改行は常にLF）、数値変換などが含まれます。これらは、Python標準の真偽値判定、`str`、`re`の代わりに使用してください。
 - `context.py` — Rubyのグローバル変数（`$force_overwrite`、`$KCONV_CDL`など）を`TecsgenContext`に集約し、`get_context()`経由でアクセスできるようにしたもの。属性名は、対応するRubyの変数名をスネークケースにしたものとする。あるフェーズで新たなグローバル変数が必要になった場合は、ここに追加すること。
-- `host.py` — ファイルシステム、カレントワーキングディレクトリ（cwd）、サブプロセスへのアクセス（`File.exist?`、`Dir.chdir`、C++用の `IO.popen` など）はすべて `get_host()` を経由して行われます。パスはPOSIX形式の文字列として扱われ、プロセスのカレントワーキングディレクトリが変更されることはありません。テスト実行時には `RecordedHost` (`tests/p3_oracle_data.py`) が使用され、Rubyによる記録済みのI/Oが再生されます。そのため、Ruby、ソースツリー、gccがインストールされていないWindows環境でもテストを実行可能です。**ファイルシステムには決して直接アクセスしないでください**。直接アクセスするとローカル環境では動作しても、記録の再生（リプレイ）が失敗する原因となります。
 - `host.py` — ファイルシステム、カレントワーキングディレクトリ（cwd）、サブプロセスへのアクセス（`File.exist?`、`Dir.chdir`、C++用の `IO.popen` など）はすべて `get_host()` を経由して行われます。パスはPOSIX形式の文字列として扱われ、プロセスのカレントワーキングディレクトリが変更されることはありません。テスト実行時には `RecordedHost` (`tests/p3_oracle_data.py`) が使用され、Rubyによる記録済みのI/Oが再生されます。そのため、Ruby、ソースツリー、gccがインストールされていないWindows環境でもテストを実行可能です。**ファイルシステムには決して直接アクセスしないでください**。直接アクセスするとローカル環境では動作しても、記録の再生（リプレイ）が失敗する原因となります。
 - `state.py` — `reset_model_state()` は Ruby のクラス変数（`@@...`）をリセットします。これにより、1つのプロセス内で tecsgen を複数回実行（テストなど）することが可能になります。クラスレベルの状態を持つ新しいクラスは、ここで `reset()` を登録する必要があります。プラグインは、すでにインポートされている場合にのみリセットされます（強制的にインポートしてはなりません。そうしないと、モデル比較時に余分なクラスが読み込まれているとみなされてしまうためです）。プラグインを `require` する際に生じる Ruby のロード時の副作用は、実行ごとの `on_load()` 内で処理されます。
 - `cli.py` は `core/tecsgen.py` に対応します（`TECSGEN.run1` が構文解析と意味解析を、`run2`/`finalize` が最適化とコード生成を担います）。`ruby_optparse.py` は Ruby の OptionParser の挙動やメッセージを再現しています。その他のコンソールスクリプト（`pyproject.toml` 定義）には、`tecsmerge`（`tecsmerge.py`：`tecsmerge.rb` の移植版であり、出力結果の照合テストも実施済み）や `tecsgen-path`（`libpath.py`：CMake から呼び出す際に、同梱されている `tecs/` CDL ライブラリを含むディレクトリを出力するコマンド。`tecsgen` 本体に Ruby 版には存在しないオプションを追加しないようにするため、別コマンドとして実装されています）があります。`tecsgen-rb` から移植された CMake サポート機能は、`gen/CMakeLists.tecsgen.cmake` を生成し、プラグインに対して `CMake` API を提供します。
