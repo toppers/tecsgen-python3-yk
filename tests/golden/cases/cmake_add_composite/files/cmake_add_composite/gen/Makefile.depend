@@ -1,0 +1,5 @@
+# Celltype: tHello  #_MDEP_#
+$(_TECS_OBJ_DIR)tHello_tecsgen.o : tHello_tecsgen.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHello_tecsgen.h $(GEN_DIR)/tHello_factory.h $(GEN_DIR)/tHello_tecsgen.h
+$(_TECS_OBJ_DIR)tHello_templ.o : tHello_templ.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHello_tecsgen.h $(GEN_DIR)/tHello_factory.h $(GEN_DIR)/tHello_tecsgen.h
+$(_TECS_OBJ_DIR)tHello.o : tHello.c $(GEN_DIR)/global_tecsgen.h $(GEN_DIR)/sHello_tecsgen.h $(GEN_DIR)/tHello_factory.h $(GEN_DIR)/tHello_tecsgen.h
+

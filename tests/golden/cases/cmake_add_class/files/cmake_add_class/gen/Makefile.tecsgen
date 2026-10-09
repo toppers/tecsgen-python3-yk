@@ -1,0 +1,310 @@
+# generated automatically by tecsgen.
+# This file is not intended to modify.
+#
+# Makefile variables below are defined.
+#  TECS_IMPORT_CDLS          .cdl files improted by import statement
+#  SIGNATURE_HEADERS         .h files of signature
+#  CELLTYPE_TECSGEN_HEADERS  .h files of celltype
+#  CELLTYPE_FACTORY_HEADERS  .h files of celltype's factory
+#  TECS_HEADERS              summary of .h files above
+#  TECS_INLINE_HEADERS       .h files of celltype inline header
+#  PLUGIN_INLINE_HEADERS     .h files of plugin generated inline header
+#
+#  TECS_COBJS                .o files of TECS
+#                            = $(TECSGEN_COBJS)+$(PLUGIN_COBJS)+$(CELLTYPE_COBJS)
+#                            = $(TECS_KERNEL_COBJS)+$(TECS_USER_COBJS)+$(TECS_OUTOFDOMAIN_COBJS)
+#                            = $(TECSGEN_domain_COBJS)+$(PLUGIN_domain_COBJS)+$(CELLTYPE_domain_COBJS) for each domain
+#
+#  TECSGEN_COBJS             .o files of celltype_tecsgen.c
+#  CELLTYPE_COBJS            .o files of celltype.c (celltype code)
+#  PLUGIN_COBJS              .o files of plugin generated .c files
+#
+#  TECSGEN_SRCS              .c files of celltype_tecsgen.c
+#  CELLTYPE_SRCS             .c files of celltype.c (celltype code)
+#  PLUGIN_SRCS               .c files of plugin generated
+#  PLUGIN_CELLTYPE_SRCS      .c files of plugin generated celltype.c (celltype code)
+#  PLUGIN_TECSGEN_SRCS       .c files of plugin generated celltype_tecsgen.c
+#
+# Variables for domain (These are defined if domain is specified)
+#  TECS_DOMAINS             domain names
+#  TECS_KERNEL_COBJS        .o files of kernel domain (tecsgen, celltype, plugin)
+#  TECS_USER_COBJS          .o files of user domain (tecsgen, celltype, plugin)
+#  TECS_OUTOFDOMAIN_COBJS   .o files of OutOfDomain (tecsgen, celltype, plugin)
+#  TECSGEN_domain_COBJS     .o files of celltype_tecsgen.c files for each domain
+#  PLUGIN_domain_COBJS      .o files of plugin generated .c files for each domain
+#  CELLTYPE_domain_COBJS    .o files of celltype.c files for each domain
+#  TECSGEN_domain_SRCS      .c files of celltype_domain_tecsgen.c
+#  PLUGIN_domain_SRCS       .c files of plugin generated .c files for each domain
+#  CELLTYPE_domain_SRCS     .c files of celltype.c files for each domain
+
+TECS_IMPORT_CDLS = class.cdl class_def.cdf ../cygwin3/cygwin_kernel.cdl ../cygwin3/tSysLog.cdl $(TECSPATH)/rpc/rpc.cdl $(TECSPATH)/rpc/sChannel.cdl $(TECSPATH)/rpc/TDR.cdl $(TECSPATH)/rpc/RPCTask.cdl $(TECSPATH)/rpc/PPAllocator.cdl $(TECSPATH)/rpc/sRPCErrorHandler.cdl $(TECSPATH)/rpc/tDataqueueOWChannel.cdl gen/tTracePlugin_sSimple.cdl gen/tRPCPlugin_tTDR_sTaskBody.cdl gen/tMarshaler_sTaskBody.cdl gen/tmp_MyClassPlugin_post_code.cdl gen/tmp_TracePlugin_post_code.cdl gen/tmp_RPCPlugin_post_code.cdl gen/tmp_TransparentRPCSignaturePlugin_post_code.cdl
+TECS_IMPORT_HEADERS = ../cygwin3/cygwin_tecs.h ../cygwin3/t_syslog.h $(TECSPATH)/rpc/tecs_rpc.h
+TECS_IMPORTS = $(TECS_IMPORT_CDLS) $(TECS_IMPORT_HEADERS)
+
+SIGNATURE_HEADERS = \
+	$(GEN_DIR)/sTaskBody_tecsgen.h \
+	$(GEN_DIR)/sTaskExceptionBody_tecsgen.h \
+	$(GEN_DIR)/sTask_tecsgen.h \
+	$(GEN_DIR)/sKernel_tecsgen.h \
+	$(GEN_DIR)/siKernel_tecsgen.h \
+	$(GEN_DIR)/sSemaphore_tecsgen.h \
+	$(GEN_DIR)/siSemaphore_tecsgen.h \
+	$(GEN_DIR)/sEventflag_tecsgen.h \
+	$(GEN_DIR)/siEventflag_tecsgen.h \
+	$(GEN_DIR)/sDataqueue_tecsgen.h \
+	$(GEN_DIR)/siDataqueue_tecsgen.h \
+	$(GEN_DIR)/sSysLog_tecsgen.h \
+	$(GEN_DIR)/sServerChannelOpener_tecsgen.h \
+	$(GEN_DIR)/sChannel_tecsgen.h \
+	$(GEN_DIR)/sTDR_tecsgen.h \
+	$(GEN_DIR)/sUnmarshalerMain_tecsgen.h \
+	$(GEN_DIR)/sPPAllocator_tecsgen.h \
+	$(GEN_DIR)/sRPCErrorHandler_tecsgen.h \
+	$(GEN_DIR)/sSimple_tecsgen.h \
+# SIGNATURE_HEADERS terminator
+
+CELLTYPE_TECSGEN_HEADERS = \
+ 	$(GEN_DIR)/tTracePlugin_sSimple_tecsgen.h \
+ 	$(GEN_DIR)/tMarshaler_sTaskBody_tecsgen.h \
+ 	$(GEN_DIR)/tUnmarshaler_sTaskBody_tecsgen.h \
+ 	$(GEN_DIR)/tTask_tecsgen.h \
+ 	$(GEN_DIR)/tKernel_tecsgen.h \
+ 	$(GEN_DIR)/tSemaphore_tecsgen.h \
+ 	$(GEN_DIR)/tEventflag_tecsgen.h \
+ 	$(GEN_DIR)/tDataqueuePeer_tecsgen.h \
+ 	$(GEN_DIR)/tSysLog_tecsgen.h \
+ 	$(GEN_DIR)/tTDR_tecsgen.h \
+ 	$(GEN_DIR)/tRPCDedicatedTaskMain_tecsgen.h \
+ 	$(GEN_DIR)/tDataqueueAdaptor_tecsgen.h \
+ 	$(GEN_DIR)/tSimple_tecsgen.h \
+ 	$(GEN_DIR)/tSample_tecsgen.h \
+# CELLTYPE_TECSGEN_HEADERS terminator
+
+CELLTYPE_FACTORY_HEADERS = \
+ 	$(GEN_DIR)/tTracePlugin_sSimple_factory.h \
+ 	$(GEN_DIR)/tMarshaler_sTaskBody_factory.h \
+ 	$(GEN_DIR)/tUnmarshaler_sTaskBody_factory.h \
+ 	$(GEN_DIR)/tTask_factory.h \
+ 	$(GEN_DIR)/tKernel_factory.h \
+ 	$(GEN_DIR)/tSemaphore_factory.h \
+ 	$(GEN_DIR)/tEventflag_factory.h \
+ 	$(GEN_DIR)/tDataqueuePeer_factory.h \
+ 	$(GEN_DIR)/tSysLog_factory.h \
+ 	$(GEN_DIR)/tTDR_factory.h \
+ 	$(GEN_DIR)/tRPCDedicatedTaskMain_factory.h \
+ 	$(GEN_DIR)/tDataqueueAdaptor_factory.h \
+ 	$(GEN_DIR)/tSimple_factory.h \
+ 	$(GEN_DIR)/tSample_factory.h \
+# CELLTYPE_FACTORY_HEADERS terminator
+
+# TECS_HEADERS:  headers generated by tecsgen
+TECS_HEADERS = $(SIGNATURE_HEADERS) $(CELLTYPE_TECSGEN_HEADERS) $(CELLTYPE_FACTORY_HEADERS)
+
+TECS_INLINE_HEADERS = \
+ 	tTask_tecsgen.h \
+ 	tKernel_tecsgen.h \
+ 	tSemaphore_tecsgen.h \
+ 	tEventflag_tecsgen.h \
+ 	tDataqueuePeer_tecsgen.h \
+ 	tSysLog_tecsgen.h \
+ 	tTDR_tecsgen.h \
+ 	tRPCDedicatedTaskMain_tecsgen.h \
+ 	tDataqueueAdaptor_tecsgen.h \
+ 	tSimple_tecsgen.h \
+ 	tSample_tecsgen.h \
+# TECS_INLINE_HEADERS terminator
+
+PLUGIN_INLINE_HEADERS = \
+ 	tTracePlugin_sSimple_tecsgen.h \
+ 	tMarshaler_sTaskBody_tecsgen.h \
+ 	tUnmarshaler_sTaskBody_tecsgen.h \
+# PLUGIN_INLINE_HEADERS terminator
+
+# TECS_COBJS: all objects of TECS, include both user written code and tecsgen automatically generated code
+TECS_COBJS = $(TECSGEN_COBJS) $(PLUGIN_COBJS) $(CELLTYPE_COBJS)
+
+# TECS_DOMAINS: list of domain names (names of 'domain' spacified region)
+TECS_DOMAINS = 
+TECS_CLASS =  rClass1 rClass2e 
+
+# TECS_KERNEL_COBJS: objects belong to kernel domain
+TECS_KERNEL_COBJS = \
+# TECS_KERNEL_COBJS terminator
+
+# TECS_USER_COBJS: objects belong to user domain
+TECS_USER_COBJS = \
+# TECS_USER_COBJS terminator
+
+# TECS_OUTOFDOMAIN_COBJS: objects belong to OutOfDomain
+TECS_OUTOFDOMAIN_COBJS = \
+# TECS_OUTOFDOMAIN_COBJS terminator
+
+# TECSGEN_COBJS: objects from sources which are automatically generated by tecsgen
+TECSGEN_COBJS = \
+	$(TECSGEN_rClass1_COBJS) \
+	$(TECSGEN_rClass2e_COBJS) \
+	$(TECSGEN_Root__COBJS) \
+# TECSGEN_COBJS terminator
+
+# PLUGIN_COBJS: objects from sources which are automatically generated by plugin(s)
+PLUGIN_COBJS = \
+	$(PLUGIN_rClass1_COBJS) \
+	$(PLUGIN_rClass2e_COBJS) \
+	$(PLUGIN_Root__COBJS) \
+# PLUGIN_COBJS terminator
+
+CELLTYPE_COBJS = \
+	$(CELLTYPE_rClass1_COBJS) \
+	$(CELLTYPE_rClass2e_COBJS) \
+	$(CELLTYPE_Root__COBJS) \
+# CELLTYPE_COBJS terminator
+
+TECSGEN_SRCS = \
+	$(TECSGEN_rClass1_SRCS) \
+	$(TECSGEN_rClass2e_SRCS) \
+	$(TECSGEN_Root__SRCS) \
+# TECSGEN_SRCS terminator
+
+PLUGIN_SRCS = \
+	$(PLUGIN_rClass1_SRCS) \
+	$(PLUGIN_rClass2e_SRCS) \
+	$(PLUGIN_Root__SRCS) \
+# PLUGIN#_SRCS terminator
+
+# TECSGEN_COBJS: objects from sources which are automatically generated by tecsgen
+TECSGEN_rClass1_COBJS = \
+ 	$(_TECS_OBJ_DIR)tTask_rClass1_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tSimple_rClass1_tecsgen.o \
+# TECSGEN_rClass1_COBJS terminator
+
+TECSGEN_rClass2e_COBJS = \
+ 	$(_TECS_OBJ_DIR)tTask_rClass2e_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tSemaphore_rClass2e_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tEventflag_rClass2e_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tDataqueuePeer_rClass2e_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tTDR_rClass2e_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tRPCDedicatedTaskMain_rClass2e_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tDataqueueAdaptor_rClass2e_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tSimple_rClass2e_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tSample_rClass2e_tecsgen.o \
+# TECSGEN_rClass2e_COBJS terminator
+
+TECSGEN_Root__COBJS = \
+ 	$(_TECS_OBJ_DIR)tTask_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tKernel_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tSysLog_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tSimple_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tSample_tecsgen.o \
+# TECSGEN_Root__COBJS terminator
+
+# PLUGIN_COBJS: objects from sources which are automatically generated by plugin(s)
+PLUGIN_rClass1_COBJS = \
+ 	$(_TECS_OBJ_DIR)tTracePlugin_sSimple_rClass1_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tTracePlugin_sSimple.o \
+# PLUGIN_rClass1_COBJS terminator
+
+PLUGIN_rClass2e_COBJS = \
+ 	$(_TECS_OBJ_DIR)tMarshaler_sTaskBody_rClass2e_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tUnmarshaler_sTaskBody_rClass2e_tecsgen.o \
+ 	$(_TECS_OBJ_DIR)tMarshaler_sTaskBody.o \
+ 	$(_TECS_OBJ_DIR)tUnmarshaler_sTaskBody.o \
+# PLUGIN_rClass2e_COBJS terminator
+
+PLUGIN_Root__COBJS = \
+# PLUGIN_Root__COBJS terminator
+
+# CELLTYPE_COBJS: objects of celltype code written by user
+CELLTYPE_rClass1_COBJS = \
+# CELLTYPE_rClass1_COBJS terminator
+
+CELLTYPE_rClass2e_COBJS = \
+ 	$(_TECS_OBJ_DIR)tEventflag.o \
+ 	$(_TECS_OBJ_DIR)tRPCDedicatedTaskMain.o \
+# CELLTYPE_rClass2e_COBJS terminator
+
+CELLTYPE_Root__COBJS = \
+ 	$(_TECS_OBJ_DIR)tTask.o \
+ 	$(_TECS_OBJ_DIR)tSysLog.o \
+ 	$(_TECS_OBJ_DIR)tSimple.o \
+ 	$(_TECS_OBJ_DIR)tSample.o \
+# CELLTYPE_Root__COBJS terminator
+
+# TECSGEN_SRCS: sources automatically generated by tecsgen
+TECSGEN_rClass1_SRCS = \
+ 	$(GEN_DIR)/tTask_rClass1_tecsgen.c \
+ 	$(GEN_DIR)/tSimple_rClass1_tecsgen.c \
+# TECSGEN_rClass1_SRCS terminator
+
+TECSGEN_rClass2e_SRCS = \
+ 	$(GEN_DIR)/tTask_rClass2e_tecsgen.c \
+ 	$(GEN_DIR)/tSemaphore_rClass2e_tecsgen.c \
+ 	$(GEN_DIR)/tEventflag_rClass2e_tecsgen.c \
+ 	$(GEN_DIR)/tDataqueuePeer_rClass2e_tecsgen.c \
+ 	$(GEN_DIR)/tTDR_rClass2e_tecsgen.c \
+ 	$(GEN_DIR)/tRPCDedicatedTaskMain_rClass2e_tecsgen.c \
+ 	$(GEN_DIR)/tDataqueueAdaptor_rClass2e_tecsgen.c \
+ 	$(GEN_DIR)/tSimple_rClass2e_tecsgen.c \
+ 	$(GEN_DIR)/tSample_rClass2e_tecsgen.c \
+# TECSGEN_rClass2e_SRCS terminator
+
+TECSGEN_Root__SRCS = \
+ 	$(GEN_DIR)/tTask_tecsgen.c \
+ 	$(GEN_DIR)/tKernel_tecsgen.c \
+ 	$(GEN_DIR)/tSysLog_tecsgen.c \
+ 	$(GEN_DIR)/tSimple_tecsgen.c \
+ 	$(GEN_DIR)/tSample_tecsgen.c \
+# TECSGEN_Root__SRCS terminator
+
+# PLUGIN_SRCS: sources automatically generated by plugin
+PLUGIN_CELLTYPE_SRCS = \
+  $(PLUGIN_rClass1_CELLTYPE_SRCS)\
+  $(PLUGIN_rClass2e_CELLTYPE_SRCS)\
+  $(PLUGIN_Root__CELLTYPE_SRCS)\
+# PLUGIN_CELLTYPE_SRCS terminator
+
+PLUGIN_TECSGEN_SRCS = \
+  $(PLUGIN_rClass1_TECSGEN_SRCS)\
+  $(PLUGIN_rClass2e_TECSGEN_SRCS)\
+  $(PLUGIN_Root__TECSGEN_SRCS)\
+# PLUGIN_TECSGEN_SRCS terminator
+
+PLUGIN_rClass1_SRCS = $(PLUGIN_rClass1_CELLTYPE_SRCS) $(PLUGIN_rClass1_TECSGEN_SRCS)
+
+PLUGIN_rClass1_CELLTYPE_SRCS = \
+ tTracePlugin_sSimple.c \
+# PLUGIN_rClass1_CELLTYPE_SRCS terminator
+
+PLUGIN_rClass1_TECSGEN_SRCS = \
+ tTracePlugin_sSimple_rClass1_tecsgen.c \
+# PLUGIN_rClass1_TECSGEN_SRCS terminator
+
+PLUGIN_rClass2e_SRCS = $(PLUGIN_rClass2e_CELLTYPE_SRCS) $(PLUGIN_rClass2e_TECSGEN_SRCS)
+
+PLUGIN_rClass2e_CELLTYPE_SRCS = \
+ tMarshaler_sTaskBody.c \
+ tUnmarshaler_sTaskBody.c \
+# PLUGIN_rClass2e_CELLTYPE_SRCS terminator
+
+PLUGIN_rClass2e_TECSGEN_SRCS = \
+ tMarshaler_sTaskBody_rClass2e_tecsgen.c \
+ tUnmarshaler_sTaskBody_rClass2e_tecsgen.c \
+# PLUGIN_rClass2e_TECSGEN_SRCS terminator
+
+PLUGIN_Root__SRCS = $(PLUGIN_Root__CELLTYPE_SRCS) $(PLUGIN_Root__TECSGEN_SRCS)
+
+PLUGIN_Root__CELLTYPE_SRCS = \
+# PLUGIN_Root__CELLTYPE_SRCS terminator
+
+PLUGIN_Root__TECSGEN_SRCS = \
+# PLUGIN_Root__TECSGEN_SRCS terminator
+
+# CELLTYPE_SRCS: sources of celltype code written by user
+CELLTYPE_SRCS = \
+ 	tTask.c \
+ 	tEventflag.c \
+ 	tSysLog.c \
+ 	tRPCDedicatedTaskMain.c \
+ 	tSimple.c \
+ 	tSample.c \
+# CELLTYPE_SRCS terminator
+

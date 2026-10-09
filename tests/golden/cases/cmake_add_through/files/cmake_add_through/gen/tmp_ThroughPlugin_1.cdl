@@ -1,0 +1,4 @@
+import( "gen/tThroughPlugin_sSignature.cdl" );
+cell tThroughPlugin_sSignature ThroughPlugin__1 {
+  cCall = ::server.eEntry;
+};

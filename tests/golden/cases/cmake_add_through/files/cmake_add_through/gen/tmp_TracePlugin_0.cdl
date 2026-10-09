@@ -1,0 +1,6 @@
+import( "gen/tTracePlugin_sSignature.cdl" );
+cell tTracePlugin_sSignature TracePlugin__0 {
+  cCall = ::ThroughPlugin__0.eThroughEntry;
+  probeName_str = ": ";
+  from_str = "Client";
+};

@@ -114,6 +114,18 @@ def _import_user_plugin_class(name: str) -> Any:
     return plugin_class
 
 
+def _register_plugin_class(plugin_class: Any) -> None:
+    """`MultiPlugin#get_plugin` が返したクラスを、名前で引けるようにする。
+
+    Ruby ではロード済みのクラスは定数になり、`Object.const_get(name)` で引ける。
+    Python 版は名前からファイルを読み直すので、ファイル名と違う名前のクラス（利用者の
+    `MultiPlugin` と同じファイルに書いたクラスなど）は、登録しないと post_code の生成などで
+    見つからず、黙って飛ばされる。同名がすでにあれば何もしない。
+    """
+    if isinstance(plugin_class, type):
+        _user_plugin_classes.setdefault(class_name(plugin_class), plugin_class)
+
+
 def _lookup_loaded_plugin_class(name: str) -> Any:
     """`Object.const_get(name)`（require し直さない）に相当。
 
@@ -197,6 +209,7 @@ class PluginModule(_Base):
                         plugin_name,
                         class_name(super_cls),
                     )
+                _register_plugin_class(plugin_object)
                 PluginModule._loaded_plugin_list[key] = sym("MultiPlugin")
                 return plugin_object
 

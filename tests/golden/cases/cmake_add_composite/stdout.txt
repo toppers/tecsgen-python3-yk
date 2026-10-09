@@ -1,0 +1,3 @@
+comp.cdl:17:12: warning: W1007 ::Comp : non-active cell has no entry join and no factory
+comp.cdl:17:12: warning: W1007 ::Comp_inner : non-active cell has no entry join and no factory
+2 warnings

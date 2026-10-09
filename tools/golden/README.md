@@ -56,6 +56,8 @@ sh tools/port/wsl_check.sh --src-tree "$T" --case cmake_add --oracle -         #
 
 **`cmake_add`（2026-10-09）**: `TECSGEN::CMake.add_*` を呼ぶプラグインは、標準付属プラグインにも `asp3_stm32cube_TECS` にも無いので、利用者プラグイン（`-L .`）の合成入力（`tools/golden/inputs/cmake_add/`。CDL と Ruby 版プラグイン）で動かす。Python 版プラグインは `tests/user_plugins/cmake_add/MyCMakePlugin.py`。`gen_cmake_tecsgen` は生成の最初に走るので、`gen_factory` から足したものが出力に反映されないこと（Ruby 版と同じ）も正解データに含む。`generate_golden.py` の `place_inputs` は、`inputs` の `*.cdl` に加えて `*.rb` も写し、`cwd` が `test/` に無ければ作る。
 
+**`cmake_add_<種類>`（2026-10-09）**: `cmake_add` はセルタイププラグインだけなので、ほかの種類（`signature`・`cell`・`composite`・`multi`・`through`・`domain`・`class`）のコンストラクタから `CMake.add_*` を呼ぶケースを足した。入力は `tools/golden/inputs/cmake_add_<種類>/`、一覧と作りは `tools/golden/inputs/cmake_add_kinds.md`。`through`・`domain`・`class` は既存ケースのプラグインに `add_*` を足した変種で、ケースの `base`（`test/<base>` を `cwd` へ写してから `inputs` を重ねる）を使う。採取は `--cases-golden --case 'cmake_add_*'`（正解データ）と、先頭の `--case 'cmake_add_*' --oracle -`（p2・p3 の記録）。
+
 `transparent_marshaler` は、tecsgen-rb に `TransparentMarshalerPlugin.rb` が無いため再採取できず、r3304 で採った正解データ・記録を残しています（`tools/port/p4_progress.py` の `BASELINE_EXCEPTIONS`。比較の対象外）。
 
 `--case <id>` を付けると、そのケースだけを採取し直します（glob 可、複数指定可）。

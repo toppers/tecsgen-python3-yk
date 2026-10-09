@@ -1,0 +1,11 @@
+signature sHello {
+    void hello( void );
+};
+
+[generate( MyMultiPlugin, "" )]
+celltype tHello {
+    entry sHello eHello;
+};
+
+cell tHello Hello {
+};

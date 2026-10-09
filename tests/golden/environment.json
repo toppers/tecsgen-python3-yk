@@ -4,10 +4,10 @@
   "tecsgen": "tecsgen  version 1.9.1",
   "platform": "Linux 6.18.40.1-microsoft-standard-WSL2 x86_64",
   "source": "asp3_stm32cube_TECS tecsgen-rb 7ea7851 (git archive); test/ from svn ykominami_r3033 r3306",
-  "manifest_sha256": "77b3c830b25be7408e89ea8f17b352d5d890d4e5ef9e0cd468db230c618d49a1",
+  "manifest_sha256": "216d4beabf7ffa054c4e9bc33dda6439b4b9b205039682b4e7c6a66eca69d351",
   "excluded_patterns": [
     "*.rbdmp",
     "tmp_*.h"
   ],
-  "cases": 159
+  "cases": 166
 }

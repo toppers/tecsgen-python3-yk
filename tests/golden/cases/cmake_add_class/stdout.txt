@@ -1,0 +1,13 @@
+MyClassPlugin: initialize: region=::, classTypeName=MyClass, option=root
+MyClassPlugin: initialize: region=rClass1, classTypeName=MyClass, option=CLS_ALL_PRC1
+MyClassPlugin: initialize: region=rClass2e, classTypeName=MyClass, option=CLS_PRC2
+MyClassPlugin: add_through_plugin: rClass1=>::, Simple.cSimple=>Sample1.eSample, OUT_THROUGH
+TracePlugin.new( 'Join_class_out_through__0', '', 'Sample1', 'eSample', tSample )
+ep_through: plugin_name=RPCPlugin
+RPCPlugin.new( 'RPCPlugin__0', '', 'Simple', 'eMain', tSimple )
+[TransparentRPCSignaturePlugin]
+           create celltype tRPCPlugin_tTDR_sTaskBody
+                        in gen/tRPCPlugin_tTDR_sTaskBody.cdl
+MyClassPlugin: joinable? from rClass2e to :: (OUT_THROUGH)
+MyClassPlugin: joinable? from rClass1 to :: (OUT_THROUGH)
+MyClassPlugin: joinable? from rClass1 to :: (OUT_THROUGH)

@@ -1,0 +1,6 @@
+MyTracePlugin.new( 'Join_domain_to_through__0', '', 'Cell', 'eEnt', tCelltype )
+restrict.cdl:99:24: warning: W9999: ::rRegionDst::Cell has ineffective restrict specifier
+callable from ::rRegionSrc::Cell to ::rRegionDst::Cell.eEnt.func1 = true
+callable from ::rRegionSrc::Cell to ::rRegionDst::Cell.eEnt.func2 = true
+callable from ::rRegionSrc::Cell to ::rRegionDst::Cell.eEnt.func3 = false
+1 warning
