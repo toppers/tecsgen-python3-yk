@@ -1,6 +1,6 @@
-# tecsgen-python3
+# tecsgen-python3-yk
 
-TECS のコンポーネント記述コンパイラ tecsgen（Ruby 実装、v1.9.1）を Python 3 へ移植するプロジェクトです。
+TECSジェネレータ tecsgen（Ruby 実装、v1.9.1）を Python 3 へ移植するプロジェクトです。
 
 - CLI は Ruby 版と完全互換にします。
 - CDL と import_C の C ヘッダは、Ruby 版と同じ方法で構文解析します。字句解析器は Ruby 版から移植し、パーサは Ruby 版の racc が生成した LALR 表（`bnf.tab.rb`・`C_parser.tab.rb`）を取り出して、racc の駆動部を移植したもので動かします。構文エラーの位置・件数やエラー回復も Ruby 版と一致します。
