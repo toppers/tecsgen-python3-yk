@@ -364,7 +364,10 @@ class TECSGEN:
 
         ファイルそのものは再現しない（P0 基本方針決定）。ただし Ruby 版はダンプの前に link root
         ごとに最適化をやり直し、-v ではその経過を標準出力に出すので、そこまでは移植する。
-        unjoin_plugin（プラグインの参照を外す。unjoin_plugin.rb）は P5 で移植する。
+        unjoin_plugin（プラグインの参照を外す。unjoin_plugin.rb）は移植しない。Ruby 版でも
+        呼び出し元はこのメソッドだけで、Marshal.dump できるようにするためのものであり、
+        rbdmp を書かない Python 版では観測できる効果がないため。gen_xml.rb も、Ruby 版で
+        呼び出し箇所がコメントアウトされた未使用コードなので移植しない。
         """
         from tecsgen.core.componentobj.region import Region
 
