@@ -51,6 +51,7 @@ sh tools/port/wsl_check.sh --oracle <Ruby source working copy>  # re-record Ruby
 sh tools/port/wsl_check.sh --kernel-golden <Ruby source working copy>    # instead of tests: collect tests/golden/kernel/ (kernel plugins; ~10 min)
 sh tools/port/wsl_check.sh --kernel-golden <Ruby source working copy> --p3-oracle   # instead: re-record tests/golden/kernel/p3/ (Ruby I/O replayed by p4_progress.py; checks the output equals the committed golden data; ~30 min)
 sh tools/port/wsl_check.sh --plugin-coverage <Ruby source working copy>  # instead of tests: measure which plugins the golden cases run (20-40 min)
+sh tools/port/wsl_check.sh --tcflow-golden <Ruby source working copy> [--case <id>]  # instead of tests: re-record tests/golden/tcflow/ (Ruby tcflow oracle; ~1 min)
 ```
 
 特定のカーネルケースのみを収集するには、`--kernel-golden <wc>` の後に `collect_kernel.py` の引数を追加します（例：`sh tools/port/wsl_check.sh --kernel-golden <wc> --case 'atk1/*'`）。
@@ -65,13 +66,13 @@ Pass/skipのカウントはWindowsとWSLで若干異なりますが、コミッ�
 - `context.py` — Rubyのグローバル変数（`$force_overwrite`、`$KCONV_CDL`など）を`TecsgenContext`に集約し、`get_context()`経由でアクセスできるようにしたもの。属性名は、対応するRubyの変数名をスネークケースにしたものとする。あるフェーズで新たなグローバル変数が必要になった場合は、ここに追加すること。
 - `host.py` — ファイルシステム、カレントワーキングディレクトリ（cwd）、サブプロセスへのアクセス（`File.exist?`、`Dir.chdir`、C++用の `IO.popen` など）はすべて `get_host()` を経由して行われます。パスはPOSIX形式の文字列として扱われ、プロセスのカレントワーキングディレクトリが変更されることはありません。テスト実行時には `RecordedHost` (`tests/p3_oracle_data.py`) が使用され、Rubyによる記録済みのI/Oが再生されます。そのため、Ruby、ソースツリー、gccがインストールされていないWindows環境でもテストを実行可能です。**ファイルシステムには決して直接アクセスしないでください**。直接アクセスするとローカル環境では動作しても、記録の再生（リプレイ）が失敗する原因となります。
 - `state.py` — `reset_model_state()` は Ruby のクラス変数（`@@...`）をリセットします。これにより、1つのプロセス内で tecsgen を複数回実行（テストなど）することが可能になります。クラスレベルの状態を持つ新しいクラスは、ここで `reset()` を登録する必要があります。プラグインは、すでにインポートされている場合にのみリセットされます（強制的にインポートしてはなりません。そうしないと、モデル比較時に余分なクラスが読み込まれているとみなされてしまうためです）。プラグインを `require` する際に生じる Ruby のロード時の副作用は、実行ごとの `on_load()` 内で処理されます。
-- `cli.py` は `core/tecsgen.py` に対応します（`TECSGEN.run1` が構文解析と意味解析を、`run2`/`finalize` が最適化とコード生成を担います）。`ruby_optparse.py` は Ruby の OptionParser の挙動やメッセージを再現しています。その他のコンソールスクリプト（`pyproject.toml` 定義）には、`tecsmerge`（`tecsmerge.py`：`tecsmerge.rb` の移植版であり、出力結果の照合テストも実施済み）や `tecsgen-path`（`libpath.py`：CMake から呼び出す際に、同梱されている `tecs/` CDL ライブラリを含むディレクトリを出力するコマンド。`tecsgen` 本体に Ruby 版には存在しないオプションを追加しないようにするため、別コマンドとして実装されています）があります。`tecsgen-rb` から移植された CMake サポート機能は、`gen/CMakeLists.tecsgen.cmake` を生成し、プラグインに対して `CMake` API を提供します。
+- `cli.py` は `core/tecsgen.py` に対応します（`TECSGEN.run1` が構文解析と意味解析を、`run2`/`finalize` が最適化とコード生成を担います）。`ruby_optparse.py` は Ruby の OptionParser の挙動やメッセージを再現しています。その他のコンソールスクリプト（`pyproject.toml` 定義）には、`tecsmerge`（`tecsmerge.py`：`tecsmerge.rb` の移植版であり、出力結果の照合テストも実施済み）や `tcflow`（`tcflow.py` と `flowlib/`：Ruby 版 `tcflow.rb` の移植版。C ソースの関数呼び出し・参照グローバル変数を抽出する。構文解析は `syntax/` と同じく racc の表（`flowlib/c_parser_tables.py`）で動かす。関数リストは Ruby の Marshal 形式ではなく JSON（`gen/tcflow.json`）で保存する。Ruby 版は処理全体を `rescue Exception` で囲むため、`exit 1` も `--help` も `fatal error: ...` を標準エラー出力に書いて終了コード 0 で終わる。Python 版も同じ。`tests/golden/tcflow/` と `tests/test_p7_tcflow.py` で差分テスト済み）、`tecsgen-path`（`libpath.py`：CMake から呼び出す際に、同梱されている `tecs/` CDL ライブラリを含むディレクトリを出力するコマンド。`tecsgen` 本体に Ruby 版には存在しないオプションを追加しないようにするため、別コマンドとして実装されています）があります。`tecsgen-rb` から移植された CMake サポート機能は、`gen/CMakeLists.tecsgen.cmake` を生成し、プラグインに対して `CMake` API を提供します。
 - `syntax/` — Rubyから移植された字句解析器（lexer）が含まれます。構文解析器（parser）は、Rubyの`racc`の出力から抽出されたLALRテーブル（自動生成される`cdl_tables.py`および`cdecl_tables.py`）と、`racc`ランタイムの移植版（`racc_runtime.py`）を用いて動作します。そのため、構文エラーの位置、個数、およびリカバリの挙動はRubyと一致します。文法アクションは、`cdl_actions.py`および`cdecl_actions.py`にて手作業で移植されています。
 - `core/` — 型システム、式、`syntaxobj/`（宣言ノード）、`componentobj/`（Celltype、Cell、Signature、Namespace、Join、Import/Import_Cなど）、およびコード生成（`generate_celltype*.py`、Rubyのように埋め込まれたテンプレート）。
 - `core/plugin_module.py` — プラグインの読み込み: Rubyの `require` + `const_get` は、`importlib.import_module("tecsgen.plugin.<Name>")` および同名のクラスを使用する形に置き換えられます。移植されていないプラグインは `PluginNotPorted` を発生させます。
 - `plugin/` — 移植されたプラグイン。`plugin/lib/` にはそれらのヘルパーモジュールが格納されています。
 
-生成されるファイル（手動編集せず、ツールで再生成してください）: `messages/*` (`tools/port/gen_messages.py`)、`syntax/*_tables.py` (`tools/port/gen_racc_tables.py`)。これらのツールには Ruby および Ruby のソースコードが必要です。
+生成されるファイル（手動編集せず、ツールで再生成してください）: `messages/*` (`tools/port/gen_messages.py`)、`syntax/*_tables.py` と `flowlib/c_parser_tables.py` (`tools/port/gen_racc_tables.py`)。`flowlib/c_parser_actions.py` の骨格は `tools/port/gen_action_stubs.py` が作るが、本体は手で移植してある（既存のファイルは `--force` なしでは上書きされない）。これらのツールには Ruby および Ruby のソースコードが必要です。
 
 ## Test data
 

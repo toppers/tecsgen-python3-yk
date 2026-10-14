@@ -31,15 +31,27 @@ from pathlib import Path
 from types import ModuleType
 from typing import Any
 
+from tecsgen.flowlib import c_parser_tables
 from tecsgen.syntax import cdecl_tables, cdl_tables
 
 ROOT = Path(__file__).resolve().parents[2]
 DUMPER = Path(__file__).with_name("dump_grammar_rules.rb")
-OUT_DIR = ROOT / "src" / "tecsgen" / "syntax"
+OUT_DIR = ROOT / "src" / "tecsgen"
 
 TARGETS: tuple[tuple[str, ModuleType, str, str], ...] = (
-    ("bnf.y.rb", cdl_tables, "cdl_actions.py", "CdlActions"),
-    ("C_parser.y.rb", cdecl_tables, "cdecl_actions.py", "CdeclActions"),
+    ("tecslib/core/bnf.y.rb", cdl_tables, "syntax/cdl_actions.py", "CdlActions"),
+    (
+        "tecslib/core/C_parser.y.rb",
+        cdecl_tables,
+        "syntax/cdecl_actions.py",
+        "CdeclActions",
+    ),
+    (
+        "flowlib/C_parser.y.rb",
+        c_parser_tables,
+        "flowlib/c_parser_actions.py",
+        "TcflowActions",
+    ),
 )
 
 LEXER_STATE_CALLS = [
@@ -97,7 +109,7 @@ def render(
         "",
         "from typing import Any",
         "",
-        f"from tecsgen.syntax.{tables_mod} import REDUCE_TABLE",
+        f"from tecsgen.{tables_mod} import REDUCE_TABLE",
         "",
         "",
         f"class {class_name}:",
@@ -151,16 +163,17 @@ def main() -> None:
     ap.add_argument("source", type=Path)
     ap.add_argument("--force", action="store_true")
     opts = ap.parse_args()
-    core = opts.source / "tecslib" / "core"
     outputs = []
     for src_name, tables, out_name, class_name in TARGETS:
         out = OUT_DIR / out_name
         if out.exists() and not opts.force:
             print(f"{out_name} exists; skipped (use --force to overwrite)")
             continue
-        rules = dump(core / src_name)
+        rules = dump(opts.source / src_name)
         check(rules, tables, src_name)
-        text = render(src_name, rules, class_name, tables.__name__.rsplit(".", 1)[1])
+        text = render(
+            Path(src_name).name, rules, class_name, tables.__name__.split(".", 1)[1]
+        )
         out.write_text(text, encoding="utf-8", newline="\n")
         outputs.append(str(out))
         print(f"{src_name} -> {out_name}")

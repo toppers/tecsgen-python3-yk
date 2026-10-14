@@ -178,6 +178,20 @@ if [ "${1:-}" = "--kernel-golden" ]; then
     --out tests/golden/kernel "$@"
 fi
 
+# --tcflow-golden <移植元 tecsgen ブランチの作業コピー> [collect_tcflow_oracle.py の引数]...
+#   tests/golden/tcflow/（Ruby 版 tcflow の正解データ）を採取して終わる。テストは走らせない。
+#   ケースは tests/golden/tcflow/cases.toml。絞るときは末尾に --case <id> を書く
+if [ "${1:-}" = "--tcflow-golden" ]; then
+  TECSGEN_WC=${2:?--tcflow-golden には移植元 tecsgen ブランチの作業コピーを指定します}
+  shift 2
+  if [ -n "$SRC_TREE" ]; then
+    TCFLOW_SRC="$SRC_TREE/tecsgen"
+  else
+    TCFLOW_SRC="$TECSGEN_WC/tecsgen"
+  fi
+  exec python3 tools/port/collect_tcflow_oracle.py "$TCFLOW_SRC" tests/golden/tcflow "$@"
+fi
+
 # --cases-golden [generate_golden.py の引数]...   （--src-tree が必須）
 #   tests/golden/cases/（テストケース test/ の正解データ）を採取して終わる。テストは走らせない。
 #   --exclude を付けたケースは採取せず、既存の正解データを残す
