@@ -46,6 +46,8 @@ tecsgen --version
 
 `tecsmerge`（テンプレートと保守中のコードのマージ）も同じパッケージのコマンドとして入ります（`tecsmerge [options] files_templ.c src_dir`）。
 
+`tecsgen_rcov [options] CDL-file.cdl` は、カバレッジを取りながら `tecsgen` を実行します（開発用。coverage.py が要るので `uv sync --group dev` で入れます。記録は `.coverage`、HTML は `coverage/`）。
+
 標準 CDL ライブラリ（Ruby 版の `tecs/`）はパッケージに同梱され、`TECSPATH` 未設定のときはそれを使います。
 
 `tecsgen-path` は、その `tecs/` を直下に持つディレクトリ（Ruby 版の「tecsgen のディレクトリ」に当たる）を、`/` 区切りの1行で標準出力へ書きます。CMake などの呼び出し側が、標準 CDL ライブラリ・C ヘッダの場所（`<出力>/tecs`）を知るために使います（`tecsgen` コマンド自体には、Ruby 版に無いオプションを足さない方針のため、別のコマンドにしてあります）。

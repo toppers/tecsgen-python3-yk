@@ -13,11 +13,13 @@ dependencies = []
 tecsgen = "tecsgen:main"
 tecsmerge = "tecsgen.tecsmerge:main"
 tcflow = "tecsgen.tcflow:main"
+tecsgen_rcov = "tecsgen.tecsgen_rcov:main"
 tecsflow = "tecsgen.tecsflow:main"
 tecsgen-path = "tecsgen.libpath:entry"
 
 [dependency-groups]
 dev = [
+    "coverage",
     "pytest>=9.1.1",
     "ruff",
     "ty>=0.0.82",
