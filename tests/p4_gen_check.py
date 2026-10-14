@@ -31,7 +31,7 @@ WORK_ROOT = "@WORK@/test/"
 KERNEL_PREFIX = "kernel/"
 PACKAGES_PREFIX = "packages/"
 # tecs.timestamp は make のレシピ（touch）が作るもので、tecsgen は書かない
-EXCLUDED = ("*.rbdmp", "tmp_*.h", "tecs.timestamp")
+EXCLUDED = ("*.rbdmp", "*.pickle", "tmp_*.h", "tecs.timestamp")
 
 
 def _excluded(path: str) -> bool:

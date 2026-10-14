@@ -7,8 +7,9 @@ C の関数定義ごとに、参照したグローバル変数（読み書きの
 Ruby 版は一覧を `Marshal` 形式（`tcflow.rbdmp`）で保存する。Python 版は JSON
 （`tcflow.json`）で保存する（Marshal は再現しない。決定は移植計画ノート参照）。
 
-ツリー表示・サマリー表示（`print_all_functions`・`print_summarize`）は、Ruby 版でも
-呼び出し元がコメントアウトされていて使われないので移植しない。
+サマリー表示（`print_summarize`）と一覧のツリー表示（クラスメソッド `print_all_functions`）は、
+Ruby 版でも呼び出し元がコメントアウトされていて使われないので移植しない。tecsflow が使う
+関数ごとのツリー表示（インスタンスメソッド `print_all_functions`）は移植した。
 """
 
 from __future__ import annotations
@@ -18,6 +19,16 @@ from typing import Any, ClassVar
 
 from tecsgen.flowlib.ruby_errors import open_error
 from tecsgen.ruby_compat import Symbol, sym, write_stdout
+
+
+def out(text: str) -> None:
+    """tcflow が持つ文字列はバイト列を latin-1 で復号した表現なので、同じ符号化で書く。"""
+    write_stdout(text, "latin-1")
+
+
+def print_locale(locale: list[Any]) -> None:
+    """Ruby の `Locale_printer#print_locale`。`" (ファイル 行)"` を出す。"""
+    out(f" ({locale[0]} {locale[1]})")
 
 
 class Function:
@@ -33,6 +44,8 @@ class Function:
         self.global_var: dict[Symbol, list[int]] = {}
         self.call_func: dict[Symbol, Function | int] = {}
         self.b_ref = False
+        self.b_printed = False
+        self.ref_func_owner: Function | None = None
         self.locale = locale
         self.name: Symbol | None = None
 
@@ -88,8 +101,9 @@ class Function:
             Function.function_list[func_name] = 0
             self.call_func[func_name] = 0
 
-    def referenced(self) -> None:
+    def referenced(self, ref_func: Function | None = None) -> None:
         self.b_ref = True
+        self.ref_func_owner = ref_func
 
     def is_local_var(self, var: Any) -> bool:
         """ローカル変数または引数か（グローバルなら False）。"""
@@ -98,11 +112,69 @@ class Function:
     def is_top(self) -> bool:
         return not self.b_ref
 
+    def is_printed(self) -> bool:
+        return self.b_printed
+
+    def set_printed(self) -> None:
+        self.b_printed = True
+
+    def get_call_funcs(self) -> dict[Symbol, Function | int]:
+        return self.call_func
+
     def get_locale(self) -> list[Any]:
         return self.locale
 
     def get_name(self) -> Symbol | None:
         return self.name
+
+    # --- 呼び出し関数の更新・ツリー表示 -------------------------------------------
+
+    @classmethod
+    def update(cls) -> None:
+        """全関数の `call_func` を更新する（構文解釈中に設定された右辺は不完全なため）。"""
+        for func in list(cls.function_list.values()):
+            if isinstance(func, Function):
+                func.update_call_funcs()
+
+    def update_call_funcs(self) -> None:
+        for name, func in list(self.call_func.items()):
+            if isinstance(func, Function):
+                continue
+            func = Function.function_list.get(name)
+            if isinstance(func, Function):
+                self.call_func[name] = func
+                func.referenced(self)
+
+    def print_all_functions(self, level: int) -> None:
+        """この関数から呼ばれる関数のツリー表示。
+
+        level == 0: 参照されていない（トップレベルの）関数だけ表示する。
+        """
+        if level == 0 and self.b_ref:
+            return
+        if level == -1:
+            if self.b_printed:
+                return
+            level = 0
+
+        indent = "    " * level
+        if self.b_printed:
+            # 印刷済みは再帰的に印刷しない
+            out(f"{indent}{self.name} : printed\n")
+            return
+        self.b_printed = True
+
+        if self.call_func:
+            out(f"{indent}  Calling Function: \n")
+            for name in sorted(self.call_func, key=str):
+                func = self.call_func[name]
+                if isinstance(func, Function):
+                    out(f"{indent}    {name}")
+                    print_locale(self.locale)
+                    out("\n")
+                    func.print_all_functions(level + 1)
+                else:
+                    out(f"{indent}    {name}() : not defined\n")
 
     # --- 保存・読み込み（JSON） ------------------------------------------------
 

@@ -150,6 +150,16 @@ sh tools/port/wsl_check.sh --src-tree "$T" --tcflow-golden - [--case <id>]
 
 `tests/test_p7_tcflow.py` が Python 版と突き合わせます。cpp（`-c`）のケースは、記録した出力を再生するので gcc は要りません。Ruby 版の保存形式（`tcflow.rbdmp`）と Python 版（`tcflow.json`）の違いはファイル名だけで、メッセージ中の名前を置き換えて比べます。
 
+## tecsflow の正解データ
+
+Ruby 版 `tecsflow` の正解データは `tests/golden/tecsflow/` にあります。ケースの定義は `cases.toml`、入力（TECS の `test/` の一部）は `inputs/` です。採取は、`inputs/` のコピーで Ruby 版の `make tecsflow`（tecsgen → tcflow → tecsflow）を実行し、tecsflow の標準出力・標準エラー出力・終了コードと、tcflow の関数リスト（JSON）を記録します。
+
+```sh
+sh tools/port/wsl_check.sh --tecsflow-golden <移植元 tecsgen ブランチの作業コピー> <TECS の test/ ディレクトリ> [--case <id>] [--copy-inputs]
+```
+
+`tests/test_p8_tecsflow.py` が、Python 版の tecsgen で作った `tecsgen.pickle` と記録した関数リストで tecsflow を実行して突き合わせます。tecsgen の `import_C` が Linux の gcc を使うので、Linux 以外では飛ばします。Ruby 版の保存ファイル名（`tecsgen.rbdmp`・`tcflow.rbdmp`）と Python 版（`tecsgen.pickle`・`tcflow.json`）の違いだけは許します。
+
 ## 展開済みパッケージの Plugin 正解データ
 
 Vault の `work/active/tecsgen-python3/tecsgen-python3.md` の Context にある `~/Ccur/TECS-WG-DL/` の21パッケージは、すべて `.cdl` を含みます。採集対象と除外理由は `tests/golden/packages/package_inventory.json` に記録します。パッケージに同梱された古い tecsgen は実行せず、移植元の Ruby 版（r3304）を作業コピーに差し替えます。元の展開済みパッケージは変更しません。
