@@ -76,7 +76,8 @@ def run_case(src: Path, case: dict, work: Path) -> dict:
     funclist = None
     dumps = sorted(work.rglob(DUMP_NAME))
     if dumps:
-        out = subprocess.run(
+        # NOSONAR: 開発用ツール。リスト形式（シェルを通さない）で、引数は作業者が渡す移植元のパスと採取した一時ファイル
+        out = subprocess.run(  # NOSONAR
             ["ruby", str(DUMP_JSON), str(src), str(dumps[0])],
             capture_output=True,
             timeout=TIMEOUT,

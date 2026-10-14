@@ -47,7 +47,8 @@ INT_TABLES = (
 
 
 def dump(path: Path, class_name: str) -> dict[str, Any]:
-    out = subprocess.run(
+    # 開発用ツール。リスト形式（シェルを通さない）で、引数は作業者が渡す移植元のパスと固定のクラス名
+    out = subprocess.run(  # NOSONAR
         ["ruby", str(DUMPER), str(path), class_name], check=True, capture_output=True
     ).stdout
     return json.loads(out.decode("utf-8"))
