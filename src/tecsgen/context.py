@@ -84,6 +84,7 @@ class TecsgenContext:
     tecsgen_base_path: str = ""  # $tecsgen_base_path（tecsgen.rb のあるディレクトリ）
     title: str | None = None  # $title（tecsgen 以外の名前で起動するツール用）
     tool_version: str | None = None  # $tool_version
+    banner_printed: bool = False  # バナーを表示済みか（Python 版のみ）
     b_no_gcc_extension_support: bool = False  # $b_no_gcc_extension_support
     tecsflow: bool = False  # $TECSFLOW（Python 版では常に偽）
     # ARGV（オプションを取り除いた残り）。Ruby 版は ARGV を書き換えて使う

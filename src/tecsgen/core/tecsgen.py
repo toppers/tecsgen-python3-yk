@@ -7,7 +7,7 @@ Ruby 版の `TECSGEN` は2つのファイルにまたがる。
 - core/tecsgen.rb: import パスの操作、`Makefile`、構文解析・意味解析・生成の各段階
 
 P3 で構文解析と意味解析（`run1`）、P4 で最適化・コード生成（`run2`・`finalize`）と
-`dump_tecsgen_rbdmp`（ファイルは書かない）を移植した。
+`dump_tecsgen_rbdmp`（`tecsgen.pickle` を書く）を移植した。
 """
 
 from __future__ import annotations
@@ -360,16 +360,18 @@ class TECSGEN:
         get_host().open_write(f"{ctx.gen_base}/tecsgen.timestamp").close()
 
     def dump_tecsgen_rbdmp(self) -> None:
-        """tecsgen.rbdmp（Ruby の Marshal 形式のモデル）の出力。
+        """tecsgen.rbdmp（Ruby の Marshal 形式のモデル）に当たる `tecsgen.pickle` の出力。
 
-        ファイルそのものは再現しない（P0 基本方針決定）。ただし Ruby 版はダンプの前に link root
-        ごとに最適化をやり直し、-v ではその経過を標準出力に出すので、そこまでは移植する。
-        unjoin_plugin（プラグインの参照を外す。unjoin_plugin.rb）は移植しない。Ruby 版でも
-        呼び出し元はこのメソッドだけで、Marshal.dump できるようにするためのものであり、
-        rbdmp を書かない Python 版では観測できる効果がないため。gen_xml.rb も、Ruby 版で
-        呼び出し箇所がコメントアウトされた未使用コードなので移植しない。
+        Marshal 形式は再現せず、pickle で書く（2026-10-14 決定。tecsflow が読む）。
+        Ruby 版はダンプの前に link root ごとに最適化をやり直し、-v ではその経過を標準出力に
+        出すので、そこも移植する。プラグインの参照を外す unjoin_plugin.rb は
+        `core/unjoin_plugin.py`（`UnjoinPickler`）が担う。gen_xml.rb は、Ruby 版で呼び出し箇所が
+        コメントアウトされた未使用コードなので移植しない。
         """
+        from tecsgen.core.componentobj.namespace import Namespace
         from tecsgen.core.componentobj.region import Region
+        from tecsgen.core.unjoin_plugin import DUMP_FILE_NAME, dumps
+        from tecsgen.host import get_host
 
         ctx = get_context()
         dbg_print("dump_tecsgen_rbdmp 0:\n")
@@ -414,7 +416,9 @@ class TECSGEN:
                 )
                 self._root_namespace.optimize()
             dbg_print(f"dump_tecsgen_rbdmp final: Region.path_str: {to_s(path_str)}\n")
-            # ここで Ruby 版は "#{$gen}/tecsgen.rbdmp" に Marshal.dump(Namespace.get_root) を書く
+            get_host().write_bytes(
+                f"{ctx.gen}/{DUMP_FILE_NAME}", dumps(Namespace.get_root())
+            )
 
 
 class Makefile:
