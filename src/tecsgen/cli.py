@@ -250,6 +250,17 @@ def analyze_option(ctx: TecsgenContext) -> None:
         raise TecsgenExit(1)
 
 
+def print_banner(ctx: TecsgenContext) -> None:
+    """バナーの表示。tecsflow は Ruby 版と同じく、オプション解析より前に呼ぶ。"""
+    ctx.banner_printed = True
+    if ctx.title is not None:
+        _stderr(
+            f"{ctx.title} version {ctx.tool_version} (tecsgen version {VERSION})  \n"
+        )
+    elif not ctx.no_banner or ctx.print_version:
+        _stderr(f"tecsgen  version {VERSION}  \n")
+
+
 def load_modules(ctx: TecsgenContext, environ: Mapping[str, str]) -> None:
     """tecsgen モジュールのロード（TECSGEN.load_modules）。
 
@@ -258,12 +269,8 @@ def load_modules(ctx: TecsgenContext, environ: Mapping[str, str]) -> None:
     """
     from tecsgen.core.tecs_lang import TECS_LANG
 
-    if ctx.title is not None:
-        _stderr(
-            f"{ctx.title} version {ctx.tool_version} (tecsgen version {VERSION})  \n"
-        )
-    elif not ctx.no_banner or ctx.print_version:
-        _stderr(f"tecsgen  version {VERSION}  \n")
+    if not ctx.banner_printed:
+        print_banner(ctx)
     if ctx.verbose:
         # Ruby 版は "ruby 3.2.3 (2024-01-18 patchlevel 157) [x86_64-linux-gnu]"（Ruby 版との差異）
         v = sys.version_info

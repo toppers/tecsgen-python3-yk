@@ -52,6 +52,7 @@ sh tools/port/wsl_check.sh --kernel-golden <Ruby source working copy>    # inste
 sh tools/port/wsl_check.sh --kernel-golden <Ruby source working copy> --p3-oracle   # instead: re-record tests/golden/kernel/p3/ (Ruby I/O replayed by p4_progress.py; checks the output equals the committed golden data; ~30 min)
 sh tools/port/wsl_check.sh --plugin-coverage <Ruby source working copy>  # instead of tests: measure which plugins the golden cases run (20-40 min)
 sh tools/port/wsl_check.sh --tcflow-golden <Ruby source working copy> [--case <id>]  # instead of tests: re-record tests/golden/tcflow/ (Ruby tcflow oracle; ~1 min)
+sh tools/port/wsl_check.sh --tecsflow-golden <Ruby source working copy> <TECS test/ dir> [--case <id>] [--copy-inputs]  # instead of tests: re-record tests/golden/tecsflow/ (Ruby tecsgen->tcflow->tecsflow via make; ~2 min)
 ```
 
 特定のカーネルケースのみを収集するには、`--kernel-golden <wc>` の後に `collect_kernel.py` の引数を追加します（例：`sh tools/port/wsl_check.sh --kernel-golden <wc> --case 'atk1/*'`）。

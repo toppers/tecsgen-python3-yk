@@ -1,0 +1,46 @@
+# tecsflow の差分テストのケース。tools/port/collect_tecsflow_oracle.py が Ruby 版で
+# `make tecsflow`（tecsgen → tcflow → tecsflow）を実行して記録し、tests/test_p8_tecsflow.py が
+# Python 版の tecsgen で作ったモデルと、記録した tcflow の関数リストで tecsflow を実行して突き合わせる。
+#
+# cwd  : inputs/ 内の作業ディレクトリ（TECS の test/ 直下のディレクトリ名）
+# args : tecsgen に渡す引数（tools/golden/cases.toml と同じ。{TECSPATH} は Python 版の tecs ディレクトリ）
+
+[[case]]
+id = "composite"
+cwd = "composite"
+args = ["-I", "../cygwin", "-I", "{TECSPATH}", "-I", "../RUNTIME/runtime/include", "-I", "../RUNTIME/runtime/test", "-I", "src", "--gen=gen_comp", "composite.cdl"]
+
+[[case]]
+id = "recursive_composite"
+cwd = "recursive_composite"
+args = ["-L", "../RUNTIME/generator", "-I../RUNTIME/runtime/test", "-I../RUNTIME/runtime/include", "--gen=gen_rec_comp", "recursive_composite.cdl"]
+
+[[case]]
+id = "composite_alloc"
+cwd = "composite_alloc"
+args = ["-I", "../cygwin3", "composite_alloc.cdl"]
+
+[[case]]
+id = "allocator"
+cwd = "allocator"
+args = ["-r", "-I../RUNTIME/tecs-runtime/target", "-I../RUNTIME/tecs-runtime/include", "-Igen", "-Isrc", "allocator.cdl"]
+
+[[case]]
+id = "require"
+cwd = "require"
+args = ["-I", "../RUNTIME/tecs-runtime/target", "-I", "../RUNTIME/tecs-runtime/include", "require.cdl"]
+
+[[case]]
+id = "reverse_join"
+cwd = "reverse_join"
+args = ["-I", "../cygwin3", "reverse_join.cdl"]
+
+[[case]]
+id = "proto"
+cwd = "proto"
+args = ["-I", "../cygwin3", "proto.cdl"]
+
+[[case]]
+id = "sharedRPC"
+cwd = "sharedRPC"
+args = ["-I", "../cygwin3", "rpc_test.cdl"]

@@ -13,6 +13,7 @@ dependencies = []
 tecsgen = "tecsgen:main"
 tecsmerge = "tecsgen.tecsmerge:main"
 tcflow = "tecsgen.tcflow:main"
+tecsflow = "tecsgen.tecsflow:main"
 tecsgen-path = "tecsgen.libpath:entry"
 
 [dependency-groups]
