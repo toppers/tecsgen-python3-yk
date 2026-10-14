@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- `tecsgen_rcov` コマンドを追加（Ruby 版 `tecsgen_rcov.rb` の移植）: カバレッジを取りながら `tecsgen` を実行する。Ruby 版の SimpleCov の代わりに coverage.py を使う（`dev` グループに追加。無ければ終了コード 1）。引数・標準出力（前後の `simplecov begin` / `simplecov end`）・終了コードは Ruby 版と同じで、記録は作業ディレクトリの `.coverage` に追記し、HTML は `coverage/` に書く。Ruby 版の `tecsgen_rcov`（rcov 用シェル）・`.bat`・`.ps1` は対象外。
 - `tcflow` コマンドを追加（Ruby 版 `tcflow.rb` の移植。`tecsgen/flowlib/`）: C ソースの関数ごとに、呼び出した関数と参照したグローバル変数（読み書きの回数）を抽出する。構文解析は Ruby 版の racc の表（`flowlib/C_parser.tab.rb`）をそのまま使う。標準出力・標準エラー出力・終了コード（`rescue Exception` により常に 0）が Ruby 版と一致する。関数リストの保存形式だけは Ruby の Marshal（`tcflow.rbdmp`）ではなく JSON（`gen/tcflow.json`）。`wsl_check.sh` に正解データの採取オプション `--tcflow-golden` を追加。
 - `tecsgen-path` コマンドを追加: 標準 CDL ライブラリ（`tecs/`）を含むディレクトリを標準出力へ書く（CMake などの呼び出し側が `tecs/` の場所を知るため。`tecsgen` コマンドには新しいオプションを足さない）。
 - Ruby 版（tecsgen-rb）の cmake 対応を移植: `gen/CMakeLists.tecsgen.cmake`（ソース一覧のマニフェスト。`Makefile.tecsgen` の代わりに CMake から `include()` する）を生成し、プラグイン向けの `CMake` API（`add_source`・`add_include`・`add_define`・`add_link_option`・`add_custom_command`・`add_line`）を追加。CLI オプションの追加は無い。
