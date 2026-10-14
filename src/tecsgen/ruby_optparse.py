@@ -38,6 +38,10 @@ class HelpRequested(Exception):
     """-h・--help。Ruby はヘルプを表示して exit する。"""
 
 
+class VersionRequested(Exception):
+    """--version（`parser.version` を設定したときの組み込みオプション）。Ruby はバージョンを表示して exit する。"""
+
+
 @dataclass
 class _Switch:
     short: str | None  # "-D"
@@ -106,6 +110,8 @@ class OptionParser:
             return exact[0]
         if name == "--help":
             raise HelpRequested
+        if name == "--version" and self.version is not None:
+            raise VersionRequested
         cands = [sw for sw in self._switches if sw.long and sw.long.startswith(name)]
         if "--help".startswith(name) and len(name) > 2 and not cands:
             raise HelpRequested

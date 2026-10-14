@@ -139,6 +139,17 @@ sh tools/port/wsl_check.sh --plugin-coverage /mnt/e/Crepo/toppers-tecs-svn/toppe
 - 実行環境（Ruby・gcc・tecsgen のバージョン、ソースの出所）は `tests/golden/environment.json` に記録します。
 - `.gitattributes` で `tests/golden/**` を改行変換の対象外にしています。
 
+## tcflow の正解データ
+
+Ruby 版 `tcflow`（C ソースの関数呼び出し関係を抽出するコマンド）の正解データは `tests/golden/tcflow/` にあります。ケースの定義は `tests/golden/tcflow/cases.toml`、入力の C ファイルは `tests/golden/tcflow/inputs/` です。Ruby 版 `tcflow.rb` をケースごとに実行し、各実行の引数・終了コード・標準出力・標準エラー出力と、作業ディレクトリに書かれたファイル（`gen/tmp_*` など）、関数リスト（`tcflow.rbdmp` を `tests/ruby/tcflow_dump_json.rb` で JSON にしたもの）を `<id>.json.gz` に保存します。
+
+```sh
+sh tools/port/wsl_check.sh --tcflow-golden <移植元 tecsgen ブランチの作業コピー> [--case <id>]
+sh tools/port/wsl_check.sh --src-tree "$T" --tcflow-golden - [--case <id>]
+```
+
+`tests/test_p7_tcflow.py` が Python 版と突き合わせます。cpp（`-c`）のケースは、記録した出力を再生するので gcc は要りません。Ruby 版の保存形式（`tcflow.rbdmp`）と Python 版（`tcflow.json`）の違いはファイル名だけで、メッセージ中の名前を置き換えて比べます。
+
 ## 展開済みパッケージの Plugin 正解データ
 
 Vault の `work/active/tecsgen-python3/tecsgen-python3.md` の Context にある `~/Ccur/TECS-WG-DL/` の21パッケージは、すべて `.cdl` を含みます。採集対象と除外理由は `tests/golden/packages/package_inventory.json` に記録します。パッケージに同梱された古い tecsgen は実行せず、移植元の Ruby 版（r3304）を作業コピーに差し替えます。元の展開済みパッケージは変更しません。

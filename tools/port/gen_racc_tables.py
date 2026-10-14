@@ -8,6 +8,7 @@
 生成物:
     src/tecsgen/syntax/cdl_tables.py    ← tecslib/core/bnf.tab.rb（Generator）
     src/tecsgen/syntax/cdecl_tables.py  ← tecslib/core/C_parser.tab.rb（C_parser）
+    src/tecsgen/flowlib/c_parser_tables.py ← flowlib/C_parser.tab.rb（TCFLOW_Cparser。tcflow 用）
 
 トークンは、Ruby の Symbol（:IDENTIFIER）も String（"{"）も Python では str で表す。
 両者で同じ名前が現れないことをここで検査する。EOF（Ruby の false）は表に含めず、
@@ -24,11 +25,13 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 DUMPER = Path(__file__).with_name("dump_racc_tables.rb")
-OUT_DIR = ROOT / "src" / "tecsgen" / "syntax"
+OUT_DIR = ROOT / "src" / "tecsgen"
 
+# (移植元 tecsgen ディレクトリからの相対パス, クラス名, src/tecsgen からの出力先)
 TARGETS = (
-    ("bnf.tab.rb", "Generator", "cdl_tables.py"),
-    ("C_parser.tab.rb", "C_parser", "cdecl_tables.py"),
+    ("tecslib/core/bnf.tab.rb", "Generator", "syntax/cdl_tables.py"),
+    ("tecslib/core/C_parser.tab.rb", "C_parser", "syntax/cdecl_tables.py"),
+    ("flowlib/C_parser.tab.rb", "TCFLOW_Cparser", "flowlib/c_parser_tables.py"),
 )
 
 INT_TABLES = (
@@ -128,10 +131,10 @@ def render(src_name: str, data: dict[str, Any]) -> str:
 
 
 def main() -> None:
-    core = Path(sys.argv[1]) / "tecslib" / "core"
+    source = Path(sys.argv[1])
     outputs = []
     for src_name, class_name, out_name in TARGETS:
-        text = render(src_name, dump(core / src_name, class_name))
+        text = render(Path(src_name).name, dump(source / src_name, class_name))
         out = OUT_DIR / out_name
         out.write_text(text, encoding="utf-8", newline="\n")
         outputs.append(str(out))

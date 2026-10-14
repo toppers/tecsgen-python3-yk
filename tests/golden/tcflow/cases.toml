@@ -1,0 +1,189 @@
+# tcflow の差分テストのケース。tools/port/collect_tcflow_oracle.py が Ruby 版 tcflow で記録し、
+# tests/test_p7_tcflow.py が Python 版と突き合わせる。
+#
+# steps  : tcflow に続けて渡す引数のリスト。上から順に同じ作業ディレクトリで実行する
+# inputs : tests/golden/tcflow/inputs/ から作業ディレクトリへ写すファイル
+# dirs   : 作業ディレクトリに作るディレクトリ（省略時は ["gen"]）
+
+[[case]]
+id = "basic"
+steps = [["basic.c"]]
+inputs = ["basic.c"]
+
+[[case]]
+id = "basic_tokens"
+steps = [["-t", "basic.c"]]
+inputs = ["basic.c"]
+
+[[case]]
+id = "features"
+steps = [["features.c"]]
+inputs = ["features.c"]
+
+[[case]]
+id = "features_tokens"
+steps = [["-t", "features.c"]]
+inputs = ["features.c"]
+
+[[case]]
+id = "shadow"
+steps = [["shadow.c"]]
+inputs = ["shadow.c"]
+
+[[case]]
+id = "shadow_tokens"
+steps = [["-t", "shadow.c"]]
+inputs = ["shadow.c"]
+
+[[case]]
+id = "errors"
+steps = [["errors.c"]]
+inputs = ["errors.c"]
+
+[[case]]
+id = "errors_tokens"
+steps = [["-t", "errors.c"]]
+inputs = ["errors.c"]
+
+[[case]]
+id = "eof_error"
+steps = [["eof_error.c"]]
+inputs = ["eof_error.c"]
+
+[[case]]
+id = "empty"
+steps = [["empty.c"]]
+inputs = ["empty.c"]
+
+[[case]]
+id = "comments_only"
+steps = [["comments_only.c"]]
+inputs = ["comments_only.c"]
+
+[[case]]
+id = "two_files"
+steps = [["basic.c", "second.c"]]
+inputs = ["basic.c", "second.c"]
+
+[[case]]
+id = "list_file"
+steps = [["@list.txt"]]
+inputs = ["basic.c", "second.c", "list.txt"]
+
+[[case]]
+id = "list_file_missing"
+steps = [["@nolist.txt"]]
+inputs = []
+
+[[case]]
+id = "crlf"
+steps = [["crlf.c"]]
+inputs = ["crlf.c"]
+
+[[case]]
+id = "crlf_tokens"
+steps = [["-t", "crlf.c"]]
+inputs = ["crlf.c"]
+
+[[case]]
+id = "no_newline"
+steps = [["no_newline.c"]]
+inputs = ["no_newline.c"]
+
+[[case]]
+id = "nonascii"
+steps = [["-t", "nonascii.c"]]
+inputs = ["nonascii.c"]
+
+[[case]]
+id = "read_dump"
+steps = [["basic.c"], ["-r"]]
+inputs = ["basic.c"]
+
+[[case]]
+id = "read_dump_missing"
+steps = [["-r"]]
+inputs = []
+
+[[case]]
+id = "no_args"
+steps = [[]]
+inputs = []
+
+[[case]]
+id = "help"
+steps = [["-h"]]
+inputs = []
+
+[[case]]
+id = "help_long"
+steps = [["--help"]]
+inputs = []
+
+[[case]]
+id = "version"
+steps = [["--version"]]
+inputs = []
+
+[[case]]
+id = "bad_option"
+steps = [["-x", "basic.c"]]
+inputs = ["basic.c"]
+
+[[case]]
+id = "missing_arg"
+steps = [["basic.c", "-c"]]
+inputs = ["basic.c"]
+
+[[case]]
+id = "long_option_abbrev"
+steps = [["--print-all", "comments_only.c"]]
+inputs = ["comments_only.c"]
+
+[[case]]
+id = "unused_options"
+steps = [["-l", "-s", "basic.c"]]
+inputs = ["basic.c"]
+
+[[case]]
+id = "gen_dir"
+steps = [["-g", "out", "basic.c"]]
+inputs = ["basic.c"]
+dirs = ["out"]
+
+[[case]]
+id = "no_gen_dir"
+steps = [["basic.c"]]
+inputs = ["basic.c"]
+dirs = []
+
+[[case]]
+id = "missing_input"
+steps = [["nofile.c"]]
+inputs = []
+
+[[case]]
+id = "cpp_macro"
+steps = [["-c", "gcc -E", "cpp_macro.c"]]
+inputs = ["cpp_macro.c"]
+
+[[case]]
+id = "cpp_macro_tokens"
+steps = [["-t", "-c", "gcc -E", "cpp_macro.c"]]
+inputs = ["cpp_macro.c"]
+
+[[case]]
+id = "cpp_stddef"
+steps = [["-c", "gcc -E", "cpp_stddef.c"]]
+inputs = ["cpp_stddef.c"]
+
+[[case]]
+id = "cpp_missing_input"
+steps = [["-c", "gcc -E", "nofile.c"]]
+inputs = []
+
+[[case]]
+id = "cpp_no_gen_dir"
+steps = [["-c", "gcc -E", "cpp_macro.c"]]
+inputs = ["cpp_macro.c"]
+dirs = []
