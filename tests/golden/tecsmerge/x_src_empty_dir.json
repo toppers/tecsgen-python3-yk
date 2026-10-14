@@ -1,0 +1,18 @@
+{
+ "argv": [
+  "src",
+  "dst"
+ ],
+ "input": {
+  "dst/.keep": "",
+  "src/.keep": ""
+ },
+ "stdout": "",
+ "stderr": "",
+ "returncode": 0,
+ "tree": {
+  "dst/.keep": "",
+  "src/.keep": ""
+ },
+ "crash_ok": false
+}

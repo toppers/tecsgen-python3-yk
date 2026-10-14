@@ -7,5 +7,5 @@
  "stderr": "tecsmerge: invalid option: --nosuch\nerror: : not found\n",
  "returncode": 1,
  "tree": {},
- "crash_ok": true
+ "crash_ok": false
 }

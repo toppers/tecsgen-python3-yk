@@ -13,7 +13,12 @@ import re
 import sys
 from dataclasses import dataclass, field
 
-from tecsgen.ruby_optparse import HelpRequested, OptionParser, OptionParserError
+from tecsgen.ruby_optparse import (
+    HelpRequested,
+    OptionParser,
+    OptionParserError,
+    VersionUnknown,
+)
 
 ENC = "latin-1"
 
@@ -507,12 +512,18 @@ def run(argv: list[str]) -> int:
         except HelpRequested:
             _out(parser.help())
             return 0
+        except VersionUnknown:
+            _err("tecsmerge: version unknown")
+            return 1
         except OptionParserError as e:
+            # Ruby の ARGV.options は ParseError を警告するだけで、処理は続く。
+            # このとき ARGV に残っているのは、エラーになった引数より後ろだけ
             _err(f"tecsmerge: {e}")
-            return 1
-        if len(args) < 2:
-            _out(parser.help())
-            return 1
+            args = parser.remaining
+        else:
+            if len(args) < 2:
+                _out(parser.help())
+                return 1
 
         if st.b_show:
             for pr in st.port_renamers.values():
@@ -529,6 +540,10 @@ def run(argv: list[str]) -> int:
             _err(f"{st.n_err} errors")
             return 1
 
+        if not args:
+            # dst が nil になり、File.stat が TypeError で落ちて not found の分岐へ入る
+            _err("error: : not found")
+            return 1
         src, dst = args[:-1], args[-1]
         if not os.path.exists(dst):
             _err(f"error: {dst}: not found")
