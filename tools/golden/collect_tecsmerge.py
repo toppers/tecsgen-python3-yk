@@ -231,14 +231,94 @@ def scenarios() -> list[dict]:
             ],
         },
         {"name": "help", "files": {}, "argv": ["--help"]},
+        {"name": "version", "files": {}, "argv": ["--version"]},
         {
             "name": "err_invalid_option",
             "files": {},
             "argv": ["--nosuch"],
-            "crash_ok": True,
         },
     ]
-    return out
+    return out + edge_scenarios()
+
+
+def edge_scenarios() -> list[dict]:
+    """周辺ケース: 複数ソース・長いオプション形・省略形・引数の欠けたオプション・名前の取り違え。"""
+    pick = pick_templates()
+    ta, tb = pick[0], pick[-1]
+    ra, rb = ta.read_bytes().decode("latin-1"), tb.read_bytes().decode("latin-1")
+    na, nb = ta.name.replace("_templ", ""), tb.name.replace("_templ", "")
+    pa = ports_and_funcs(ra)[0][0]
+    two = {
+        "src/" + ta.name: ra,
+        "src/" + tb.name: rb,
+        "dst/" + na: edit_old(ra),
+        "dst/" + nb: edit_old(rb),
+    }
+    one = {"src/" + ta.name: ra, "dst/" + na: edit_old(ra)}
+    sa = "src/" + ta.name
+    return [
+        {"name": "x_multi_src", "files": two, "argv": [sa, "src/" + tb.name, "dst"]},
+        {"name": "x_multi_src_dir_file", "files": two, "argv": ["src", sa, "dst"]},
+        {
+            "name": "x_multi_src_second_missing",
+            "files": two,
+            "argv": [sa, "src/nosuch_templ.c", "dst"],
+        },
+        {
+            "name": "x_long_opts",
+            "files": {**one, "dst2/.keep": ""},
+            "argv": [
+                "--exist-only",
+                "--old-mode",
+                "--show_change_set",
+                f"--port={pa}:{pa}X",
+                sa,
+                "dst",
+            ],
+        },
+        {
+            "name": "x_abbrev_opts",
+            "files": one,
+            "argv": ["--exist", "--old", "--show", sa, "dst"],
+        },
+        {"name": "x_abbrev_ambiguous", "files": one, "argv": ["--e", sa, "dst"]},
+        {"name": "x_show_only", "files": one, "argv": ["-s", sa, "dst"]},
+        {"name": "x_double_dash", "files": one, "argv": ["--", sa, "dst"]},
+        {"name": "x_opt_after_args", "files": one, "argv": [sa, "dst", "-o"]},
+        {"name": "x_port_no_new", "files": one, "argv": ["-p", pa + ":", sa, "dst"]},
+        {"name": "x_port_no_old", "files": one, "argv": ["-p", ":b", sa, "dst"]},
+        {"name": "x_port_missing_arg", "files": one, "argv": [sa, "dst", "-p"]},
+        {
+            "name": "x_port_twice",
+            "files": one,
+            "argv": ["-p", f"{pa}:b", "-p", f"{pa}:c", sa, "dst"],
+        },
+        {
+            "name": "x_func_three_parts",
+            "files": one,
+            "argv": ["-p", pa, "-f", "a:b:c", sa, "dst"],
+        },
+        {
+            "name": "x_templ_regex_dot",
+            "files": {"src/a_templXc": ra, "dst/.keep": ""},
+            "argv": ["src", "dst"],
+        },
+        {
+            "name": "x_dir_exist_only_merge",
+            "files": two,
+            "argv": ["-e", "src", "dst"],
+        },
+        {
+            "name": "x_backup_second",
+            "files": {**one, "dst/" + na + "_1": "old backup\n"},
+            "argv": [sa, "dst"],
+        },
+        {
+            "name": "x_src_empty_dir",
+            "files": {"src/.keep": "", "dst/.keep": ""},
+            "argv": ["src", "dst"],
+        },
+    ]
 
 
 def snapshot(root: Path) -> dict[str, str]:

@@ -1,0 +1,11 @@
+{
+ "argv": [
+  "--version"
+ ],
+ "input": {},
+ "stdout": "",
+ "stderr": "tecsmerge: version unknown\n",
+ "returncode": 1,
+ "tree": {},
+ "crash_ok": false
+}
